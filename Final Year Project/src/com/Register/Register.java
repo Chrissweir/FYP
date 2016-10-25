@@ -1,6 +1,7 @@
 package com.Register;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -12,7 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 
 @WebServlet("/Register")
 public class Register extends HttpServlet {
@@ -24,8 +26,10 @@ public class Register extends HttpServlet {
 		String password = request.getParameter("password");
 
 		try{
-			// Connect to MongoDB on localhost
-			MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
+			ServerAddress serverAddress = new ServerAddress("localhost", 27017);
+			MongoCredential mongoCredential = MongoCredential.createMongoCRCredential("Admin", "College", "password".toCharArray());
+			
+			MongoClient mongoClient = new MongoClient(serverAddress, Arrays.asList(mongoCredential));
 			DB database = mongoClient.getDB("College");
 			Map<String, Object> commandArguments = new BasicDBObject();
 			commandArguments.put("createUser", username);
