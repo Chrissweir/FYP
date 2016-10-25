@@ -9,8 +9,8 @@
 <body>
 
 <form action="Login">
-	Enter Email:<input type="text" name="email">
-	<!--  Enter Password:<input type="text" name="password"><br> -->
+	Enter Username:<input type="text" name="username">
+	Enter Password:<input type="text" name="password"><br>
 	<input type="submit" value="Login">
 </form>
 
