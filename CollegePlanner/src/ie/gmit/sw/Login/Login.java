@@ -1,6 +1,7 @@
 package ie.gmit.sw.Login;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -24,14 +25,53 @@ import com.mongodb.connection.QueryResult;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String queryResult;
+	private String pass;
+	private String code;
+	
+	private Connection getConnection() throws URISyntaxException, SQLException {
+		String ConnectionString ="jdbc:postgresql://ec2-54-75-239-190.eu-west-1.compute.amazonaws.com:5432/dc6f77btle9oe3?user=dmbleakzbhlbnl&password=b08ab093aa5b03c4047c541ceab2b23daa4fb5198e48d56f804319695455d754&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
 
+		return DriverManager.getConnection(ConnectionString);
+	}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		try {
 			String username = request.getParameter("username");
-			String password = request.getParameter("password");
-
-			MongoClientURI uri  = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh"); 
+			String password = request.getParameter("password");	
+			
+			Class.forName("org.postgresql.Driver");
+			System.out.println("Connecting");
+			Connection connection = getConnection();
+			System.out.println("Connected");
+			Statement stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery( "SELECT * FROM Users WHERE username='"+username+"';" );
+			while ( rs.next() ) {
+				System.out.println("Getting data");
+				pass = rs.getString("password");
+				code = rs.getString("confirmation_code");
+			}
+			if(pass.equals(password)){
+				request.setAttribute("data", code);
+				request.getRequestDispatcher("Welcome.jsp").forward(request, response);
+			}
+			else{
+				request.setAttribute("error","Invalid Username or Password");
+				RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");            
+				rd.include(request, response);
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			/*MongoClientURI uri  = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh"); 
 			MongoClient client = new MongoClient(uri);
 			DB db = client.getDB(uri.getDatabase());
 			DBCollection user = db.getCollection("User");
@@ -57,7 +97,7 @@ public class Login extends HttpServlet {
 				request.setAttribute("error","Invalid Username or Password");
 				RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");            
 				rd.include(request, response);
-			}
+			}*/
 		}
 		catch(Exception e){
 

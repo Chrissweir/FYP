@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,6 +37,8 @@ public class Register extends HttpServlet {
 	private String college;
 	private String code;
 	private SecureRandom random = new SecureRandom();
+	private boolean u = true;
+	private boolean e = true;
 
 
 	public BasicDBObject[] createUserData(){
@@ -64,7 +67,7 @@ public class Register extends HttpServlet {
 
 		return DriverManager.getConnection(ConnectionString);
 	}
-// IF USERNAME EMAIL OR CODE ALREADY IN DATABASE THEN ERROR--CREATE IF STATEMENT
+	// IF USERNAME EMAIL OR CODE ALREADY IN DATABASE THEN ERROR--CREATE IF STATEMENT
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
 
 		firstname = request.getParameter("firstname");
@@ -82,12 +85,33 @@ public class Register extends HttpServlet {
 			Connection connection = getConnection();
 			System.out.println("Connected");
 			Statement stmt = connection.createStatement();
+			Statement stmt1 = connection.createStatement();
+			Statement stmt2 = connection.createStatement();
 			//stmt.executeUpdate("DROP TABLE Users");
 			//stmt.executeUpdate("CREATE TABLE Users (first_name VARCHAR(255),last_name VARCHAR(255),email VARCHAR(255) UNIQUE,gender VARCHAR(255),college VARCHAR(255),username VARCHAR(255) UNIQUE,password VARCHAR(255),confirmation_code VARCHAR(255) UNIQUE)");
-			System.out.println("Created Table");
-			String sql = "INSERT INTO Users (first_name, last_name, email, gender, college, username, password, confirmation_code) "
-					+"VALUES ('"+firstname+"', '"+lastname+"', '"+email+"', '"+gender+"', '"+college+"', '"+username+"', '"+password+"', '"+code+"')";
-			stmt.executeQuery(sql);
+			String checkUser = "SELECT * FROM Users WHERE username='"+username+"'";
+			String checkEmail = "SELECT * FROM Users WHERE email='"+email+"'";
+			ResultSet ru = stmt1.executeQuery("SELECT * FROM Users WHERE username='"+username+"';");
+			ResultSet re = stmt2.executeQuery("SELECT * FROM Users WHERE email='"+email+"';");
+			System.out.println("CHECKED");
+			if(!ru.next() && !re.next()){
+				System.out.println("PASSED");
+				String sql = "INSERT INTO Users (first_name, last_name, email, gender, college, username, password, confirmation_code) "
+						+"VALUES ('"+firstname+"', '"+lastname+"', '"+email+"', '"+gender+"', '"+college+"', '"+username+"', '"+password+"', '"+code+"')";
+				stmt.executeQuery(sql);
+				System.out.println("Inserted");
+				response.sendRedirect("Login.jsp");
+			}
+			else if(ru.next()){
+				request.setAttribute("userError","Username Already Registered!");
+				RequestDispatcher rd=request.getRequestDispatcher("Registration.jsp");            
+				rd.include(request, response);
+			}
+			else{
+				request.setAttribute("emailError","Email Already Registered!");
+				RequestDispatcher rd=request.getRequestDispatcher("Registration.jsp");            
+				rd.include(request, response);
+			}
 			/*ResultSet rs = stmt.executeQuery( "SELECT * FROM Users;" );
 			while ( rs.next() ) {
 				System.out.println("Getting data");
@@ -97,7 +121,6 @@ public class Register extends HttpServlet {
 				System.out.println( "NAME = " + name );
 				System.out.println();
 			}*/
-			System.out.println("Inserted");
 
 		}
 		catch (Exception e) {
@@ -111,6 +134,5 @@ public class Register extends HttpServlet {
 		DBCollection user = db.getCollection("User");
 		user.createIndex(data.toString(), {unique:true});
 		user.insert(data);*/
-		//response.sendRedirect("Login.jsp");
 	}
 }

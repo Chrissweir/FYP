@@ -29,7 +29,7 @@
 					out.println("<font color=red size=4px>"+login_msg+"</font>");
 					%>
 					<form action="Registration">
-						<span class="pull-right"><a href="Registration">Register</a></span></span>
+						<span class="pull-right"><a href="Registration.jsp">Register</a></span></span>
 					</form>
 				</div>
 			</div>

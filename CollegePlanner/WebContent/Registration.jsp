@@ -27,6 +27,11 @@
 						id="signupUserName" name="username" type="text" maxlength="50"
 						class="form-control">
 				</div>
+				<%
+					String user_msg=(String)request.getAttribute("userError");  
+					if(user_msg!=null)
+					out.println("<font color=red size=4px>"+user_msg+"</font>");
+					%>
 				<div class="form-group">
 					<label class="control-label" for="signupFirstName">First
 						Name</label> <input id="signupFirstName" name="firstname" type="text" maxlength="50"
@@ -41,6 +46,11 @@
 					<label class="control-label" for="signupEmail">Email</label> <input
 						id="signupEmail" name="email"type="email" maxlength="50" class="form-control">
 				</div>
+				<%
+					String email_msg=(String)request.getAttribute("emailError");  
+					if(email_msg!=null)
+					out.println("<font color=red size=4px>"+email_msg+"</font>");
+					%>
 				<div class="form-group">
 					<label class="control-label" for="signupEmailagain">Email
 						again</label> <input id="signupEmailagain" type="email" maxlength="50"
@@ -83,6 +93,7 @@
 					<button id="signupSubmit" type="submit"
 						class="btn btn-info btn-block">Create your account</button>
 				</div>
+				
 				<p class="form-group">
 					By creating an account, you agree to our <a href="#">Terms of
 						Use</a> and our <a href="#">Privacy Policy</a>.
