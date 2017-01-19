@@ -81,7 +81,6 @@ public class Login extends HttpServlet {
 			query.put(username, null);
 			//Search the User collection for the key and value in query
 			DBCursor cursor = user.find(query);
-
 			while(cursor.hasNext()) 
 			{
 				//Convert query data to  a String
@@ -127,7 +126,6 @@ public class Login extends HttpServlet {
 /*//Take in email value from Login.jsp
 		String email = request.getParameter("email");
 		//String password = request.getParameter("password");
-
 		//Connect to MongoDB on localhost
 		MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
 		//Set the database as the mongoDB College Database
@@ -140,7 +138,6 @@ public class Login extends HttpServlet {
 		query.put("email", email);
 		//Search the User collection for the key and value in query
 	    DBCursor cursor = collection.find(query);
-
 	    while(cursor.hasNext()) 
 	    {
 	    	//Convert query data to  a String
@@ -150,7 +147,6 @@ public class Login extends HttpServlet {
 	    }
 	    //Forward data from the query to "Welcome.jsp"
     	request.getRequestDispatcher("Welcome.jsp").forward(request, response);
-
 	if(email.equals("Chris"))
 		{
 			HttpSession session = request.getSession();
