@@ -10,15 +10,9 @@
 <title>Registration</title>
 </head>
 <body>
-
-	<!--<form action="Register">
-		Enter UserName:<input type="text" name="username"> <br>
-		Enter Password:<input type="text" name="password"> <br> <input
-			type="submit" value="Register">
-	</form>-->
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form  action="Register" role="form">
+			<form action="Register" role="form">
 				<div>
 					<h2>Create account</h2>
 				</div>
@@ -34,17 +28,18 @@
 					%>
 				<div class="form-group">
 					<label class="control-label" for="signupFirstName">First
-						Name</label> <input id="signupFirstName" name="firstname" type="text" maxlength="50"
-						class="form-control">
+						Name</label> <input id="signupFirstName" name="firstname" type="text"
+						maxlength="50" class="form-control">
 				</div>
 				<div class="form-group">
 					<label class="control-label" for="signupLastName">Last Name</label>
-					<input id="signupLastName" name="lastname" type="text" maxlength="50"
-						class="form-control">
+					<input id="signupLastName" name="lastname" type="text"
+						maxlength="50" class="form-control">
 				</div>
 				<div class="form-group">
 					<label class="control-label" for="signupEmail">Email</label> <input
-						id="signupEmail" name="email"type="email" maxlength="50" class="form-control">
+						id="signupEmail" name="email" type="email" maxlength="50"
+						class="form-control">
 				</div>
 				<%
 					String email_msg=(String)request.getAttribute("emailError");  
@@ -58,9 +53,9 @@
 				</div>
 				<div class="form-group">
 					<label class="control-label" for="signupPassword">Password</label>
-					<input id="signupPassword" name="password" type="password" maxlength="25"
-						class="form-control" placeholder="at least 6 characters"
-						length="40">
+					<input id="signupPassword" name="password" type="password"
+						maxlength="25" class="form-control"
+						placeholder="at least 6 characters" length="40">
 				</div>
 				<div class="form-group">
 					<label class="control-label" for="signupPasswordagain">Password
@@ -69,7 +64,8 @@
 				</div>
 				<div class="form-group">
 					<label class="control-label" for="signupCollege">College</label> <input
-						id="signupCollege" name="college" type="text" maxlength="25" class="form-control">
+						id="signupCollege" name="college" type="text" maxlength="25"
+						class="form-control">
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-3">Gender</label>
@@ -93,14 +89,14 @@
 					<button id="signupSubmit" type="submit"
 						class="btn btn-info btn-block">Create your account</button>
 				</div>
-				
+
 				<p class="form-group">
 					By creating an account, you agree to our <a href="#">Terms of
 						Use</a> and our <a href="#">Privacy Policy</a>.
 				</p>
 				<hr>
 				<p></p>
-				Already have an account? <a href="#">Sign in</a>
+				Already have an account? <a href="Login.jsp">Sign in</a>
 				</p>
 			</form>
 		</div>

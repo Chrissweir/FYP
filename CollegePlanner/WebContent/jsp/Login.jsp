@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="Login.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/Login.css">
 <title>Login</title>
 </head>
 <body>
@@ -18,10 +19,10 @@
 				<div class="form-group">
 					<form action="Login">
 						<input type="text" name="username" class="form-control input-lg"
-							placeholder="Username" /> <br> <input type="password" name="password"
-							class="form-control input-lg" placeholder="Password" /> <br> <input
-							type="submit" class="btn btn-block btn-lg btn-primary"
-							value="Login" /><br>
+							placeholder="Username" /> <br> <input type="password"
+							name="password" class="form-control input-lg"
+							placeholder="Password" /> <br> <input type="submit"
+							class="btn btn-block btn-lg btn-primary" value="Login" /><br>
 					</form>
 					<%
 					String login_msg=(String)request.getAttribute("error");  
