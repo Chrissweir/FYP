@@ -23,7 +23,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.jdt.internal.compiler.apt.model.ErrorTypeImpl;
 
 import com.mongodb.*;
 
