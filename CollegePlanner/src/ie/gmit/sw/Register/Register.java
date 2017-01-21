@@ -124,7 +124,7 @@ public class Register extends HttpServlet {
 				request.setAttribute("emailError","Email Already Registered!");
 			}
             // get back to order.jsp page using forward
-            request.getRequestDispatcher("/Registration.jsp").forward(request, response);
+            request.getRequestDispatcher("/LoginRegister.jsp").forward(request, response);
 			/*ResultSet rs = stmt.executeQuery( "SELECT * FROM Users;" );
 			while ( rs.next() ) {
 				System.out.println("Getting data");

@@ -1,34 +1,29 @@
-function confirmPassword() {
+function validateForm() {
+	var email = document.getElementById("signupEmail").value;
 	var password = document.getElementById("signupPassword").value;
 	var confpassword = document.getElementById("signupPasswordagain").value;
-	if(password == confpassword) {
-		document.getElementById("passwordLabel").style.display="block";
-		window.alert("Passwords Dont match");
-	}
-	else{
-		document.getElementById("passwordLabel").style.display="none";
-	}
-}
-
-function confirmEmail() {
-	var email = document.getElementById("signupEmail").value;
-	var confemail = document.getElementById("signupEmailagain").value;
-	if(email != confemail) {
+	var emailReg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	alert("Thatvg kg")
+	if(email.match(emailreg)){
+		if (document.getElementById("maleRadio").checked || document.getElementById("femaleRadio").checked) {
+			if(password == confpassword){
+				document.getElementById("passwordLabel").style.display="none";
+				return true;
+			}
+			else
+			{
+				document.getElementById("passwordLabel").style.display="block";
+				return false;
+			}
+		}else
+		{
+			document.getElementById("genderLabel").style.display="block";
+			return false;
+		}
+	}else
+	{
 		document.getElementById("emailLabel").style.display="block";
+		return false;
 	}
-	else{
-		document.getElementById("emailLabel").style.display="none";
-	}
-}
-
-
-
-function confirmCollege() {
-	var college = document.getElementById("signupCollege").value;
-	if(college =="") {
-		document.getElementById("collegeLabel").style.display="block";
-	}
-	else{
-		document.getElementById("collegeLabel").style.display="none";
-	}
+	return false;
 }

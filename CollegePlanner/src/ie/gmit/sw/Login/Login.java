@@ -57,7 +57,7 @@ public class Login extends HttpServlet {
 			}
 			else{
 				request.setAttribute("error","Invalid Username or Password");
-				RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");            
+				RequestDispatcher rd=request.getRequestDispatcher("LoginRegister.jsp");            
 				rd.include(request, response);
 			}
 			
