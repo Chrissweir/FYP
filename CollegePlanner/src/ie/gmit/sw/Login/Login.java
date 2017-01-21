@@ -27,6 +27,11 @@ public class Login extends HttpServlet {
 	private String queryResult;
 	private String pass;
 	private String code;
+	private String user;
+	private String firstname;
+	private String lastname;
+	private String email;
+	private String college;
 	
 	private Connection getConnection() throws URISyntaxException, SQLException {
 		String ConnectionString ="jdbc:postgresql://ec2-54-75-239-190.eu-west-1.compute.amazonaws.com:5432/dc6f77btle9oe3?user=dmbleakzbhlbnl&password=b08ab093aa5b03c4047c541ceab2b23daa4fb5198e48d56f804319695455d754&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
@@ -48,10 +53,20 @@ public class Login extends HttpServlet {
 			ResultSet rs = stmt.executeQuery( "SELECT * FROM Users WHERE username='"+username+"';" );
 			while ( rs.next() ) {
 				System.out.println("Getting data");
+				firstname = rs.getString("first_name");
+				lastname = rs.getString("last_name");
+				email = rs.getString("email");
+				college = rs.getString("college");
+				user = rs.getString("username");
 				pass = rs.getString("password");
 				code = rs.getString("confirmation_code");
 			}
 			if(pass.equals(password)){
+				request.setAttribute("firstname", firstname);
+				request.setAttribute("lastname", lastname);
+				request.setAttribute("email", email);
+				request.setAttribute("college", college);
+				request.setAttribute("username", user);
 				request.setAttribute("data", code);
 				request.getRequestDispatcher("Welcome.jsp").forward(request, response);
 			}

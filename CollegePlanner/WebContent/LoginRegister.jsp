@@ -6,16 +6,20 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/LoginRegister.css">
 <script type="text/javascript" src="js/RegisterError.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/LoginRegister.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login/Register</title>
 </head>
 <body>
+	<div class="background"></div>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
+				<div class="title">
+					<p>College Planner</p>
+				</div>
+
 				<div class="panel panel-login">
 					<div class="panel-heading">
 						<div class="row">
@@ -70,7 +74,7 @@
 										</div>
 									</div>
 								</form>
-								<form id="register-form" action="Registe"
+								<form id="register-form" action="Register"
 									onsubmit="return validateForm(this);" style="display: none">
 									<div class="form-group">
 										<input id="signupUserName" name="username" type="text"
@@ -116,23 +120,6 @@
 									<div class="form-group">
 										<input id="signupCollege" name="college" type="text"
 											maxlength="25" class="form-control" placeholder="College"required">
-									</div>
-									<div class="form-group">
-										<label class="control-label col-sm-3">Gender</label>
-										<div class="col-sm-6">
-											<div class="row">
-												<div class="col-sm-4">
-													<label class="radio-inline"> <input type="radio"
-														id="femaleRadio" name="gender" value="Female">Female
-													</label>
-												</div>
-												<div class="col-sm-4">
-													<label class="radio-inline"> <input type="radio"
-														id="maleRadio" name="gender" value="Male">Male
-													</label>
-												</div>
-											</div>
-										</div>
 									</div>
 									<div class="form-group">
 										<button id="signupSubmit" type="submit"

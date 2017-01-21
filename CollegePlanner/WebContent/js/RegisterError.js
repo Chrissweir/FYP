@@ -5,19 +5,13 @@ function validateForm() {
 	var emailReg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	alert("Thatvg kg")
 	if(email.match(emailreg)){
-		if (document.getElementById("maleRadio").checked || document.getElementById("femaleRadio").checked) {
-			if(password == confpassword){
-				document.getElementById("passwordLabel").style.display="none";
-				return true;
-			}
-			else
-			{
-				document.getElementById("passwordLabel").style.display="block";
-				return false;
-			}
-		}else
+		if(password == confpassword){
+			document.getElementById("passwordLabel").style.display="none";
+			return true;
+		}
+		else
 		{
-			document.getElementById("genderLabel").style.display="block";
+			document.getElementById("passwordLabel").style.display="block";
 			return false;
 		}
 	}else

@@ -34,7 +34,6 @@ public class Register extends HttpServlet {
 	private String firstname;
 	private String lastname;
 	private String email;
-	private String gender;
 	private String college;
 	private String code;
 	private SecureRandom random = new SecureRandom();
@@ -51,7 +50,6 @@ public class Register extends HttpServlet {
 		userDetails.put("First Name", firstname);
 		userDetails.put("Last Name", lastname);
 		userDetails.put("Email", email);
-		userDetails.put("Gender", gender);
 		userDetails.put("College", college);
 		userDetails.put("Confirmation Code", code);
 
@@ -75,7 +73,6 @@ public class Register extends HttpServlet {
 			firstname = request.getParameter("firstname");
 			lastname = request.getParameter("lastname");
 			email = request.getParameter("email");
-			gender = request.getParameter("gender");
 			college = request.getParameter("college");
 			username = request.getParameter("username");
 			password = request.getParameter("password");
@@ -89,7 +86,7 @@ public class Register extends HttpServlet {
 			Statement stmt1 = connection.createStatement();
 			Statement stmt2 = connection.createStatement();
 			//stmt.executeUpdate("DROP TABLE Users");
-			//stmt.executeUpdate("CREATE TABLE Users (first_name VARCHAR(255),last_name VARCHAR(255),email VARCHAR(255) UNIQUE,gender VARCHAR(255),college VARCHAR(255),username VARCHAR(255) UNIQUE,password VARCHAR(255),confirmation_code VARCHAR(255) UNIQUE)");
+			//stmt.executeUpdate("CREATE TABLE Users (first_name VARCHAR(255),last_name VARCHAR(255),email VARCHAR(255) UNIQUE,college VARCHAR(255),username VARCHAR(255) UNIQUE,password VARCHAR(255),confirmation_code VARCHAR(255) UNIQUE)");
 			String checkUser = "SELECT * FROM Users WHERE username='"+username+"'";
 			String checkEmail = "SELECT * FROM Users WHERE email='"+email+"'";
 			ResultSet ru = stmt1.executeQuery("SELECT * FROM Users WHERE username='"+username+"';");
@@ -109,11 +106,11 @@ public class Register extends HttpServlet {
 			
 			if(userAvailable == true && emailAvailable == true){
 				System.out.println("PASSED");
-				String sql = "INSERT INTO Users (first_name, last_name, email, gender, college, username, password, confirmation_code) "
-						+"VALUES ('"+firstname+"', '"+lastname+"', '"+email+"', '"+gender+"', '"+college+"', '"+username+"', '"+password+"', '"+code+"')";
+				String sql = "INSERT INTO Users (first_name, last_name, email, college, username, password, confirmation_code) "
+						+"VALUES ('"+firstname+"', '"+lastname+"', '"+email+"', '"+college+"', '"+username+"', '"+password+"', '"+code+"')";
 				stmt.executeQuery(sql);
 				System.out.println("Inserted");
-				response.sendRedirect("Login.jsp");
+				response.sendRedirect("/LoginRegister.jsp");
 			}
 			if(userAvailable == false){
 				System.out.println("Username error");
