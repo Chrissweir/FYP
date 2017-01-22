@@ -65,7 +65,7 @@ public class Login extends HttpServlet {
 				request.setAttribute("firstname", firstname);
 				request.setAttribute("lastname", lastname);
 				request.setAttribute("email", email);
-				request.setAttribute("college", college);
+				request.setAttribute("college	", college);
 				request.setAttribute("username", user);
 				request.setAttribute("data", code);
 				request.getRequestDispatcher("Welcome.jsp").forward(request, response);

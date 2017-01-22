@@ -5,9 +5,9 @@
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/LoginRegister.css">
-<script type="text/javascript" src="js/RegisterError.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/LoginRegister.js"></script>
+<script type="text/javascript" src="js/RegisterError.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login/Register</title>
 </head>
@@ -74,8 +74,7 @@
 										</div>
 									</div>
 								</form>
-								<form id="register-form" action="Register"
-									onsubmit="return validateForm(this);" style="display: none">
+								<form id="register-form" name="register-form" onsubmit="return validateForm();" action="Register" style="display: none">
 									<div class="form-group">
 										<input id="signupUserName" name="username" type="text"
 											maxlength="50" class="form-control" placeholder="Username"
@@ -110,19 +109,21 @@
 										<input id="signupPassword" name="password" type="password"
 											maxlength="25" class="form-control" placeholder="Password"
 											length="40" required>
+											<label id="passLabel" style="color: red; display: none">Passwords
+											must Match!</label>
 									</div>
 									<div class="form-group">
 										<input id="signupPasswordagain" type="password" maxlength="25"
-											class="form-control" placeholder="Confirm Password"required">
-										<label id="passLabel" style="color: red; display: none">Passwords
+											class="form-control" placeholder="Confirm Password" required>
+										<label id="confpassLabel" style="color: red; display: none">Passwords
 											must Match!</label>
 									</div>
 									<div class="form-group">
 										<input id="signupCollege" name="college" type="text"
-											maxlength="25" class="form-control" placeholder="College"required">
+											maxlength="25" class="form-control" placeholder="College" required>
 									</div>
 									<div class="form-group">
-										<button id="signupSubmit" type="submit"
+										<button id="signupSubmit" type="submit" form="register-form"
 											class="btn btn-info btn-block">Register</button>
 									</div>
 								</form>
