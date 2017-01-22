@@ -4,12 +4,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.*;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,13 +15,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 //import javax.servlet.http.HttpSession;
 
-import com.mongodb.*;
-import com.mongodb.connection.QueryResult;
-
+/**
+ * @author Christopher Weir - G00309429
+ * 
+ * This class is responsible for allowing the user to login to the website by 
+ * first retrieving the username and password that was entered. The class then establishes 
+ * a connection with the postgres SQL database hosted on Heroku. A database query is made to 
+ * check if the user exists and if it does then check if the password matches the users password.
+ * Once confirmed, the users data is passed into the request object and forwarded to the Welcome.jsp
+ * page.
+ */
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private String queryResult;
 	private String pass;
 	private String code;
 	private String user;
@@ -32,27 +35,47 @@ public class Login extends HttpServlet {
 	private String lastname;
 	private String email;
 	private String college;
-	
+	private String username;
+	private String password;
+
+	/**
+	 * getConnection() establishes a connection to the database
+	 * @return
+	 * @throws URISyntaxException
+	 * @throws SQLException
+	 */
 	private Connection getConnection() throws URISyntaxException, SQLException {
 		String ConnectionString ="jdbc:postgresql://ec2-54-75-239-190.eu-west-1.compute.amazonaws.com:5432/dc6f77btle9oe3?user=dmbleakzbhlbnl&password=b08ab093aa5b03c4047c541ceab2b23daa4fb5198e48d56f804319695455d754&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
-
 		return DriverManager.getConnection(ConnectionString);
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
+	/**
+	 * doGet() handles the request from the Login.jsp page by retrieving 
+	 * the username and password that was submitted and using them to query the database
+	 * and pass the data to the Welcome.jsp page.
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		try {
-			String username = request.getParameter("username");
-			String password = request.getParameter("password");	
-			
+			// Retrieve the username and password that was submitted
+			username = request.getParameter("username");
+			password = request.getParameter("password");	
+
+			//Establish a connection with the database
 			Class.forName("org.postgresql.Driver");
-			System.out.println("Connecting");
 			Connection connection = getConnection();
-			System.out.println("Connected");
+
+			//Create a new statement
 			Statement stmt = connection.createStatement();
+
+			//Execute a query on the statement and assign the results to the ResultSet rs
 			ResultSet rs = stmt.executeQuery( "SELECT * FROM Users WHERE username='"+username+"';" );
+
+			//Using a while loop, for every entry in the ResultSet retrieve the specified data
 			while ( rs.next() ) {
-				System.out.println("Getting data");
 				firstname = rs.getString("first_name");
 				lastname = rs.getString("last_name");
 				email = rs.getString("email");
@@ -61,6 +84,10 @@ public class Login extends HttpServlet {
 				pass = rs.getString("password");
 				code = rs.getString("confirmation_code");
 			}
+
+			//User validation, check if the password that was submitted is the same and the password
+			//retrieved from the database. If it is then pass the specified data to the request object
+			//and forward the request to the Welcome.jsp page
 			if(pass.equals(password)){
 				request.setAttribute("firstname", firstname);
 				request.setAttribute("lastname", lastname);
@@ -70,23 +97,29 @@ public class Login extends HttpServlet {
 				request.setAttribute("data", code);
 				request.getRequestDispatcher("Welcome.jsp").forward(request, response);
 			}
+			
+			//If t he passwords do not match then send an error back to the Login.jsp page
 			else{
 				request.setAttribute("error","Invalid Username or Password");
 				RequestDispatcher rd=request.getRequestDispatcher("LoginRegister.jsp");            
 				rd.include(request, response);
 			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			/*MongoClientURI uri  = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh"); 
+		}catch (Exception e) {
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+/*MongoClientURI uri  = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh"); 
 			MongoClient client = new MongoClient(uri);
 			DB db = client.getDB(uri.getDatabase());
 			DBCollection user = db.getCollection("User");
@@ -112,12 +145,6 @@ public class Login extends HttpServlet {
 				RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");            
 				rd.include(request, response);
 			}*/
-		}
-		catch(Exception e){
-
-		}
-	}
-}
 
 
 
