@@ -53,7 +53,7 @@ public class Login extends HttpServlet {
 	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	/**
-	 * doGet() handles the request from the Login.jsp page by retrieving 
+	 * doGet() handles the request from the LoginRegister.jsp page by retrieving 
 	 * the username and password that was submitted and using them to query the database
 	 * and pass the data to the Welcome.jsp page.
 	 */
@@ -98,7 +98,7 @@ public class Login extends HttpServlet {
 				request.getRequestDispatcher("Welcome.jsp").forward(request, response);
 			}
 			
-			//If t he passwords do not match then send an error back to the Login.jsp page
+			//If t he passwords do not match then send an error back to the LoginRegister.jsp page
 			else{
 				request.setAttribute("error","Invalid Username or Password");
 				RequestDispatcher rd=request.getRequestDispatcher("LoginRegister.jsp");            
@@ -142,7 +142,7 @@ public class Login extends HttpServlet {
 			}
 			else{
 				request.setAttribute("error","Invalid Username or Password");
-				RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");            
+				RequestDispatcher rd=request.getRequestDispatcher("LoginRegister.jsp");            
 				rd.include(request, response);
 			}*/
 
@@ -165,7 +165,7 @@ public class Login extends HttpServlet {
 
 
 
-/*//Take in email value from Login.jsp
+/*//Take in email value from LoginRegister.jsp
 		String email = request.getParameter("email");
 		//String password = request.getParameter("password");
 		//Connect to MongoDB on localhost
@@ -197,5 +197,5 @@ public class Login extends HttpServlet {
 		}
 		else
 		{
-			response.sendRedirect("Login.jsp");
+			response.sendRedirect("LoginRegister.jsp");
 		}*/
