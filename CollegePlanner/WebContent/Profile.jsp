@@ -70,23 +70,31 @@
 							<tbody>
 								<tr>
 									<td>First Name:</td>
-									<td>${firstname}</td>
+									<td><textfield type="text">${firstname}</textfield></td>
 								</tr>
 								<tr>
 									<td>Last Name:</td>
-									<td>${lastname}</td>
+									<td><textfield type ="text">${lastname}</textfield></td>
+								</tr>
+								<tr>
+									<td>Date of Birth:</td>
+									<td><textfield type="text"></textfield></td>
+								</tr>
+								<tr>
+									<td>Country:</td>
+									<td><textfield type="text"></textfield></td>
 								</tr>
 								<tr>
 									<td>College</td>
-									<td>${college}</td>
+									<td><textfield type ="text">${college}</textfield></td>
 								</tr>
 								<tr>
 									<td>Email</td>
-									<td><a href="${email}">${email}</a></td>
+									<td><textfield type ="text">${email}</textfield></td>
 								</tr>
 								<tr>
 									<td>Biography:</td>
-									<td><textarea></textarea></td>
+									<td><textfield type ="text"></textfield></td>
 								</tr>
 							</tbody>
 						</table>
