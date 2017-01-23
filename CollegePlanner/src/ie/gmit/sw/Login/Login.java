@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  * first retrieving the username and password that was entered. The class then establishes 
  * a connection with the postgres SQL database hosted on Heroku. A database query is made to 
  * check if the user exists and if it does then check if the password matches the users password.
- * Once confirmed, the users data is passed into the request object and forwarded to the Welcome.jsp
+ * Once confirmed, the users data is passed into the request object and forwarded to the Profile.jsp
  * page.
  */
 @WebServlet("/Login")
@@ -55,7 +55,7 @@ public class Login extends HttpServlet {
 	/**
 	 * doGet() handles the request from the LoginRegister.jsp page by retrieving 
 	 * the username and password that was submitted and using them to query the database
-	 * and pass the data to the Welcome.jsp page.
+	 * and pass the data to the Profile.jsp page.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
@@ -87,15 +87,15 @@ public class Login extends HttpServlet {
 
 			//User validation, check if the password that was submitted is the same and the password
 			//retrieved from the database. If it is then pass the specified data to the request object
-			//and forward the request to the Welcome.jsp page
+			//and forward the request to the Profile.jsp page
 			if(pass.equals(password)){
 				request.setAttribute("firstname", firstname);
 				request.setAttribute("lastname", lastname);
 				request.setAttribute("email", email);
-				request.setAttribute("college	", college);
+				request.setAttribute("college", college);
 				request.setAttribute("username", user);
 				request.setAttribute("data", code);
-				request.getRequestDispatcher("Welcome.jsp").forward(request, response);
+				request.getRequestDispatcher("Profile.jsp").forward(request, response);
 			}
 			
 			//If t he passwords do not match then send an error back to the LoginRegister.jsp page
@@ -137,8 +137,8 @@ public class Login extends HttpServlet {
 				request.setAttribute("data", queryResult);
 			}
 			if (queryResult.contains(password)){
-				//Forward data from the query to "Welcome.jsp"
-				request.getRequestDispatcher("Welcome.jsp").forward(request, response);
+				//Forward data from the query to "Profile.jsp"
+				request.getRequestDispatcher("Profile.jsp").forward(request, response);
 			}
 			else{
 				request.setAttribute("error","Invalid Username or Password");
@@ -187,13 +187,13 @@ public class Login extends HttpServlet {
 	    	//Set the attribute "data" of the request with the value of the query String
 	    	request.setAttribute("data", queryResult);
 	    }
-	    //Forward data from the query to "Welcome.jsp"
-    	request.getRequestDispatcher("Welcome.jsp").forward(request, response);
+	    //Forward data from the query to "Profile.jsp"
+    	request.getRequestDispatcher("Profile.jsp").forward(request, response);
 	if(email.equals("Chris"))
 		{
 			HttpSession session = request.getSession();
 			session.setAttribute("email", email);
-			response.sendRedirect("Welcome.jsp");
+			response.sendRedirect("Profile.jsp");
 		}
 		else
 		{
