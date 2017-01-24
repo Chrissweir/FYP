@@ -64,7 +64,7 @@
 							src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png"
 							class="img-circle img-responsive">
 						<div class="image-upload">
-   							<label class="btn btn-default btn-file">
+   							<label class="btn btn-default btn-file" activ>
   								Edit <input type="file" style="display: none;">
 						</label>
 						</div>
@@ -74,27 +74,27 @@
 							<tbody>
 								<tr>
 									<td>First Name:</td>
-									<td><textfield type="text">${firstname}</textfield></td>
+									<td><textfield type="text" id="firstname">${firstname}</textfield></td>
 								</tr>
 								<tr>
 									<td>Last Name:</td>
-									<td><textfield type ="text">${lastname}</textfield></td>
+									<td><textfield type ="text" id="lastname">${lastname}</textfield></td>
 								</tr>
 								<tr>
 									<td>Email</td>
-									<td><textfield type ="text">${email}</textfield></td>
+									<td><textfield type ="text" id="email">${email}</textfield></td>
 								</tr>
 								<tr>
 									<td>Date of Birth:</td>
-									<td><textfield type="text"></textfield></td>
+									<td><textfield type="text" id="dob"></textfield></td>
 								</tr>
 								<tr>
 									<td>Country:</td>
-									<td><textfield type="text"></textfield></td>
+									<td><textfield type="text" id="country"></textfield></td>
 								</tr>
 								<tr>
 									<td>College</td>
-									<td><textfield type ="text">${college}</textfield></td>
+									<td><textfield type ="text" id="college">${college}</textfield></td>
 								</tr>
 							</tbody>
 						</table>
@@ -102,9 +102,13 @@
 				</div>
 			</div>
 			<div class="panel-footer">
-				<a href="edit.html" data-original-title="Edit this user"
+				<button onclick="edit()" data-original-title="Edit this user"
 					data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i
-					class="glyphicon glyphicon-edit"></i></a> <span class="pull-right">
+					class="glyphicon glyphicon-edit"></i></button>
+					<button id="saveBtn" style="visibility: hidden" onclick="save()" data-original-title="Save details"
+					data-toggle="tooltip" type="button" class="btn btn-sm btn-success"><i
+					class="glyphicon glyphicon-floppy-disk"></i></button>
+					 <span class="pull-right">
 					<a data-original-title="Remove this user" data-toggle="tooltip"
 					type="button" class="btn btn-sm btn-danger"><i
 						class="glyphicon glyphicon-remove"></i></a>
