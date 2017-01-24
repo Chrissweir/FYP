@@ -52,18 +52,22 @@
 	<br>
 	<!-- JSTL -->
 	<p>The data from servlet: ${data}</p>
-	<div
-		class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<h3 class="panel-title">${username}</h3>
 			</div>
 			<div class="panel-body">
 				<div class="row">
-					<div class="col-md-3 col-lg-3 " align="center">
+					<div class="col-md-3 col-lg-3" align="center">
 						<img alt="User Pic"
 							src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png"
 							class="img-circle img-responsive">
+						<div class="image-upload">
+   							<label class="btn btn-default btn-file">
+  								Edit <input type="file" style="display: none;">
+						</label>
+						</div>
 					</div>
 					<div class=" col-md-9 col-lg-9 ">
 						<table class="table table-user-information">
@@ -77,6 +81,10 @@
 									<td><textfield type ="text">${lastname}</textfield></td>
 								</tr>
 								<tr>
+									<td>Email</td>
+									<td><textfield type ="text">${email}</textfield></td>
+								</tr>
+								<tr>
 									<td>Date of Birth:</td>
 									<td><textfield type="text"></textfield></td>
 								</tr>
@@ -87,14 +95,6 @@
 								<tr>
 									<td>College</td>
 									<td><textfield type ="text">${college}</textfield></td>
-								</tr>
-								<tr>
-									<td>Email</td>
-									<td><textfield type ="text">${email}</textfield></td>
-								</tr>
-								<tr>
-									<td>Biography:</td>
-									<td><textfield type ="text"></textfield></td>
 								</tr>
 							</tbody>
 						</table>
