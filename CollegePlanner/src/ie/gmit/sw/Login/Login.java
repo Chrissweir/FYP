@@ -13,7 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-//import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author Christopher Weir - G00309429
@@ -37,7 +37,6 @@ public class Login extends HttpServlet {
 	private String college;
 	private String username;
 	private String password;
-
 	/**
 	 * getConnection() establishes a connection to the database
 	 * @return
@@ -89,15 +88,18 @@ public class Login extends HttpServlet {
 			//retrieved from the database. If it is then pass the specified data to the request object
 			//and forward the request to the Profile.jsp page
 			if(pass.equals(password)){
-				request.setAttribute("firstname", firstname);
-				request.setAttribute("lastname", lastname);
-				request.setAttribute("email", email);
-				request.setAttribute("college", college);
-				request.setAttribute("username", user);
-				request.setAttribute("data", code);
-				request.getRequestDispatcher("Profile.jsp").forward(request, response);
+				HttpSession session = request.getSession();
+				session.setAttribute("firstname", firstname);
+				session.setAttribute("lastname", lastname);
+				session.setAttribute("email", email);
+				session.setAttribute("college", college);
+				session.setAttribute("username", user);
+				session.setAttribute("code", code);
+				//response.sendRedirect("Profile.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("Profile.jsp");
+				rd.forward(request, response);	
 			}
-			
+
 			//If t he passwords do not match then send an error back to the LoginRegister.jsp page
 			else{
 				request.setAttribute("error","Invalid Username or Password");
