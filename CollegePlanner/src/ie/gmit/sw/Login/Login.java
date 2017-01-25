@@ -95,7 +95,6 @@ public class Login extends HttpServlet {
 				session.setAttribute("college", college);
 				session.setAttribute("username", user);
 				session.setAttribute("code", code);
-				//response.sendRedirect("Profile.jsp");
 				RequestDispatcher rd = request.getRequestDispatcher("Profile.jsp");
 				rd.forward(request, response);	
 			}

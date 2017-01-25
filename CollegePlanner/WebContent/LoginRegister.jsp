@@ -120,7 +120,7 @@
 									</div>
 									<div class="form-group">
 										<input id="signupCollege" name="college" type="text"
-											maxlength="25" class="form-control" placeholder="College" required>
+											maxlength="25" class="form-control" placeholder="Full name of College/University" required>
 									</div>
 									<div class="form-group">
 										<button id="signupSubmit" type="submit" form="register-form"

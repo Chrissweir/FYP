@@ -85,14 +85,6 @@
 									<td><textfield type ="text" id="email">${email}</textfield></td>
 								</tr>
 								<tr>
-									<td>Date of Birth:</td>
-									<td><textfield type="date" id="dob"></textfield></td>
-								</tr>
-								<tr>
-									<td>Country:</td>
-									<td><textfield type="text" id="country"></textfield></td>
-								</tr>
-								<tr>
 									<td>College</td>
 									<td><textfield type ="text" id="college">${college}</textfield></td>
 								</tr>
