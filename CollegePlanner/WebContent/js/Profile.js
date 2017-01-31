@@ -1,3 +1,10 @@
+function path(event){
+	var x = URL.createObjectURL(event.target.files[0]);
+	alert(x);
+	document.getElementById("image").src= URL.createObjectURL(event.target.files[0]);
+	document.getElementById("imagePath").innerHTML=x;
+};
+
 function edit(){
 	document.getElementById("saveBtn").style.visibility = "visible";
 	document.getElementById("imageEdit").style.visibility = "visible";

@@ -95,8 +95,7 @@ public class Login extends HttpServlet {
 				session.setAttribute("college", college);
 				session.setAttribute("username", user);
 				session.setAttribute("code", code);
-				RequestDispatcher rd = request.getRequestDispatcher("Profile.jsp");
-				rd.forward(request, response);	
+				response.sendRedirect("Profile.jsp");
 			}
 
 			//If t he passwords do not match then send an error back to the LoginRegister.jsp page
