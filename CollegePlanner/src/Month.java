@@ -1,4 +1,4 @@
-package ie.gmit.sw.Calendar;
+//package ie.gmit.sw.Calendar;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -9,6 +9,7 @@ public class Month {
 	private int days[][];
 	private int numberOfWeeks;
 	private static HashMap months = new HashMap();
+	private int day;
 
 	private Month() {
 	}
