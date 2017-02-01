@@ -1,8 +1,6 @@
-function path(event){
-	var x = URL.createObjectURL(event.target.files[0]);
-	alert(x);
+function path(){
+	var x = document.getElementById("imgFile").value;
 	document.getElementById("image").src= URL.createObjectURL(event.target.files[0]);
-	document.getElementById("imagePath").innerHTML=x;
 };
 
 function edit(){

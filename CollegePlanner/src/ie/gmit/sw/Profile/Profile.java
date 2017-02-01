@@ -33,11 +33,10 @@ import com.mongodb.gridfs.GridFSDBFile;
 /**
  * Servlet implementation class Profile
  */
+@MultipartConfig
 @WebServlet("/Profile")
-@MultipartConfig(maxFileSize = 16177215)
 public class Profile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private File file;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -77,71 +76,61 @@ public class Profile extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Part filePart = request.getPart("imgFile"); 
+		InputStream fileContent = filePart.getInputStream();
+		File file = null;
+		OutputStream outputStream = new FileOutputStream(file);
+		IOUtils.copy(fileContent, outputStream);
+		outputStream.close();
+		
+		String encodstring = ImageBase64(file);
+		System.out.println(encodstring);
 
-
-		InputStream inputStream = null; // input stream of the upload file
-        
-        // obtains the upload file part in this multipart request
-        Part filePart = request.getPart("imgFile");
-        if (filePart != null) {
-            // prints out some information for debugging
-            System.out.println(filePart.getName());
-            System.out.println(filePart.getSize());
-            System.out.println(filePart.getContentType());
-             
-            // obtains input stream of the upload file
-            inputStream = filePart.getInputStream();
-            FileOutputStream out = new FileOutputStream(file);
-            IOUtils.copy(inputStream, out);
-        }
-        System.out.println(file.getAbsolutePath());
-	String encodstring = ImageBase64(file);
-	System.out.println(encodstring);
-
-	HttpSession session = request.getSession();
-	String code = (String)session.getAttribute("code");
-	//System.out.println(code);
-	final BasicDBObject[] data = createUserData(code, encodstring);
-	MongoClientURI uri  = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh"); 
-	MongoClient client = new MongoClient(uri);
-	DB db = client.getDB(uri.getDatabase());
-	DBCollection user = db.getCollection("User");
-	BasicDBObject document = new BasicDBObject();
-	document.put("Confirmation Code", code);
-	user.remove(document);
-	user.insert(data);
-	response.sendRedirect("Profile.jsp");
-}
-
-public String ImageBase64(File file){
-
-	String encodedfile = null;
-	try {
-		FileInputStream fileInputStreamReader = new FileInputStream(file);
-		byte[] bytes = new byte[(int)file.length()];
-		fileInputStreamReader.read(bytes);
-		encodedfile = new String(Base64.encodeBase64(bytes), "UTF-8");
-	} catch (FileNotFoundException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		HttpSession session = request.getSession();
+		String code = (String)session.getAttribute("code");
+		//System.out.println(code);
+		final BasicDBObject[] data = createUserData(code, encodstring);
+		MongoClientURI uri  = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh"); 
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("User");
+		BasicDBObject document = new BasicDBObject();
+		document.put("Confirmation Code", code);
+		user.remove(document);
+		user.insert(data);
+		response.sendRedirect("Profile.jsp");
 	}
 
-	return encodedfile;
-}
+	public String ImageBase64(File file){
 
-public BasicDBObject[] createUserData(String code, String encodstring){
+		String encodedfile = null;
+		try {
+			FileInputStream fileInputStreamReader = new FileInputStream(file);
+			byte[] bytes = new byte[(int)file.length()];
+			fileInputStreamReader.read(bytes);
+			encodedfile = new String(Base64.encodeBase64(bytes), "UTF-8");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-	BasicDBObject ImageDetails = new BasicDBObject();
+		return encodedfile;
+	}
 
-	ImageDetails.put("Confirmation Code", code);
-	ImageDetails.put("Image", encodstring);
+	public BasicDBObject[] createUserData(String code, String encodstring){
 
-	final BasicDBObject[] data = {ImageDetails};
+		BasicDBObject ImageDetails = new BasicDBObject();
 
-	return data;
-}
+		ImageDetails.put("Confirmation Code", code);
+		ImageDetails.put("Image", encodstring);
+
+		final BasicDBObject[] data = {ImageDetails};
+
+		return data;
+	}
 }
