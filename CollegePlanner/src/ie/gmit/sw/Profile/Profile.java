@@ -1,13 +1,14 @@
 package ie.gmit.sw.Profile;
 
-import java.io.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Paths;
-import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -15,29 +16,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 import org.apache.tomcat.util.codec.binary.Base64;
-import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.FileItemFactory;
-import org.apache.tomcat.util.http.fileupload.FileUploadException;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 
-import com.mongodb.*;
-import com.mongodb.gridfs.GridFS;
-import com.mongodb.gridfs.GridFSDBFile;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 
 
 /**
  * Servlet implementation class Profile
  */
-@MultipartConfig
 @WebServlet("/Profile")
 public class Profile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String UPLOAD_DIR = "uploads";
+	private String path;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -67,8 +64,13 @@ public class Profile extends HttpServlet {
 				//Convert query data to  a String
 				String image =(String) cursor.next().get("Image");
 				System.out.println("Image: " + image);
+				session.removeAttribute("image");
 				session.setAttribute("image", image);
+				
 			}
+			client.close();
+			 RequestDispatcher view=request.getRequestDispatcher("Profile.jsp");
+			    view.forward(request,response);
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -78,19 +80,12 @@ public class Profile extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Part file = request.getPart("imgFile");
-		System.out.println(file.getName());
-		File files = new File("");
-		
-		
-		
-		String encodstring = ImageBase64(files);
-		System.out.println(encodstring);
-
+		path = request.getParameter("imgPath");
 		HttpSession session = request.getSession();
+		
 		String code = (String)session.getAttribute("code");
 		//System.out.println(code);
-		final BasicDBObject[] data = createUserData(code, encodstring);
+		final BasicDBObject[] data = createUserData(code, path);
 		MongoClientURI uri  = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh"); 
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
@@ -99,7 +94,10 @@ public class Profile extends HttpServlet {
 		document.put("Confirmation Code", code);
 		user.remove(document);
 		user.insert(data);
-		response.sendRedirect("Profile.jsp");
+		client.close();
+		session.removeAttribute("image");
+		RequestDispatcher view=request.getRequestDispatcher("Profile.jsp");
+	    view.forward(request,response);
 	}
 
 	public String ImageBase64(File file){
