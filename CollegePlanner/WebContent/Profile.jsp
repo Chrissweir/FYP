@@ -54,8 +54,7 @@
 	<p>The data from servlet: ${code}</p>
 	<div
 		class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
-		<form id="userDetails" action="Profile" method="post"
-			enctype="multipart/form-data">
+		<form id="userDetails" action="Profile" method="post" enctype="multipart/form-data">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h3 class="panel-title">${username}</h3>

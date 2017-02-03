@@ -37,6 +37,7 @@ import com.mongodb.gridfs.GridFSDBFile;
 @WebServlet("/Profile")
 public class Profile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String UPLOAD_DIR = "uploads";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -76,16 +77,14 @@ public class Profile extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Part filePart = request.getPart("imgFile"); 
-		InputStream fileContent = filePart.getInputStream();
-		File file = null;
-		OutputStream outputStream = new FileOutputStream(file);
-		IOUtils.copy(fileContent, outputStream);
-		outputStream.close();
+		Part file = request.getPart("imgFile");
+		System.out.println(file.getName());
+		File files = new File("");
 		
-		String encodstring = ImageBase64(file);
+		
+		
+		String encodstring = ImageBase64(files);
 		System.out.println(encodstring);
 
 		HttpSession session = request.getSession();
