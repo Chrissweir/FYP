@@ -12,12 +12,40 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		super.doPost(request, response);
-		String[] days = request.getParameterValues("day");
+		
 		String title = request.getParameter("title");
+		String[] days = request.getParameterValues("day");
 		int starttime = Integer.parseInt(request.getParameter("starttime"));
 		int endtime = Integer.parseInt(request.getParameter("endtime"));
+		
+		Timetable schedule = (Timetable)request.getSession(true).getAttribute("schoolschedule");
+		if(schedule == null)
+		{
+			schedule = new Timetable();
+		}
+		if(days != null)
+		{
+			for(int i = 0; i < days.length; i++)
+			{
+				String dayString = days[i];
+				int day;
+				if(dayString.equalsIgnoreCase("SUN")) day = 0;
+				else if(dayString.equalsIgnoreCase("MON")) day = 1;
+				else if(dayString.equalsIgnoreCase("TUE")) day = 2;
+				else if(dayString.equalsIgnoreCase("WED")) day = 3;
+				else if(dayString.equalsIgnoreCase("THU")) day = 4;
+				else if(dayString.equalsIgnoreCase("FRI")) day = 5;
+				else day = 6;
+		
+				Module module = new Module(title, starttime, endtime, day);
+				schedule.addClass(module);
+			}
+		}
+		
+		request.getSession().setAttribute("schoolschedule", schedule);
+		getServletContext().getRequestDispatcher("/Schedule.jsp").forward(request, response);
 		
 	}
 	
