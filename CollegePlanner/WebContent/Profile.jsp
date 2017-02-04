@@ -12,10 +12,13 @@
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/Profile.js"></script>
+<script type="text/javascript">$('document').ready(function(){
+	document.getElementById("imgPath").value = document.getElementById("image").src;
+});</script>
 <title>My Profile</title>
 
 </head>
-<body>
+<body class="background">
 	<nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -38,20 +41,15 @@
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">My Profile<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="Profile.jsp">Account Details <span
+						<li><a href="Profile">Account Details <span
 								class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="Logout">Logout</a></li>
 					</ul></li>
 			</ul>
 		</div>
-		<!-- /.navbar-collapse -->
-	</div>
-	<!-- /.container-fluid --> </nav>
-	Welcome....
-	<br>
-	<!-- JSTL -->
-	<p>The data from servlet: ${code}</p>
+	</div></nav>
+	
 	<div
 		class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
 		<form id="userDetails" action="Profile" method="post">
@@ -73,8 +71,9 @@
 									style="display: none;">
 								</label>
 							</div>
+							<input type="text" name="imgPath" id="imgPath" style="visibility: hidden"/>
+							
 						</div>
-						<input type="text" name="imgPath" id="imgPath"/>
 						<div class=" col-md-9 col-lg-9 ">
 							<table class="table table-user-information">
 								<tbody>

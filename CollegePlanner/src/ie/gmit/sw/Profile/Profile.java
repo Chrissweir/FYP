@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -25,6 +26,7 @@ import com.mongodb.MongoClientURI;
 public class Profile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String path;
+	private String firstName;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -69,6 +71,9 @@ public class Profile extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		path = request.getParameter("imgPath");
+		firstName = request.getParameter("firstname");
+		System.out.println(firstName);
+		JOptionPane.showMessageDialog(null, firstName);
 		HttpSession session = request.getSession();
 
 		String code = (String)session.getAttribute("code");
