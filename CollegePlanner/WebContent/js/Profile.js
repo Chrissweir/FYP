@@ -1,13 +1,10 @@
 function path(){
 	var x = document.getElementById("imgFile").value;
 	document.getElementById("image").src= URL.createObjectURL(event.target.files[0]);
-	alert("1");
-	 var files = document.getElementById('imgFile').files;
-	 alert("2");
-	  if (files.length > 0) {
-	    getBase64(files[0]);
-	    alert("3");
-	  }
+	var files = document.getElementById('imgFile').files;
+	if (files.length > 0) {
+		getBase64(files[0]);
+	}
 };
 function getBase64(file) {
 	var reader = new FileReader();

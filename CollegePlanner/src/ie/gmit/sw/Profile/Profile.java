@@ -1,24 +1,14 @@
 package ie.gmit.sw.Profile;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
 
-import javax.imageio.ImageIO;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.apache.tomcat.util.codec.binary.Base64;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -59,18 +49,16 @@ public class Profile extends HttpServlet {
 			//Search the User collection for the key and value in query
 			DBCursor cursor = user.find(query);
 			System.out.println("Getting image");
-			while(cursor.hasNext()) 
-			{
-				//Convert query data to  a String
+			//Convert query data to  a String
+			while(cursor.hasNext()){
 				String image =(String) cursor.next().get("Image");
 				System.out.println("Image: " + image);
 				session.removeAttribute("image");
 				session.setAttribute("image", image);
-				
 			}
+			RequestDispatcher rd = request.getRequestDispatcher("Profile.jsp");
+			rd.forward(request, response);	
 			client.close();
-			 RequestDispatcher view=request.getRequestDispatcher("Profile.jsp");
-			    view.forward(request,response);
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -82,7 +70,7 @@ public class Profile extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		path = request.getParameter("imgPath");
 		HttpSession session = request.getSession();
-		
+
 		String code = (String)session.getAttribute("code");
 		//System.out.println(code);
 		final BasicDBObject[] data = createUserData(code, path);
@@ -96,27 +84,8 @@ public class Profile extends HttpServlet {
 		user.insert(data);
 		client.close();
 		session.removeAttribute("image");
-		RequestDispatcher view=request.getRequestDispatcher("Profile.jsp");
-	    view.forward(request,response);
-	}
-
-	public String ImageBase64(File file){
-
-		String encodedfile = null;
-		try {
-			FileInputStream fileInputStreamReader = new FileInputStream(file);
-			byte[] bytes = new byte[(int)file.length()];
-			fileInputStreamReader.read(bytes);
-			encodedfile = new String(Base64.encodeBase64(bytes), "UTF-8");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return encodedfile;
+		session.setAttribute("image", path);
+		response.sendRedirect("Profile");
 	}
 
 	public BasicDBObject[] createUserData(String code, String encodstring){
