@@ -7,10 +7,8 @@ public class ToDoClass {
 	private String description;
 	private boolean complete = false;
 	
-    public ToDoClass
-    
-    (String title, String description, String priority, String date) 
-		{
+    public ToDoClass(int id, String name, String description, boolean complete) 
+	{
         this.id = id;
         this.name = name;
         this.description = description;
@@ -46,9 +44,10 @@ public class ToDoClass {
 	  this.complete = complete;
 	}
 	
+	/*
 	@Override
 	public String toString() {
 	  return "Task" + "name='" + name +  ", category='" + description +  ", complete=" + complete;
-	}
+	}*/
 
 }
