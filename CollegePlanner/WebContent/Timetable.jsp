@@ -8,7 +8,7 @@
 </HEAD>
 
 <BODY>
-<FORM action="" method="post">
+<FORM action="/SchoolSchedule/Schedule" method="post">
 Course Name: <INPUT type="text" name="title" size="35"><BR>
 Course Time: 
 Sun<INPUT type="checkbox" name="day" value="sun"> 
