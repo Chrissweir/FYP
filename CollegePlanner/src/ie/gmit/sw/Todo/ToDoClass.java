@@ -35,5 +35,10 @@ public class ToDoClass {
 	public void setComplete(boolean complete) {
 	  this.complete = complete;
 	}
+	
+	@Override
+	public String toString() {
+	  return "Task" + "name='" + name +  ", category='" + description +  ", complete=" + complete;
+	}
 
 }
