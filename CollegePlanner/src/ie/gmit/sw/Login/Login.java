@@ -95,7 +95,7 @@ public class Login extends HttpServlet {
 				session.setAttribute("college", college);
 				session.setAttribute("username", user);
 				session.setAttribute("code", code);
-				response.sendRedirect("Profile.jsp");
+				response.sendRedirect("Profile");
 			}
 
 			//If t he passwords do not match then send an error back to the LoginRegister.jsp page
