@@ -1,24 +1,37 @@
-function path(event){
-	var x = URL.createObjectURL(event.target.files[0]);
-	alert(x);
+function path(){
+	var x = document.getElementById("imgFile").value;
 	document.getElementById("image").src= URL.createObjectURL(event.target.files[0]);
-	document.getElementById("imagePath").innerHTML=x;
+	var files = document.getElementById('imgFile').files;
+	if (files.length > 0) {
+		getBase64(files[0]);
+	}
+};
+
+function getBase64(file) {
+	var reader = new FileReader();
+	reader.readAsDataURL(file);
+	reader.onload = function () {
+		document.getElementById("imgPath").value = reader.result;
+	};
+	reader.onerror = function (error) {
+		console.log('Error: ', error);
+	};
 };
 
 function edit(){
 	document.getElementById("saveBtn").style.visibility = "visible";
 	document.getElementById("imageEdit").style.visibility = "visible";
-	document.getElementById("firstname").contentEditable= true;
-	document.getElementById("lastname").contentEditable= true;
-	document.getElementById("email").contentEditable= true;
-	document.getElementById("college").contentEditable= true;
+	document.getElementById("fname").contentEditable= true;
+	document.getElementById("lname").contentEditable= true;
+	document.getElementById("em").contentEditable= true;
+	document.getElementById("coll").contentEditable= true;
 };
 
 function save(){
 	document.getElementById("saveBtn").style.visibility = "hidden";
-	document.getElementById("firstname").contentEditable= false;
-	document.getElementById("lastname").contentEditable= false;
-	document.getElementById("email").contentEditable=false;
-	document.getElementById("college").contentEditable=false;
+	document.getElementById("fname").contentEditable= false;
+	document.getElementById("lname").contentEditable= false;
+	document.getElementById("em").contentEditable=false;
+	document.getElementById("coll").contentEditable=false;
 	document.getElementById("imageEdit").style.visibility = "hidden";
 };

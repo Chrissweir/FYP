@@ -12,6 +12,18 @@
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/Profile.js"></script>
+<script type="text/javascript">$('document').ready(function(){
+	document.getElementById("imgPath").value = document.getElementById("image").src;
+	updateData();
+	 function updateData()
+	    {
+		 document.getElementById("firstname").value = document.getElementById("fname").innerHTML;
+		 document.getElementById("lastname").value = document.getElementById("lname").innerHTML;
+		 document.getElementById("email").value = document.getElementById("em").innerHTML;
+		 document.getElementById("college").value = document.getElementById("coll").innerHTML;
+	    }
+	    $(document).on("change, keyup", "#fname, #lname, #em, #coll", updateData);
+});</script>
 <title>My Profile</title>
 
 </head>
@@ -30,7 +42,7 @@
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="#">Calender</a></li>
-				<li><a href="#">Timetable</a></li>
+				<li><a href="Timetable.jsp">Timetable</a></li>
 				<li><a href="#">To do</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -38,24 +50,18 @@
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">My Profile<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="Profile.jsp">Account Details <span
+						<li><a href="Profile">Account Details <span
 								class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="Logout">Logout</a></li>
 					</ul></li>
 			</ul>
 		</div>
-		<!-- /.navbar-collapse -->
-	</div>
-	<!-- /.container-fluid --> </nav>
-	Welcome....
-	<br>
-	<!-- JSTL -->
-	<p>The data from servlet: ${code}</p>
+	</div></nav>
+	
 	<div
 		class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
-		<form id="userDetails" action="Profile" method="post"
-			enctype="multipart/form-data">
+		<form id="userDetails" action="Profile" method="post">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h3 class="panel-title">${username}</h3>
@@ -64,34 +70,37 @@
 					<div class="row">
 						<div class="col-md-3 col-lg-3" align="center">
 							<img id="image" alt="User Pic"
-								src="data:image/png;base64,<%=session.getAttribute("image")%>"
+								src="<%=session.getAttribute("image")%>"
 								class="img-circle img-responsive">
 							<div id="imageEdit" class="image-upload"
 								style="visibility: hidden">
 								<label class="btn btn-default btn-file"> Edit <input
-									id="imgFile" type="file" accept="image/gif, image/jpeg, image/png" onchange="path()"
+									id="imgFile" type="file"
+									accept="image/gif, image/jpeg, image/png" onchange="path()"
 									style="display: none;">
-								</label> <input type="text" id="imagePath" style="visibility: hidden">
+								</label>
 							</div>
+							<input type="text" name="imgPath" id="imgPath" style="visibility: hidden"/>
+							
 						</div>
 						<div class=" col-md-9 col-lg-9 ">
 							<table class="table table-user-information">
 								<tbody>
 									<tr>
 										<td>First Name:</td>
-										<td><textfield type="text" id="firstname">${firstname}</textfield></td>
+										<td><textfield type="text" id="fname">${firstname}</textfield></td>
 									</tr>
 									<tr>
 										<td>Last Name:</td>
-										<td><textfield type="text" id="lastname">${lastname}</textfield></td>
+										<td><textfield type="text" id="lname">${lastname}</textfield></td>
 									</tr>
 									<tr>
 										<td>Email</td>
-										<td><textfield type="text" id="email">${email}</textfield></td>
+										<td><textfield type="text" id="em">${email}</textfield></td>
 									</tr>
 									<tr>
 										<td>College</td>
-										<td><textfield type="text" id="college">${college}</textfield></td>
+										<td><textfield type="text" id="coll">${college}</textfield></td>
 									</tr>
 								</tbody>
 							</table>
@@ -115,7 +124,13 @@
 					</span>
 				</div>
 		</form>
+		
 	</div>
 	</div>
-</body>
+	
+				<input form="userDetails" type="text" name="firstname" id="firstname" style="visibility: hidden">
+				<input form="userDetails" type="text" name="lastname" id="lastname" style="visibility: hidden">
+				<input form="userDetails" type="text" name="email" id="email" style="visibility: hidden">
+				<input form="userDetails" type="text" name="college" id="college" style="visibility: hidden">
+	</body>
 </html>
