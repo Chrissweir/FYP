@@ -7,6 +7,16 @@ public class ToDoClass {
 	private String description;
 	private boolean complete = false;
 	
+    public ToDoClass
+    
+    (String title, String description, String priority, String date) 
+		{
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.complete = complete;
+    }
+	
 	
 	public void setId(int id) {
 	  this.id = id;
