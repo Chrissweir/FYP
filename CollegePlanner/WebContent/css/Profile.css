@@ -44,11 +44,7 @@
 	background: url("https://images.unsplash.com/3/doctype-hi-res.jpg")
 		no-repeat center;
 	background-size: cover;
-	-webkit-filter: blur(5px);
-	-moz-filter: blur(5px);
-	-o-filter: blur(5px);
-	-ms-filter: blur(5px);
-	filter: blur(5px);
+	
 	position: absolute;
 	left: 0;
 	top: 0;

@@ -1,6 +1,12 @@
 package ie.gmit.sw.Profile;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,6 +33,9 @@ public class Profile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String path;
 	private String firstName;
+	private String lastName;
+	private String email;
+	private String college;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -72,11 +81,31 @@ public class Profile extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		path = request.getParameter("imgPath");
 		firstName = request.getParameter("firstname");
-		System.out.println(firstName);
-		JOptionPane.showMessageDialog(null, firstName);
+		lastName = request.getParameter("lastname");
+		email = request.getParameter("email");
+		college = request.getParameter("college");
 		HttpSession session = request.getSession();
 
 		String code = (String)session.getAttribute("code");
+		try{
+			
+		//Establish a connection with the database
+		Connection connection = getConnection();
+		
+		//Create three new statements
+		PreparedStatement update = connection.prepareStatement
+				("UPDATE Users SET first_name =?, last_name =?, email =?, college =? WHERE confirmation_code =?");
+		update.setString(1, firstName);
+		update.setString(2, lastName);
+		update.setString(3, email);
+		update.setString(4, college);
+		update.setString(5, code);
+		update.executeUpdate();
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		//System.out.println(code);
 		final BasicDBObject[] data = createUserData(code, path);
 		MongoClientURI uri  = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh"); 
@@ -88,6 +117,10 @@ public class Profile extends HttpServlet {
 		user.remove(document);
 		user.insert(data);
 		client.close();
+		session.setAttribute("firstname", firstName);
+		session.setAttribute("lastname", lastName);
+		session.setAttribute("email", email);
+		session.setAttribute("college", college);
 		session.removeAttribute("image");
 		session.setAttribute("image", path);
 		response.sendRedirect("Profile");
@@ -103,5 +136,16 @@ public class Profile extends HttpServlet {
 		final BasicDBObject[] data = {ImageDetails};
 
 		return data;
+	}
+	
+	/**
+	 * getConnection() establishes a connection to the database
+	 * @return
+	 * @throws URISyntaxException
+	 * @throws SQLException
+	 */
+	private Connection getConnection() throws URISyntaxException, SQLException {
+		String ConnectionString ="jdbc:postgresql://ec2-54-75-239-190.eu-west-1.compute.amazonaws.com:5432/dc6f77btle9oe3?user=dmbleakzbhlbnl&password=b08ab093aa5b03c4047c541ceab2b23daa4fb5198e48d56f804319695455d754&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
+		return DriverManager.getConnection(ConnectionString);
 	}
 }

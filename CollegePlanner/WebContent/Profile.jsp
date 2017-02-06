@@ -14,11 +14,20 @@
 <script type="text/javascript" src="js/Profile.js"></script>
 <script type="text/javascript">$('document').ready(function(){
 	document.getElementById("imgPath").value = document.getElementById("image").src;
+	updateData();
+	 function updateData()
+	    {
+		 document.getElementById("firstname").value = document.getElementById("fname").innerHTML;
+		 document.getElementById("lastname").value = document.getElementById("lname").innerHTML;
+		 document.getElementById("email").value = document.getElementById("em").innerHTML;
+		 document.getElementById("college").value = document.getElementById("coll").innerHTML;
+	    }
+	    $(document).on("change, keyup", "#fname, #lname, #em, #coll", updateData);
 });</script>
 <title>My Profile</title>
 
 </head>
-<body class="background">
+<body>
 	<nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -33,7 +42,7 @@
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="#">Calender</a></li>
-				<li><a href="#">Timetable</a></li>
+				<li><a href="Timetable.jsp">Timetable</a></li>
 				<li><a href="#">To do</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -79,19 +88,19 @@
 								<tbody>
 									<tr>
 										<td>First Name:</td>
-										<td><textfield type="text" id="firstname">${firstname}</textfield></td>
+										<td><textfield type="text" id="fname">${firstname}</textfield></td>
 									</tr>
 									<tr>
 										<td>Last Name:</td>
-										<td><textfield type="text" id="lastname">${lastname}</textfield></td>
+										<td><textfield type="text" id="lname">${lastname}</textfield></td>
 									</tr>
 									<tr>
 										<td>Email</td>
-										<td><textfield type="text" id="email">${email}</textfield></td>
+										<td><textfield type="text" id="em">${email}</textfield></td>
 									</tr>
 									<tr>
 										<td>College</td>
-										<td><textfield type="text" id="college">${college}</textfield></td>
+										<td><textfield type="text" id="coll">${college}</textfield></td>
 									</tr>
 								</tbody>
 							</table>
@@ -115,7 +124,13 @@
 					</span>
 				</div>
 		</form>
+		
 	</div>
 	</div>
-</body>
+	
+				<input form="userDetails" type="text" name="firstname" id="firstname" style="visibility: hidden">
+				<input form="userDetails" type="text" name="lastname" id="lastname" style="visibility: hidden">
+				<input form="userDetails" type="text" name="email" id="email" style="visibility: hidden">
+				<input form="userDetails" type="text" name="college" id="college" style="visibility: hidden">
+	</body>
 </html>
