@@ -4,7 +4,7 @@ public class CalanderSchedule {
 	//this class is for creating a schedule in the calendar
 	
 	//Object will need to hold a title, day, start time and end time
-	private String title;
+	private String task;
 	private int startTask;
 	private int endTask;
 	private int day;
@@ -12,10 +12,14 @@ public class CalanderSchedule {
 	//constructor that accepts the four pieces of information
 	public CalanderSchedule(String title, int startTask, int endTask, int day) {
 		super();
-		this.title = title;
+		this.task = title;
 		this.startTask = startTask;
 		this.endTask = endTask;
 		this.day = day;
+	}
+
+	public CalanderSchedule() {
+		// TODO Auto-generated constructor stub
 	}
 
 	//getters to access this information
@@ -23,7 +27,7 @@ public class CalanderSchedule {
 	 * @return the title
 	 */
 	public String getTitle() {
-		return title;
+		return task;
 	}
 
 	/**
@@ -45,6 +49,11 @@ public class CalanderSchedule {
 	 */
 	public int getDay() {
 		return day;
+	}
+
+	// create a method to add new classes to the list
+	public void addClass(CalanderSchedule schedule) {
+		task.getClass();
 	}
 	
 	
