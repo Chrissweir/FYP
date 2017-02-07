@@ -18,23 +18,38 @@ public class CalanderSchedule {
 		this.day = day;
 	}
 
+	//getters to access this information
+	/**
+	 * @return the title
+	 */
 	public String getTitle() {
 		return title;
 	}
 
+	/**
+	 * @return the startTask
+	 */
 	public int getStartTask() {
 		return startTask;
 	}
 
+	/**
+	 * @return the endTask
+	 */
 	public int getEndTask() {
 		return endTask;
 	}
 
+	/**
+	 * @return the day
+	 */
 	public int getDay() {
 		return day;
 	}
 	
-	//getters/setters to access this information
+	
+	
+	
 	
 	
 	
