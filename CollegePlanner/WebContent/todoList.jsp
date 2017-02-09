@@ -12,9 +12,9 @@
 
 	<!--Create ToDo List -->
 	
-	<form action="todoList.jsp">
+	<form action="ToDoListServlet" method="post">
 	
-		Add Task : <input type="text" name="theItem" />
+		Add Task : <input type="text" id="theItem" name="theItem" />
 		
 		<input type="submit" value="Submit" />
 		

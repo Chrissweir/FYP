@@ -13,7 +13,6 @@ public class ToDoClass {
         this.complete = complete;
     }
 	
-	
 	public String getName() {
 	  return name;
 	}
