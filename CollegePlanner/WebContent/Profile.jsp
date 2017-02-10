@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="css/Profile.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -41,9 +42,9 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="#">Calender</a></li>
+				<li><a href="Calendar.jsp">Calender</a></li>
 				<li><a href="Timetable.jsp">Timetable</a></li>
-				<li><a href="#">To do</a></li>
+				<li><a href="todoList.jsp">To do</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -58,7 +59,26 @@
 			</ul>
 		</div>
 	</div></nav>
-	
+
+  <div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-8" >
+      <header class="w3-container w3-deep-orange"> 
+        <span onclick="document.getElementById('id01').style.display='none'" 
+        class="w3-closebtn">&times;</span>
+        <h2>Remove your Account?</h2>
+      </header>
+      <div class="w3-container">
+        <p><b>Doing so will permanently delete your account and all of your data!</b></p>
+        <p>Please enter your password to confirm:<input id="confirmPassword" type="password" autocomplete="new-password">
+      </div>
+      <footer class="w3-container w3-deep-orange">
+      <p></p>
+      <button type="button" class="btn btn-warning" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
+        <span class="pull-right"><button type="button" class="btn btn-danger">Delete</button></span>
+              <p></p>
+      </footer>
+    </div>
+  </div>
 	<div
 		class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
 		<form id="userDetails" action="Profile" method="post">
@@ -117,10 +137,10 @@
 						data-toggle="tooltip" type="submit" class="btn btn-sm btn-success">
 						<i class="glyphicon glyphicon-floppy-disk"></i>
 					</button>
-					<span class="pull-right"> <a
+					<span class="pull-right"> <button
 						data-original-title="Remove this user" data-toggle="tooltip"
-						type="button" class="btn btn-sm btn-danger"><i
-							class="glyphicon glyphicon-remove"></i></a>
+						type="button" class="btn btn-sm btn-danger" onclick="document.getElementById('id01').style.display='block'"><i
+							class="glyphicon glyphicon-remove" ></i></button>
 					</span>
 				</div>
 		</form>
