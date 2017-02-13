@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
+import javax.xml.ws.Response;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -71,7 +72,6 @@ public class Profile extends HttpServlet {
 			rd.forward(request, response);	
 			client.close();
 		}catch (Exception e) {
-			// TODO: handle exception
 		}
 	}
 
@@ -79,51 +79,62 @@ public class Profile extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		path = request.getParameter("imgPath");
-		firstName = request.getParameter("firstname");
-		lastName = request.getParameter("lastname");
-		email = request.getParameter("email");
-		college = request.getParameter("college");
-		HttpSession session = request.getSession();
+			response.sendRedirect("About.jsp");
+		String buttonPressed = request.getParameter("btn");
+		if (buttonPressed != null && buttonPressed.equals("delete")) {
+			response.sendRedirect("About.jsp");
+		} else if (buttonPressed.equals("update")) {
+			response.sendRedirect("About.jsp");
+			path = request.getParameter("imgPath");
+			firstName = request.getParameter("firstname");
+			lastName = request.getParameter("lastname");
+			email = request.getParameter("email");
+			college = request.getParameter("college");
+			HttpSession session = request.getSession();
 
-		String code = (String)session.getAttribute("code");
-		try{
-			
-		//Establish a connection with the database
-		Connection connection = getConnection();
-		
-		//Create three new statements
-		PreparedStatement update = connection.prepareStatement
-				("UPDATE Users SET first_name =?, last_name =?, email =?, college =? WHERE confirmation_code =?");
-		update.setString(1, firstName);
-		update.setString(2, lastName);
-		update.setString(3, email);
-		update.setString(4, college);
-		update.setString(5, code);
-		update.executeUpdate();
+			String code = (String)session.getAttribute("code");
+			try{
+
+				//Establish a connection with the database
+				Connection connection = getConnection();
+
+				//Create three new statements
+				PreparedStatement update = connection.prepareStatement
+						("UPDATE Users SET first_name =?, last_name =?, email =?, college =? WHERE confirmation_code =?");
+				update.setString(1, firstName);
+				update.setString(2, lastName);
+				update.setString(3, email);
+				update.setString(4, college);
+				update.setString(5, code);
+				update.executeUpdate();
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+			}
+
+			//System.out.println(code);
+			final BasicDBObject[] data = createUserData(code, path);
+			MongoClientURI uri  = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh"); 
+			MongoClient client = new MongoClient(uri);
+			DB db = client.getDB(uri.getDatabase());
+			DBCollection user = db.getCollection("User");
+			BasicDBObject document = new BasicDBObject();
+			document.put("Confirmation Code", code);
+			user.remove(document);
+			user.insert(data);
+			client.close();
+			session.setAttribute("firstname", firstName);
+			session.setAttribute("lastname", lastName);
+			session.setAttribute("email", email);
+			session.setAttribute("college", college);
+			session.removeAttribute("image");
+			session.setAttribute("image", path);
+			response.sendRedirect("Profile");
 		}
-		catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-		//System.out.println(code);
-		final BasicDBObject[] data = createUserData(code, path);
-		MongoClientURI uri  = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh"); 
-		MongoClient client = new MongoClient(uri);
-		DB db = client.getDB(uri.getDatabase());
-		DBCollection user = db.getCollection("User");
-		BasicDBObject document = new BasicDBObject();
-		document.put("Confirmation Code", code);
-		user.remove(document);
-		user.insert(data);
-		client.close();
-		session.setAttribute("firstname", firstName);
-		session.setAttribute("lastname", lastName);
-		session.setAttribute("email", email);
-		session.setAttribute("college", college);
-		session.removeAttribute("image");
-		session.setAttribute("image", path);
-		response.sendRedirect("Profile");
+	}
+
+	private void removeAccount(HttpServletResponse response) throws IOException {
+		response.sendRedirect("LoginRegister.jsp");
 	}
 
 	public BasicDBObject[] createUserData(String code, String encodstring){
@@ -137,7 +148,7 @@ public class Profile extends HttpServlet {
 
 		return data;
 	}
-	
+
 	/**
 	 * getConnection() establishes a connection to the database
 	 * @return

@@ -60,25 +60,7 @@
 		</div>
 	</div></nav>
 
-  <div id="id01" class="w3-modal">
-    <div class="w3-modal-content w3-animate-top w3-card-8" >
-      <header class="w3-container w3-deep-orange"> 
-        <span onclick="document.getElementById('id01').style.display='none'" 
-        class="w3-closebtn">&times;</span>
-        <h2>Remove your Account?</h2>
-      </header>
-      <div class="w3-container">
-        <p><b>Doing so will permanently delete your account and all of your data!</b></p>
-        <p>Please enter your password to confirm:<input id="confirmPassword" type="password" autocomplete="new-password">
-      </div>
-      <footer class="w3-container w3-deep-orange">
-      <p></p>
-      <button type="button" class="btn btn-warning" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
-        <span class="pull-right"><button type="button" class="btn btn-danger">Delete</button></span>
-              <p></p>
-      </footer>
-    </div>
-  </div>
+  
 	<div
 		class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
 		<form id="userDetails" action="Profile" method="post">
@@ -132,7 +114,7 @@
 						data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">
 						<i class="glyphicon glyphicon-edit"></i>
 					</button>
-					<button for="userDetails" id="saveBtn" style="visibility: hidden"
+					<button name="btn" value="update" id="saveBtn" style="visibility: hidden"
 						onclick="save()" data-original-title="Save details"
 						data-toggle="tooltip" type="submit" class="btn btn-sm btn-success">
 						<i class="glyphicon glyphicon-floppy-disk"></i>
@@ -152,5 +134,26 @@
 				<input form="userDetails" type="text" name="lastname" id="lastname" style="visibility: hidden">
 				<input form="userDetails" type="text" name="email" id="email" style="visibility: hidden">
 				<input form="userDetails" type="text" name="college" id="college" style="visibility: hidden">
+				
+				<div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-8" >
+      <header class="w3-container w3-red"> 
+        <span onclick="document.getElementById('id01').style.display='none'" 
+        class="w3-closebtn">&times;</span>
+        <h2>Remove your Account?</h2>
+      </header>
+      <div class="w3-container">
+        <p><b>Doing so will permanently delete your account and all of your data!</b></p>
+        <p>Please enter your password to confirm:<input form="userDetails" id="confirmPassword" type="password" autocomplete="new-password">
+
+      </div>
+      <footer class="w3-container w3-red">
+      <p></p>
+      <button type="button" class="btn btn-warning" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
+        <span class="pull-right"><button form="userDetails" type="submit" value="delete" name="btn" class="btn btn-danger">Delete</button></span>
+              <p></p>
+      </footer>
+    </div>
+  </div>
 	</body>
 </html>
