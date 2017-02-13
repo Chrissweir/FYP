@@ -1,4 +1,4 @@
-package ie.gmit.sw.Todo;
+/*package ie.gmit.sw.Todo;
 
 public class ToDoClass {
 
@@ -49,6 +49,6 @@ public class ToDoClass {
 	@Override
 	public String toString() {
 	  return "Task" + "name='" + name +  ", category='" + description +  ", complete=" + complete;
-	}*/
+	}
 
-}
+}*/
