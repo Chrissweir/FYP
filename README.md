@@ -1,4 +1,4 @@
-# FInal Year Project
+# Final Year Project
 
 ##Group Members:
 ###-Christopher Weir - G00309429

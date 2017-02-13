@@ -38,7 +38,6 @@ public class Register extends HttpServlet {
 	private SecureRandom random = new SecureRandom();
 	private boolean userAvailable = true;
 	private boolean emailAvailable = true;
-
 	
 	/**
 	 * nextSessionId() is responsible for creating a randomly generated String to be added to
@@ -123,7 +122,8 @@ public class Register extends HttpServlet {
 				String sql = "INSERT INTO Users (first_name, last_name, email, college, username, password, confirmation_code) "
 						+"VALUES ('"+firstname+"', '"+lastname+"', '"+email+"', '"+college+"', '"+username+"', '"+password+"', '"+code+"')";
 				stmt.executeQuery(sql);
-				response.sendRedirect("/LoginRegister.jsp");
+				connection.close();
+				response.sendRedirect("Profile");
 			}
 			
 			//If userAvailable is false then set an error in the request to inform the user
@@ -143,35 +143,3 @@ public class Register extends HttpServlet {
 		}
 	}
 }
-
-
-
-
-
-
-
-		/*public BasicDBObject[] createUserData(){
-
-			BasicDBObject userDetails = new BasicDBObject();
-
-			userDetails.put("Username", username);
-			userDetails.put("Password", password);
-			userDetails.put("First Name", firstname);
-			userDetails.put("Last Name", lastname);
-			userDetails.put("Email", email);
-			userDetails.put("College", college);
-			userDetails.put("Confirmation Code", code);
-
-			final BasicDBObject[] data = {userDetails};
-
-			return data;
-		}
-		
-		
-		final BasicDBObject[] data = createUserData();
-		MongoClientURI uri  = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh"); 
-		MongoClient client = new MongoClient(uri);
-		DB db = client.getDB(uri.getDatabase());
-		DBCollection user = db.getCollection("User");
-		user.createIndex(data.toString(), {unique:true});
-		user.insert(data);*/

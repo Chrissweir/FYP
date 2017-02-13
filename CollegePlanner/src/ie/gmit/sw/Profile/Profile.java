@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -15,7 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -36,12 +36,13 @@ public class Profile extends HttpServlet {
 	private String lastName;
 	private String email;
 	private String college;
+	private String pass;
+	private String password;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		HttpSession session = request.getSession();
 		if(session.getAttribute("code") == null){
 			RequestDispatcher rd = request.getRequestDispatcher("LoginRegister.jsp");
@@ -71,7 +72,6 @@ public class Profile extends HttpServlet {
 			rd.forward(request, response);	
 			client.close();
 		}catch (Exception e) {
-			// TODO: handle exception
 		}
 	}
 
@@ -79,51 +79,119 @@ public class Profile extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		path = request.getParameter("imgPath");
-		firstName = request.getParameter("firstname");
-		lastName = request.getParameter("lastname");
-		email = request.getParameter("email");
-		college = request.getParameter("college");
-		HttpSession session = request.getSession();
+		String buttonPressed = request.getParameter("btn");
+		if (buttonPressed != null && buttonPressed.equals("delete")) {
+			removeAccount(request, response);
+		} else if (buttonPressed.equals("update")) {
+			path = request.getParameter("imgPath");
+			firstName = request.getParameter("firstname");
+			lastName = request.getParameter("lastname");
+			email = request.getParameter("email");
+			college = request.getParameter("college");
+			HttpSession session = request.getSession();
 
-		String code = (String)session.getAttribute("code");
-		try{
-			
-		//Establish a connection with the database
-		Connection connection = getConnection();
-		
-		//Create three new statements
-		PreparedStatement update = connection.prepareStatement
-				("UPDATE Users SET first_name =?, last_name =?, email =?, college =? WHERE confirmation_code =?");
-		update.setString(1, firstName);
-		update.setString(2, lastName);
-		update.setString(3, email);
-		update.setString(4, college);
-		update.setString(5, code);
-		update.executeUpdate();
+			String code = (String)session.getAttribute("code");
+			try{
+
+				//Establish a connection with the database
+				Connection connection = getConnection();
+
+				//Create three new statements
+				PreparedStatement update = connection.prepareStatement
+						("UPDATE Users SET first_name =?, last_name =?, email =?, college =? WHERE confirmation_code =?");
+				update.setString(1, firstName);
+				update.setString(2, lastName);
+				update.setString(3, email);
+				update.setString(4, college);
+				update.setString(5, code);
+				update.executeUpdate();
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+			}
+
+			//System.out.println(code);
+			final BasicDBObject[] data = createUserData(code, path);
+			MongoClientURI uri  = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh"); 
+			MongoClient client = new MongoClient(uri);
+			DB db = client.getDB(uri.getDatabase());
+			DBCollection user = db.getCollection("User");
+			BasicDBObject document = new BasicDBObject();
+			document.put("Confirmation Code", code);
+			user.remove(document);
+			user.insert(data);
+			client.close();
+			session.setAttribute("firstname", firstName);
+			session.setAttribute("lastname", lastName);
+			session.setAttribute("email", email);
+			session.setAttribute("college", college);
+			session.removeAttribute("image");
+			session.setAttribute("image", path);
+			response.sendRedirect("Profile");
 		}
-		catch (Exception e) {
-			// TODO: handle exception
+	}
+
+	private void removeAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try
+		{
+			HttpSession session = request.getSession();
+			String code = (String)session.getAttribute("code");
+
+			//Establish a connection with the database
+			Connection connection = getConnection();
+			//Create a new statement
+			Statement stmt = connection.createStatement();
+
+			//Execute a query on the statement and assign the results to the ResultSet rs
+			ResultSet rs = stmt.executeQuery( "SELECT * FROM Users WHERE confirmation_code='"+code+"';" );
+
+			//Using a while loop, for every entry in the ResultSet retrieve the specified data
+			while ( rs.next() ) {
+				pass = rs.getString("password");
+			}
+			password = request.getParameter("confirmPassword");
+			//User validation, check if the password that was submitted is the same and the password
+			//retrieved from the database. If it is then pass the specified data to the request object
+			//and forward the request to the Profile.jsp page
+			if(pass.equals(password)){
+				String query = "Delete FROM Users WHERE confirmation_code = ?";
+				PreparedStatement preparedStmt = connection.prepareStatement(query);
+				preparedStmt.setString(1, code);
+
+				// execute the preparedstatement
+				preparedStmt.execute();
+
+				connection.close();
+
+				final BasicDBObject[] data = createUserData(code, path);
+				MongoClientURI uri  = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh"); 
+				MongoClient client = new MongoClient(uri);
+				DB db = client.getDB(uri.getDatabase());
+				DBCollection user = db.getCollection("User");
+				BasicDBObject document = new BasicDBObject();
+				document.put("Confirmation Code", code);
+				user.remove(document);
+				session.removeAttribute("firstname");
+				session.removeAttribute("lastname");
+				session.removeAttribute("email");
+				session.removeAttribute("college");
+				session.removeAttribute("image");
+				session.removeAttribute("code");
+				session.invalidate();
+				response.sendRedirect("Logout");
+			}
+			//If t he passwords do not match then send an error back to the LoginRegister.jsp page
+			else{
+				request.setAttribute("error","Invalid Password");
+				RequestDispatcher rd=request.getRequestDispatcher("Profile.jsp");            
+				rd.include(request, response);
+			}
 		}
-		
-		//System.out.println(code);
-		final BasicDBObject[] data = createUserData(code, path);
-		MongoClientURI uri  = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh"); 
-		MongoClient client = new MongoClient(uri);
-		DB db = client.getDB(uri.getDatabase());
-		DBCollection user = db.getCollection("User");
-		BasicDBObject document = new BasicDBObject();
-		document.put("Confirmation Code", code);
-		user.remove(document);
-		user.insert(data);
-		client.close();
-		session.setAttribute("firstname", firstName);
-		session.setAttribute("lastname", lastName);
-		session.setAttribute("email", email);
-		session.setAttribute("college", college);
-		session.removeAttribute("image");
-		session.setAttribute("image", path);
-		response.sendRedirect("Profile");
+		catch (Exception e)
+		{
+			System.err.println("Got an exception! ");
+			System.err.println(e.getMessage());
+		}
 	}
 
 	public BasicDBObject[] createUserData(String code, String encodstring){
@@ -137,7 +205,7 @@ public class Profile extends HttpServlet {
 
 		return data;
 	}
-	
+
 	/**
 	 * getConnection() establishes a connection to the database
 	 * @return
