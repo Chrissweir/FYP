@@ -79,12 +79,10 @@ public class Profile extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			response.sendRedirect("About.jsp");
 		String buttonPressed = request.getParameter("btn");
 		if (buttonPressed != null && buttonPressed.equals("delete")) {
-			response.sendRedirect("About.jsp");
+			removeAccount(request, response);
 		} else if (buttonPressed.equals("update")) {
-			response.sendRedirect("About.jsp");
 			path = request.getParameter("imgPath");
 			firstName = request.getParameter("firstname");
 			lastName = request.getParameter("lastname");
@@ -133,8 +131,45 @@ public class Profile extends HttpServlet {
 		}
 	}
 
-	private void removeAccount(HttpServletResponse response) throws IOException {
-		response.sendRedirect("LoginRegister.jsp");
+	private void removeAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try
+		{
+			HttpSession session = request.getSession();
+			String code = (String)session.getAttribute("code");
+			//Establish a connection with the database
+			Connection connection = getConnection();
+
+			String query = "Delete FROM Users WHERE confirmation_code = ?";
+			PreparedStatement preparedStmt = connection.prepareStatement(query);
+			preparedStmt.setString(1, code);
+
+			// execute the preparedstatement
+			preparedStmt.execute();
+
+			connection.close();
+
+			final BasicDBObject[] data = createUserData(code, path);
+			MongoClientURI uri  = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh"); 
+			MongoClient client = new MongoClient(uri);
+			DB db = client.getDB(uri.getDatabase());
+			DBCollection user = db.getCollection("User");
+			BasicDBObject document = new BasicDBObject();
+			document.put("Confirmation Code", code);
+			user.remove(document);
+			session.removeAttribute("firstname");
+			session.removeAttribute("lastname");
+			session.removeAttribute("email");
+			session.removeAttribute("college");
+			session.removeAttribute("image");
+			session.removeAttribute("code");
+			session.invalidate();
+		}
+		catch (Exception e)
+		{
+			System.err.println("Got an exception! ");
+			System.err.println(e.getMessage());
+		}
+		response.sendRedirect("Logout");
 	}
 
 	public BasicDBObject[] createUserData(String code, String encodstring){

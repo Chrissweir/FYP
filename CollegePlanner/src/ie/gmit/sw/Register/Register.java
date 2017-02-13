@@ -123,6 +123,7 @@ public class Register extends HttpServlet {
 				String sql = "INSERT INTO Users (first_name, last_name, email, college, username, password, confirmation_code) "
 						+"VALUES ('"+firstname+"', '"+lastname+"', '"+email+"', '"+college+"', '"+username+"', '"+password+"', '"+code+"')";
 				stmt.executeQuery(sql);
+				connection.close();
 				response.sendRedirect("/LoginRegister.jsp");
 			}
 			
