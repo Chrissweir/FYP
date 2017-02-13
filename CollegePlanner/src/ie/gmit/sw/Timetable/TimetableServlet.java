@@ -20,10 +20,10 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		int starttime = Integer.parseInt(request.getParameter("starttime"));
 		int endtime = Integer.parseInt(request.getParameter("endtime"));
 		
-		Timetable schedule = (Timetable)request.getSession(true).getAttribute("schoolschedule");
-		if(schedule == null)
+		Timetable timetable = (Timetable)request.getSession(true).getAttribute("timetable");
+		if(timetable == null)
 		{
-			schedule = new Timetable();
+			timetable = new Timetable();
 		}
 		if(days != null)
 		{
@@ -40,13 +40,12 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 				else day = 6;
 		
 				Module module = new Module(title, starttime, endtime, day);
-				schedule.addClass(module);
+				timetable.addClass(module);
 			}
+			
 		}
-		
-		request.getSession().setAttribute("schoolschedule", schedule);
-		getServletContext().getRequestDispatcher("/Schedule.jsp").forward(request, response);
-		
+		request.getSession().setAttribute("timetable", timetable);
+		getServletContext().getRequestDispatcher("/Timetable.jsp").forward(request, response);
 	}
 	
 	
