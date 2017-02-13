@@ -35,13 +35,6 @@ public class Login extends HttpServlet{
 	private String college;
 	private String username;
 	private String password;
-	/**
-	 * getConnection() establishes a connection to the database
-	 * @return
-	 * @throws URISyntaxException
-	 * @throws SQLException
-	 */
-
 
 	/* (non-Javadoc)
 	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
@@ -91,11 +84,13 @@ public class Login extends HttpServlet{
 				session.setAttribute("college", college);
 				session.setAttribute("username", user);
 				session.setAttribute("code", code);
+				connection.close();
 				response.sendRedirect("Profile");
 			}
 
 			//If the passwords do not match then send an error back to the LoginRegister.jsp page
 			else{
+				connection.close();
 				request.setAttribute("error","Invalid Username or Password");
 				RequestDispatcher rd=request.getRequestDispatcher("LoginRegister.jsp");            
 				rd.include(request, response);

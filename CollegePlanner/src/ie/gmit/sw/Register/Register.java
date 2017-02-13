@@ -38,7 +38,6 @@ public class Register extends HttpServlet {
 	private SecureRandom random = new SecureRandom();
 	private boolean userAvailable = true;
 	private boolean emailAvailable = true;
-
 	
 	/**
 	 * nextSessionId() is responsible for creating a randomly generated String to be added to
@@ -144,35 +143,3 @@ public class Register extends HttpServlet {
 		}
 	}
 }
-
-
-
-
-
-
-
-		/*public BasicDBObject[] createUserData(){
-
-			BasicDBObject userDetails = new BasicDBObject();
-
-			userDetails.put("Username", username);
-			userDetails.put("Password", password);
-			userDetails.put("First Name", firstname);
-			userDetails.put("Last Name", lastname);
-			userDetails.put("Email", email);
-			userDetails.put("College", college);
-			userDetails.put("Confirmation Code", code);
-
-			final BasicDBObject[] data = {userDetails};
-
-			return data;
-		}
-		
-		
-		final BasicDBObject[] data = createUserData();
-		MongoClientURI uri  = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh"); 
-		MongoClient client = new MongoClient(uri);
-		DB db = client.getDB(uri.getDatabase());
-		DBCollection user = db.getCollection("User");
-		user.createIndex(data.toString(), {unique:true});
-		user.insert(data);*/
