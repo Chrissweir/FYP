@@ -9,17 +9,19 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+
+  
   <servlet>
-    <description></description>
-    <display-name>Schedule</display-name>
-	<servlet-name>Schedule</servlet-name>
-	<servlet-class>
-	org.eclipse.wtp.sample.classschedule.ScheduleServlet
-	</servlet-class>
-  </servlet>
-  <servlet-mapping>
-	<servlet-name>Schedule</servlet-name>
-	<url-pattern>/Schedule</url-pattern>
-  </servlet-mapping>
+<description></description>
+<display-name>ScheduleServlet</display-name>
+<servlet-name>ScheduleServlet</servlet-name>
+<servlet-class>
+ie.gmit.sw.Calendar
+</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>ScheduleServlet</servlet-name>
+<url-pattern>/Schedule</url-pattern>
+</servlet-mapping>
   
 </web-app>
