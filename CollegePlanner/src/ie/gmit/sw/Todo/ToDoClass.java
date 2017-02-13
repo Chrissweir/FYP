@@ -1,16 +1,17 @@
 package ie.gmit.sw.Todo;
 
 public class ToDoClass {
-	
-	private int id;
+
 	private String name;
 	private String description;
 	private boolean complete = false;
 	
-	
-	public void setId(int id) {
-	  this.id = id;
-	}
+    public ToDoClass(String name, String description, boolean complete) 
+	{
+        this.name = name;
+        this.description = description;
+        this.complete = complete;
+    }
 	
 	public String getName() {
 	  return name;
@@ -35,5 +36,11 @@ public class ToDoClass {
 	public void setComplete(boolean complete) {
 	  this.complete = complete;
 	}
+	
+	/*
+	@Override
+	public String toString() {
+	  return "Task" + "name='" + name +  ", category='" + description +  ", complete=" + complete;
+	}*/
 
 }
