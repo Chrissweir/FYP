@@ -9,7 +9,6 @@ public class ToDoClass {
     public ToDoClass(int id, String name, String description, boolean complete) 
 	{
         this.id = id;
-=======
     public ToDoClass(String name, String description, boolean complete) 
 	{
 
@@ -45,7 +44,7 @@ public class ToDoClass {
 	  this.complete = complete;
 	}
 	
-	/*
+	
 	@Override
 	public String toString() {
 	  return "Task" + "name='" + name +  ", category='" + description +  ", complete=" + complete;
