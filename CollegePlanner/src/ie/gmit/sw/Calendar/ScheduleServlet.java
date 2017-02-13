@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ScheduleCalendar extends HttpServlet implements Servlet {
+public class ScheduleServlet extends HttpServlet implements Servlet {
 
 	/*
 	 * (non-Javadoc)
@@ -16,17 +16,20 @@ public class ScheduleCalendar extends HttpServlet implements Servlet {
 	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.
 	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
+	// take the input from the form and perform your actions
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		super.doPost(req, resp); // specified that your form would submit data
-									// using the POST method
+		super.doPost(req, resp);
 
-		String task = req.getParameter("task");
-		int startTask = Integer.parseInt(req.getParameter("startTask"));
-		int endTask = Integer.parseInt(req.getParameter("endTask"));
+		// read in the information submitted by the form
+		String title = req.getParameter("title");
+		int startTime = Integer.parseInt(req.getParameter("startTime"));
+		int endTime = Integer.parseInt(req.getParameter("endTime"));
 		String[] days = req.getParameterValues("day");
 
+		// obtain the existing CalanderSchedule, if there is one, or to create a
+		// new one if one hasn't been created yet
 		CalanderSchedule schedule = (CalanderSchedule) req.getSession(true).getAttribute("CalanderSchedule");
 		if (schedule == null) {
 			schedule = new CalanderSchedule();
@@ -51,9 +54,11 @@ public class ScheduleCalendar extends HttpServlet implements Servlet {
 				else
 					day = 6;
 
-				CalanderSchedule tasks = new CalanderSchedule(task, startTask, endTask, day);
-				//schedule.addClass(tasks);
-				schedule.addClass(tasks);//7
+				CalanderSchedule clazz = new CalanderSchedule(title, startTime, endTime, day);
+				schedule.addClass(clazz);
+				
+				req.getSession().setAttribute("CalanderSchedule", schedule);
+				getServletContext().getRequestDispatcher("/Calendar.jsp").forward(req, resp);
 			}
 		}
 	}
