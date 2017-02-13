@@ -144,7 +144,11 @@
       </header>
       <div class="w3-container">
         <p><b>Doing so will permanently delete your account and all of your data!</b></p>
-        <p>Please enter your password to confirm:<input form="userDetails" id="confirmPassword" type="password" autocomplete="new-password">
+        <p>Please enter your password to confirm:</p><input form="userDetails" name="confirmPassword" id="confirmPassword" type="password" autocomplete="new-password"><%
+										String pass = (String) request.getAttribute("error");
+										if (pass != null)
+											out.println("<font color=red size=4px>" + pass + "</font>");
+									%>
 
       </div>
       <footer class="w3-container w3-red">

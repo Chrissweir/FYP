@@ -124,7 +124,7 @@ public class Register extends HttpServlet {
 						+"VALUES ('"+firstname+"', '"+lastname+"', '"+email+"', '"+college+"', '"+username+"', '"+password+"', '"+code+"')";
 				stmt.executeQuery(sql);
 				connection.close();
-				response.sendRedirect("/LoginRegister.jsp");
+				response.sendRedirect("Profile");
 			}
 			
 			//If userAvailable is false then set an error in the request to inform the user
