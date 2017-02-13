@@ -123,7 +123,8 @@ public class Register extends HttpServlet {
 				String sql = "INSERT INTO Users (first_name, last_name, email, college, username, password, confirmation_code) "
 						+"VALUES ('"+firstname+"', '"+lastname+"', '"+email+"', '"+college+"', '"+username+"', '"+password+"', '"+code+"')";
 				stmt.executeQuery(sql);
-				response.sendRedirect("/LoginRegister.jsp");
+				connection.close();
+				response.sendRedirect("Profile");
 			}
 			
 			//If userAvailable is false then set an error in the request to inform the user

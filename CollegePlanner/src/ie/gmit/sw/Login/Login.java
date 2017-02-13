@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import ie.gmit.sw.Connections.SQLConnection;
+
 /**
  * @author Christopher Weir - G00309429
  * 
@@ -26,7 +28,7 @@ import javax.servlet.http.HttpSession;
  * page.
  */
 @WebServlet("/Login")
-public class Login extends HttpServlet {
+public class Login extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	private String pass;
 	private String code;
@@ -43,10 +45,7 @@ public class Login extends HttpServlet {
 	 * @throws URISyntaxException
 	 * @throws SQLException
 	 */
-	private Connection getConnection() throws URISyntaxException, SQLException {
-		String ConnectionString ="jdbc:postgresql://ec2-54-75-239-190.eu-west-1.compute.amazonaws.com:5432/dc6f77btle9oe3?user=dmbleakzbhlbnl&password=b08ab093aa5b03c4047c541ceab2b23daa4fb5198e48d56f804319695455d754&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
-		return DriverManager.getConnection(ConnectionString);
-	}
+	
 
 	/* (non-Javadoc)
 	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
@@ -61,11 +60,12 @@ public class Login extends HttpServlet {
 		try {
 			// Retrieve the username and password that was submitted
 			username = request.getParameter("username");
-			password = request.getParameter("password");	
+			password = request.getParameter("password");
+			SQLConnection c = new SQLConnection();
 
 			//Establish a connection with the database
 			Class.forName("org.postgresql.Driver");
-			Connection connection = getConnection();
+			Connection connection = c.getConnection();
 
 			//Create a new statement
 			Statement stmt = connection.createStatement();

@@ -1,8 +1,7 @@
 package ie.gmit.sw.Todo;
 
 public class ToDoClass {
-	
-	private int id;
+
 	private String name;
 	private String description;
 	private boolean complete = false;
@@ -10,12 +9,14 @@ public class ToDoClass {
     public ToDoClass(int id, String name, String description, boolean complete) 
 	{
         this.id = id;
+=======
+    public ToDoClass(String name, String description, boolean complete) 
+	{
+
         this.name = name;
         this.description = description;
         this.complete = complete;
-    }
-	
-	
+    }	
 	public void setId(int id) {
 	  this.id = id;
 	}
