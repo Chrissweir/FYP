@@ -9,7 +9,6 @@ import java.sql.Statement;
 import ie.gmit.sw.Login.LoginValues;
 
 public class SQLConnection {
-	private LoginValues login = new LoginValues();
 	public Connection getConnection() throws URISyntaxException, SQLException, ClassNotFoundException {
 		//Establish a connection with the database
 		Class.forName("org.postgresql.Driver");
@@ -17,7 +16,7 @@ public class SQLConnection {
 		return DriverManager.getConnection(ConnectionString);
 	}
 	
-	public void userLogin() throws ClassNotFoundException, URISyntaxException, SQLException{
+	public void userLogin(LoginValues login) throws ClassNotFoundException, URISyntaxException, SQLException{
 		//Establish a connection with the database
 		Connection connection = getConnection();
 

@@ -45,7 +45,7 @@ public class Login extends HttpServlet{
 			login.setUsername(request.getParameter("username"));
 			login.setPassword(request.getParameter("password"));
 			SQLConnection c = new SQLConnection();
-			c.userLogin();
+			c.userLogin(login);
 
 			//User validation, check if the password that was submitted is the same and the password
 			//retrieved from the database. If it is then pass the specified data to the request object
