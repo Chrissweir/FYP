@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ie.gmit.sw.Connections.MongoConnection;
 import ie.gmit.sw.Connections.SQLConnection;
 
 /**
@@ -26,6 +27,7 @@ import ie.gmit.sw.Connections.SQLConnection;
 public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String r;
+	private MongoConnection mongo = new MongoConnection();
 	private SQLConnection sqlConn = new SQLConnection();
 	private RegisterUserDetails userDetails = new RegisterUserDetails();
 	private SecureRandom random = new SecureRandom();
@@ -64,8 +66,9 @@ public class Register extends HttpServlet {
 			userDetails.setCode(nextSessionId());
 
 			r = sqlConn.userRegistration(userDetails);
-			if(r.equals("/LoginRegister.jsp")){
-				response.sendRedirect(r);
+			if(r.equals("Profile")){
+				mongo.setNewUser(userDetails.getCode());
+				response.sendRedirect("/LoginRegister.jsp");
 			}else if(r.equals("userError"))
 			{
 				request.setAttribute("userError","Username Already Registered!");
