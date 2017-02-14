@@ -28,16 +28,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Register")
 public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private String username;
-	private String password;
-	private String firstname;
-	private String lastname;
-	private String email;
-	private String college;
-	private String code;
+	private RegisterUserDetails userDetails = new RegisterUserDetails();
 	private SecureRandom random = new SecureRandom();
-	private boolean userAvailable = true;
-	private boolean emailAvailable = true;
+	
 	
 	/**
 	 * nextSessionId() is responsible for creating a randomly generated String to be added to
@@ -72,15 +65,15 @@ public class Register extends HttpServlet {
 
 		try {
 			//Retrieve the details that were submitted
-			firstname = request.getParameter("firstname");
-			lastname = request.getParameter("lastname");
-			email = request.getParameter("email");
-			college = request.getParameter("college");
-			username = request.getParameter("username");
-			password = request.getParameter("password");
+			userDetails.setFirstname(request.getParameter("firstname"));
+			userDetails.setLastname(request.getParameter("lastname"));
+			userDetails.setEmail(request.getParameter("email"));
+			userDetails.setCollege(request.getParameter("college"));
+			userDetails.setUsername(request.getParameter("username"));
+			userDetails.setPassword(request.getParameter("password"));
 			
 			//Create a new Session Id
-			code =  nextSessionId();
+			userDetails.setCode(nextSessionId());
 
 			//Establish a connection with the database
 			Class.forName("org.postgresql.Driver");
@@ -92,47 +85,47 @@ public class Register extends HttpServlet {
 			Statement stmt2 = connection.createStatement();
 			
 			//Execute a query on the stmt1 statement and assign the results to the ResultSet ru
-			ResultSet ru = stmt1.executeQuery("SELECT * FROM Users WHERE username='"+username+"';");
+			ResultSet ru = stmt1.executeQuery("SELECT * FROM Users WHERE username='"+userDetails.getUsername()+"';");
 			//Execute a query on the stmt2 statement and assign the results to the ResultSet re
-			ResultSet re = stmt2.executeQuery("SELECT * FROM Users WHERE email='"+email+"';");
+			ResultSet re = stmt2.executeQuery("SELECT * FROM Users WHERE email='"+userDetails.getEmail()+"';");
 			
 			//Clear the queries in the statements
 			stmt1.clearBatch();
 			stmt2.clearBatch();
 			
 			//Reset userAvailable and emailAvailable to true
-			userAvailable=true;
-			emailAvailable = true;
+			userDetails.setUserAvailable(true);
+			userDetails.setEmailAvailable(true);
 			
 			//Check if the ResultSet ru contains results
 			//If it does then set userAvailable to false
 			if(ru.isBeforeFirst()){
-				userAvailable = false;
+				userDetails.setUserAvailable(false);
 			}
 			
 			//Check if the ResultSet re contains results
 			//If it does then set emailAvailable to false
 			if(re.isBeforeFirst()){
-				emailAvailable = false;
+				userDetails.setEmailAvailable(false);
 			}
 			
 			//If both userAvailable and emailAvailable are true, then add the users details to the database
 			//and redirect the user to the LoginRegister.jsp page.
-			if(userAvailable == true && emailAvailable == true){
+			if(userDetails.isUserAvailable() == true && userDetails.isEmailAvailable() == true){
 				String sql = "INSERT INTO Users (first_name, last_name, email, college, username, password, confirmation_code) "
-						+"VALUES ('"+firstname+"', '"+lastname+"', '"+email+"', '"+college+"', '"+username+"', '"+password+"', '"+code+"')";
+						+"VALUES ('"+userDetails.getFirstname()+"', '"+userDetails.getLastname()+"', '"+userDetails.getEmail()+"', '"+userDetails.getCollege()+"', '"+userDetails.getUsername()+"', '"+userDetails.getPassword()+"', '"+userDetails.getCode()+"')";
 				stmt.executeQuery(sql);
 				connection.close();
 				response.sendRedirect("Profile");
 			}
 			
 			//If userAvailable is false then set an error in the request to inform the user
-			if(userAvailable == false){
+			if(userDetails.isUserAvailable() == false){
 				request.setAttribute("userError","Username Already Registered!");
 			}
 			
 			//If emailAvailable is false then set an error in the request to inform the user
-			if(emailAvailable == false){
+			if(userDetails.isEmailAvailable() == false){
 				request.setAttribute("emailError","Email Already Registered!");
 			}
 			
