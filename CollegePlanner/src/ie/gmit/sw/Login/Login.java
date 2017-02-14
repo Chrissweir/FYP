@@ -1,9 +1,6 @@
 package ie.gmit.sw.Login;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,6 +26,7 @@ import ie.gmit.sw.Connections.SQLConnection;
 public class Login extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	private LoginValues login = new LoginValues();
+	private SQLConnection sqlConn = new SQLConnection();
 
 	/* (non-Javadoc)
 	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
@@ -44,8 +42,8 @@ public class Login extends HttpServlet{
 			// Retrieve the username and password that was submitted
 			login.setUsername(request.getParameter("username"));
 			login.setPassword(request.getParameter("password"));
-			SQLConnection c = new SQLConnection();
-			c.userLogin(login);
+			
+			sqlConn.userLogin(login);
 
 			//User validation, check if the password that was submitted is the same and the password
 			//retrieved from the database. If it is then pass the specified data to the request object
