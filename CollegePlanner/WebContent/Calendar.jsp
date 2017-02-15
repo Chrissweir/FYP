@@ -31,18 +31,18 @@
 			console.log("Saving", e.event.title);
 		}
 		$("#scheduler").kendoScheduler({
+			//Initialize date
 			date : new Date(),
-			
-			 messages: {
-				    today: "Current Date"
-				  },
-			
+
+			//shows current time with a red line on day view
 			currentTimeMarker : {
 				updateInterval : 100
 			},
+			//able to select days and be highlighted
 			selectable : [ "true" ],
-
+			//The views of the calendar
 			views : [ "month", "day" ],
+			//hardcoded event NEED TO STORE IN A DATABASE
 			dataSource : [ {
 				id : 1,
 				start : new Date("2017/2/15 08:00 AM"),
@@ -50,6 +50,7 @@
 				title : "Interview"
 			} ]
 		});
+		//Saving event
 		var scheduler = $("#scheduler").data("kendoScheduler");
 		scheduler.bind("save", scheduler_save);
 	</script>
