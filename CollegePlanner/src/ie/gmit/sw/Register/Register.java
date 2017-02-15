@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import ie.gmit.sw.Connections.MongoConnection;
 import ie.gmit.sw.Connections.SQLConnection;
@@ -54,7 +55,7 @@ public class Register extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
 
 		try {
-			System.out.println("1");
+
 			//Retrieve the details that were submitted
 			userDetails.setFirstname(request.getParameter("firstname"));
 			userDetails.setLastname(request.getParameter("lastname"));
@@ -62,15 +63,19 @@ public class Register extends HttpServlet {
 			userDetails.setCollege(request.getParameter("college"));
 			userDetails.setUsername(request.getParameter("username"));
 			userDetails.setPassword(request.getParameter("password"));
-			System.out.println("2");
+
 			//Create a new Session Id
 			userDetails.setCode(nextSessionId());
-			System.out.println("3");
 			r = sqlConn.userRegistration(userDetails).toString();
-			System.out.println(r);
+			
 			if(r.equals("Profile")){
-				System.out.println(userDetails.getCode());
+				HttpSession session = request.getSession();
 				mongo.setNewUser(userDetails.getCode());
+				session.setAttribute("firstname", userDetails.getFirstname());
+				session.setAttribute("lastname",  userDetails.getLastname());
+				session.setAttribute("email",  userDetails.getEmail());
+				session.setAttribute("college",  userDetails.getCollege());
+				session.setAttribute("code",  userDetails.getCode());
 				response.sendRedirect("Profile");
 			}else if(r.equals("userError"))
 			{

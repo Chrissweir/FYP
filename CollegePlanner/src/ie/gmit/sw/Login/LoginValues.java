@@ -11,6 +11,7 @@ public class LoginValues {
 	private String college;
 	private String username;
 	private String password;
+	
 	public String getPass() {
 		return pass;
 	}
