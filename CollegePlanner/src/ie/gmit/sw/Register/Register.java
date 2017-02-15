@@ -51,9 +51,10 @@ public class Register extends HttpServlet {
 	 * doGet() handles the request from the LoginRegister.jsp page by retrieving 
 	 * the details the user submitted on the register form to add them to the database.
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
 
 		try {
+			System.out.println("1");
 			//Retrieve the details that were submitted
 			userDetails.setFirstname(request.getParameter("firstname"));
 			userDetails.setLastname(request.getParameter("lastname"));
@@ -61,14 +62,16 @@ public class Register extends HttpServlet {
 			userDetails.setCollege(request.getParameter("college"));
 			userDetails.setUsername(request.getParameter("username"));
 			userDetails.setPassword(request.getParameter("password"));
-
+			System.out.println("2");
 			//Create a new Session Id
 			userDetails.setCode(nextSessionId());
-
-			r = sqlConn.userRegistration(userDetails);
+			System.out.println("3");
+			r = sqlConn.userRegistration(userDetails).toString();
+			System.out.println(r);
 			if(r.equals("Profile")){
+				System.out.println(userDetails.getCode());
 				mongo.setNewUser(userDetails.getCode());
-				response.sendRedirect("/LoginRegister.jsp");
+				response.sendRedirect("Profile");
 			}else if(r.equals("userError"))
 			{
 				request.setAttribute("userError","Username Already Registered!");

@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.eclipse.jdt.internal.compiler.ast.ContinueStatement;
+
 import ie.gmit.sw.Login.LoginValues;
 import ie.gmit.sw.Register.RegisterUserDetails;
 
@@ -80,7 +82,7 @@ public class SQLConnection {
 		if(userDetails.isUserAvailable() == true && userDetails.isEmailAvailable() == true){
 			String sql = "INSERT INTO Users (first_name, last_name, email, college, username, password, confirmation_code) "
 					+"VALUES ('"+userDetails.getFirstname()+"', '"+userDetails.getLastname()+"', '"+userDetails.getEmail()+"', '"+userDetails.getCollege()+"', '"+userDetails.getUsername()+"', '"+userDetails.getPassword()+"', '"+userDetails.getCode()+"')";
-			stmt.executeQuery(sql);
+			stmt.executeUpdate(sql);
 			connection.close();
 			return "Profile";
 		}
