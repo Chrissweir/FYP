@@ -16,8 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
-import javax.xml.ws.Response;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -45,7 +43,6 @@ public class Profile extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		HttpSession session = request.getSession();
 		if(session.getAttribute("code") == null){
 			RequestDispatcher rd = request.getRequestDispatcher("LoginRegister.jsp");
@@ -195,28 +192,28 @@ public class Profile extends HttpServlet {
 			System.err.println("Got an exception! ");
 			System.err.println(e.getMessage());
 		}
-}
+	}
 
-public BasicDBObject[] createUserData(String code, String encodstring){
+	public BasicDBObject[] createUserData(String code, String encodstring){
 
-	BasicDBObject ImageDetails = new BasicDBObject();
+		BasicDBObject ImageDetails = new BasicDBObject();
 
-	ImageDetails.put("Confirmation Code", code);
-	ImageDetails.put("Image", encodstring);
+		ImageDetails.put("Confirmation Code", code);
+		ImageDetails.put("Image", encodstring);
 
-	final BasicDBObject[] data = {ImageDetails};
+		final BasicDBObject[] data = {ImageDetails};
 
-	return data;
-}
+		return data;
+	}
 
-/**
- * getConnection() establishes a connection to the database
- * @return
- * @throws URISyntaxException
- * @throws SQLException
- */
-private Connection getConnection() throws URISyntaxException, SQLException {
-	String ConnectionString ="jdbc:postgresql://ec2-54-75-239-190.eu-west-1.compute.amazonaws.com:5432/dc6f77btle9oe3?user=dmbleakzbhlbnl&password=b08ab093aa5b03c4047c541ceab2b23daa4fb5198e48d56f804319695455d754&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
-	return DriverManager.getConnection(ConnectionString);
-}
-}
+	/**
+	 * getConnection() establishes a connection to the database
+	 * @return
+	 * @throws URISyntaxException
+	 * @throws SQLException
+	 */
+	private Connection getConnection() throws URISyntaxException, SQLException {
+		String ConnectionString ="jdbc:postgresql://ec2-54-75-239-190.eu-west-1.compute.amazonaws.com:5432/dc6f77btle9oe3?user=dmbleakzbhlbnl&password=b08ab093aa5b03c4047c541ceab2b23daa4fb5198e48d56f804319695455d754&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
+		return DriverManager.getConnection(ConnectionString);
+	}
+}//219
