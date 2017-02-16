@@ -116,7 +116,33 @@ public class SQLConnection {
 		update.executeUpdate();
 	}
 	
-	public void removeUser(){
+	public boolean removeUser(UserDetails userDetails) throws SQLException, ClassNotFoundException, URISyntaxException{
+		//Establish a connection with the database
+		Connection connection = getConnection();
+		//Create a new statement
+		Statement stmt = connection.createStatement();
+
+		//Execute a query on the statement and assign the results to the ResultSet rs
+		ResultSet rs = stmt.executeQuery( "SELECT * FROM Users WHERE confirmation_code='"+userDetails.getCode()+"';" );
+
+		//Using a while loop, for every entry in the ResultSet retrieve the specified data
+		while ( rs.next() ) {
+			userDetails.setPass(rs.getString("password"));
+		}
 		
+		//User validation, check if the password that was submitted is the same and the password
+		//retrieved from the database. If it is then pass the specified data to the request object
+		//and forward the request to the Profile.jsp page
+		if(userDetails.getPass().equals(userDetails.getPassword())){
+			String query = "Delete FROM Users WHERE confirmation_code = ?";
+			PreparedStatement preparedStmt = connection.prepareStatement(query);
+			preparedStmt.setString(1, userDetails.getCode());
+
+			// execute the preparedstatement
+			preparedStmt.execute();
+			connection.close();
+			return true;
+		}
+		return false;
 	}
 }
