@@ -3,10 +3,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
-	<HEAD>
+	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<TITLE>Student Schedule</TITLE>
-	</HEAD>
+		<title>Student Timetable</title>
+	</head>
 
 	<BODY>
 		<FORM action="TimetableServlet" method="post">
@@ -85,11 +85,11 @@
 						</c:choose></TD>
 						<c:forEach begin="0" end="6" step="1" var="day">
 							<TD align="center" valign="middle" width="100">
-								<c:forEach items="${timetable.classes}" var="module">
-									<c:if test="${module.startTime <= time 
-									&& module.endTime > time 
-									&& module.day == day}">
-										<c:out value="${module.title}" />
+								<c:forEach items="${timetable.classes}" var="modules">
+									<c:if test="${modules.startTime <= time 
+									&& modules.endTime > time 
+									&& modules.day == day}">
+										<c:out value="${modules.title}" />
 									</c:if>
 								</c:forEach>
 							</TD>
