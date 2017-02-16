@@ -21,7 +21,7 @@ public class MongoConnection {
 		client.close();
 	}
 	
-	public void setUserDatabase(String code, String file){
+	public void setUserData(String code, String file){
 		MongoClientURI uri  = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh"); 
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
@@ -31,6 +31,17 @@ public class MongoConnection {
 		document.put("Confirmation Code", code);
 		user.remove(document);
 		user.insert(data);
+		client.close();
+	}
+	
+	public void removeUserData(String code){
+		MongoClientURI uri  = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh"); 
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("User");
+		BasicDBObject document = new BasicDBObject();
+		document.put("Confirmation Code", code);
+		user.remove(document);
 		client.close();
 	}
 	
@@ -52,7 +63,7 @@ public class MongoConnection {
 		return image;
 	}
 	
-	public BasicDBObject[] createUserData(String code, String file){
+	private BasicDBObject[] createUserData(String code, String file){
 
 		BasicDBObject ImageDetails = new BasicDBObject();
 

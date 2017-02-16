@@ -9,6 +9,7 @@ public class UserDetails {
 	private String college;
 	private String pass;
 	private String password;
+	private String code;
 
 	public String getPath() {
 		return path;
@@ -64,5 +65,13 @@ public class UserDetails {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getCode(){
+		return code;
+	}
+	
+	public void setCode(String code) {
+		this.code = code;
 	}
 }

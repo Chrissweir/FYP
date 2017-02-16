@@ -2,6 +2,7 @@ package ie.gmit.sw.Connections;
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,6 +10,7 @@ import java.sql.Statement;
 import org.eclipse.jdt.internal.compiler.ast.ContinueStatement;
 
 import ie.gmit.sw.Login.LoginValues;
+import ie.gmit.sw.Profile.UserDetails;
 import ie.gmit.sw.Register.RegisterUserDetails;
 
 public class SQLConnection {
@@ -97,5 +99,24 @@ public class SQLConnection {
 			return "emailError";
 		}
 		return null;
+	}
+
+	public void updateUserDetails(UserDetails userDetails) throws SQLException, ClassNotFoundException, URISyntaxException{
+		//Establish a connection with the database
+		Connection connection = getConnection();
+
+		//Create three new statements
+		PreparedStatement update = connection.prepareStatement
+				("UPDATE Users SET first_name =?, last_name =?, email =?, college =? WHERE confirmation_code =?");
+		update.setString(1, userDetails.getFirstName());
+		update.setString(2, userDetails.getLastName());
+		update.setString(3, userDetails.getEmail());
+		update.setString(4, userDetails.getCollege());
+		update.setString(5, userDetails.getCode());
+		update.executeUpdate();
+	}
+	
+	public void removeUser(){
+		
 	}
 }

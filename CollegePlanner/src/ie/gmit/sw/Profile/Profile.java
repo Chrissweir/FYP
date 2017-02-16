@@ -17,15 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
-
 import ie.gmit.sw.Connections.MongoConnection;
-
+import ie.gmit.sw.Connections.SQLConnection;
 
 /**
  * Servlet implementation class Profile
@@ -34,6 +27,8 @@ import ie.gmit.sw.Connections.MongoConnection;
 public class Profile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserDetails userDetails = new UserDetails();
+	private MongoConnection mongo = new MongoConnection();
+	private SQLConnection sqlConn =new SQLConnection();
 	private String image;
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -46,15 +41,11 @@ public class Profile extends HttpServlet {
 		}
 		try{
 			String code = (String) session.getAttribute("code");
-			MongoConnection mongo = new MongoConnection();
 			image = mongo.getUserImage(code);
-				session.removeAttribute("image");
-				session.setAttribute("image", image);
-			
+			session.removeAttribute("image");
+			session.setAttribute("image", image);
 			RequestDispatcher rd = request.getRequestDispatcher("Profile.jsp");
 			rd.forward(request, response);	
-			
-			
 		}catch (Exception e) {
 		}
 	}
@@ -74,37 +65,15 @@ public class Profile extends HttpServlet {
 			userDetails.setCollege(request.getParameter("college"));
 			HttpSession session = request.getSession();
 
-			String code = (String)session.getAttribute("code");
+			userDetails.setCode((String)session.getAttribute("code"));
+			
 			try{
-
-				//Establish a connection with the database
-				Connection connection = getConnection();
-
-				//Create three new statements
-				PreparedStatement update = connection.prepareStatement
-						("UPDATE Users SET first_name =?, last_name =?, email =?, college =? WHERE confirmation_code =?");
-				update.setString(1, userDetails.getFirstName());
-				update.setString(2, userDetails.getLastName());
-				update.setString(3, userDetails.getEmail());
-				update.setString(4, userDetails.getCollege());
-				update.setString(5, code);
-				update.executeUpdate();
+				sqlConn.updateUserDetails(userDetails);
 			}
 			catch (Exception e) {
 				// TODO: handle exception
 			}
-
-			//System.out.println(code);
-			final BasicDBObject[] data = createUserData(code, userDetails.getPath());
-			MongoClientURI uri  = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh"); 
-			MongoClient client = new MongoClient(uri);
-			DB db = client.getDB(uri.getDatabase());
-			DBCollection user = db.getCollection("User");
-			BasicDBObject document = new BasicDBObject();
-			document.put("Confirmation Code", code);
-			user.remove(document);
-			user.insert(data);
-			client.close();
+			mongo.setUserData(userDetails.getCode(), userDetails.getPath());
 			session.setAttribute("firstname", userDetails.getFirstName());
 			session.setAttribute("lastname", userDetails.getLastName());
 			session.setAttribute("email", userDetails.getEmail());
@@ -147,14 +116,8 @@ public class Profile extends HttpServlet {
 
 				connection.close();
 
-				final BasicDBObject[] data = createUserData(code, userDetails.getPath());
-				MongoClientURI uri  = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh"); 
-				MongoClient client = new MongoClient(uri);
-				DB db = client.getDB(uri.getDatabase());
-				DBCollection user = db.getCollection("User");
-				BasicDBObject document = new BasicDBObject();
-				document.put("Confirmation Code", code);
-				user.remove(document);
+				mongo.removeUserData(code);
+
 				session.removeAttribute("firstname");
 				session.removeAttribute("lastname");
 				session.removeAttribute("email");
@@ -173,21 +136,8 @@ public class Profile extends HttpServlet {
 		}
 		catch (Exception e)
 		{
-			System.err.println("Got an exception! ");
-			System.err.println(e.getMessage());
+			//
 		}
-	}
-
-	public BasicDBObject[] createUserData(String code, String encodstring){
-
-		BasicDBObject ImageDetails = new BasicDBObject();
-
-		ImageDetails.put("Confirmation Code", code);
-		ImageDetails.put("Image", encodstring);
-
-		final BasicDBObject[] data = {ImageDetails};
-
-		return data;
 	}
 
 	/**
