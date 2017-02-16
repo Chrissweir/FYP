@@ -1,11 +1,9 @@
 package ie.gmit.sw.Timetable;
 
-import java.util.List;
-import java.util.ArrayList;
 
 public class Timetable {
 	
-	private List classes = new ArrayList();
+	private List<Module> classes = new ArrayList<Module>();
 
 	public List getClasses() {
 		return classes;
