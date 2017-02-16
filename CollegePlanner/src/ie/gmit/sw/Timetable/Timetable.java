@@ -8,7 +8,6 @@ public class Timetable {
 	//private list that takes in modules
 	private List<Module> classes = new ArrayList<Module>();
 
-	
 	/**
 	 * Getter for module list in order to access the lists object information
 	 * @return
@@ -16,7 +15,6 @@ public class Timetable {
 	public List<Module> getClasses() {
 		return classes;
 	}
-	
 	
 	/**
 	 * Method for adding new classes
