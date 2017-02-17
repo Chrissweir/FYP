@@ -86,8 +86,8 @@
 						<c:forEach begin="0" end="6" step="1" var="day">
 							<TD align="center" valign="middle" width="100">
 								<c:forEach items="${timetable.classes}" var="modules">
-									<c:if test="${modules.startTime <= time 
-									&& modules.endTime > time 
+									<c:if test="${modules.timeStart <= time 
+									&& modules.timeEnd > time 
 									&& modules.day == day}">
 										<c:out value="${modules.title}" />
 									</c:if>
