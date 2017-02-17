@@ -1,16 +1,25 @@
 package ie.gmit.sw.Timetable;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Timetable {
 	
-	private List classes = new ArrayList();
+	//private list that takes in modules
+	private List<Module> classes = new ArrayList<Module>();
 
-	public List getClasses() {
+	/**
+	 * Getter for module list in order to access the lists object information
+	 * @return
+	 */
+	public List<Module> getClasses() {
 		return classes;
 	}
 	
+	/**
+	 * Method for adding new classes
+	 * @param module
+	 */
 	public void addClass(Module module)
 	{
 		classes.add(module);
