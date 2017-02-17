@@ -87,6 +87,7 @@ public class Register extends HttpServlet {
 	        request.getRequestDispatcher("/LoginRegister.jsp").forward(request, response);
 		}
 		catch (Exception e) {
+			response.sendRedirect("ErrorHandler");
 		}
 	}
 }
