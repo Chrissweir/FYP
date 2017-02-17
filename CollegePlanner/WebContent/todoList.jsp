@@ -16,7 +16,7 @@
 	
 		Add Task : <input type="text" id="theItem" name="theItem" />
 		
-		<input type="submit" value="Submit" />
+		<input type="submit" value="Save" />
 		
 	
 	</form>

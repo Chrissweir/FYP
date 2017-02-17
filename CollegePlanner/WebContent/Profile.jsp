@@ -6,10 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="css/Profile.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/Profile.js"></script>
@@ -58,27 +57,8 @@
 					</ul></li>
 			</ul>
 		</div>
-	</div></nav>
-
-  <div id="id01" class="w3-modal">
-    <div class="w3-modal-content w3-animate-top w3-card-8" >
-      <header class="w3-container w3-deep-orange"> 
-        <span onclick="document.getElementById('id01').style.display='none'" 
-        class="w3-closebtn">&times;</span>
-        <h2>Remove your Account?</h2>
-      </header>
-      <div class="w3-container">
-        <p><b>Doing so will permanently delete your account and all of your data!</b></p>
-        <p>Please enter your password to confirm:<input id="confirmPassword" type="password" autocomplete="new-password">
-      </div>
-      <footer class="w3-container w3-deep-orange">
-      <p></p>
-      <button type="button" class="btn btn-warning" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
-        <span class="pull-right"><button type="button" class="btn btn-danger">Delete</button></span>
-              <p></p>
-      </footer>
-    </div>
-  </div>
+	</div>
+	</nav>
 
 	<div
 		class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
@@ -101,8 +81,9 @@
 									style="display: none;">
 								</label>
 							</div>
-							<input type="text" name="imgPath" id="imgPath" style="visibility: hidden"/>
-							
+							<input type="text" name="imgPath" id="imgPath"
+								style="visibility: hidden" />
+
 						</div>
 						<div class=" col-md-9 col-lg-9 ">
 							<table class="table table-user-information">
@@ -133,50 +114,65 @@
 						data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">
 						<i class="glyphicon glyphicon-edit"></i>
 					</button>
-					<button name="btn" value="update" id="saveBtn" style="visibility: hidden"
-						onclick="save()" data-original-title="Save details"
-						data-toggle="tooltip" type="submit" class="btn btn-sm btn-success">
+					<button name="btn" value="update" id="saveBtn"
+						style="visibility: hidden" onclick="save()"
+						data-original-title="Save details" data-toggle="tooltip"
+						type="submit" class="btn btn-sm btn-success">
 						<i class="glyphicon glyphicon-floppy-disk"></i>
 					</button>
-					<span class="pull-right"> <button
-						data-original-title="Remove this user" data-toggle="tooltip"
-						type="button" class="btn btn-sm btn-danger" onclick="document.getElementById('id01').style.display='block'"><i
-							class="glyphicon glyphicon-remove" ></i></button>
+					<span class="pull-right">
+						<button data-original-title="Remove this user"
+							data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"
+							onclick="document.getElementById('id01').style.display='block'">
+							<i class="glyphicon glyphicon-remove"></i>
+						</button>
 					</span>
 				</div>
 		</form>
-		
+
 	</div>
 	</div>
-	
-				<input form="userDetails" type="text" name="firstname" id="firstname" style="visibility: hidden">
-				<input form="userDetails" type="text" name="lastname" id="lastname" style="visibility: hidden">
-				<input form="userDetails" type="text" name="email" id="email" style="visibility: hidden">
-				<input form="userDetails" type="text" name="college" id="college" style="visibility: hidden">
-				
-				<div id="id01" class="w3-modal">
-    <div class="w3-modal-content w3-animate-top w3-card-8" >
-      <header class="w3-container w3-red"> 
-        <span onclick="document.getElementById('id01').style.display='none'" 
-        class="w3-closebtn">&times;</span>
-        <h2>Remove your Account?</h2>
-      </header>
-      <div class="w3-container">
-        <p><b>Doing so will permanently delete your account and all of your data!</b></p>
-        <p>Please enter your password to confirm:</p><input form="userDetails" name="confirmPassword" id="confirmPassword" type="password" autocomplete="new-password"><%
+
+	<input form="userDetails" type="text" name="firstname" id="firstname"
+		style="visibility: hidden">
+	<input form="userDetails" type="text" name="lastname" id="lastname"
+		style="visibility: hidden">
+	<input form="userDetails" type="text" name="email" id="email"
+		style="visibility: hidden">
+	<input form="userDetails" type="text" name="college" id="college"
+		style="visibility: hidden">
+
+	<div id="id01" class="w3-modal">
+		<div class="w3-modal-content w3-animate-top w3-card-8">
+			<header class="w3-container w3-red"> <span
+				onclick="document.getElementById('id01').style.display='none'"
+				class="w3-closebtn">&times;</span>
+			<h2>Remove your Account?</h2>
+			</header>
+			<div class="w3-container">
+				<p>
+					<b>Doing so will permanently delete your account and all of
+						your data!</b>
+				</p>
+				<p>Please enter your password to confirm:</p>
+				<input form="userDetails" name="confirmPassword"
+					id="confirmPassword" type="password" autocomplete="new-password">
+				<%
 										String pass = (String) request.getAttribute("error");
 										if (pass != null)
 											out.println("<font color=red size=4px>" + pass + "</font>");
 									%>
 
-      </div>
-      <footer class="w3-container w3-red">
-      <p></p>
-      <button type="button" class="btn btn-warning" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
-        <span class="pull-right"><button form="userDetails" type="submit" value="delete" name="btn" class="btn btn-danger">Delete</button></span>
-              <p></p>
-      </footer>
-    </div>
-  </div>
-	</body>
+			</div>
+			<footer class="w3-container w3-red">
+			<p></p>
+			<button type="button" class="btn btn-warning"
+				onclick="document.getElementById('id01').style.display='none'">Cancel</button>
+			<span class="pull-right"><button form="userDetails"
+					type="submit" value="delete" name="btn" class="btn btn-danger">Delete</button></span>
+			<p></p>
+			</footer>
+		</div>
+	</div>
+</body>
 </html>
