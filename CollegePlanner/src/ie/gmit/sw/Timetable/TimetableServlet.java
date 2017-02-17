@@ -16,9 +16,9 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		super.doPost(request, response);
 		
 		String title = request.getParameter("title");
-		String[] days = request.getParameterValues("day");
 		int starttime = Integer.parseInt(request.getParameter("starttime"));
 		int endtime = Integer.parseInt(request.getParameter("endtime"));
+		String[] days = request.getParameterValues("day");
 		
 		Timetable timetable = (Timetable)request.getSession(true).getAttribute("timetable");
 		if(timetable == null)
