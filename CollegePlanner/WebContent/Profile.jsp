@@ -8,22 +8,31 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="css/Profile.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/Profile.js"></script>
-<script type="text/javascript">$('document').ready(function(){
-	document.getElementById("imgPath").value = document.getElementById("image").src;
-	updateData();
-	 function updateData()
-	    {
-		 document.getElementById("firstname").value = document.getElementById("fname").innerHTML;
-		 document.getElementById("lastname").value = document.getElementById("lname").innerHTML;
-		 document.getElementById("email").value = document.getElementById("em").innerHTML;
-		 document.getElementById("college").value = document.getElementById("coll").innerHTML;
-	    }
-	    $(document).on("change, keyup", "#fname, #lname, #em, #coll", updateData);
-});</script>
+<script type="text/javascript">
+	$('document').ready(
+			function() {
+				document.getElementById("imgPath").value = document
+						.getElementById("image").src;
+				updateData();
+				function updateData() {
+					document.getElementById("firstname").value = document
+							.getElementById("fname").innerHTML;
+					document.getElementById("lastname").value = document
+							.getElementById("lname").innerHTML;
+					document.getElementById("email").value = document
+							.getElementById("em").innerHTML;
+					document.getElementById("college").value = document
+							.getElementById("coll").innerHTML;
+				}
+				$(document).on("change, keyup", "#fname, #lname, #em, #coll",
+						updateData);
+			});
+</script>
 <title>My Profile</title>
 
 </head>
@@ -158,10 +167,10 @@
 				<input form="userDetails" name="confirmPassword"
 					id="confirmPassword" type="password" autocomplete="new-password">
 				<%
-										String pass = (String) request.getAttribute("error");
-										if (pass != null)
-											out.println("<font color=red size=4px>" + pass + "</font>");
-									%>
+					String pass = (String) request.getAttribute("error");
+					if (pass != null)
+						out.println("<font color=red size=4px>" + pass + "</font>");
+				%>
 
 			</div>
 			<footer class="w3-container w3-red">

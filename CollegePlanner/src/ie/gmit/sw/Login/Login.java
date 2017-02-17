@@ -67,6 +67,7 @@ public class Login extends HttpServlet{
 				rd.include(request, response);
 			}
 		}catch (Exception e) {
+			response.sendRedirect("ErrorHandler");
 		}
 	}
 }
