@@ -14,12 +14,18 @@
 	
 	<form action="ToDoListServlet" method="post">
 	
-		Add Task : <input type="text" id="theItem" name="theItem" />
+		Add Task : <input type="text" id="title" name="title" />
+		
+	
+	<form action="ToDoListServlet" method="post">
+
+		Add Description : <input type="text" id="description" name="description" />
 		
 		<input type="submit" value="Save" />
 		
 	
 	</form>
+	
 	<br>
 
 	<!--Add item to ToDo List-->
@@ -35,9 +41,9 @@
 		}
 		
 		//Checks to see if form needs to be added
-		String theItem = request.getParameter("theItem");
-		if(theItem != null){
-			items.add(theItem);
+		String title = request.getParameter("title");
+		if(title != null){
+			items.add(title);
 		}
 	%>
 

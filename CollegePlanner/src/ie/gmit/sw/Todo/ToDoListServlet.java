@@ -15,20 +15,31 @@ import javax.servlet.http.HttpServletResponse;
 public class ToDoListServlet extends HttpServlet {
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String title = request.getParameter("title");
+		String description = request.getParameter("description");
+		System.out.println(title);
+		System.out.println(description);
+		
+		
+		response.sendRedirect("todoList.jsp");
+		
+		doGet(request, response);
+	}
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String theItem = request.getParameter("theItem");
-		//System.out.println(theItem);
-		response.sendRedirect("todoList.jsp");
-		
-		doGet(request, response);
-	}
+
 
 }
