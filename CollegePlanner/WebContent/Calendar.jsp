@@ -41,7 +41,7 @@
           <h4 class="modal-title">Add Event</h4>
         </div>
         <div class="modal-body">
-          <form id="addEvent" name="addEvent" action="CJsonServlet" method="post">
+          <form id="addEvent" name="addEvent" action="CalendarServlet" method="post">
            <div class="form-group">
            <label>Title:</label>
             <input class="form-control" type="text" name="Title" placeholder="Title" required>

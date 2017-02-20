@@ -6,6 +6,8 @@ import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 
+import ie.gmit.sw.Calendar.CalendarValues;
+
 public class MongoConnection {
 	private String defaultImage = "https://www.barfoot.co.nz/images/noprofile-big.png";
 	
@@ -30,6 +32,22 @@ public class MongoConnection {
 		user.remove(document);
 		user.insert(data);
 		client.close();
+	}
+	
+	
+	public void setCalendar(String code, CalendarValues cal){
+		MongoClientURI uri  = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh"); 
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Calendar");
+		BasicDBObject document = new BasicDBObject();
+		document.put("Confirmation Code", code);
+		document.put("Title", cal.getTitle());
+		document.put("Start", cal.getStart());
+		document.put("Finish", cal.getEnd());
+		user.insert(document);
+		client.close();
+		
 	}
 	
 	public BasicDBObject[] createUserData(String code, String file){

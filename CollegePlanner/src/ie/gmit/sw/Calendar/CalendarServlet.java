@@ -11,13 +11,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
+
 import ie.gmit.sw.Calendar.CalendarValues;
+import ie.gmit.sw.Connections.MongoConnection;
 
 @WebServlet("/CalendarServlet")
-public class CalendarServlet extends HttpServlet implements Servlet {
+public class CalendarServlet extends HttpServlet  {
+	private CalendarValues cal = new CalendarValues();
+	private MongoConnection mongo = new MongoConnection();
 
 	/**
 	 * 
@@ -49,6 +54,11 @@ public class CalendarServlet extends HttpServlet implements Servlet {
 
 		l.add(c);
 		l.add(d);
+		l.add(cal);
+		
+		/*for (int i = 0; i < 5; i++) {
+			cal.setTitle("Title");
+		}*/
 		
 		/*
 		 * google-gson. Gson is a Java library that can be used to convert Java Objects into their JSON representation
@@ -67,8 +77,21 @@ public class CalendarServlet extends HttpServlet implements Servlet {
 	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String code = (String) session.getAttribute("code");
+		cal.setTitle(request.getParameter("Title"));
+		System.out.println("hello " + cal.getTitle());
+		
+		cal.setStart(request.getParameter("startDate"));
+		System.out.println("Start " + cal.getStart());
+		
+		cal.setEnd(request.getParameter("endDate"));
+		System.out.println("End " + cal.getEnd());
+		//mongo.setCalender(cal);
+		mongo.setCalendar(code, cal);
+
+		response.sendRedirect("Calendar.jsp");
 
 	}
 
