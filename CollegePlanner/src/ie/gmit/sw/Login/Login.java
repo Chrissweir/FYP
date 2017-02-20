@@ -1,4 +1,3 @@
-
 package ie.gmit.sw.Login;
 
 import java.io.IOException;
@@ -16,7 +15,7 @@ import ie.gmit.sw.Connections.SQLConnection;
 /**
  * @author Christopher Weir - G00309429
  * 
- * This class is responsible for allowing the user to login to the website by 
+ * This Servlet is responsible for allowing the user to login to the website by 
  * first retrieving the username and password that was entered. The class then establishes 
  * a connection with the postgres SQL database hosted on Heroku. A database query is made to 
  * check if the user exists and if it does then check if the password matches the users password.
@@ -67,6 +66,7 @@ public class Login extends HttpServlet{
 				rd.include(request, response);
 			}
 		}catch (Exception e) {
+			response.sendRedirect("ErrorHandler");
 		}
 	}
 }
