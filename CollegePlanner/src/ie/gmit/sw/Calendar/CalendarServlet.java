@@ -39,8 +39,33 @@ public class CalendarServlet extends HttpServlet  {
 	protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		List l = new ArrayList();
-		// mongo.getCalender();
-		CalendarValues c = new CalendarValues();
+		HttpSession session = req.getSession();
+		String code = (String) session.getAttribute("code");
+		l = mongo.getCalender(code);
+		/*System.out.println(returnList);
+		String[] s = new String[returnList.size()];
+		//List <Object> result = returnList;
+		int i =0;
+		for(Object[] obj : returnList){
+			System.out.println(obj);
+			s[i] = obj.toString();
+			i++;
+			System.out.println(s);
+			
+			//l.add(obj);
+		}*/
+		//int i = 0;
+		/*for(int i=0; i<returnList.size(); i++){
+			Object[] obj = (Object[]) returnList.get(i);
+			for(Object list : obj){
+				//i++;
+				System.out.println(list.toString());
+			}
+		}*/
+
+
+
+		/*CalendarValues c = new CalendarValues();
 		c.setId(1);
 		c.setStart("2017-02-11");
 		c.setEnd("2017-02-1");
@@ -54,12 +79,12 @@ public class CalendarServlet extends HttpServlet  {
 
 		l.add(c);
 		l.add(d);
-		l.add(cal);
-		
+		l.add(cal);*/
+
 		/*for (int i = 0; i < 5; i++) {
 			cal.setTitle("Title");
 		}*/
-		
+
 		/*
 		 * google-gson. Gson is a Java library that can be used to convert Java Objects into their JSON representation
 		 * */
@@ -82,10 +107,10 @@ public class CalendarServlet extends HttpServlet  {
 		String code = (String) session.getAttribute("code");
 		cal.setTitle(request.getParameter("Title"));
 		System.out.println("hello " + cal.getTitle());
-		
+
 		cal.setStart(request.getParameter("startDate"));
 		System.out.println("Start " + cal.getStart());
-		
+
 		cal.setEnd(request.getParameter("endDate"));
 		System.out.println("End " + cal.getEnd());
 		//mongo.setCalender(cal);
