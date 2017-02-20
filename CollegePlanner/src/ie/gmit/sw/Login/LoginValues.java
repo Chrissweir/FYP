@@ -1,5 +1,10 @@
 package ie.gmit.sw.Login;
 
+/**
+ * @author Christopher Weir - G00309429
+ * This class is responsible for the getting and setting of the Login values.
+ *
+ */
 public class LoginValues { 
 
 	private String pass;
