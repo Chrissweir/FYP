@@ -14,19 +14,15 @@
 
 	<form action="ToDoListServlet" method="post">
 
-		Add Task : <input type="text" id="title" name="title" /> Add
+		Add Title : <input type="text" id="title" name="title" />
 		Description : <input type="text" id="description" name="description" />
 
 		<input type="submit" value="Save" />
-
-
+		
 	</form>
-	
-
 	<br>
 
 	<!--Add item to ToDo List-->
-
 	<%
 		//Gets todo list
 		List<String> task = (List<String>) session.getAttribute("myToDoList");
@@ -49,28 +45,13 @@
 
 	<b>To Do List</b>
 	<br />
-	
-	<form action="ToDoListServlet" method="post" >
-	    <input type="checkbox" name="box" value=done>
-	</form>
-	
-	
+
 	<ol>
-		<%
-	//Loops through list
-		for(String temp : task){
-			
-			//Builds list
-			out.println("<li>"+temp+"</li>");
-		}
 		
-		
-	%>
 	
-
+	<tr>${title}</tr> <tr>${desc}<form action="ToDoListServlet"><input type="checkbox" name="box" value="done"></form></tr>
 	
 	
-
 	</ol>
 
 </body>

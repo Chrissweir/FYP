@@ -31,23 +31,29 @@ public class ToDoListServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String title = request.getParameter("title");
 		String description = request.getParameter("description");
-		System.out.println("Title: " + title);
-		System.out.println("Description: " + description);
+		boolean complete = request.getParameter("complete") != null; 
 		
-		
-		
-		
+		request.getSession().setAttribute("title", title);
+		request.getSession().setAttribute("desc", description);
+		request.getSession().setAttribute("done", complete);
+
 		response.sendRedirect("todoList.jsp");
 		
 		doGet(request, response);
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 PrintWriter out = response.getWriter();
+		 //PrintWriter out = response.getWriter();
 		 //ask database
 		 //result = mongo.getTodoList():
-	  //    out.write("<p>"+ title +"</p>");
-	      out.write("</body></html>");
+		
+		//for(Item item : result){
+		//	String title = item.get("title");
+		//	out.write("<p>"+title+"</p>");
+		//	out.write("checkbox");
+		//}
+	     //out.write("<p>"+ title +"</p>");
+	     //out.write("</body></html>");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
