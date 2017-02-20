@@ -39,10 +39,11 @@ public class Login extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		try {
-			// Retrieve the username and password that was submitted
+			//Retrieve the username and password that was submitted
 			login.setUsername(request.getParameter("username"));
 			login.setPassword(request.getParameter("password"));
 			
+			//Pass the login values to SQLConnection which will query the database
 			sqlConn.userLogin(login);
 
 			//User validation, check if the password that was submitted is the same and the password
@@ -65,6 +66,7 @@ public class Login extends HttpServlet{
 				RequestDispatcher rd=request.getRequestDispatcher("LoginRegister.jsp");            
 				rd.include(request, response);
 			}
+		//If something goes rong the redirect the user to the ErrorHandler page
 		}catch (Exception e) {
 			response.sendRedirect("ErrorHandler");
 		}
