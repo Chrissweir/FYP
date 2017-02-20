@@ -55,7 +55,7 @@
 	<form action="ToDoListServlet" method="post" >
 		<input type="Submit" name="deleteTask" value="Delete" onclick="this.value += ' <% out.print(title); %>'; this.disabled = true; " />
 	</form>
-	</br>
+	</br> 
 	
 	</ol>
 
