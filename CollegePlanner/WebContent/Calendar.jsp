@@ -4,58 +4,81 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link rel='stylesheet' href='css/fullcalendar.css' />
+<script src='js/jquery.min.js'></script>
+<script src='js/moment.min.js'></script>
+<script src='js/fullcalendar.js'></script>
 <title>Calendar</title>
 
-<!-- https://jqueryui.com/datepicker/ -->
-<!-- http://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler -->
-
-
-<link rel="stylesheet"
-	href="http://kendo.cdn.telerik.com/2017.1.118/styles/kendo.common.min.css" />
-<link rel="stylesheet"
-	href="http://kendo.cdn.telerik.com/2017.1.118/styles/kendo.rtl.min.css" />
-<link rel="stylesheet"
-	href="http://kendo.cdn.telerik.com/2017.1.118/styles/kendo.silver.min.css" />
-<link rel="stylesheet"
-	href="http://kendo.cdn.telerik.com/2017.1.118/styles/kendo.mobile.all.min.css" />
-
-<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script
-	src="http://kendo.cdn.telerik.com/2017.1.118/js/kendo.all.min.js"></script>
 </head>
 <body>
 
-	<div id="scheduler"></div>
-	<script>
-		function scheduler_save(e) {
-			console.log("Saving", e.event.title);
-		}
-		$("#scheduler").kendoScheduler({
-			//Initialize date
-			date : new Date(),
+	<body>
+	<div style="margin: 100px 150px 100px 80px;">
+		<div id="calendar"></div>
+	</div>
+	<div>
+	<div class="container">
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
-			//shows current time with a red line on day view
-			currentTimeMarker : {
-				updateInterval : 100
-			},
-			//able to select days and be highlighted
-			selectable : [ "true" ],
-			//The views of the calendar
-			views : [ "month", "day" ],
-			//hardcoded event NEED TO STORE IN A DATABASE
-			dataSource : [ {
-				id : 1,
-				start : new Date("2017/2/15 08:00 AM"),
-				end : new Date("2017/2/15 09:00 AM"),
-				title : "Interview"
-			} ]
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add Event</h4>
+        </div>
+        <div class="modal-body">
+          <form id="addEvent" name="addEvent" action="CalendarServlet" method="post">
+           <div class="form-group">
+           <label>Title:</label>
+            <input class="form-control" type="text" name="Title" placeholder="Title" required>
+            </div>
+             <div class="form-group">
+            <label>Start Date:</label>
+            <input class="form-control" type="text" name="startDate" placeholder="YYYY-MM-DD">
+            </div>
+             <div class="form-group">
+            <label>End Date:</label>
+            <input class="form-control" type="text" name="endDate" placeholder="YYYY-MM-DD">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button form="addEvent" type="submit" class="btn btn-default">Save</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+	
+	</div>
+	<script>
+		$(document).ready(function() {
+			$('#calendar').fullCalendar({
+				theme : false,
+				editable : false,
+				events : "CalendarServlet"
+			});
+
 		});
-		//Saving event
-		var scheduler = $("#scheduler").data("kendoScheduler");
-		scheduler.bind("save", scheduler_save);
 	</script>
 
-
+</body>
 
 </body>
 </html>
