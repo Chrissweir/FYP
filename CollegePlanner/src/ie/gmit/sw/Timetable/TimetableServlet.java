@@ -12,7 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/TimetableServlet")
 public class TimetableServlet extends HttpServlet implements Servlet {
 
-	@Override
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String title = request.getParameter("title");

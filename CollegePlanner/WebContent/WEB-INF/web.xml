@@ -11,12 +11,12 @@
   </welcome-file-list>
   <servlet>
 		<description></description>
-		<display-name>Schedule</display-name>
-		<servlet-name>Schedule</servlet-name>
+		<display-name>Timetable</display-name>
+		<servlet-name>Timetable</servlet-name>
 		<servlet-class>ie.gmit.sw.Timetable.TimetableServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Schedule</servlet-name>
-		<url-pattern>/Schedule</url-pattern>
+		<servlet-name>Timetable</servlet-name>
+		<url-pattern>/Timetable</url-pattern>
 	</servlet-mapping>
 </web-app>
