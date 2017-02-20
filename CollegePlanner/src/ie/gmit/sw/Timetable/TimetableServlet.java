@@ -4,26 +4,30 @@ import java.io.IOException;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@WebServlet("/TimetableServlet")
 public class TimetableServlet extends HttpServlet implements Servlet {
 
-	@Override
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		super.doPost(request, response);
-		
 		String title = request.getParameter("title");
+		int timeStarting = Integer.parseInt(request.getParameter("starttime"));
+		int timeEnding = Integer.parseInt(request.getParameter("endtime"));
 		String[] days = request.getParameterValues("day");
-		int starttime = Integer.parseInt(request.getParameter("starttime"));
-		int endtime = Integer.parseInt(request.getParameter("endtime"));
 		
-		Timetable schedule = (Timetable)request.getSession(true).getAttribute("schoolschedule");
-		if(schedule == null)
+		Timetable timetable = (Timetable)request.getSession(true).getAttribute("timetable");
+		if(timetable == null)
 		{
-			schedule = new Timetable();
+			timetable = new Timetable();
 		}
 		if(days != null)
 		{
@@ -39,14 +43,13 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 				else if(dayString.equalsIgnoreCase("FRI")) day = 5;
 				else day = 6;
 		
-				Module module = new Module(title, starttime, endtime, day);
-				schedule.addClass(module);
+				Module module = new Module(title, timeStarting, timeEnding, day);
+				timetable.addClass(module);
 			}
+			
 		}
-		
-		request.getSession().setAttribute("schoolschedule", schedule);
-		getServletContext().getRequestDispatcher("/Schedule.jsp").forward(request, response);
-		
+		request.getSession().setAttribute("timetable", timetable);
+		getServletContext().getRequestDispatcher("/Timetable.jsp").forward(request, response);
 	}
 	
 	

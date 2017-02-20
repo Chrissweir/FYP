@@ -74,7 +74,7 @@
 										</div>
 									</div>
 								</form>
-								<form id="register-form" name="register-form" onsubmit="return validateForm();" action="Register" style="display: none">
+								<form id="register-form" name="register-form" onsubmit="return validateForm();" action="Register" method="post" style="display: none">
 									<div class="form-group">
 										<input id="signupUserName" name="username" type="text"
 											maxlength="50" class="form-control" placeholder="Username"
