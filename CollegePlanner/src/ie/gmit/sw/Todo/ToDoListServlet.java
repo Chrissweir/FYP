@@ -2,33 +2,61 @@ package ie.gmit.sw.Todo;
 
 import java.awt.List;
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import ie.gmit.sw.Connections.MongoConnection;
 
 /**
  * Servlet implementation class ToDoListServlet
  */
 @WebServlet("/ToDoListServlet")
 public class ToDoListServlet extends HttpServlet {
+	private MongoConnection mongo = new MongoConnection();
 
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String theItem = request.getParameter("theItem");
-		//System.out.println(theItem);
+		String title = request.getParameter("title");
+		String description = request.getParameter("description");
+		boolean complete = request.getParameter("complete") != null; 
+		
+		request.getSession().setAttribute("title", title);
+		request.getSession().setAttribute("desc", description);
+		request.getSession().setAttribute("done", complete);
+
 		response.sendRedirect("todoList.jsp");
 		
 		doGet(request, response);
 	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 //PrintWriter out = response.getWriter();
+		 //ask database
+		 //result = mongo.getTodoList():
+		
+		//for(Item item : result){
+		//	String title = item.get("title");
+		//	out.write("<p>"+title+"</p>");
+		//	out.write("checkbox");
+		//}
+	     //out.write("<p>"+ title +"</p>");
+	     //out.write("</body></html>");
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+
 
 }
