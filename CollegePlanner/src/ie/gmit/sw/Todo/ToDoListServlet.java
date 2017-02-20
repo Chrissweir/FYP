@@ -25,7 +25,7 @@ public class ToDoListServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String theItem = request.getParameter("theItem");
-		System.out.println(theItem);
+		//System.out.println(theItem);
 		response.sendRedirect("todoList.jsp");
 		
 		doGet(request, response);
