@@ -11,8 +11,9 @@
 
 <BODY>
 	<FORM action="TimetableServlet" method="post">
-		Course Name: <INPUT type="text" name="title" size="35"><!-- Room Number: <INPUT type="text" name="room" size="35"> --><BR>
-		Course Time: Sun<INPUT type="checkbox" name="day" value="sun">
+		Module Name: <INPUT type="text" name="title" size="35" maxlength="15"><BR>
+		Room Number: <INPUT type="text" name="room" size="35"><BR>
+		Module Time: Sun<INPUT type="checkbox" name="day" value="sun">
 		Mon<INPUT type="checkbox" name="day" value="mon"> 
 		Tue<INPUT type="checkbox" name="day" value="tue"> 
 		Wed<INPUT type="checkbox" name="day" value="wed"> 
@@ -81,11 +82,11 @@
 					<c:forEach begin="0" end="6" step="1" var="day">
 						<TD align="center" valign="middle" width="100"><c:forEach
 								items="${timetable.classes}" var="modules">
-								<c:if
-									test="${modules.timeStart <= time 
+								<c:if test="${modules.timeStart <= time 
 									&& modules.timeEnd > time 
 									&& modules.day == day}">
-									<c:out value="${modules.title}" />
+									<c:out value="${modules.title}"/>
+									<sup><c:out value="${modules.room}"/></sup>
 								</c:if>
 							</c:forEach></TD>
 					</c:forEach>
