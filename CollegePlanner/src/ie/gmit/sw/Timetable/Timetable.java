@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Timetable {
-	
+
 	//private list that takes in modules
 	private List<Module> classes = new ArrayList<Module>();
 
@@ -23,6 +23,14 @@ public class Timetable {
 	public void addClass(Module module)
 	{
 		classes.add(module);
+	}
+	
+	/**
+	 * Method for removing classes
+	 * @param module
+	 */
+	public void removeClass(Module module){
+		classes.remove(module);
 	}
 	
 }

@@ -5,20 +5,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="css/Timetable.css">
 <title>Student Timetable</title>
 </head>
 
 <BODY>
 	<FORM action="TimetableServlet" method="post">
-		Course Name: <INPUT type="text" name="title" size="35"><BR>
+		Course Name: <INPUT type="text" name="title" size="35"><!-- Room Number: <INPUT type="text" name="room" size="35"> --><BR>
 		Course Time: Sun<INPUT type="checkbox" name="day" value="sun">
-		Mon<INPUT type="checkbox" name="day" value="mon"> Tue<INPUT
-			type="checkbox" name="day" value="tue"> Wed<INPUT
-			type="checkbox" name="day" value="wed"> Thu<INPUT
-			type="checkbox" name="day" value="thu"> Fri<INPUT
-			type="checkbox" name="day" value="fri"> Sat<INPUT
-			type="checkbox" name="day" value="sat"> <SELECT
-			name="starttime">
+		Mon<INPUT type="checkbox" name="day" value="mon"> 
+		Tue<INPUT type="checkbox" name="day" value="tue"> 
+		Wed<INPUT type="checkbox" name="day" value="wed"> 
+		Thu<INPUT type="checkbox" name="day" value="thu"> 
+		Fri<INPUT type="checkbox" name="day" value="fri"> 
+		Sat<INPUT type="checkbox" name="day" value="sat"> 
+			<SELECT name="starttime">
 			<OPTION value="8">8:00am</OPTION>
 			<OPTION value="9">9:00am</OPTION>
 			<OPTION value="10">10:00am</OPTION>
