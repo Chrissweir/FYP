@@ -148,11 +148,10 @@ public class MongoConnection {
 		if(cursor.hasNext()) {
 			for (DBObject dbObject : cursor) {
 				String title = (String) dbObject.get("Title");
-				String desc = (String) dbObject.get("desc");
+				String desc = (String) dbObject.get("Desc");
 				String[] s = new String[2];
 				s[0] = title;
 				s[1] = desc;
-				System.out.println(title + " " + desc);
 				l.add(s);
 			}
 		}
