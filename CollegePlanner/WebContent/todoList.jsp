@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@page import="java.util.*" %>
+	pageEncoding="UTF-8"%>
+<%@page import="java.util.*"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -11,55 +11,53 @@
 <body>
 
 	<!--Create ToDo List -->
-	
+
 	<form action="ToDoListServlet" method="post">
-	
-		Add Task : <input type="text" id="theItem" name="theItem" />
-		
+
+		Add Title : <input type="text" id="title" name="title" />
+		Description : <input type="text" id="description" name="description" />
+
 		<input type="submit" value="Save" />
 		
-	
 	</form>
 	<br>
 
 	<!--Add item to ToDo List-->
-	
 	<%
 		//Gets todo list
-		List<String> items = (List<String>) session.getAttribute("myToDoList");
+		List<String> task = (List<String>) session.getAttribute("myToDoList");
 		
 		//Creates new todo list
-		if(items == null){
-			items = new ArrayList<String>();
-			session.setAttribute("myToDoList", items);
+		if(task == null){
+			task = new ArrayList<String>();
+			session.setAttribute("myToDoList", task);
 		}
 		
 		//Checks to see if form needs to be added
-		String theItem = request.getParameter("theItem");
-		if(theItem != null){
-			items.add(theItem);
+		String title = request.getParameter("title");
+		if(title != null){
+			task.add(title);
 		}
 	%>
 
 	<!--Output tasks-->
 	<hr>
-	
-	<b>To Do List</b> <br/>
-	
+
+	<b>To Do List</b>
+	<br />
+
 	<ol>
-	<%
-	//Loops through list
-		for(String temp : items){
-			
-			//Builds list
-			out.println("<li>"+temp+"</li>");
-		}
-	%>
+		
 	
+	<tr>${title}</tr> <tr>${desc}<form action="ToDoListServlet"><input type="checkbox" name="box" value="done"></form></tr>
 	
-
-
-</ol>
+	<br>
+	<form action="ToDoListServlet" method="post" >
+		<input type="Submit" name="deleteTask" value="Delete" onclick="this.value += ' <% out.print(title); %>'; this.disabled = true; " />
+	</form>
+	</br> 
+	
+	</ol>
 
 </body>
 </html>
