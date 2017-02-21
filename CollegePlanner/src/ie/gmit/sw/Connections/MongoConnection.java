@@ -122,7 +122,7 @@ public class MongoConnection {
 	
 //ToDo List
 //=================================================
-	public void setTodoList(String code) {
+	public void setTodoList(String code, String title, String description) {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
@@ -130,7 +130,7 @@ public class MongoConnection {
 		BasicDBObject document = new BasicDBObject();
 		document.put("Confirmation Code", code);
 		document.put("Title", title);
-		document.put("Desc", desc);
+		document.put("Desc", description);
 		user.insert(document);
 		client.close();
 	}

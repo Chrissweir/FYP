@@ -28,14 +28,17 @@ public class ToDoListServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String title = request.getParameter("title");
 		String description = request.getParameter("description");
-		boolean complete = request.getParameter("complete") != null; 
+		HttpSession session = request.getSession();
+		String code = (String) session.getAttribute("code");
+		mongo.setTodoList(code, title, description);
 		
 		request.getSession().setAttribute("title", title);
 		request.getSession().setAttribute("desc", description);
-		request.getSession().setAttribute("done", complete);
+
 
 		response.sendRedirect("todoList.jsp");
 		
