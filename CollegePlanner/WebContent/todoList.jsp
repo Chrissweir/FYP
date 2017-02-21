@@ -45,11 +45,6 @@
 
 	<b>To Do List</b>
 	<br />
-	<ol>
-			
-	<tr>${title}</tr> <tr>${desc}</tr>
 	
-	</ol>
-
 </body>
 </html>
