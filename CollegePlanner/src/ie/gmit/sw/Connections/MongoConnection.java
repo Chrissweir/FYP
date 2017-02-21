@@ -1,7 +1,6 @@
 package ie.gmit.sw.Connections;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.mongodb.BasicDBObject;
@@ -18,6 +17,8 @@ public class MongoConnection {
 	private String defaultImage = "https://www.barfoot.co.nz/images/noprofile-big.png";
 	private String image;
 
+//Register
+//=================================================
 	public void setNewUser(String code) {
 		final BasicDBObject[] data = createUserData(code, defaultImage);
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
@@ -28,6 +29,8 @@ public class MongoConnection {
 		client.close();
 	}
 
+//Profile
+//=================================================
 	public void setUserData(String code, String file) {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
@@ -40,22 +43,7 @@ public class MongoConnection {
 		user.insert(data);
 		client.close();
 	}
-
-	public void setCalendar(String code, CalendarValues cal) {
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
-		MongoClient client = new MongoClient(uri);
-		DB db = client.getDB(uri.getDatabase());
-		DBCollection user = db.getCollection("Calendar");
-		BasicDBObject document = new BasicDBObject();
-		document.put("Confirmation Code", code);
-		document.put("Title", cal.getTitle());
-		document.put("Start", cal.getStart());
-		document.put("Finish", cal.getEnd());
-		user.insert(document);
-		client.close();
-
-	}
-
+	
 	public void removeUserData(String code) {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
@@ -73,11 +61,8 @@ public class MongoConnection {
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("User");
 		BasicDBObject query = new BasicDBObject();
-		// Set the key and value of the object to email: email
-		query.put(code, null);
-		// Search the User collection for the key and value in query
+		query.put("Confirmation Code", code);
 		DBCursor cursor = user.find(query);
-		// Convert query data to a String
 		while (cursor.hasNext()) {
 			image = (String) cursor.next().get("Image");
 		}
@@ -86,34 +71,40 @@ public class MongoConnection {
 	}
 
 	private BasicDBObject[] createUserData(String code, String file) {
-
 		BasicDBObject ImageDetails = new BasicDBObject();
-
 		ImageDetails.put("Confirmation Code", code);
 		ImageDetails.put("Image", file);
-
 		final BasicDBObject[] data = { ImageDetails };
-
 		return data;
 	}
-
+	
+//Calendar
+//=================================================
+	public void setCalendar(String code, CalendarValues cal) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Calendar");
+		BasicDBObject document = new BasicDBObject();
+		document.put("Confirmation Code", code);
+		document.put("Title", cal.getTitle());
+		document.put("Start", cal.getStart());
+		document.put("Finish", cal.getEnd());
+		user.insert(document);
+		client.close();
+	}
+	
 	public List getCalender(String code) {
-
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("Calendar");
 		BasicDBObject query = new BasicDBObject();
-		// Set the key and value of the object to email: email
-		query.put(code, null);
-		// Search the User collection for the key and value in query
+		query.put("Confirmation Code", code);
 		DBCursor cursor = user.find(query);
 
-		// Convert query data to a String
 		ArrayList<String[]> l = new ArrayList<String[]>();
-		//while (cursor.hasNext()) {
-		int i =0;
-		
+		if(cursor.hasNext()) {
 			for (DBObject dbObject : cursor) {
 				String title = (String) dbObject.get("Title");
 				String start = (String) dbObject.get("Start");
@@ -124,7 +115,15 @@ public class MongoConnection {
 				s[2] = finish;
 				l.add(s);
 			}
+		}
 		client.close();
 		return l;
 	}
+	
+//ToDo List
+//=================================================
+
+
+//Timetable
+//=================================================
 }
