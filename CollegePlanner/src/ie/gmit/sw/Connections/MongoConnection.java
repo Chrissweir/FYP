@@ -1,6 +1,7 @@
 package ie.gmit.sw.Connections;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.mongodb.BasicDBObject;
@@ -109,7 +110,7 @@ public class MongoConnection {
 		DBCursor cursor = user.find(query);
 
 		// Convert query data to a String
-		List l = new ArrayList();
+		ArrayList<String[]> l = new ArrayList<String[]>();
 		//while (cursor.hasNext()) {
 		int i =0;
 		
@@ -117,24 +118,13 @@ public class MongoConnection {
 				String title = (String) dbObject.get("Title");
 				String start = (String) dbObject.get("Start");
 				String finish = (String) dbObject.get("Finish");
-				i++;
-				CalendarValues c = new CalendarValues();
-				c.setId(i);
-				c.setStart(start);
-				c.setEnd(finish);
-				c.setTitle(title);
-				l.add(c);
-			/*	List t = new ArrayList();
-				
-				t.add(title);
-				t.add(start);
-				t.add(finish);
-				l.add(t);
-				System.out.println(l);*/
+				String[] s = new String[3];
+				s[0] = title;
+				s[1] = start;
+				s[2] = finish;
+				l.add(s);
 			}
-		//}
 		client.close();
 		return l;
-
 	}
 }

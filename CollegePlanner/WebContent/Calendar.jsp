@@ -11,13 +11,14 @@
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="http://arshaw.com/js/fullcalendar-1.5.4/fullcalendar/fullcalendar.min.js"></script>
 
+<script src="http://arshaw.com/js/fullcalendar-1.5.4/fullcalendar/fullcalendar.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
 <link rel='stylesheet' href='css/fullcalendar.css' />
-<!--  <script src='js/jquery.min.js'></script> -->
-<script src='js/moment.min.js'></script>
+<!--  <script src='js/jquery.min.js'></script> 
+<script src='js/moment.min.js'></script>-->
 <script src='js/fullcalendar.js'></script>
 <title>Calendar</title>
 
