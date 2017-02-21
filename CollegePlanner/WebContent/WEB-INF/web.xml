@@ -24,7 +24,7 @@
 		<description></description>
 		<display-name>ToDoList</display-name>
 		<servlet-name>ToDoList</servlet-name>
-		<servlet-class>ie.gmit.sw.ToDo.ToDoListServlet</servlet-class>
+		<servlet-class>ie.gmit.sw.Todo.ToDoListServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ToDoList</servlet-name>
