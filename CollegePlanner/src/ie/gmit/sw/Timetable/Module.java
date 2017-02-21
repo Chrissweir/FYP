@@ -56,4 +56,12 @@ public class Module {
 	public int getDay() {
 		return day;
 	}
+
+	/**
+	 * This returns a custom toString of the title, timeStart, timeEnd and day
+	 * @return
+	 */
+	public String toString() {
+		return title+" "+timeStart+" "+timeEnd+" "+day;
+	}
 }
