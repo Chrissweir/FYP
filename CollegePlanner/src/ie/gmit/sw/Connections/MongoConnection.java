@@ -122,8 +122,44 @@ public class MongoConnection {
 	
 //ToDo List
 //=================================================
+	public void setTodoList(String code) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("ToDo");
+		BasicDBObject document = new BasicDBObject();
+		document.put("Confirmation Code", code);
+		document.put("Title", title);
+		document.put("Desc", desc);
+		user.insert(document);
+		client.close();
+	}
+	
+	public List getTodoList(String code) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Calendar");
+		BasicDBObject query = new BasicDBObject();
+		query.put("Confirmation Code", code);
+		DBCursor cursor = user.find(query);
 
-
+		ArrayList<String[]> l = new ArrayList<String[]>();
+		if(cursor.hasNext()) {
+			for (DBObject dbObject : cursor) {
+				String title = (String) dbObject.get("Title");
+				String start = (String) dbObject.get("Start");
+				String finish = (String) dbObject.get("Finish");
+				String[] s = new String[3];
+				s[0] = title;
+				s[1] = start;
+				s[2] = finish;
+				l.add(s);
+			}
+		}
+		client.close();
+		return l;
+	}
 //Timetable
 //=================================================
 }
