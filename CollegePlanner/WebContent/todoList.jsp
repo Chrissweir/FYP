@@ -45,17 +45,9 @@
 
 	<b>To Do List</b>
 	<br />
-
 	<ol>
-		
-	
-	<tr>${title}</tr> <tr>${desc}<form action="ToDoListServlet"><input type="checkbox" name="box" value="done"></form></tr>
-	
-	<br>
-	<form action="ToDoListServlet" method="post" >
-		<input type="Submit" name="deleteTask" value="Delete" onclick="this.value += ' <% out.print(title); %>'; this.disabled = true; " />
-	</form>
-	</br> 
+			
+	<tr>${title}</tr> <tr>${desc}</tr>
 	
 	</ol>
 
