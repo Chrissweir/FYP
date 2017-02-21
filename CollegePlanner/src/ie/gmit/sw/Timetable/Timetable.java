@@ -25,4 +25,12 @@ public class Timetable {
 		classes.add(module);
 	}
 	
+	/**
+	 * Method for removing classes
+	 * @param module
+	 */
+	public void removeClass(Module module){
+		classes.remove(module);
+	}
+	
 }
