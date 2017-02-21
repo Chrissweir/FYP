@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +19,7 @@ import ie.gmit.sw.Connections.MongoConnection;
 /**
  * Servlet implementation class ToDoListServlet
  */
-@WebServlet("/ToDoList")
+@WebServlet("/ToDoListServlet")
 public class ToDoListServlet extends HttpServlet {
 	private MongoConnection mongo = new MongoConnection();
 
@@ -54,11 +55,12 @@ public class ToDoListServlet extends HttpServlet {
 		String code = (String) session.getAttribute("code");
 		list = (ArrayList<String[]>) mongo.getTodoList(code);
 		int i =0;
-		PrintWriter out = response.getWriter();
+		int j = 1;
 		for(String[] r : list){
-			out.write("<p>"+r[0]+"</p><p>"+r[1]+"</p>");
-			System.out.println(r[0].toString() + " " + r[1]);
+			
 		}
+		RequestDispatcher rd = request.getRequestDispatcher("todoList.jsp");
+			
 
 		//String[] task = request.getParameterValues("box");
 		//PrintWriter out = response.getWriter();
@@ -75,7 +77,8 @@ public class ToDoListServlet extends HttpServlet {
 		//}
 	     //out.write("<p>"+ task +"</p>");
 	     //out.write("</body></html>");
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter();
+		rd.forward(request, response);
 	}
 
 
