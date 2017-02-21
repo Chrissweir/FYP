@@ -39,51 +39,19 @@ public class CalendarServlet extends HttpServlet  {
 	protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		List l = new ArrayList();
+		ArrayList<String[]> list = new ArrayList<String[]>();
 		HttpSession session = req.getSession();
 		String code = (String) session.getAttribute("code");
-		l = mongo.getCalender(code);
-		/*System.out.println(returnList);
-		String[] s = new String[returnList.size()];
-		//List <Object> result = returnList;
+		list = (ArrayList<String[]>) mongo.getCalender(code);
 		int i =0;
-		for(Object[] obj : returnList){
-			System.out.println(obj);
-			s[i] = obj.toString();
-			i++;
-			System.out.println(s);
-			
-			//l.add(obj);
-		}*/
-		//int i = 0;
-		/*for(int i=0; i<returnList.size(); i++){
-			Object[] obj = (Object[]) returnList.get(i);
-			for(Object list : obj){
-				//i++;
-				System.out.println(list.toString());
-			}
-		}*/
-
-
-
-		/*CalendarValues c = new CalendarValues();
-		c.setId(1);
-		c.setStart("2017-02-11");
-		c.setEnd("2017-02-1");
-		c.setTitle("Task in Progress");
-
-		CalendarValues d = new CalendarValues();
-		d.setId(2);
-		d.setStart("2017-02-26");
-		d.setEnd("2017-02-28");
-		d.setTitle("Task in Progress");
-
-		l.add(c);
-		l.add(d);
-		l.add(cal);*/
-
-		/*for (int i = 0; i < 5; i++) {
-			cal.setTitle("Title");
-		}*/
+		for(String[] r : list){
+			CalendarValues c = new CalendarValues();
+			c.setId(i);
+			c.setTitle(r[0]);
+			c.setStart(r[1]);
+			c.setEnd(r[2]);
+			l.add(c);
+		}
 
 		/*
 		 * google-gson. Gson is a Java library that can be used to convert Java Objects into their JSON representation
