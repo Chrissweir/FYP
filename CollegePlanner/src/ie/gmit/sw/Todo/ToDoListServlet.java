@@ -43,16 +43,21 @@ public class ToDoListServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 //PrintWriter out = response.getWriter();
+		
+		//String[] task = request.getParameterValues("box");
+		//PrintWriter out = response.getWriter();
+		//response.setContentType("todoList");
 		 //ask database
 		 //result = mongo.getTodoList():
 		
-		//for(Item item : result){
-		//	String title = item.get("title");
-		//	out.write("<p>"+title+"</p>");
-		//	out.write("checkbox");
+	//	for(String t : task){
+		//	String title = ("title");
+			//out.write("<p>"+title+"</p>");
+			//String desc = ("description");
+			//out.write("<p>"+desc+"</p>");
+			//out.write(t);
 		//}
-	     //out.write("<p>"+ title +"</p>");
+	     //out.write("<p>"+ task +"</p>");
 	     //out.write("</body></html>");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
