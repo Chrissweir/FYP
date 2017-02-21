@@ -139,7 +139,7 @@ public class MongoConnection {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
-		DBCollection user = db.getCollection("Calendar");
+		DBCollection user = db.getCollection("ToDo");
 		BasicDBObject query = new BasicDBObject();
 		query.put("Confirmation Code", code);
 		DBCursor cursor = user.find(query);
@@ -153,6 +153,7 @@ public class MongoConnection {
 				s[0] = title;
 				s[1] = desc;
 				l.add(s);
+				System.out.println(title +" " + desc);
 			}
 		}
 		client.close();
