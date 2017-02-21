@@ -12,11 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/TimetableServlet")
 public class TimetableServlet extends HttpServlet implements Servlet {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String title = request.getParameter("title");
@@ -25,6 +20,7 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		String[] days = request.getParameterValues("day");
 		
 		Timetable timetable = (Timetable)request.getSession(true).getAttribute("timetable");
+		
 		if(timetable == null)
 		{
 			timetable = new Timetable();
@@ -49,6 +45,7 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 			
 		}
 		request.getSession().setAttribute("timetable", timetable);
+		System.out.println(timetable.getClasses().toString().replace("[", "").replace("]", ""));
 		getServletContext().getRequestDispatcher("/Timetable.jsp").forward(request, response);
 	}
 	
