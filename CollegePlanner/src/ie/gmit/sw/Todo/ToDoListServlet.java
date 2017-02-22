@@ -3,7 +3,9 @@ package ie.gmit.sw.Todo;
 import java.awt.List;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import ie.gmit.sw.Calendar.CalendarValues;
 import ie.gmit.sw.Connections.MongoConnection;
 
 /**
@@ -28,14 +31,17 @@ public class ToDoListServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String title = request.getParameter("title");
 		String description = request.getParameter("description");
-		boolean complete = request.getParameter("complete") != null; 
+		HttpSession session = request.getSession();
+		String code = (String) session.getAttribute("code");
+		mongo.setTodoList(code, title, description);
 		
 		request.getSession().setAttribute("title", title);
 		request.getSession().setAttribute("desc", description);
-		request.getSession().setAttribute("done", complete);
+
 
 		response.sendRedirect("todoList.jsp");
 		
@@ -43,18 +49,36 @@ public class ToDoListServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 //PrintWriter out = response.getWriter();
+		
+		ArrayList<String[]> list = new ArrayList<String[]>();
+		HttpSession session = request.getSession();
+		String code = (String) session.getAttribute("code");
+		list = (ArrayList<String[]>) mongo.getTodoList(code);
+		int i =0;
+		int j = 1;
+		for(String[] r : list){
+			
+		}
+		RequestDispatcher rd = request.getRequestDispatcher("todoList.jsp");
+			
+
+		//String[] task = request.getParameterValues("box");
+		//PrintWriter out = response.getWriter();
+		//response.setContentType("todoList");
 		 //ask database
 		 //result = mongo.getTodoList():
 		
-		//for(Item item : result){
-		//	String title = item.get("title");
-		//	out.write("<p>"+title+"</p>");
-		//	out.write("checkbox");
+	//	for(String t : task){
+		//	String title = ("title");
+			//out.write("<p>"+title+"</p>");
+			//String desc = ("description");
+			//out.write("<p>"+desc+"</p>");
+			//out.write(t);
 		//}
-	     //out.write("<p>"+ title +"</p>");
+	     //out.write("<p>"+ task +"</p>");
 	     //out.write("</body></html>");
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter();
+		rd.forward(request, response);
 	}
 
 

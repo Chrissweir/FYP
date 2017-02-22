@@ -4,14 +4,13 @@ public class ToDoClass {
 	
 	private String title;
 	private String description;
-	private boolean complete = false;
 	
   
-    public ToDoClass(String title, String description, boolean complete) 
+    public ToDoClass(String title, String description) 
 	{
         this.title = title;
         this.description = description;
-        this.complete = complete;
+
     }	
 
 	public String getTitle() {
@@ -30,13 +29,6 @@ public class ToDoClass {
 	  this.description = description;
 	}
 	
-	public boolean isComplete() {
-	  return complete;
-	}
-	
-	public void setComplete(boolean complete) {
-	  this.complete = complete;
-	}
 	
 	
 	/*@Override
