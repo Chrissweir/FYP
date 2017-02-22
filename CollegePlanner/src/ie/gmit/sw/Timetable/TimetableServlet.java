@@ -14,10 +14,12 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String uniIns = request.getParameter("uniIns");
 		String title = request.getParameter("title");
 		int timeStarting = Integer.parseInt(request.getParameter("starttime"));
 		int timeEnding = Integer.parseInt(request.getParameter("endtime"));
 		String[] days = request.getParameterValues("day");
+		int roomNumber = Integer.parseInt(request.getParameter("room"));
 		
 		Timetable timetable = (Timetable)request.getSession(true).getAttribute("timetable");
 		
@@ -39,7 +41,7 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 				else if(dayString.equalsIgnoreCase("FRI")) day = 5;
 				else day = 6;
 		
-				Module module = new Module(title, timeStarting, timeEnding, day);
+				Module module = new Module(uniIns, title, timeStarting, timeEnding, day, roomNumber);
 				timetable.addClass(module);
 			}
 			
