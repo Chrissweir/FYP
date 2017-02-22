@@ -12,7 +12,7 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<script src="http://arshaw.com/js/fullcalendar-1.5.4/fullcalendar/fullcalendar.min.js"></script>
+<!--  <script src="http://arshaw.com/js/fullcalendar-1.5.4/fullcalendar/fullcalendar.min.js"></script>-->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
@@ -26,7 +26,7 @@
 <body>
 
 	<body>
-	<div style="margin: 100px 150px 100px 80px;">
+	<div style="margin: 100px 100px 100px 100px;">
 		<div id="calendar"></div>
 	</div>
 	<div>
