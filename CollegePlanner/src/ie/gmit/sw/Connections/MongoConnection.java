@@ -139,7 +139,7 @@ public class MongoConnection {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
-		DBCollection user = db.getCollection("Calendar");
+		DBCollection user = db.getCollection("ToDo");
 		BasicDBObject query = new BasicDBObject();
 		query.put("Confirmation Code", code);
 		DBCursor cursor = user.find(query);
@@ -148,12 +148,12 @@ public class MongoConnection {
 		if(cursor.hasNext()) {
 			for (DBObject dbObject : cursor) {
 				String title = (String) dbObject.get("Title");
-				String desc = (String) dbObject.get("desc");
+				String desc = (String) dbObject.get("Desc");
 				String[] s = new String[2];
 				s[0] = title;
 				s[1] = desc;
-				System.out.println(title + " " + desc);
 				l.add(s);
+				System.out.println(title +" " + desc);
 			}
 		}
 		client.close();
