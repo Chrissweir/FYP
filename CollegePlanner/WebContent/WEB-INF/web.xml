@@ -22,13 +22,12 @@
 	
 	<servlet>
 		<description></description>
-<<<<<<< HEAD
 		<display-name>ToDo</display-name>
 		<servlet-name>ToDo</servlet-name>
-=======
+
 		<display-name>ToDoList</display-name>
 		<servlet-name>ToDoList</servlet-name>
->>>>>>> origin/ToDo
+
 		<servlet-class>ie.gmit.sw.Todo.ToDoListServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
