@@ -129,7 +129,7 @@
 									<c:out value="${modules.title}"/>
 									<sup><c:out value="${modules.room}"/></sup>
 									<button onclick="alert('${modules}');" data-original-title="Edit"
-									data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">
+									data-toggle="tooltip" type="button" class="btn btn-xs btn-default">
 									<i class="glyphicon glyphicon-edit"></i>
 									</button>
 								</c:if>
