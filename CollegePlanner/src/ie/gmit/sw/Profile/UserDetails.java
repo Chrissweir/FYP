@@ -1,5 +1,10 @@
 package ie.gmit.sw.Profile;
 
+/**
+ * @author Christopher Weir - G00309429
+ * This class handles the getters and setters for the users details for the users Profile.
+ *
+ */
 public class UserDetails {
 	
 	private String path;

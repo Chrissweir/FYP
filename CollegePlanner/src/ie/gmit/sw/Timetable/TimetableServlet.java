@@ -12,19 +12,25 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/TimetableServlet")
 public class TimetableServlet extends HttpServlet implements Servlet {
 
+	
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String uniIns = request.getParameter("uniIns");
 		String title = request.getParameter("title");
 		int timeStarting = Integer.parseInt(request.getParameter("starttime"));
 		int timeEnding = Integer.parseInt(request.getParameter("endtime"));
 		String[] days = request.getParameterValues("day");
 		int roomNumber = Integer.parseInt(request.getParameter("room"));
+		//String id = randomNumber();
+
 		
 		Timetable timetable = (Timetable)request.getSession(true).getAttribute("timetable");
 		
 		if(timetable == null)
 		{
+			//create a new timetable if one does not exist
 			timetable = new Timetable();
 		}
 		if(days != null)
@@ -41,7 +47,7 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 				else if(dayString.equalsIgnoreCase("FRI")) day = 5;
 				else day = 6;
 		
-				Module module = new Module(uniIns, title, timeStarting, timeEnding, day, roomNumber);
+				Module module = new Module(title, timeStarting, timeEnding, day, roomNumber);//randonNumber();
 				timetable.addClass(module);
 			}
 			

@@ -1,5 +1,10 @@
 package ie.gmit.sw.Register;
 
+/**
+ * @author Christopher Weir - G00309429
+ * This class handles the getters and setters for the users details when registering.
+ *
+ */
 public class RegisterUserDetails {
 	private String username;
 	private String password;
@@ -74,11 +79,11 @@ public class RegisterUserDetails {
 	public void setUserAvailable(boolean userAvailable) {
 		this.userAvailable = userAvailable;
 	}
-
+	
 	public boolean isEmailAvailable() {
 		return emailAvailable;
 	}
-
+	
 	public void setEmailAvailable(boolean emailAvailable) {
 		this.emailAvailable = emailAvailable;
 	}
