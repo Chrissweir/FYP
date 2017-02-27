@@ -14,12 +14,13 @@
 
 <!--  <script src="http://arshaw.com/js/fullcalendar-1.5.4/fullcalendar/fullcalendar.min.js"></script>-->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
 <link rel='stylesheet' href='css/fullcalendar.css' />
-<!--  <script src='js/jquery.min.js'></script> 
-<script src='js/moment.min.js'></script>-->
-<script src='js/fullcalendar.js'></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.js"></script>
+
 <title>Calendar</title>
 
 </head>
@@ -48,15 +49,15 @@
           <form id="addEvent" name="addEvent" action="CalendarServlet" method="post">
            <div class="form-group">
            <label>Title:</label>
-            <input class="form-control" type="text" name="Title" placeholder="Title" required>
+            <input class="form-control" type="text" name="Title" placeholder="Title max 17 characters"  maxlength="17" required>
             </div>
              <div class="form-group">
             <label>Start Date:</label>
-            <input class="form-control" type="text" name="startDate" placeholder="YYYY-MM-DD">
+            <input class="form-control" type="text" name="startDate" placeholder="YYYY-MM-DD" required>
             </div>
              <div class="form-group">
             <label>End Date:</label>
-            <input class="form-control" type="text" name="endDate" placeholder="YYYY-MM-DD">
+            <input class="form-control" type="text" name="endDate" placeholder="YYYY-MM-DD" required>
             </div>
           </form>
         </div>
@@ -71,6 +72,7 @@
 </div>
 	
 	</div>
+	
 	<script>
 		$(document).ready(function() {
 			$('#calendar').fullCalendar({
@@ -81,6 +83,8 @@
 
 		});
 	</script>
+
+
 
 </body>
 
