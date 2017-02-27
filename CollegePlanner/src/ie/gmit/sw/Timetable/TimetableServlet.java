@@ -20,6 +20,9 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		int timeEnding = Integer.parseInt(request.getParameter("endtime"));
 		String[] days = request.getParameterValues("day");
 		int roomNumber = Integer.parseInt(request.getParameter("room"));
+		String[] checkedIds = request.getParameterValues("eleteCheckbox");
+		System.out.println(checkedIds);
+
 		
 		Timetable timetable = (Timetable)request.getSession(true).getAttribute("timetable");
 		

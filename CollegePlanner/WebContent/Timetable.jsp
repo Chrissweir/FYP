@@ -58,7 +58,7 @@
 		Thu<INPUT type="checkbox" name="day" value="thu"> 
 		Fri<INPUT type="checkbox" name="day" value="fri"> 
 		Sat<INPUT type="checkbox" name="day" value="sat"> 
-			<SELECT name="starttime">
+		<SELECT name="starttime">
 			<OPTION value="8">8:00am</OPTION>
 			<OPTION value="9">9:00am</OPTION>
 			<OPTION value="10">10:00am</OPTION>
@@ -88,8 +88,9 @@
 			<OPTION value="20">8:00pm</OPTION>
 			<OPTION value="21">9:00pm</OPTION>
 			<OPTION value="22">10:00pm</OPTION>
-		</SELECT> <BR> <BR> <INPUT type="submit" name="Submit"
-			value="Add Course">
+		</SELECT> <BR> <BR> 
+		<INPUT type="submit" name="Submit" value="Add Course">
+		<INPUT type="submit" name="Remove" value="Remove Course">
 	</FORM>
 
 	<TABLE border="1" cellspacing="0">
@@ -118,19 +119,22 @@
 							</c:otherwise>
 						</c:choose></TD>
 					<c:forEach begin="0" end="6" step="1" var="day">
-						<TD align="center" valign="middle" width="100"><c:forEach
-								items="${timetable.classes}" var="modules">
+						<TD align="center" valign="middle" width="100">
+							<c:forEach items="${timetable.classes}" var="modules">
 								<c:if test="${modules.timeStart <= time 
 									&& modules.timeEnd > time 
 									&& modules.day == day}">
 									<c:out value="${modules.title}"/>
 									<sup><c:out value="${modules.room}"/></sup>
+									<input type="checkbox" name="deleteCheckbox" value="hello world">
 								</c:if>
-							</c:forEach></TD>
+							</c:forEach>
+						</TD>
 					</c:forEach>
 				</TR>
 			</c:forEach>
 		</TBODY>
 	</TABLE>
+	
 </BODY>
 </html>
