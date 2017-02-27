@@ -3,7 +3,6 @@ package ie.gmit.sw.Timetable;
 public class Module {
 	
 	//private variables
-	private String uniIns;
 	private String title;
 	private int timeStart;
 	private int timeEnd;
@@ -18,23 +17,16 @@ public class Module {
 	 * @param timeStart
 	 * @param timeEnd
 	 * @param day
+	 * @param room
 	 * 
 	 */
-	public Module(String uniIns, String title, int timeStart, int timeEnd, int day, int room){
-		this.uniIns=uniIns;
+	//constructor to take in the parameters and sets the class variables
+	public Module(String title, int timeStart, int timeEnd, int day, int room){
 		this.title=title;
 		this.timeStart=timeStart;
 		this.timeEnd=timeEnd;
 		this.day=day;
 		this.room=room;
-	}
-	
-	/**
-	 * Getter for uniIns in order to access the objects information
-	 * @return
-	 */
-	public String getUniIns() {
-		return uniIns;
 	}
 	
 	/**
@@ -82,6 +74,6 @@ public class Module {
 	 * @return
 	 */
 	public String toString() {
-		return uniIns+" "+title+" "+timeStart+" "+timeEnd+" "+day+" "+room;
+		return title+" "+timeStart+" "+timeEnd+" "+day+" "+room;
 	}
 }

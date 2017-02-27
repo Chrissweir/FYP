@@ -4,51 +4,21 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="css/Timetable.css">
-<title>Student Timetable</title>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-  $( function() {
-    var availableTags = [
-      "Athlone Institute of Technology",
-      "Carlow Institute of Technology",
-      "Cork Institute of Technology",
-      "Dublin City University",
-      "Dublin Institute for Advanced Studies",
-      "Dublin Institute of Technology",
-      "Galway Mayo Institute of Technology",
-      "Griffith College",
-      "Institue of Technology, Tralee",
-      "Irish International University",
-      "LSB College",
-      "National College of Ireland",
-      "National University of Ireland",
-      "National University of Ireland, Galway",
-      "National University of Ireland, Maynooth",
-      "Royal College of Physicians of Ireland",
-      "Royal College of Surgeons",
-      "Shannon College of Hotel Management",
-      "University College Cork",
-      "University College Dublin",
-      "University of Dublin, Trinity College",
-      "University of Limerick",
-      "Warnborough University",
-      "Waterford Institute Of Technology"
-    ];
-    $( "#uniIns" ).autocomplete({
-      source: availableTags
-    });
-  } );
-  </script>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+	<link rel="stylesheet" href="css/Timetable.css">
+	<title>Student Timetable</title>
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 
 <BODY>
-	<FORM action="TimetableServlet" method="post">
-		University/Institute: <input id="uniIns" type="text" name="uni-ins"><BR>
+	<form id="submitForm" action="TimetableServlet" method="post">
 		Module Name: <INPUT type="text" name="title" size="35" maxlength="15"><BR>
 		Room Number: <INPUT type="text" name="room" size="35"><BR>
 		Module Time: Sun<INPUT type="checkbox" name="day" value="sun">
@@ -73,7 +43,9 @@
 			<OPTION value="19">7:00pm</OPTION>
 			<OPTION value="20">8:00pm</OPTION>
 			<OPTION value="21">9:00pm</OPTION>
-		</SELECT> to <SELECT name="endtime">
+		</SELECT> 
+		to 
+		<SELECT name="endtime">
 			<OPTION value="9">9:00am</OPTION>
 			<OPTION value="10">10:00am</OPTION>
 			<OPTION value="11">11:00am</OPTION>
@@ -90,9 +62,9 @@
 			<OPTION value="22">10:00pm</OPTION>
 		</SELECT> <BR> <BR> 
 		<INPUT type="submit" name="Submit" value="Add Course">
-		<INPUT type="submit" name="Remove" value="Remove Course">
-	</FORM>
-
+		<INPUT type="submit" name="Remove" value="Remove Course"><br>
+	</form>
+	
 	<TABLE border="1" cellspacing="0">
 		<TBODY>
 			<TR>
@@ -126,7 +98,10 @@
 									&& modules.day == day}">
 									<c:out value="${modules.title}"/>
 									<sup><c:out value="${modules.room}"/></sup>
-									<input type="checkbox" name="deleteCheckbox" value="hello world">
+									<button onclick="alert('${modules}');" data-original-title="Edit"
+									data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">
+									<i class="glyphicon glyphicon-edit"></i>
+									</button>
 								</c:if>
 							</c:forEach>
 						</TD>
