@@ -18,6 +18,36 @@
 </head>
 
 <BODY>
+
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<a class="navbar-brand"> <span class="glyphicon glyphicon-education" aria-hidden="true"></span></a> 
+				<a class="navbar-brand" href="About.jsp">College Planner</a>
+			</div>
+		
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="Calendar.jsp">Calender</a></li>
+					<li><a href="Timetable.jsp">Timetable</a></li>
+					<li><a href="ToDoList">To do</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">My Profile<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="Profile">Account Details <span
+									class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="Logout">Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 	<form id="submitForm" action="TimetableServlet" method="post">
 		Module Name: <INPUT type="text" name="title" size="35" maxlength="15"><BR>
 		Room Number: <INPUT type="text" name="room" size="35"><BR>
