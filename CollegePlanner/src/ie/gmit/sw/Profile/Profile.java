@@ -47,7 +47,7 @@ public class Profile extends HttpServlet {
 			//(This line can be removed once the logout bug has been fixed)
 			session.removeAttribute("image");
 			session.setAttribute("image", image);
-			RequestDispatcher rd = request.getRequestDispatcher("Profile");
+			RequestDispatcher rd = request.getRequestDispatcher("Profile.jsp");
 			rd.forward(request, response);	
 		}catch (Exception e) {
 			response.sendRedirect("ErrorHandler");
