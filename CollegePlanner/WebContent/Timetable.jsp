@@ -18,6 +18,13 @@
 </head>
 
 <BODY>
+<script>
+var button = document.getElementById('button'),
+	inputField = document.getElementById('moduleTitle');
+	button.addEventListener('click', function(e) {
+	inputField.value = this.id;
+});
+</script>
 
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -131,7 +138,7 @@
 									<sup><c:out value="${modules.room}"/></sup>
 									<!-- Trigger the modal with a button -->
 									<button onclick="passValue(this);" id="button" name="button" data-original-title="Edit"
-										data-toggle="modal" type="button" value="${modules.room}" class="btn btn-xs btn-default" data-target="#myModal">
+										data-toggle="modal" type="button"  class="btn btn-xs btn-default" data-target="#myModal">
 										
 										<i class="glyphicon glyphicon-edit"></i>
 									</button>
@@ -158,12 +165,12 @@
 				    <div class="form-group">
 				    	<label>Module Title:</label>
 				    	<input class="form-control" type="text" id="moduleTitle" name="moduleTitle" 
-				    		placeholder="Title max 15 characters"  maxlength="15" required>
+				    		placeholder="Title max 15 characters" maxlength="15">
 				    </div>
 				    <div class="form-group">
 				    	<label>Room Number:</label>
 				    	<input class="form-control" type="text" id="roomNumber" name="roomNumber" 
-				    		placeholder="Room max 5 characters" maxlength="5" required>
+				    		placeholder="Room max 5 characters" maxlength="5">
 				    </div>
 			    </form>
 		    </div>
