@@ -54,9 +54,8 @@
 			</ul>
 		</div>
 	</div>
-	</nav>
-	
-	<div style="margin: 100px 100px 100px 100px;">
+  </nav>
+	<div style="margin: 50px 50px 50px 50px;">
 		<div id="calendar"></div>
 	</div>
 	<div>
@@ -107,15 +106,56 @@
 			$('#calendar').fullCalendar({
 				theme : false,
 				editable : false,
-				events : "CalendarServlet"
+				events : "CalendarServlet",
+					 eventClick: function(calEvent, jsEvent, view, date) {
+
+						 $("#editModal").modal();
+						 //date = new Date(date.getFullYear());
+					        alert('start: ' + moment(calEvent.start).format('YYYY/MM/DD'));
+					       // alert(moment(start).format())
+					        //alert(calEvent.end);
+					        document.getElementById("editTitle").value = calEvent.title;
+					        document.getElementById("editStart").value = moment(calEvent.start).format('YYYY/MM/DD');
+					        document.getElementById("editEnd").value = moment(calEvent.end).format('YYYY/MM/DD');
+					    }
 			});
 
 		});
 	</script>
 
-
-
-</body>
+<!-- Modal -->
+  <div class="modal fade" id="editModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Event</h4>
+        </div>
+        <div class="modal-body">
+          <form id="addEvent" name="addEvent" action="CalendarServlet" method="post">
+           <div class="form-group">
+           <label>Edit Title:</label>
+            <input class="form-control" type="text" id="editTitle" name="editTitle" placeholder="Title max 17 characters"  maxlength="17" required>
+            </div>
+             <div class="form-group">
+            <label>Start Date:</label>
+            <input class="form-control" type="text" id="editStart" name="editStartDate" placeholder="YYYY-MM-DD" pattern="\d{4}-?\d{2}-?\d{2}"required>
+            </div>
+             <div class="form-group">
+            <label>End Date:</label>
+            <input class="form-control" type="text" id="editEnd" name="editEndDate" placeholder="YYYY-MM-DD" pattern="\d{4}-?\d{2}-?\d{2}" required>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button form="addEvent" type="submit" class="btn btn-default">Save</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 
 </body>
 </html>
