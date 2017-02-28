@@ -90,7 +90,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button form="addEvent" type="submit" class="btn btn-default">Save</button>
+          <button form="addEvent" type="submit" name="btn" value="save" class="btn btn-default">Save</button>
         </div>
       </div>
       
@@ -111,7 +111,7 @@
 
 						 $("#editModal").modal();
 						 //date = new Date(date.getFullYear());
-					        alert('start: ' + moment(calEvent.start).format('YYYY/MM/DD'));
+					      //  alert('start: ' + moment(calEvent.start).format('YYYY/MM/DD'));
 					       // alert(moment(start).format())
 					        //alert(calEvent.end);
 					        document.getElementById("editTitle").value = calEvent.title;
@@ -134,7 +134,7 @@
           <h4 class="modal-title">Edit Event</h4>
         </div>
         <div class="modal-body">
-          <form id="addEvent" name="addEvent" action="CalendarServlet" method="post">
+          <form id="editEvent" name="editEvent" action="CalendarServlet" method="post">
            <div class="form-group">
            <label>Edit Title:</label>
             <input class="form-control" type="text" id="editTitle" name="editTitle" placeholder="Title max 17 characters"  maxlength="17" required>
@@ -150,7 +150,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button form="addEvent" type="submit" class="btn btn-default">Save</button>
+          <button form="editEvent" type="submit" name="btn" value="edit" class="btn btn-default">Save</button>
         </div>
       </div>
       
