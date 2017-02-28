@@ -22,7 +22,7 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		int timeStarting = Integer.parseInt(request.getParameter("starttime"));
 		int timeEnding = Integer.parseInt(request.getParameter("endtime"));
 		String[] days = request.getParameterValues("day");
-		int roomNumber = Integer.parseInt(request.getParameter("room"));
+		String roomNumber = request.getParameter("room");
 		//String id = randomNumber();
 
 		
