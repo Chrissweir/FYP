@@ -90,6 +90,21 @@ public class MongoConnection {
 		document.put("Title", cal.getTitle());
 		document.put("Start", cal.getStart());
 		document.put("Finish", cal.getEnd());
+		user.remove(document);
+		user.insert(document);
+		client.close();
+	}
+	
+	public void deleteCalendar(String code, CalendarValues cal) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Calendar");
+		BasicDBObject document = new BasicDBObject();
+		document.put("Confirmation Code", code);
+		document.put("Title", cal.getTitle());
+		document.put("Start", cal.getStart());
+		document.put("Finish", cal.getEnd());
 		user.insert(document);
 		client.close();
 	}
