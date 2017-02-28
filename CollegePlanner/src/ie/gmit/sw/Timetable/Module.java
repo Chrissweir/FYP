@@ -7,7 +7,7 @@ public class Module {
 	private int timeStart;
 	private int timeEnd;
 	private int day;
-	private int room;
+	private String room;
 	
 	
 	/**
@@ -21,7 +21,7 @@ public class Module {
 	 * 
 	 */
 	//constructor to take in the parameters and sets the class variables
-	public Module(String title, int timeStart, int timeEnd, int day, int room){
+	public Module(String title, int timeStart, int timeEnd, int day, String room){
 		this.title=title;
 		this.timeStart=timeStart;
 		this.timeEnd=timeEnd;
@@ -65,7 +65,7 @@ public class Module {
 	 * Getter for room in order to access the objects information
 	 * @return
 	 */
-	public int getRoom(){
+	public String getRoom(){
 		return room;
 	}
 

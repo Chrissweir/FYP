@@ -54,8 +54,7 @@
 			</ul>
 		</div>
 	</div>
-	</nav>
-	
+  </nav>
 	<div style="margin: 50px 50px 50px 50px;">
 		<div id="calendar"></div>
 	</div>
@@ -123,6 +122,7 @@
 
 		});
 	</script>
+
 <!-- Modal -->
   <div class="modal fade" id="editModal" role="dialog">
     <div class="modal-dialog">
@@ -156,7 +156,6 @@
       
     </div>
   </div>
-  
 
 </body>
 </html>

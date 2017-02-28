@@ -18,6 +18,13 @@
 </head>
 
 <BODY>
+<script>
+var button = document.getElementById('button'),
+	inputField = document.getElementById('moduleTitle');
+	button.addEventListener('click', function(e) {
+	inputField.value = this.id;
+});
+</script>
 
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -38,8 +45,7 @@
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">My Profile<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="Profile">Account Details <span
-									class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
+							<li><a href="Profile">Account Details <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="Logout">Logout</a></li>
 						</ul>
@@ -48,10 +54,12 @@
 			</div>
 		</div>
 	</nav>
+	
 	<form id="submitForm" action="TimetableServlet" method="post">
-		Module Name: <INPUT type="text" name="title" size="35" maxlength="15"><BR>
-		Room Number: <INPUT type="text" name="room" size="35"><BR>
-		Module Time: Sun<INPUT type="checkbox" name="day" value="sun">
+		Module Title: <INPUT type="text" name="title" size="35" maxlength="15"><BR>
+		Room Number: <INPUT type="text" name="room" size="35" maxlength="5"><BR>
+		Module Time: 
+		Sun<INPUT type="checkbox" name="day" value="sun">
 		Mon<INPUT type="checkbox" name="day" value="mon"> 
 		Tue<INPUT type="checkbox" name="day" value="tue"> 
 		Wed<INPUT type="checkbox" name="day" value="wed"> 
@@ -128,9 +136,11 @@
 									&& modules.day == day}">
 									<c:out value="${modules.title}"/>
 									<sup><c:out value="${modules.room}"/></sup>
-									<button onclick="alert('${modules}');" data-original-title="Edit"
-									data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">
-									<i class="glyphicon glyphicon-edit"></i>
+									<!-- Trigger the modal with a button -->
+									<button onclick="passValue(this);" id="button" name="button" data-original-title="Edit"
+										data-toggle="modal" type="button"  class="btn btn-xs btn-default" data-target="#myModal">
+										
+										<i class="glyphicon glyphicon-edit"></i>
 									</button>
 								</c:if>
 							</c:forEach>
@@ -140,6 +150,36 @@
 			</c:forEach>
 		</TBODY>
 	</TABLE>
+	
+	<!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+	    <div class="modal-dialog">
+	    
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		    <div class="modal-header">
+		    	<h4 class="modal-title">Edit Module</h4>
+		    </div>
+		    <div class="modal-body">
+			    <form id="editModule" name="editModule" action="TimetableServlet" method="post">
+				    <div class="form-group">
+				    	<label>Module Title:</label>
+				    	<input class="form-control" type="text" id="moduleTitle" name="moduleTitle" 
+				    		placeholder="Title max 15 characters" maxlength="15">
+				    </div>
+				    <div class="form-group">
+				    	<label>Room Number:</label>
+				    	<input class="form-control" type="text" id="roomNumber" name="roomNumber" 
+				    		placeholder="Room max 5 characters" maxlength="5">
+				    </div>
+			    </form>
+		    </div>
+		    <div class="modal-footer">
+		    	<button form="editModule" type="submit" class="btn btn-default">Save</button>
+		    </div>
+		    </div>
+	    </div>
+    </div>
 	
 </BODY>
 </html>
