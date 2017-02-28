@@ -144,34 +144,7 @@
 		</TBODY>
 	</TABLE>
 	
-	<!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Edit Module</h4>
-        </div>
-        <div class="modal-body">
-          <form id="editModule" name="editModule" action="TimetableServlet" method="post">
-           <div class="form-group">
-           <label>Module Title:</label>
-            <input class="form-control" type="text" id="moduleTitle" name="moduleTitle" placeholder="Title max 15 characters"  maxlength="15" required>
-            </div>
-             <div class="form-group">
-            <label>Room Number:</label>
-            <input class="form-control" type="text" id="roomNumber" name="roomNumber" placeholder="Room max 5 characters" maxlength="5" required>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button form="editModule" type="submit" class="btn btn-default">Save</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
+	
 	
 </BODY>
 </html>
