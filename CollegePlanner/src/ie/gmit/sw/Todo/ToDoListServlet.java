@@ -55,8 +55,9 @@ public class ToDoListServlet extends HttpServlet {
 		int i =0;
 		int j = 1;
 		for(String[] r : list){
-			System.out.println(r[0]);
+			System.out.println(r[0] + " " + r[1]);
 			l.add(r[0]);
+			l.add(r[1]);
 		}
 		request.getSession().setAttribute("todolist", l);
 		response.sendRedirect("todoList.jsp");
