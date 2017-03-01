@@ -33,7 +33,6 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		String[] days = request.getParameterValues("day");
 		String roomNumber = request.getParameter("room");
 
-		
 		if(days != null)
 		{
 			for(int i = 0; i < days.length; i++)
@@ -54,7 +53,6 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 			}
 			
 		}
-		//request.getSession().setAttribute("timetable", timetable);
 		//System.out.println(timetable.getClasses().toString().replace("[", "").replace("]", ""));
 		getServletContext().getRequestDispatcher("/Timetable.jsp").forward(request, response);
 	}
@@ -76,9 +74,10 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		list = (ArrayList<String[]>) mongo.getTimetable(code);
 		for(String[] s : List){
 			Module module = new Module(s[0], s[1], s[2], s[3], s[4]);
+			timetable.addClass(module);
 		}
-		
-		
+		request.getSession().setAttribute("timetable", timetable);
+		getServletContext().getRequestDispatcher("/Timetable.jsp").forward(request, response);
 	}
 	
 	
