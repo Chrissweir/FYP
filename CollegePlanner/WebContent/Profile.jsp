@@ -51,8 +51,8 @@
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="Calendar.jsp">Calender</a></li>
-				<li><a href="Timetable.jsp">Timetable</a></li>
-				<li><a href="ToDo">To do</a></li>
+				<li><a href="Timetable">Timetable</a></li>
+				<li><a href="ToDoList">To do</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"

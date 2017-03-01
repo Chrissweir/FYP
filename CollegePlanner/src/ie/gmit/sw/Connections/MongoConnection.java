@@ -168,7 +168,6 @@ public class MongoConnection {
 				s[0] = title;
 				s[1] = desc;
 				l.add(s);
-				System.out.println(title +" " + desc);
 			}
 		}
 		client.close();
