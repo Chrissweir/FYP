@@ -90,7 +90,6 @@ public class MongoConnection {
 		document.put("Title", cal.getTitle());
 		document.put("Start", cal.getStart());
 		document.put("Finish", cal.getEnd());
-		user.remove(document);
 		user.insert(document);
 		client.close();
 	}
@@ -105,7 +104,7 @@ public class MongoConnection {
 		document.put("Title", cal.getTitle());
 		document.put("Start", cal.getStart());
 		document.put("Finish", cal.getEnd());
-		user.insert(document);
+		user.remove(document);
 		client.close();
 	}
 	
