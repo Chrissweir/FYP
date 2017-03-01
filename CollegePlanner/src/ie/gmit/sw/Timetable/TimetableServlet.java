@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import ie.gmit.sw.Connections.MongoConnection;
 
@@ -23,6 +24,7 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
+		String code = (String)session.getAttribute("code");
 		String title = request.getParameter("title");
 		int timeStarting = Integer.parseInt(request.getParameter("starttime"));
 		int timeEnding = Integer.parseInt(request.getParameter("endtime"));
