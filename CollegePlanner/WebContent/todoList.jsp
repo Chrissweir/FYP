@@ -53,7 +53,11 @@
 	<form action="ToDoListServlet" method="post">
 
 		Add Title : <input type="text" id="title" name="title" /> 
+		
+		
 		Description: <input type="text" id="description" name="description" /> <input type="submit" value="Save" />
+		
+		
 
 	</form>
 	<br>
