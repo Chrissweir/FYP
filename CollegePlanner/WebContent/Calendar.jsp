@@ -15,7 +15,8 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
-<link rel='stylesheet' href='css/fullcalendar.css' />
+<!--  <link rel='stylesheet' href='css/fullcalendar.css' />-->
+<link rel='stylesheet' href='https://fullcalendar.io/js/fullcalendar-3.2.0/fullcalendar.css' />
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.js"></script>
@@ -90,7 +91,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button form="addEvent" type="submit" class="btn btn-default">Save</button>
+          <button form="addEvent" type="submit" name="btn" value="save" class="btn btn-default">Save</button>
         </div>
       </div>
       
@@ -104,6 +105,12 @@
 	<script>
 		$(document).ready(function() {
 			$('#calendar').fullCalendar({
+				
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				},
 				theme : false,
 				editable : false,
 				events : "CalendarServlet",
@@ -111,12 +118,16 @@
 
 						 $("#editModal").modal();
 						 //date = new Date(date.getFullYear());
-					        alert('start: ' + moment(calEvent.start).format('YYYY/MM/DD'));
+					      //  alert('start: ' + moment(calEvent.start).format('YYYY/MM/DD'));
 					       // alert(moment(start).format())
 					        //alert(calEvent.end);
 					        document.getElementById("editTitle").value = calEvent.title;
-					        document.getElementById("editStart").value = moment(calEvent.start).format('YYYY/MM/DD');
-					        document.getElementById("editEnd").value = moment(calEvent.end).format('YYYY/MM/DD');
+					        document.getElementById("editStart").value = moment(calEvent.start).format('YYYY-MM-DD');
+					        document.getElementById("editEnd").value = moment(calEvent.end).format('YYYY-MM-DD');
+					        
+					        document.getElementById("Otitle").value = calEvent.title;
+					        document.getElementById("Ostart").value = moment(calEvent.start).format('YYYY-MM-DD');
+					        document.getElementById("Oend").value = moment(calEvent.end).format('YYYY-MM-DD');
 					    }
 			});
 
@@ -134,7 +145,7 @@
           <h4 class="modal-title">Edit Event</h4>
         </div>
         <div class="modal-body">
-          <form id="addEvent" name="addEvent" action="CalendarServlet" method="post">
+          <form id="editEvent" name="editEvent" action="CalendarServlet" method="post">
            <div class="form-group">
            <label>Edit Title:</label>
             <input class="form-control" type="text" id="editTitle" name="editTitle" placeholder="Title max 17 characters"  maxlength="17" required>
@@ -150,12 +161,14 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button form="addEvent" type="submit" class="btn btn-default">Save</button>
+          <button form="editEvent" type="submit" name="btn" value="edit" class="btn btn-default">Save</button>
         </div>
       </div>
       
     </div>
   </div>
-
+<input form="editEvent" type="text" id="Otitle" name="Otitle" style="visibility: hidden"></input>
+<input form="editEvent" type="text" id="Ostart" name="Ostart" style="visibility: hidden"></input>
+<input form="editEvent" type="text" id="Oend" name="Oend" style="visibility: hidden"></input>
 </body>
 </html>
