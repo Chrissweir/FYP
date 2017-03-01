@@ -138,8 +138,7 @@ var button = document.getElementById('button'),
 									<sup><c:out value="${modules.room}"/></sup>
 									<!-- Trigger the modal with a button -->
 									<button onclick="passValue(this);" id="button" name="button" data-original-title="Edit"
-										data-toggle="modal" type="button"  class="btn btn-xs btn-default" data-target="#myModal">
-										
+										data-toggle="modal" type="button" class="btn btn-xs btn-default" data-target="#myModal">
 										<i class="glyphicon glyphicon-edit"></i>
 									</button>
 								</c:if>
