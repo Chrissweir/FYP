@@ -63,12 +63,8 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		HttpSession session = request.getSession();
 		String code = (String)session.getAttribute("code");
 		System.out.println("in doGet Method");
-		Timetable timetable = (Timetable)request.getSession(true).getAttribute("timetable");
-		if(timetable == null)
-		{
-			//create a new timetable if one does not exist
-			timetable = new Timetable();
-		}
+		Timetable timetable = new Timetable();
+		
 		
 		ArrayList<String[]> list = new ArrayList<String[]>();
 		list = (ArrayList<String[]>) mongo.getTimetable(code);
