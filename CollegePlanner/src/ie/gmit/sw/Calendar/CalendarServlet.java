@@ -84,6 +84,9 @@ public class CalendarServlet extends HttpServlet  {
 				if (buttonPressed != null && buttonPressed.equals("edit")) {
 					editEvent(request, response);
 				} 
+				else if(buttonPressed != null && buttonPressed.equals("delete")) {
+					deleteEvent(request, response);
+				} 
 				//Else if the update button was pressed update the account
 				else if (buttonPressed.equals("save")) {
 		cal.setTitle(request.getParameter("Title"));
@@ -100,6 +103,20 @@ public class CalendarServlet extends HttpServlet  {
 		response.sendRedirect("Calendar.jsp");
 
 	}
+	}
+
+	private void deleteEvent(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		HttpSession session = request.getSession();
+		String code = (String) session.getAttribute("code");
+		
+		cal.setTitle(request.getParameter("Otitle"));		
+		cal.setStart(request.getParameter("Ostart"));
+		cal.setEnd(request.getParameter("Oend"));
+		
+		mongo.deleteCalendar(code, cal);
+		
+		response.sendRedirect("Calendar.jsp");
 	}
 
 	private void editEvent(HttpServletRequest request, HttpServletResponse response) throws IOException {
