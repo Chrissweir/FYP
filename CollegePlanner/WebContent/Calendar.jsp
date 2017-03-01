@@ -162,6 +162,7 @@
         </div>
         <div class="modal-footer">
           <button form="editEvent" type="submit" name="btn" value="edit" class="btn btn-default">Save</button>
+          <button form="editEvent" type="submit" name="btn" value="delete" class="btn btn-default">Delete</button>
         </div>
       </div>
       
