@@ -43,13 +43,11 @@ public class ToDoListServlet extends HttpServlet {
 		request.getSession().setAttribute("desc", description);
 
 
-		response.sendRedirect("todoList.jsp");
-		
-		doGet(request, response);
+		response.sendRedirect("ToDoList");
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		ArrayList<String> l = new ArrayList<String>();
 		ArrayList<String[]> list = new ArrayList<String[]>();
 		HttpSession session = request.getSession();
 		String code = (String) session.getAttribute("code");
@@ -57,30 +55,10 @@ public class ToDoListServlet extends HttpServlet {
 		int i =0;
 		int j = 1;
 		for(String[] r : list){
-			
+			System.out.println(r[0]);
+			l.add(r[0]);
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("todoList.jsp");
-			
-
-		//String[] task = request.getParameterValues("box");
-		//PrintWriter out = response.getWriter();
-		//response.setContentType("todoList");
-		 //ask database
-		 //result = mongo.getTodoList():
-		
-	//	for(String t : task){
-		//	String title = ("title");
-			//out.write("<p>"+title+"</p>");
-			//String desc = ("description");
-			//out.write("<p>"+desc+"</p>");
-			//out.write(t);
-		//}
-	     //out.write("<p>"+ task +"</p>");
-	     //out.write("</body></html>");
-		response.getWriter();
-		rd.forward(request, response);
+		request.getSession().setAttribute("todolist", l);
+		response.sendRedirect("todoList.jsp");
 	}
-
-
-
 }
