@@ -54,30 +54,27 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 			
 		}
 		//System.out.println(timetable.getClasses().toString().replace("[", "").replace("]", ""));
-		getServletContext().getRequestDispatcher("/Timetable.jsp").forward(request, response);
+		//getServletContext().getRequestDispatcher("/Timetable.jsp").forward(request, response);
+		response.sendRedirect("Timetable");
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
 		String code = (String)session.getAttribute("code");
+		//System.out.println("in doGet Method");
+		Timetable timetable = new Timetable();
 		
-		Timetable timetable = (Timetable)request.getSession(true).getAttribute("timetable");
-		if(timetable == null)
-		{
-			//create a new timetable if one does not exist
-			timetable = new Timetable();
-		}
 		
-		List l = new ArrayList();
 		ArrayList<String[]> list = new ArrayList<String[]>();
 		list = (ArrayList<String[]>) mongo.getTimetable(code);
-		for(String[] s : List){
-			Module module = new Module(s[0], s[1], s[2], s[3], s[4]);
+		for(String[] s : list){
+			Module module = new Module(s[0], Integer.parseInt(s[1]), Integer.parseInt(s[2]), Integer.parseInt(s[3]), s[4]);
 			timetable.addClass(module);
 		}
 		request.getSession().setAttribute("timetable", timetable);
-		getServletContext().getRequestDispatcher("/Timetable.jsp").forward(request, response);
+		//getServletContext().getRequestDispatcher("/Timetable.jsp").forward(request, response);
+		response.sendRedirect("Timetable.jsp");
 	}
 	
 	
