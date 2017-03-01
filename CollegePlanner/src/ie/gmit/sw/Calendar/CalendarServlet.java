@@ -107,6 +107,13 @@ public class CalendarServlet extends HttpServlet  {
 		HttpSession session = request.getSession();
 		String code = (String) session.getAttribute("code");
 		
+		cal.setTitle(request.getParameter("Otitle"));		
+		cal.setStart(request.getParameter("Ostart"));
+		cal.setEnd(request.getParameter("Oend"));
+		
+		mongo.deleteCalendar(code, cal);
+		
+		
 		cal.setTitle(request.getParameter("editTitle"));
 		System.out.println("hello " + cal.getTitle());
 
@@ -115,9 +122,12 @@ public class CalendarServlet extends HttpServlet  {
 
 		cal.setEnd(request.getParameter("editEndDate"));
 		System.out.println("End " + cal.getEnd());
+		
+		
 		//mongo.setCalender(cal);
 		mongo.setCalendar(code, cal);
 
+		
 		response.sendRedirect("Calendar.jsp");
 		
 	}

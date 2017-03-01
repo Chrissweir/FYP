@@ -15,7 +15,8 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
-<link rel='stylesheet' href='css/fullcalendar.css' />
+<!--  <link rel='stylesheet' href='css/fullcalendar.css' />-->
+<link rel='stylesheet' href='https://fullcalendar.io/js/fullcalendar-3.2.0/fullcalendar.css' />
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.js"></script>
@@ -104,6 +105,12 @@
 	<script>
 		$(document).ready(function() {
 			$('#calendar').fullCalendar({
+				
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				},
 				theme : false,
 				editable : false,
 				events : "CalendarServlet",
@@ -115,8 +122,12 @@
 					       // alert(moment(start).format())
 					        //alert(calEvent.end);
 					        document.getElementById("editTitle").value = calEvent.title;
-					        document.getElementById("editStart").value = moment(calEvent.start).format('YYYY/MM/DD');
-					        document.getElementById("editEnd").value = moment(calEvent.end).format('YYYY/MM/DD');
+					        document.getElementById("editStart").value = moment(calEvent.start).format('YYYY-MM-DD');
+					        document.getElementById("editEnd").value = moment(calEvent.end).format('YYYY-MM-DD');
+					        
+					        document.getElementById("Otitle").value = calEvent.title;
+					        document.getElementById("Ostart").value = moment(calEvent.start).format('YYYY-MM-DD');
+					        document.getElementById("Oend").value = moment(calEvent.end).format('YYYY-MM-DD');
 					    }
 			});
 
@@ -156,6 +167,8 @@
       
     </div>
   </div>
-
+<input form="editEvent" type="text" id="Otitle" name="Otitle" style="visibility: hidden"></input>
+<input form="editEvent" type="text" id="Ostart" name="Ostart" style="visibility: hidden"></input>
+<input form="editEvent" type="text" id="Oend" name="Oend" style="visibility: hidden"></input>
 </body>
 </html>
