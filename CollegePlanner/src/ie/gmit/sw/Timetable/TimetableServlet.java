@@ -55,7 +55,7 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		}
 		//System.out.println(timetable.getClasses().toString().replace("[", "").replace("]", ""));
 		//getServletContext().getRequestDispatcher("/Timetable.jsp").forward(request, response);
-		response.sendRedirect("/Timetable");
+		response.sendRedirect("Timetable");
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
