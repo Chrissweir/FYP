@@ -13,13 +13,15 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.js"></script>
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
-<!--  <link rel='stylesheet' href='css/fullcalendar.css' />-->
 <link rel='stylesheet' href='https://fullcalendar.io/js/fullcalendar-3.2.0/fullcalendar.css' />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.js"></script>-->
 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.js"></script>
+<link rel='stylesheet' href='https://fullcalendar.io/js/fullcalendar-3.2.0/fullcalendar.css' />
+<script src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js'></script>
+<script src='//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://fullcalendar.io/js/fullcalendar-3.2.0/fullcalendar.min.js'></script>
 
 <title>Calendar</title>
 
@@ -39,7 +41,7 @@
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="Calendar.jsp">Calender</a></li>
-				<li><a href="Timetable.jsp">Timetable</a></li>
+				<li><a href="Timetable">Timetable</a></li>
 				<li><a href="ToDoList">To do</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -162,6 +164,7 @@
         </div>
         <div class="modal-footer">
           <button form="editEvent" type="submit" name="btn" value="edit" class="btn btn-default">Save</button>
+          <button form="editEvent" type="submit" name="btn" value="delete" class="btn btn-default">Delete</button>
         </div>
       </div>
       
