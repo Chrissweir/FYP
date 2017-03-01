@@ -1,6 +1,8 @@
 package ie.gmit.sw.Timetable;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
@@ -32,13 +34,6 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		String roomNumber = request.getParameter("room");
 
 		
-		Timetable timetable = (Timetable)request.getSession(true).getAttribute("timetable");
-		
-		if(timetable == null)
-		{
-			//create a new timetable if one does not exist
-			timetable = new Timetable();
-		}
 		if(days != null)
 		{
 			for(int i = 0; i < days.length; i++)
@@ -64,9 +59,26 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		getServletContext().getRequestDispatcher("/Timetable.jsp").forward(request, response);
 	}
 
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doGet(req, resp);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		String code = (String)session.getAttribute("code");
+		
+		Timetable timetable = (Timetable)request.getSession(true).getAttribute("timetable");
+		if(timetable == null)
+		{
+			//create a new timetable if one does not exist
+			timetable = new Timetable();
+		}
+		
+		List l = new ArrayList();
+		ArrayList<String[]> list = new ArrayList<String[]>();
+		list = (ArrayList<String[]>) mongo.getTimetable(code);
+		for(String[] s : List){
+			Module module = new Module(s[0], s[1], s[2], s[3], s[4]);
+		}
+		
+		
 	}
 	
 	
