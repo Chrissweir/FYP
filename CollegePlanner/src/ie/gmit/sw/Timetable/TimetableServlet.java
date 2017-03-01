@@ -1,6 +1,8 @@
 package ie.gmit.sw.Timetable;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
@@ -31,14 +33,6 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		String[] days = request.getParameterValues("day");
 		String roomNumber = request.getParameter("room");
 
-		
-		Timetable timetable = (Timetable)request.getSession(true).getAttribute("timetable");
-		
-		if(timetable == null)
-		{
-			//create a new timetable if one does not exist
-			timetable = new Timetable();
-		}
 		if(days != null)
 		{
 			for(int i = 0; i < days.length; i++)
@@ -55,12 +49,34 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		
 				Module module = new Module(title, timeStarting, timeEnding, day, roomNumber);
 				mongo.setTimetable(code, module);
-				timetable.addClass(module);
+				//timetable.addClass(module);
 			}
 			
 		}
+		//System.out.println(timetable.getClasses().toString().replace("[", "").replace("]", ""));
+		getServletContext().getRequestDispatcher("/Timetable.jsp").forward(request, response);
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		String code = (String)session.getAttribute("code");
+		
+		Timetable timetable = (Timetable)request.getSession(true).getAttribute("timetable");
+		if(timetable == null)
+		{
+			//create a new timetable if one does not exist
+			timetable = new Timetable();
+		}
+		
+		List l = new ArrayList();
+		ArrayList<String[]> list = new ArrayList<String[]>();
+		list = (ArrayList<String[]>) mongo.getTimetable(code);
+		for(String[] s : List){
+			Module module = new Module(s[0], s[1], s[2], s[3], s[4]);
+			timetable.addClass(module);
+		}
 		request.getSession().setAttribute("timetable", timetable);
-		System.out.println(timetable.getClasses().toString().replace("[", "").replace("]", ""));
 		getServletContext().getRequestDispatcher("/Timetable.jsp").forward(request, response);
 	}
 	
