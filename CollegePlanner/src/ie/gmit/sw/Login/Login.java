@@ -66,7 +66,7 @@ public class Login extends HttpServlet{
 				RequestDispatcher rd=request.getRequestDispatcher("LoginRegister.jsp");            
 				rd.include(request, response);
 			}
-		//If something goes rong the redirect the user to the ErrorHandler page
+		//If something goes wrong the redirect the user to the ErrorHandler page
 		}catch (Exception e) {
 			response.sendRedirect("ErrorHandler");
 		}
