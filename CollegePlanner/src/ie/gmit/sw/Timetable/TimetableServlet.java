@@ -62,7 +62,7 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		
 		HttpSession session = request.getSession();
 		String code = (String)session.getAttribute("code");
-		System.out.println("in doGet Method");
+		//System.out.println("in doGet Method");
 		Timetable timetable = new Timetable();
 		
 		
