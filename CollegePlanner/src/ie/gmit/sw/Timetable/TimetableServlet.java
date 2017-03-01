@@ -8,22 +8,28 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import ie.gmit.sw.Connections.MongoConnection;
 
 @WebServlet("/TimetableServlet")
 public class TimetableServlet extends HttpServlet implements Servlet {
 
 	
+	private MongoConnection mongo = new MongoConnection();
+
 	/* (non-Javadoc)
 	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession();
+		String code = (String)session.getAttribute("code");
 		String title = request.getParameter("title");
 		int timeStarting = Integer.parseInt(request.getParameter("starttime"));
 		int timeEnding = Integer.parseInt(request.getParameter("endtime"));
 		String[] days = request.getParameterValues("day");
 		String roomNumber = request.getParameter("room");
-		//String id = randomNumber();
 
 		
 		Timetable timetable = (Timetable)request.getSession(true).getAttribute("timetable");
@@ -47,7 +53,8 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 				else if(dayString.equalsIgnoreCase("FRI")) day = 5;
 				else day = 6;
 		
-				Module module = new Module(title, timeStarting, timeEnding, day, roomNumber);//randonNumber();
+				Module module = new Module(title, timeStarting, timeEnding, day, roomNumber);
+				mongo.setTimetable(code, module);
 				timetable.addClass(module);
 			}
 			
