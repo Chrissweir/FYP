@@ -55,13 +55,18 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		
 				Module module = new Module(title, timeStarting, timeEnding, day, roomNumber);
 				mongo.setTimetable(code, module);
-				timetable.addClass(module);
+				//timetable.addClass(module);
 			}
 			
 		}
-		request.getSession().setAttribute("timetable", timetable);
-		System.out.println(timetable.getClasses().toString().replace("[", "").replace("]", ""));
+		//request.getSession().setAttribute("timetable", timetable);
+		//System.out.println(timetable.getClasses().toString().replace("[", "").replace("]", ""));
 		getServletContext().getRequestDispatcher("/Timetable.jsp").forward(request, response);
+	}
+
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		super.doGet(req, resp);
 	}
 	
 	
