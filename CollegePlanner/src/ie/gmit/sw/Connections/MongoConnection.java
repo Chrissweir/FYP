@@ -191,4 +191,33 @@ public class MongoConnection {
 		user.insert(document);
 		client.close();
 	}
+	public List getTimetable(String code) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Timetable");
+		BasicDBObject query = new BasicDBObject();
+		query.put("Confirmation Code", code);
+		DBCursor cursor = user.find(query);
+
+		ArrayList<String[]> l = new ArrayList<String[]>();
+		if(cursor.hasNext()) {
+			for (DBObject dbObject : cursor) {
+				String title = (String) dbObject.get("Title");
+				String start = (String) dbObject.get("Start");
+				String end = (String) dbObject.get("End");
+				String day = (String) dbObject.get("Day");
+				String room = (String) dbObject.get("Room");
+				String[] s = new String[5];
+				s[0] = title;
+				s[1] = start;
+				s[2] = end;
+				s[3] = day;
+				s[4] = room;
+				l.add(s);
+			}
+		}
+		client.close();
+		return l;
+	}
 }
