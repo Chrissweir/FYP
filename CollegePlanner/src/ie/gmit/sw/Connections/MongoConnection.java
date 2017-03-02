@@ -49,10 +49,20 @@ public class MongoConnection {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
-		DBCollection user = db.getCollection("User");
 		BasicDBObject document = new BasicDBObject();
 		document.put("Confirmation Code", code);
+		
+		DBCollection user = db.getCollection("User");
 		user.remove(document);
+		
+		DBCollection user1 = db.getCollection("Calendar");
+		user1.remove(document);
+		
+		DBCollection user2 = db.getCollection("Timetable");
+		user2.remove(document);
+		
+		DBCollection user3 = db.getCollection("ToDo");
+		user3.remove(document);
 		client.close();
 	}
 
