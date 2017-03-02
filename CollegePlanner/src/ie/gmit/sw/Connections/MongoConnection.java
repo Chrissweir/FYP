@@ -18,8 +18,8 @@ public class MongoConnection {
 	private String defaultImage = "https://www.barfoot.co.nz/images/noprofile-big.png";
 	private String image;
 
-	//Register
-	//=================================================
+//Register
+//=================================================
 	public void setNewUser(String code) {
 		final BasicDBObject[] data = createUserData(code, defaultImage);
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
@@ -30,8 +30,8 @@ public class MongoConnection {
 		client.close();
 	}
 
-	//Profile
-	//=================================================
+//Profile
+//=================================================
 	public void setUserData(String code, String file) {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
@@ -89,8 +89,8 @@ public class MongoConnection {
 		return data;
 	}
 
-	//Calendar
-	//=================================================
+//Calendar
+//=================================================
 	public void setCalendar(String code, CalendarValues cal) {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
@@ -145,8 +145,8 @@ public class MongoConnection {
 		return l;
 	}
 
-	//ToDo List
-	//=================================================
+//ToDo List
+//=================================================
 	public void setTodoList(String code, String title, String description) {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
