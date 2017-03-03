@@ -52,10 +52,10 @@
 
 	<form action="ToDoListServlet" method="post">
 
-		Add Title : <input type="text" id="title" name="title" />
+		<b>Add Title:</b> <input type="text" id="title" name="title" />
 
 
-		Description: <input type="text" id="description" name="description" />
+		<b>Description:</b> <input type="text" id="description" name="description" />
 		<input type="submit" value="Save" />
 
 
@@ -74,6 +74,7 @@
 				<td>${element}</td>
 			</tr>
 		</c:forEach>
+		<button form="userDetails" type="submit" value="delete" name="btn" class="btn btn-danger">Delete</button></span>
 	</table>
 
 </body>
