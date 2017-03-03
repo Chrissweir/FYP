@@ -18,7 +18,6 @@ function getBase64(file) {
 	};
 };
 
-
 function edit(){
 	document.getElementById("saveBtn").style.visibility = "visible";
 	document.getElementById("imageEdit").style.visibility = "visible";
