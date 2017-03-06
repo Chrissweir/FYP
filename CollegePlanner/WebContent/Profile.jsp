@@ -5,8 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/Profile.css">
 <link rel="stylesheet" href="css/Social.css">
 <script
@@ -57,9 +60,6 @@
 				<li><a href="ToDoList">To do</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-			<li><a href="https://www.facebook.com"><i id="social-fb" class="fa fa-facebook-square social"></i></a></li>
-	        <li><a href="https://twitter.com"><i id="social-tw" class="fa fa-twitter-square social"></i></a></li>
-            <li><a href="https://plus.google.com"><i id="social-gp" class="fa fa-google-plus-square social"></i></a></li>    
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">${username}<span class="caret"></span></a>
