@@ -46,10 +46,11 @@
 		</div>
 	</div>
 	</nav>
-<!-- Image Header -->
+<!-- Image Header 
 <div class="w3-display-container w3-animate-opacity">
   <img src="https://images.unsplash.com/3/doctype-hi-res.jpg" alt="boat" style="width:100%;min-height:350px;max-height:600px;">
 </div>
+-->
 
 
 <!-- Team Container -->
@@ -62,25 +63,25 @@
 <div class="w3-quarter">
   <img src="https://media.licdn.com/media/AAEAAQAAAAAAAAi_AAAAJDBlODhhM2I5LTc2NTEtNDg3Zi1iMWVlLTNiNGRlZjlhYjYzOQ.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
   <h3>Christopher Weir</h3>
-  <p>Web Designer</p>
+  <p>Login/Profile</p>
 </div>
 
 <div class="w3-quarter">
   <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAxIAAAAJGRjZDE3ZDkzLWVkODQtNGFhOS1hYTQ4LTEyNTYzMjBkNDEzNQ.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
   <h3>Gareth Lynskey</h3>
-  <p>Support</p>
+  <p>Timetable</p>
 </div>
 
 <div class="w3-quarter">
   <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAk3AAAAJDU4Yzk3MTdiLWY5MDgtNGM5ZC05OTI3LWViMTBiMjk5MDdjNA.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
   <h3>Paul Dolan</h3>
-  <p>Boss man</p>
+  <p>ToDoList</p>
 </div>
 
 <div class="w3-quarter">
   <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAf9AAAAJDhmNDlmNGMxLTkzNGItNDFlYi05NTBhLTNjOWRmZmE2NDVmYg.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
   <h3>Patrick Griffin</h3>
-  <p>Fixer</p>
+  <p>Calendar</p>
 </div>
 
 </div>
@@ -156,7 +157,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h3 class="text-center">Project Development</h3>
+      <h3 class="text-center">PROJECT DEVELOPMENT</h3>
       <p>
         Below is a timeline of how we progressed through our project showing the various steps in the project development.
       </p>
@@ -248,12 +249,70 @@
       </ul>
     </div>
   </div>
+  <hr>
 </div>
-<hr>
+
 <!-- Technologies Row -->
 <div class="w3-row-padding w3-center w3-padding-64" id="pricing">
     <h2>TECHNOLOGIES</h2>
     <p>Choose a pricing plan that fits your needs.</p><br>
+    <div class="w3-third w3-margin-bottom">
+      <ul class="w3-ul w3-border w3-hover-shadow">
+        <li class="w3-theme">
+          <p class="w3-xlarge">Java</p>
+        </li>
+        <li class="w3-padding-16"><b>10GB</b> Storage</li>
+        <li class="w3-padding-16"><b>10</b> Emails</li>
+        <li class="w3-padding-16"><b>10</b> Domains</li>
+        <li class="w3-padding-16"><b>Endless</b> Support</li>
+        <li class="w3-padding-16">
+          <h2 class="w3-wide"><i class="fa fa-usd"></i> 10</h2>
+          <span class="w3-opacity">per month</span>
+        </li>
+        <li class="w3-theme-l5 w3-padding-24">
+          <button class="w3-btn w3-teal w3-padding-large"><i class="fa fa-check"></i> Sign Up</button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="w3-third w3-margin-bottom">
+      <ul class="w3-ul w3-border w3-hover-shadow">
+        <li class="w3-theme-l2">
+          <p class="w3-xlarge">Pro</p>
+        </li>
+        <li class="w3-padding-16"><b>25GB</b> Storage</li>
+        <li class="w3-padding-16"><b>25</b> Emails</li>
+        <li class="w3-padding-16"><b>25</b> Domains</li>
+        <li class="w3-padding-16"><b>Endless</b> Support</li>
+        <li class="w3-padding-16">
+          <h2 class="w3-wide"><i class="fa fa-usd"></i> 25</h2>
+          <span class="w3-opacity">per month</span>
+        </li>
+        <li class="w3-theme-l5 w3-padding-24">
+          <button class="w3-btn w3-teal w3-padding-large"><i class="fa fa-check"></i> Sign Up</button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="w3-third w3-margin-bottom">
+      <ul class="w3-ul w3-border w3-hover-shadow">
+        <li class="w3-theme">
+          <p class="w3-xlarge">Premium</p>
+        </li>
+        <li class="w3-padding-16"><b>50GB</b> Storage</li>
+        <li class="w3-padding-16"><b>50</b> Emails</li>
+        <li class="w3-padding-16"><b>50</b> Domains</li>
+        <li class="w3-padding-16"><b>Endless</b> Support</li>
+        <li class="w3-padding-16">
+          <h2 class="w3-wide"><i class="fa fa-usd"></i> 50</h2>
+          <span class="w3-opacity">per month</span>
+        </li>
+        <li class="w3-theme-l5 w3-padding-24">
+          <button class="w3-btn w3-teal w3-padding-large"><i class="fa fa-check"></i> Sign Up</button>
+        </li>
+      </ul>
+    </div>
+
     <div class="w3-third w3-margin-bottom">
       <ul class="w3-ul w3-border w3-hover-shadow">
         <li class="w3-theme">
@@ -311,6 +370,7 @@
       </ul>
     </div>
 </div>
+
 
 <!-- Contact Container -->
 <div class="w3-container w3-padding-64 w3-theme-l5" id="contact">
