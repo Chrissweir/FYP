@@ -1,10 +1,16 @@
 package ie.gmit.sw.Todo;
 
+/**
+ * @author Paul Dolan - G00297086
+ * Getters and setters 
+ *
+ */
+
 public class Task {
 	
 	private String title;
 	private String description;
-	
+
   
     public Task(String title, String description) 
 	{
@@ -28,12 +34,5 @@ public class Task {
 	public void setDescription(String description) {
 	  this.description = description;
 	}
-	
-	
-	
-	/*@Override
-	public String toString() {
-	  return "Task: " + "Title: " + title +  ", Description: " + description +  ", complete: " + complete;
-	}*/
 
 }
