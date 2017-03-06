@@ -56,18 +56,16 @@ public class ToDoListServlet extends HttpServlet {
 			rd.forward(request, response);	
 		}
 		
-		ArrayList<String> l = new ArrayList<String>();
 		ArrayList<String[]> list = new ArrayList<String[]>();
 		String code = (String) session.getAttribute("code");
 		list = (ArrayList<String[]>) mongo.getTodoList(code);
-		int i =0;
-		int j = 1;
+		
+		ToDo todo = new ToDo();
 		for(String[] r : list){
-			System.out.print(r[0] + " " + r[1]);
-			l.add(r[0]);
-			l.add(r[1]);
+			Task task = new Task(r[0], r[1]);
+			todo.addTask(task);
 		}
-		request.getSession().setAttribute("todolist", l);
+		request.getSession().setAttribute("todolist", todo);
 		response.sendRedirect("todoList.jsp");
 	}
 }

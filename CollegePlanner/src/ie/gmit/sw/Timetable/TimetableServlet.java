@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,6 +26,7 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//Get a handle on the session
 		HttpSession session = request.getSession();
 		String code = (String)session.getAttribute("code");
 		String title = request.getParameter("title");
@@ -60,7 +62,14 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//Get a handle on the session
 		HttpSession session = request.getSession();
+		//Check if the user is logged in, if not then redirect them to the login page
+		if(session.getAttribute("code") == null){
+			RequestDispatcher rd = request.getRequestDispatcher("LoginRegister.jsp");
+			rd.forward(request, response);	
+		}
+		
 		String code = (String)session.getAttribute("code");
 		//System.out.println("in doGet Method");
 		Timetable timetable = new Timetable();
