@@ -29,7 +29,7 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="Calendar.jsp">Calender</a></li>
+				<li><a href="Calendar.jsp">Calendar</a></li>
 				<li><a href="Timetable">Timetable</a></li>
 				<li><a href="ToDoList">To do</a></li>
 			</ul>
@@ -69,12 +69,12 @@
 	<br />
 	<!--Add item to ToDo List-->
 	<table>
-		<c:forEach var="element" items="${todolist}">
+		<c:forEach var="task" items="${todolist.tasks}">
 			<tr>
-				<td>${element}</td>
+				<td>${task.title}</td>
+				<td>${task.description}</td>
 			</tr>
 		</c:forEach>
-		<button form="userDetails" type="submit" value="delete" name="btn" class="btn btn-danger">Delete</button></span>
 	</table>
 
 </body>

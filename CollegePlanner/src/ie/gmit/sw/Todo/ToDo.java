@@ -3,8 +3,7 @@ package ie.gmit.sw.Todo;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class List {
+public class ToDo {
 	
 	private List<Task> tasks = new ArrayList<Task>(); 
 	
@@ -16,5 +15,4 @@ public class List {
 	{
 		tasks.add(task);
 	}
-
 }
