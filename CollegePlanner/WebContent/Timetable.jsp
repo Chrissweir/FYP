@@ -25,6 +25,19 @@ var button = document.getElementById('button'),
 	inputField.value = this.id;
 });
 </script>
+<script>
+function checkvalue() { 
+    var mystring = document.getElementById('myString').value; 
+    if(!mystring.match(/\S/)) {
+        alert ('Empty value is not allowed');
+        return false;
+    } 
+    else {
+        alert("correct input");
+        return true;
+	}
+}
+</script>
 
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -55,7 +68,7 @@ var button = document.getElementById('button'),
 		</div>
 	</nav>
 	
-	<form id="submitForm" action="Timetable" method="post">
+	<form id="submitForm" action="Timetable" method="post" onsubmit="return checkvalue(this)">
 		Module Title: <INPUT type="text" name="title" size="35" maxlength="15"><BR>
 		Room Number: <INPUT type="text" name="room" size="35" maxlength="5"><BR>
 		Module Time: 
