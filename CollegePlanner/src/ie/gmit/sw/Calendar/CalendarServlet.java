@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,12 +16,11 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
-
 import ie.gmit.sw.Calendar.CalendarValues;
 import ie.gmit.sw.Connections.MongoConnection;
 
 @WebServlet("/CalendarServlet")
-public class CalendarServlet extends HttpServlet  {
+public class CalendarServlet extends HttpServlet {
 	private CalendarValues cal = new CalendarValues();
 	private MongoConnection mongo = new MongoConnection();
 
@@ -37,10 +37,18 @@ public class CalendarServlet extends HttpServlet  {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
+		
+		//Get a handle on the session
+				HttpSession session = req.getSession();
+				//Check if the user is logged in, if not then redirect them to the login page
+				if(session.getAttribute("code") == null){
+					RequestDispatcher rd = req.getRequestDispatcher("LoginRegister.jsp");
+					rd.forward(req, response);	
+				}
 		// TODO Auto-generated method stub
 		List l = new ArrayList();
 		ArrayList<String[]> list = new ArrayList<String[]>();
-		HttpSession session = req.getSession();
+		
 		String code = (String) session.getAttribute("code");
 		list = (ArrayList<String[]>) mongo.getCalender(code);
 		int i =0;
@@ -57,10 +65,16 @@ public class CalendarServlet extends HttpServlet  {
 		 * google-gson. Gson is a Java library that can be used to convert Java Objects into their JSON representation
 		 * */
 
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
+		//response.setContentType("application/json");
+		//response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
+		//out.write(new Gson().toJson(l));
+		
+		RequestDispatcher rg = req.getRequestDispatcher("Calendar.jsp");
 		out.write(new Gson().toJson(l));
+		rg.include(req, response);
+		
+		
 	}
 
 	/*
@@ -70,67 +84,64 @@ public class CalendarServlet extends HttpServlet  {
 	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession();
 		String code = (String) session.getAttribute("code");
-		
-		//Detect which button was pressed
-				String buttonPressed = request.getParameter("btn");
-				
-				//If delete was pressed then proceed to remove the account
-				if (buttonPressed != null && buttonPressed.equals("edit")) {
-					editEvent(request, response);
-				} 
-				else if(buttonPressed != null && buttonPressed.equals("delete")) {
-					deleteEvent(request, response);
-				} 
-				//Else if the update button was pressed update the account
-				else if (buttonPressed.equals("save")) {
-		cal.setTitle(request.getParameter("Title"));
-		System.out.println("hello " + cal.getTitle());
 
-		cal.setStart(request.getParameter("startDate"));
-		System.out.println("Start " + cal.getStart());
+		// Detect which button was pressed
+		String buttonPressed = request.getParameter("btn");
 
-		cal.setEnd(request.getParameter("endDate"));
-		System.out.println("End " + cal.getEnd());
-		//mongo.setCalender(cal);
-		mongo.setCalendar(code, cal);
+		// If delete was pressed then proceed to remove the account
+		if (buttonPressed != null && buttonPressed.equals("edit")) {
+			editEvent(request, response);
+		} else if (buttonPressed != null && buttonPressed.equals("delete")) {
+			deleteEvent(request, response);
+		}
+		// Else if the update button was pressed update the account
+		else if (buttonPressed.equals("save")) {
+			cal.setTitle(request.getParameter("Title"));
+			System.out.println("hello " + cal.getTitle());
 
-		response.sendRedirect("Calendar.jsp");
+			cal.setStart(request.getParameter("startDate"));
+			System.out.println("Start " + cal.getStart());
 
-	}
+			cal.setEnd(request.getParameter("endDate"));
+			System.out.println("End " + cal.getEnd());
+			// mongo.setCalender(cal);
+			mongo.setCalendar(code, cal);
+
+			response.sendRedirect("Calendar.jsp");
+
+		}
 	}
 
 	private void deleteEvent(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
+
 		HttpSession session = request.getSession();
 		String code = (String) session.getAttribute("code");
-		
-		cal.setTitle(request.getParameter("Otitle"));		
+
+		cal.setTitle(request.getParameter("Otitle"));
 		cal.setStart(request.getParameter("Ostart"));
 		cal.setEnd(request.getParameter("Oend"));
-		
+
 		mongo.deleteCalendar(code, cal);
-		
+
 		response.sendRedirect("Calendar.jsp");
 	}
 
 	private void editEvent(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
+
 		HttpSession session = request.getSession();
 		String code = (String) session.getAttribute("code");
-		
-		cal.setTitle(request.getParameter("Otitle"));		
+
+		cal.setTitle(request.getParameter("Otitle"));
 		cal.setStart(request.getParameter("Ostart"));
 		cal.setEnd(request.getParameter("Oend"));
-		
+
 		mongo.deleteCalendar(code, cal);
-		
-		
+
 		cal.setTitle(request.getParameter("editTitle"));
 		System.out.println("hello " + cal.getTitle());
 
@@ -139,14 +150,12 @@ public class CalendarServlet extends HttpServlet  {
 
 		cal.setEnd(request.getParameter("editEndDate"));
 		System.out.println("End " + cal.getEnd());
-		
-		
-		//mongo.setCalender(cal);
+
+		// mongo.setCalender(cal);
 		mongo.setCalendar(code, cal);
 
-		
 		response.sendRedirect("Calendar.jsp");
-		
+
 	}
 
 }

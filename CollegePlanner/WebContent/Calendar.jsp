@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1" import = "com.google.gson.Gson"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,6 +22,7 @@
 <script src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js'></script>
 <script src='//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='https://fullcalendar.io/js/fullcalendar-3.2.0/fullcalendar.min.js'></script>-->
+
 
 <title>Calendar</title>
 
@@ -89,7 +90,12 @@
              <div class="form-group">
             <label>End Date:</label>
             <input class="form-control" type="text" name="endDate" placeholder="YYYY-MM-DD" pattern="\d{4}-?\d{2}-?\d{2}" required>
+            <input type="time">
             </div>
+            
+            
+     
+            
           </form>
         </div>
         <div class="modal-footer">
@@ -115,7 +121,7 @@
 				},
 				theme : false,
 				editable : false,
-				events : "CalendarServlet",
+				//events : "CalendarServlet",
 					 eventClick: function(calEvent, jsEvent, view, date) {
 
 						 $("#editModal").modal();
@@ -131,6 +137,10 @@
 					        document.getElementById("Ostart").value = moment(calEvent.start).format('YYYY-MM-DD');
 					        document.getElementById("Oend").value = moment(calEvent.end).format('YYYY-MM-DD');
 					    }
+				
+			});
+			$('#timepicker1').timepicker({
+			    template: 'modal'
 			});
 
 		});
