@@ -29,7 +29,7 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="Calendar.jsp">Calender</a></li>
+				<li><a href="Calendar.jsp">Calendar</a></li>
 				<li><a href="Timetable">Timetable</a></li>
 				<li><a href="ToDoList">To do</a></li>
 			</ul>
@@ -52,10 +52,10 @@
 
 	<form action="ToDoListServlet" method="post">
 
-		Add Title : <input type="text" id="title" name="title" />
+		<b>Add Title:</b> <input type="text" id="title" name="title" />
 
 
-		Description: <input type="text" id="description" name="description" />
+		<b>Description:</b> <input type="text" id="description" name="description" />
 		<input type="submit" value="Save" />
 
 
@@ -69,9 +69,10 @@
 	<br />
 	<!--Add item to ToDo List-->
 	<table>
-		<c:forEach var="element" items="${todolist}">
+		<c:forEach var="task" items="${todolist.tasks}">
 			<tr>
-				<td>${element}</td>
+				<td>${task.title}</td>
+				<td>${task.description}</td>
 			</tr>
 		</c:forEach>
 	</table>

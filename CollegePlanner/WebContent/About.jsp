@@ -8,14 +8,14 @@
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3-theme-black.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/Profile.css">
+<link rel="stylesheet" href="css/About.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body id="myPage">
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -29,13 +29,13 @@
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="Calendar.jsp">Calender</a></li>
-				<li><a href="Timetable.jsp">Timetable</a></li>
+				<li><a href="Timetable">Timetable</a></li>
 				<li><a href="ToDoList">To do</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">My Profile<span class="caret"></span></a>
+					aria-expanded="false">${username}<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="Profile">Account Details <span
 								class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
@@ -46,11 +46,11 @@
 		</div>
 	</div>
 	</nav>
-
-<!-- Image Header -->
+<!-- Image Header 
 <div class="w3-display-container w3-animate-opacity">
   <img src="https://images.unsplash.com/3/doctype-hi-res.jpg" alt="boat" style="width:100%;min-height:350px;max-height:600px;">
 </div>
+-->
 
 
 <!-- Team Container -->
@@ -61,27 +61,27 @@
 <div class="w3-row"><br>
 
 <div class="w3-quarter">
-  <img src="/w3images/avatar.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
+  <img src="https://media.licdn.com/media/AAEAAQAAAAAAAAi_AAAAJDBlODhhM2I5LTc2NTEtNDg3Zi1iMWVlLTNiNGRlZjlhYjYzOQ.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
   <h3>Christopher Weir</h3>
-  <p>Web Designer</p>
+  <p>Login/Profile</p>
 </div>
 
 <div class="w3-quarter">
-  <img src="/w3images/avatar.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
+  <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAxIAAAAJGRjZDE3ZDkzLWVkODQtNGFhOS1hYTQ4LTEyNTYzMjBkNDEzNQ.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
   <h3>Gareth Lynskey</h3>
-  <p>Support</p>
+  <p>Timetable</p>
 </div>
 
 <div class="w3-quarter">
-  <img src="/w3images/avatar.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
+  <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAk3AAAAJDU4Yzk3MTdiLWY5MDgtNGM5ZC05OTI3LWViMTBiMjk5MDdjNA.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
   <h3>Paul Dolan</h3>
-  <p>Boss man</p>
+  <p>ToDoList</p>
 </div>
 
 <div class="w3-quarter">
-  <img src="/w3images/avatar.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
+  <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAf9AAAAJDhmNDlmNGMxLTkzNGItNDFlYi05NTBhLTNjOWRmZmE2NDVmYg.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
   <h3>Patrick Griffin</h3>
-  <p>Fixer</p>
+  <p>Calendar</p>
 </div>
 
 </div>
@@ -90,14 +90,14 @@
 <!-- Work Row -->
 <div class="w3-row-padding w3-padding-64 w3-theme-l1" id="work">
 
-<div class="w3-quarter">
-<h2>Our Work</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<div class="col-lg-12">
+<h2 class="text-center">Our Work</h2>
+<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 </div>
 
 <div class="w3-quarter">
 <div class="w3-card-2 w3-white">
-  <img src="/w3images/fjords.jpg" alt="Vernazza" style="width:100%">
+  <img src="https://www.w3schools.com/w3css/img_fjords.jpg" alt="Vernazza" style="width:100%">
   <div class="w3-container">
   <h3>Customer 1</h3>
   <h4>Trade</h4>
@@ -111,7 +111,7 @@
 
 <div class="w3-quarter">
 <div class="w3-card-2 w3-white">
-  <img src="/w3images/lights.jpg" alt="Cinque Terre" style="width:100%">
+  <img src="https://www.w3schools.com/w3css/img_fjords.jpg" alt="Cinque Terre" style="width:100%">
   <div class="w3-container">
   <h3>Customer 2</h3>
   <h4>Trade</h4>
@@ -125,7 +125,7 @@
 
 <div class="w3-quarter">
 <div class="w3-card-2 w3-white">
-  <img src="/w3images/mountains.jpg" alt="Monterosso" style="width:100%">
+  <img src="https://www.w3schools.com/w3css/img_fjords.jpg" alt="Monterosso" style="width:100%">
   <div class="w3-container">
   <h3>Customer 3</h3>
   <h4>Trade</h4>
@@ -137,18 +137,182 @@
   </div>
 </div>
 
+<div class="w3-quarter">
+<div class="w3-card-2 w3-white">
+  <img src="https://www.w3schools.com/w3css/img_fjords.jpg" alt="Vernazza" style="width:100%">
+  <div class="w3-container">
+  <h3>Customer 1</h3>
+  <h4>Trade</h4>
+  <p>Blablabla</p>
+  <p>Blablabla</p>
+  <p>Blablabla</p>
+  <p>Blablabla</p>
+  </div>
+  </div>
 </div>
 
-<!-- Container -->
-<div class="w3-container" style="position:relative">
-  <a onclick="w3_open()" class="w3-btn-floating-large w3-teal" style="position:absolute;top:-28px;right:24px;z-index:0;">
-  <i class="fa fa-plus"></i></a>
 </div>
 
-<!-- Pricing Row -->
+<!-- Development Row -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h3 class="text-center">PROJECT DEVELOPMENT</h3>
+      <p>
+        Below is a timeline of how we progressed through our project showing the various steps in the project development.
+      </p>
+      <ul class="timeline">
+        <li>
+          <div class="timeline-image">
+            <img class="img-circle img-responsive" src="http://lorempixel.com/250/250/cats/1" alt="">
+          </div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4>Step One</h4>
+              <h4 class="subheading">Subtitle</h4>
+            </div>
+            <div class="timeline-body">
+              <p class="text-muted">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          </div>
+          <div class="line"></div>
+        </li>
+        <li class="timeline-inverted">
+          <div class="timeline-image">
+            <img class="img-circle img-responsive" src="http://lorempixel.com/250/250/cats/2" alt="">
+          </div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4>Step Two</h4>
+              <h4 class="subheading">Subtitle</h4>
+            </div>
+            <div class="timeline-body">
+              <p class="text-muted">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          </div>
+          <div class="line"></div>
+        </li>
+        <li>
+          <div class="timeline-image">
+            <img class="img-circle img-responsive" src="http://lorempixel.com/250/250/cats/3" alt="">
+          </div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4>Step Three</h4>
+              <h4 class="subheading">Subtitle</h4>
+            </div>
+            <div class="timeline-body">
+              <p class="text-muted">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          </div>
+          <div class="line"></div>
+        </li>
+        <li class="timeline-inverted">
+          <div class="timeline-image">
+            <img class="img-circle img-responsive" src="http://lorempixel.com/250/250/cats/4" alt="">
+          </div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4>Step Three</h4>
+              <h4 class="subheading">Subtitle</h4>
+            </div>
+            <div class="timeline-body">
+              <p class="text-muted">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          </div>
+          <div class="line"></div>
+        </li>
+        <li>
+          <div class="timeline-image">
+            <img class="img-circle img-responsive" src="http://lorempixel.com/250/250/cats/5" alt="">
+          </div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4>Bonus Step</h4>
+              <h4 class="subheading">Subtitle</h4>
+            </div>
+            <div class="timeline-body">
+              <p class="text-muted">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <hr>
+</div>
+
+<!-- Technologies Row -->
 <div class="w3-row-padding w3-center w3-padding-64" id="pricing">
-    <h2>PRICING</h2>
+    <h2>TECHNOLOGIES</h2>
     <p>Choose a pricing plan that fits your needs.</p><br>
+    <div class="w3-third w3-margin-bottom">
+      <ul class="w3-ul w3-border w3-hover-shadow">
+        <li class="w3-theme">
+          <p class="w3-xlarge">Java</p>
+        </li>
+        <li class="w3-padding-16"><b>10GB</b> Storage</li>
+        <li class="w3-padding-16"><b>10</b> Emails</li>
+        <li class="w3-padding-16"><b>10</b> Domains</li>
+        <li class="w3-padding-16"><b>Endless</b> Support</li>
+        <li class="w3-padding-16">
+          <h2 class="w3-wide"><i class="fa fa-usd"></i> 10</h2>
+          <span class="w3-opacity">per month</span>
+        </li>
+        <li class="w3-theme-l5 w3-padding-24">
+          <button class="w3-btn w3-teal w3-padding-large"><i class="fa fa-check"></i> Sign Up</button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="w3-third w3-margin-bottom">
+      <ul class="w3-ul w3-border w3-hover-shadow">
+        <li class="w3-theme-l2">
+          <p class="w3-xlarge">Pro</p>
+        </li>
+        <li class="w3-padding-16"><b>25GB</b> Storage</li>
+        <li class="w3-padding-16"><b>25</b> Emails</li>
+        <li class="w3-padding-16"><b>25</b> Domains</li>
+        <li class="w3-padding-16"><b>Endless</b> Support</li>
+        <li class="w3-padding-16">
+          <h2 class="w3-wide"><i class="fa fa-usd"></i> 25</h2>
+          <span class="w3-opacity">per month</span>
+        </li>
+        <li class="w3-theme-l5 w3-padding-24">
+          <button class="w3-btn w3-teal w3-padding-large"><i class="fa fa-check"></i> Sign Up</button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="w3-third w3-margin-bottom">
+      <ul class="w3-ul w3-border w3-hover-shadow">
+        <li class="w3-theme">
+          <p class="w3-xlarge">Premium</p>
+        </li>
+        <li class="w3-padding-16"><b>50GB</b> Storage</li>
+        <li class="w3-padding-16"><b>50</b> Emails</li>
+        <li class="w3-padding-16"><b>50</b> Domains</li>
+        <li class="w3-padding-16"><b>Endless</b> Support</li>
+        <li class="w3-padding-16">
+          <h2 class="w3-wide"><i class="fa fa-usd"></i> 50</h2>
+          <span class="w3-opacity">per month</span>
+        </li>
+        <li class="w3-theme-l5 w3-padding-24">
+          <button class="w3-btn w3-teal w3-padding-large"><i class="fa fa-check"></i> Sign Up</button>
+        </li>
+      </ul>
+    </div>
+
     <div class="w3-third w3-margin-bottom">
       <ul class="w3-ul w3-border w3-hover-shadow">
         <li class="w3-theme">
@@ -207,6 +371,7 @@
     </div>
 </div>
 
+
 <!-- Contact Container -->
 <div class="w3-container w3-padding-64 w3-theme-l5" id="contact">
   <div class="w3-row">
@@ -240,33 +405,6 @@
   </div>
 </div>
 
-<!-- Google Maps -->
-<div id="googleMap" style="width:100%;height:420px;"></div>
-<script src="https://maps.googleapis.com/maps/api/js"></script>
-<script>
-var myCenter = new google.maps.LatLng(41.878114, -87.629798);
-
-function initialize() {
-var mapProp = {
-  center: myCenter,
-  zoom: 5,
-  scrollwheel: false,
-  draggable: false,
-  mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-
-var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
-var marker = new google.maps.Marker({
-  position: myCenter,
-});
-
-marker.setMap(map);
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
-</script>
-
 <!-- Footer -->
 <footer class="w3-container w3-padding-32 w3-theme-d1 w3-center">
   <h4>Follow Us</h4>
@@ -283,33 +421,5 @@ google.maps.event.addDomListener(window, 'load', initialize);
     <i class="fa fa-chevron-circle-up"></i></span></a>
   </div>
 </footer>
-
-<script>
-// Script for side navigation
-function w3_open() {
-    var x = document.getElementById("mySidenav");
-    x.style.width = "300px";
-    x.style.textAlign = "center";
-    x.style.fontSize = "40px";
-    x.style.paddingTop = "10%";
-    x.style.display = "block";
-}
-
-// Close side navigation
-function w3_close() {
-    document.getElementById("mySidenav").style.display = "none";
-}
-
-// Used to toggle the menu on smaller screens when clicking on the menu button
-function openNav() {
-    var x = document.getElementById("navDemo");
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-    } else { 
-        x.className = x.className.replace(" w3-show", "");
-    }
-}
-</script>
-
 </body>
 </html>
