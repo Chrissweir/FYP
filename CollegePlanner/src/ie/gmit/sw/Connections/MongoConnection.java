@@ -159,6 +159,19 @@ public class MongoConnection {
 		user.insert(document);
 		client.close();
 	}
+	
+	public void deleteToDo(String code, String title, String desc) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("ToDo");
+		BasicDBObject document = new BasicDBObject();
+		document.put("Confirmation Code", code);
+		document.put("Title", title);
+		document.put("Desc", desc);
+		user.remove(document);
+		client.close();
+	}
 
 	public List getTodoList(String code) {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
