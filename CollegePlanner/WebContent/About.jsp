@@ -111,7 +111,7 @@
 
 <div class="w3-quarter">
 <div class="w3-card-2 w3-white">
-  <img src="/w3images/lights.jpg" alt="Cinque Terre" style="width:100%">
+  <img src="https://www.w3schools.com/w3css/img_fjords.jpg" alt="Cinque Terre" style="width:100%">
   <div class="w3-container">
   <h3>Customer 2</h3>
   <h4>Trade</h4>
@@ -125,7 +125,7 @@
 
 <div class="w3-quarter">
 <div class="w3-card-2 w3-white">
-  <img src="/w3images/mountains.jpg" alt="Monterosso" style="width:100%">
+  <img src="https://www.w3schools.com/w3css/img_fjords.jpg" alt="Monterosso" style="width:100%">
   <div class="w3-container">
   <h3>Customer 3</h3>
   <h4>Trade</h4>
@@ -139,7 +139,7 @@
 
 <div class="w3-quarter">
 <div class="w3-card-2 w3-white">
-  <img src="/w3images/fjords.jpg" alt="Vernazza" style="width:100%">
+  <img src="https://www.w3schools.com/w3css/img_fjords.jpg" alt="Vernazza" style="width:100%">
   <div class="w3-container">
   <h3>Customer 1</h3>
   <h4>Trade</h4>
