@@ -9,6 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/ToDoList.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script
@@ -52,11 +53,11 @@
 
 	<form action="ToDoListServlet" method="post">
 
-		<b>Add Title:</b> <input type="text" id="title" name="title" />
+		<b>Add Title:</b> <input type="text" id="title" name="title" required />
 
 
-		<b>Description:</b> <input type="text" id="description" name="description" />
-		<input type="submit" value="Save" />
+		<b>Description:</b> <input type="text" id="description"
+			name="description" required /> <input type="submit" value="Save" />
 
 
 
@@ -65,17 +66,41 @@
 	<!--Output tasks-->
 	<hr>
 
-	<b>To Do List</b>
-	<br />
-	<!--Add item to ToDo List-->
-	<table>
-		<c:forEach var="task" items="${todolist.tasks}">
-			<tr>
-				<td>${task.title}</td>
-				<td>${task.description}</td>
-			</tr>
-		</c:forEach>
-	</table>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="todolist not-done">
+					<h1>Todo List</h1>
+					<hr>
+					<table>
+						<c:forEach var="task" items="${todolist.tasks}">
+							<tr>
+								<td>${task.title}</td>
+								<td>${task.description}</td>
+								
+								<td><input type="checkbox"></td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="todolist">
+					<h1>Tasks Complete</h1>
+					<hr>
+					<ul id="done-items" class="list-unstyled">
+						<li>Some item
+							<button class="remove-item btn btn-default btn-xs pull-right">
+								<span class="glyphicon glyphicon-remove"></span>
+							</button>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>
