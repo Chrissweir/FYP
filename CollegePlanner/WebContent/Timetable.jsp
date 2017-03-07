@@ -55,7 +55,7 @@ var button = document.getElementById('button'),
 		</div>
 	</nav>
 	
-	<form id="submitForm" action="TimetableServlet" method="post">
+	<form id="submitForm" action="Timetable" method="post">
 		Module Title: <INPUT type="text" name="title" size="35" maxlength="15"><BR>
 		Room Number: <INPUT type="text" name="room" size="35" maxlength="5"><BR>
 		Module Time: 

@@ -19,9 +19,6 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 
 	private MongoConnection mongo = new MongoConnection();
 
-	/* (non-Javadoc)
-	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		//Get a handle on the session
