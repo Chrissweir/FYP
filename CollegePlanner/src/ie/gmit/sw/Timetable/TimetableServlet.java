@@ -72,7 +72,7 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 			//Create an ArrayList of type String[] called list and give it the return value of 
 			//mongo.getTimetable and cast it to an ArrayList of type String[]
 			ArrayList<String[]> list = (ArrayList<String[]>) mongo.getTimetable(code);
-			//for each String[] in list
+			//for each String[] in the list
 			for(String[] s : list){
 				///create an instance of module with the given parameters
 				Module module = new Module(s[0], Integer.parseInt(s[1]), Integer.parseInt(s[2]), Integer.parseInt(s[3]), s[4]);
