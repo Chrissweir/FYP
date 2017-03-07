@@ -56,6 +56,8 @@ public class Login extends HttpServlet{
 				session.setAttribute("email", login.getEmail());
 				session.setAttribute("college", login.getCollege());
 				session.setAttribute("username", login.getUser());
+				session.setAttribute("course", login.getCourse());
+				session.setAttribute("bio", login.getBio());
 				session.setAttribute("code", login.getCode());
 				response.sendRedirect("Profile");
 			}

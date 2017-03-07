@@ -20,8 +20,8 @@
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			<a class="navbar-brand"> <span
-				class="glyphicon glyphicon-education" aria-hidden="true"></span></a> <a
-				class="navbar-brand" href="About.jsp">College Planner</a>
+				class="glyphicon glyphicon-education" aria-hidden="true"></span></a>
+				<a class="navbar-brand" href="About.jsp">College Planner</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -31,6 +31,7 @@
 				<li><a href="Calendar.jsp">Calender</a></li>
 				<li><a href="Timetable">Timetable</a></li>
 				<li><a href="ToDoList">To do</a></li>
+				<li><a href="Grades">Grades Tracker</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
