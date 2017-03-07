@@ -4,10 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="css/Profile.css">
+<link rel="stylesheet" href="css/Social.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script
@@ -36,8 +40,9 @@
 <title>My Profile</title>
 
 </head>
-<body>
-	<nav class="navbar navbar-default">
+<body style="padding-top: 70px">
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -57,7 +62,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">My Profile<span class="caret"></span></a>
+					aria-expanded="false">${username}<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="Profile">Account Details <span
 								class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
@@ -68,7 +73,6 @@
 		</div>
 	</div>
 	</nav>
-
 	<div
 		class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
 		<form id="userDetails" action="Profile" method="post">
@@ -173,6 +177,7 @@
 				%>
 
 			</div>
+			<br>
 			<footer class="w3-container w3-red">
 			<p></p>
 			<button type="button" class="btn btn-warning"

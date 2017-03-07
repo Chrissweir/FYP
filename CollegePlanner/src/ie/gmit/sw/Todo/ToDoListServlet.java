@@ -47,18 +47,25 @@ public class ToDoListServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<String> l = new ArrayList<String>();
-		ArrayList<String[]> list = new ArrayList<String[]>();
+		
+		//Get a handle on the session
 		HttpSession session = request.getSession();
+		//Check if the user is logged in, if not then redirect them to the login page
+		if(session.getAttribute("code") == null){
+			RequestDispatcher rd = request.getRequestDispatcher("LoginRegister.jsp");
+			rd.forward(request, response);	
+		}
+		
+		ArrayList<String[]> list = new ArrayList<String[]>();
 		String code = (String) session.getAttribute("code");
 		list = (ArrayList<String[]>) mongo.getTodoList(code);
-		int i =0;
-		int j = 1;
+		
+		ToDo todo = new ToDo();
 		for(String[] r : list){
-			System.out.println(r[0]);
-			l.add(r[0]);
+			Task task = new Task(r[0], r[1]);
+			todo.addTask(task);
 		}
-		request.getSession().setAttribute("todolist", l);
+		request.getSession().setAttribute("todolist", todo);
 		response.sendRedirect("todoList.jsp");
 	}
 }

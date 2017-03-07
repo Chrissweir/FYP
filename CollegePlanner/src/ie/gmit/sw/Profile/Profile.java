@@ -111,18 +111,20 @@ public class Profile extends HttpServlet {
 		{
 			//Get a handle on the session
 			HttpSession session = request.getSession();
-			userDetails.setCode((String)session.getAttribute("code"));
+			String code = session.getAttribute("code").toString();
+			userDetails.setCode(code);
 			userDetails.setPassword(request.getParameter("confirmPassword"));
 			
 			//Check if the password entered matches the users password
 			//If true, then redirect the user
 			if(sqlConn.removeUser(userDetails) == true){
+				mongo.removeUserData(code);
 				response.sendRedirect("Logout");
 			}
 			//If the passwords do not match then send an error back to the Prfole page
 			else{
 				request.setAttribute("error","Invalid Password");
-				RequestDispatcher rd=request.getRequestDispatcher("Profile");            
+				RequestDispatcher rd=request.getRequestDispatcher("Profile.jsp");            
 				rd.include(request, response);
 			}
 		}
