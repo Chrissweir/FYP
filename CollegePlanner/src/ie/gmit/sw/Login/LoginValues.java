@@ -16,6 +16,8 @@ public class LoginValues {
 	private String college;
 	private String username;
 	private String password;
+	private String course;
+	private String bio;
 	
 	public String getPass() {
 		return pass;
@@ -70,5 +72,17 @@ public class LoginValues {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getCourse() {
+		return course;
+	}
+	public void setCourse(String course) {
+		this.course = course;
+	}
+	public String getBio() {
+		return bio;
+	}
+	public void setBio(String bio) {
+		this.bio = bio;
 	}
 }

@@ -64,13 +64,13 @@ public class Register extends HttpServlet {
 			userDetails.setCollege(request.getParameter("college"));
 			userDetails.setUsername(request.getParameter("username"));
 			userDetails.setPassword(request.getParameter("password"));
-
+			userDetails.setCourse("");
+			userDetails.setBio("");
+			
 			//Create a new Session Id
 			userDetails.setCode(nextSessionId());
-			
 			//Get the returnString from SQLConnection
 			returnString = sqlConn.userRegistration(userDetails).toString();
-			
 			//Check the value of the returString
 			//If returnString is equal to "Profile" then user can be registered
 			//else output appropriate error 
@@ -102,7 +102,7 @@ public class Register extends HttpServlet {
 		}
 		//If something goes rong the redirect the user to the ErrorHandler page
 		catch (Exception e) {
-		//	response.sendRedirect("ErrorHandler");
+		 //response.sendRedirect("ErrorHandler");
 		}
 	}
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,17 +15,16 @@ import javax.servlet.http.HttpSession;
 
 import ie.gmit.sw.Connections.MongoConnection;
 
-@WebServlet("/TimetableServlet")
 public class TimetableServlet extends HttpServlet implements Servlet {
 
-	
 	private MongoConnection mongo = new MongoConnection();
 
 	/* (non-Javadoc)
 	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+		//Get a handle on the session
 		HttpSession session = request.getSession();
 		String code = (String)session.getAttribute("code");
 		String title = request.getParameter("title");
@@ -46,12 +46,12 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 				else if(dayString.equalsIgnoreCase("THU")) day = 4;
 				else if(dayString.equalsIgnoreCase("FRI")) day = 5;
 				else day = 6;
-		
+
 				Module module = new Module(title, timeStarting, timeEnding, day, roomNumber);
 				mongo.setTimetable(code, module);
 				//timetable.addClass(module);
 			}
-			
+
 		}
 		//System.out.println(timetable.getClasses().toString().replace("[", "").replace("]", ""));
 		//getServletContext().getRequestDispatcher("/Timetable.jsp").forward(request, response);
@@ -59,24 +59,30 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session = request.getSession();
-		String code = (String)session.getAttribute("code");
-		//System.out.println("in doGet Method");
-		Timetable timetable = new Timetable();
-		
-		
-		ArrayList<String[]> list = new ArrayList<String[]>();
-		list = (ArrayList<String[]>) mongo.getTimetable(code);
-		for(String[] s : list){
-			Module module = new Module(s[0], Integer.parseInt(s[1]), Integer.parseInt(s[2]), Integer.parseInt(s[3]), s[4]);
-			timetable.addClass(module);
-		}
-		request.getSession().setAttribute("timetable", timetable);
-		//getServletContext().getRequestDispatcher("/Timetable.jsp").forward(request, response);
-		response.sendRedirect("Timetable.jsp");
-	}
-	
-	
 
+		//Get a handle on the session
+		HttpSession session = request.getSession();
+		//Check if the user is logged in, if not then redirect them to the login page
+		if(session.getAttribute("code") == null){
+			RequestDispatcher rd = request.getRequestDispatcher("LoginRegister.jsp");
+			rd.forward(request, response);	
+		}
+		try{
+			String code = (String)session.getAttribute("code");
+			Timetable timetable = new Timetable();
+
+			ArrayList<String[]> list = new ArrayList<String[]>();
+			list = (ArrayList<String[]>) mongo.getTimetable(code);
+			for(String[] s : list){
+				Module module = new Module(s[0], Integer.parseInt(s[1]), Integer.parseInt(s[2]), Integer.parseInt(s[3]), s[4]);
+				timetable.addClass(module);
+			}
+			request.getSession().setAttribute("timetable", timetable);
+			RequestDispatcher rd = request.getRequestDispatcher("Timetable.jsp");
+			rd.forward(request, response);
+		}
+		catch (Exception e) {
+			response.sendRedirect("ErrorHandler");
+		}
+	}
 }

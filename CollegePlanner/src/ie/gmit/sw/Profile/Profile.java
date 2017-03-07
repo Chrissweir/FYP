@@ -50,7 +50,7 @@ public class Profile extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("Profile.jsp");
 			rd.forward(request, response);	
 		}catch (Exception e) {
-			response.sendRedirect("ErrorHandler");
+			//response.sendRedirect("ErrorHandler");
 		}
 	}
 
@@ -73,6 +73,8 @@ public class Profile extends HttpServlet {
 			userDetails.setLastName(request.getParameter("lastname"));
 			userDetails.setEmail(request.getParameter("email"));
 			userDetails.setCollege(request.getParameter("college"));
+			userDetails.setCourse(request.getParameter("course"));
+			userDetails.setBio(request.getParameter("bio"));
 			userDetails.setCode((String)session.getAttribute("code"));
 			
 			//Send the new details to the database
@@ -90,6 +92,8 @@ public class Profile extends HttpServlet {
 			session.setAttribute("lastname", userDetails.getLastName());
 			session.setAttribute("email", userDetails.getEmail());
 			session.setAttribute("college", userDetails.getCollege());
+			session.setAttribute("course", userDetails.getCourse());
+			session.setAttribute("bio", userDetails.getBio());
 			session.removeAttribute("image");
 			session.setAttribute("image", userDetails.getPath());
 			
@@ -111,18 +115,20 @@ public class Profile extends HttpServlet {
 		{
 			//Get a handle on the session
 			HttpSession session = request.getSession();
-			userDetails.setCode((String)session.getAttribute("code"));
+			String code = session.getAttribute("code").toString();
+			userDetails.setCode(code);
 			userDetails.setPassword(request.getParameter("confirmPassword"));
 			
 			//Check if the password entered matches the users password
 			//If true, then redirect the user
 			if(sqlConn.removeUser(userDetails) == true){
+				mongo.removeUserData(code);
 				response.sendRedirect("Logout");
 			}
 			//If the passwords do not match then send an error back to the Prfole page
 			else{
 				request.setAttribute("error","Invalid Password");
-				RequestDispatcher rd=request.getRequestDispatcher("Profile");            
+				RequestDispatcher rd=request.getRequestDispatcher("Profile.jsp");            
 				rd.include(request, response);
 			}
 		}

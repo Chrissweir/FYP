@@ -15,6 +15,8 @@ public class RegisterUserDetails {
 	private String code;
 	private boolean userAvailable = true;
 	private boolean emailAvailable = true;
+	private String course;
+	private String bio;
 	
 	public String getUsername() {
 		return username;
@@ -86,5 +88,21 @@ public class RegisterUserDetails {
 	
 	public void setEmailAvailable(boolean emailAvailable) {
 		this.emailAvailable = emailAvailable;
+	}
+
+	public void setCourse(String course) {
+		this.course = course;
+		
+	}
+	public String getCourse() {
+		return course;
+	}
+	
+	public void setBio(String bio) {
+		this.bio = bio;
+		
+	}
+	public String getBio() {
+		return bio;
 	}
 }

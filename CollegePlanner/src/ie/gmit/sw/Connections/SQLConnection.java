@@ -39,6 +39,8 @@ public class SQLConnection {
 			login.setCollege(rs.getString("college"));
 			login.setUser(rs.getString("username"));
 			login.setPass(rs.getString("password"));
+			login.setCourse(rs.getString("course"));
+			login.setBio(rs.getString("bio"));
 			login.setCode(rs.getString("confirmation_code"));
 		}
 		//Close the connection
@@ -53,7 +55,7 @@ public class SQLConnection {
 		Statement stmt = connection.createStatement();
 		Statement stmt1 = connection.createStatement();
 		Statement stmt2 = connection.createStatement();
-
+		//stmt.executeUpdate("CREATE TABLE Users (first_name VARCHAR(255),last_name VARCHAR(255),email VARCHAR(255) UNIQUE,college VARCHAR(255),username VARCHAR(255) UNIQUE,password VARCHAR(255), course VARCHAR(255), bio VARCHAR(255),confirmation_code VARCHAR(255) UNIQUE)");
 		//Execute a query on the stmt1 statement and assign the results to the ResultSet ru
 		ResultSet ru = stmt1.executeQuery("SELECT * FROM Users WHERE username='"+userDetails.getUsername()+"';");
 		//Execute a query on the stmt2 statement and assign the results to the ResultSet re
@@ -82,8 +84,9 @@ public class SQLConnection {
 		//If both userAvailable and emailAvailable are true, then add the users details to the database
 		//and redirect the user to the LoginRegister.jsp page.
 		if(userDetails.isUserAvailable() == true && userDetails.isEmailAvailable() == true){
-			String sql = "INSERT INTO Users (first_name, last_name, email, college, username, password, confirmation_code) "
-					+"VALUES ('"+userDetails.getFirstname()+"', '"+userDetails.getLastname()+"', '"+userDetails.getEmail()+"', '"+userDetails.getCollege()+"', '"+userDetails.getUsername()+"', '"+userDetails.getPassword()+"', '"+userDetails.getCode()+"')";
+			
+			String sql = "INSERT INTO Users (first_name, last_name, email, college, username, password, course, bio, confirmation_code) "
+					+"VALUES ('"+userDetails.getFirstname()+"', '"+userDetails.getLastname()+"', '"+userDetails.getEmail()+"', '"+userDetails.getCollege()+"', '"+userDetails.getUsername()+"', '"+userDetails.getPassword()+"', '"+userDetails.getCourse()+"', '"+userDetails.getBio()+"', '"+userDetails.getCode()+"')";
 			stmt.executeUpdate(sql);
 			connection.close();
 			return "Profile";
@@ -107,12 +110,14 @@ public class SQLConnection {
 
 		//Create three new statements
 		PreparedStatement update = connection.prepareStatement
-				("UPDATE Users SET first_name =?, last_name =?, email =?, college =? WHERE confirmation_code =?");
+				("UPDATE Users SET first_name =?, last_name =?, email =?, college =?, course =?, bio =? WHERE confirmation_code =?");
 		update.setString(1, userDetails.getFirstName());
 		update.setString(2, userDetails.getLastName());
 		update.setString(3, userDetails.getEmail());
 		update.setString(4, userDetails.getCollege());
-		update.setString(5, userDetails.getCode());
+		update.setString(5, userDetails.getCourse());
+		update.setString(6, userDetails.getBio());
+		update.setString(7, userDetails.getCode());
 		update.executeUpdate();
 	}
 	

@@ -15,6 +15,8 @@ public class UserDetails {
 	private String pass;
 	private String password;
 	private String code;
+	private String course;
+	private String bio;
 
 	public String getPath() {
 		return path;
@@ -78,5 +80,21 @@ public class UserDetails {
 	
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public String getCourse() {
+		return course;
+	}
+	
+	public void setCourse(String course){
+		this.course = course;
+	}
+	
+	public String getBio() {
+		return bio;
+	}
+	
+	public void setBio(String bio){
+		this.bio = bio;
 	}
 }
