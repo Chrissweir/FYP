@@ -25,6 +25,8 @@ function edit(){
 	document.getElementById("lname").contentEditable= true;
 	document.getElementById("em").contentEditable= true;
 	document.getElementById("coll").contentEditable= true;
+	document.getElementById("cour").contentEditable= true;
+	document.getElementById("biog").contentEditable= true;
 };
 
 function save(){
@@ -33,5 +35,7 @@ function save(){
 	document.getElementById("lname").contentEditable= false;
 	document.getElementById("em").contentEditable=false;
 	document.getElementById("coll").contentEditable=false;
+	document.getElementById("cour").contentEditable=false;
+	document.getElementById("biog").contentEditable=false;
 	document.getElementById("imageEdit").style.visibility = "hidden";
 };

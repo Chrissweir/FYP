@@ -11,7 +11,6 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/Profile.css">
-<link rel="stylesheet" href="css/Social.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script
@@ -32,8 +31,12 @@
 							.getElementById("em").innerHTML;
 					document.getElementById("college").value = document
 							.getElementById("coll").innerHTML;
+					document.getElementById("course").value = document
+							.getElementById("cour").innerHTML;
+					document.getElementById("bio").value = document
+							.getElementById("biog").innerHTML;
 				}
-				$(document).on("change, keyup", "#fname, #lname, #em, #coll",
+				$(document).on("change, keyup", "#fname, #lname, #em, #coll, #cour, #biog",
 						updateData);
 			});
 </script>
@@ -110,12 +113,20 @@
 										<td><textfield type="text" id="lname">${lastname}</textfield></td>
 									</tr>
 									<tr>
-										<td>Email</td>
+										<td>Email:</td>
 										<td><textfield type="text" id="em">${email}</textfield></td>
 									</tr>
 									<tr>
-										<td>College</td>
+										<td>College:</td>
 										<td><textfield type="text" id="coll">${college}</textfield></td>
+									</tr>
+									<tr>
+										<td>Course:</td>
+										<td><textfield type="text" id="cour">${course}</textfield></td>
+									</tr>
+									<tr>
+										<td>Bio:</td>
+										<td><textfield type="text" id="biog">${bio}</textfield></td>
 									</tr>
 								</tbody>
 							</table>
@@ -142,8 +153,6 @@
 					</span>
 				</div>
 		</form>
-
-	</div>
 	</div>
 
 	<input form="userDetails" type="text" name="firstname" id="firstname"
@@ -153,6 +162,10 @@
 	<input form="userDetails" type="text" name="email" id="email"
 		style="visibility: hidden">
 	<input form="userDetails" type="text" name="college" id="college"
+		style="visibility: hidden">
+	<input form="userDetails" type="text" name="course" id="course"
+		style="visibility: hidden">
+	<input form="userDetails" type="text" name="bio" id="bio"
 		style="visibility: hidden">
 
 	<div id="id01" class="w3-modal">
@@ -175,7 +188,6 @@
 					if (pass != null)
 						out.println("<font color=red size=4px>" + pass + "</font>");
 				%>
-
 			</div>
 			<br>
 			<footer class="w3-container w3-red">
