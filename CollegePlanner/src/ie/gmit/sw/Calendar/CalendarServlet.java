@@ -55,6 +55,7 @@ public class CalendarServlet extends HttpServlet {
 			CalendarValues c = new CalendarValues();
 			c.setId(i);
 			c.setTitle(r[0]);
+			//This allows user to create all day event and timed events
 			if (r[3].equals("") || r[4].equals("")) {
 				c.setStart(r[1]);
 				c.setEnd(r[2]);
@@ -114,7 +115,7 @@ public class CalendarServlet extends HttpServlet {
 
 			cal.setEnd(request.getParameter("endDate"));
 			System.out.println("End " + cal.getEnd());
-
+			
 			cal.setStartTime(request.getParameter("startTime"));
 			System.out.println("Start Time: " + cal.getStartTime());
 
@@ -122,6 +123,8 @@ public class CalendarServlet extends HttpServlet {
 			System.out.println("End Time: " + cal.getEndTime());
 			// mongo.setCalender(cal);
 			mongo.setCalendar(code, cal);
+			
+			//If/boolean for allday event is true 
 
 			response.sendRedirect("Calendar.jsp");
 
@@ -136,6 +139,9 @@ public class CalendarServlet extends HttpServlet {
 		cal.setTitle(request.getParameter("Otitle"));
 		cal.setStart(request.getParameter("Ostart"));
 		cal.setEnd(request.getParameter("Oend"));
+		
+		cal.setStartTime(request.getParameter("OstartTime"));
+		cal.setEndTime(request.getParameter("OendTime"));
 
 		mongo.deleteCalendar(code, cal);
 
@@ -150,17 +156,27 @@ public class CalendarServlet extends HttpServlet {
 		cal.setTitle(request.getParameter("Otitle"));
 		cal.setStart(request.getParameter("Ostart"));
 		cal.setEnd(request.getParameter("Oend"));
+		cal.setStartTime(request.getParameter("OstartTime"));
+		cal.setEndTime(request.getParameter("OendTime"));
 
 		mongo.deleteCalendar(code, cal);
 
 		cal.setTitle(request.getParameter("editTitle"));
 		System.out.println("hello " + cal.getTitle());
-
+		
+		//Date-------------------------------------
 		cal.setStart(request.getParameter("editStartDate"));
 		System.out.println("Start " + cal.getStart());
 
 		cal.setEnd(request.getParameter("editEndDate"));
 		System.out.println("End " + cal.getEnd());
+		
+		//Time--------------------------------------
+		cal.setStartTime(request.getParameter("editStartTime"));
+		System.out.println("Time end " + cal.getStartTime());
+		
+		cal.setEndTime(request.getParameter("editStartTime"));
+		System.out.println("Time end " + cal.getEndTime());
 
 		// mongo.setCalender(cal);
 		mongo.setCalendar(code, cal);

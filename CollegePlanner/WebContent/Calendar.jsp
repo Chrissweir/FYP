@@ -141,10 +141,14 @@
 					        document.getElementById("editTitle").value = calEvent.title;
 					        document.getElementById("editStart").value = moment(calEvent.start).format('YYYY-MM-DD');
 					        document.getElementById("editEnd").value = moment(calEvent.end).format('YYYY-MM-DD');
+					        document.getElementById("editStartTime").value = moment(calEvent.start).format('HH:mm');
+					        document.getElementById("editEndTime").value = moment(calEvent.end).format('HH:mm');
 					        
 					        document.getElementById("Otitle").value = calEvent.title;
 					        document.getElementById("Ostart").value = moment(calEvent.start).format('YYYY-MM-DD');
-					        document.getElementById("Oend").value = moment(calEvent.end).format('YYYY-MM-DD');
+					        document.getElementById("Oend").value = moment(calEvent.end);//.format('YYYY-MM-DD');
+					        document.getElementById("OstartTime").value = moment(calEvent.start).format('HH:mm');
+					        document.getElementById("OendTime").value = moment(calEvent.end);//.format('HH:mm');
 					    }
 				
 			});
@@ -177,6 +181,17 @@
             <label>End Date:</label>
             <input class="form-control" type="text" id="editEnd" name="editEndDate" placeholder="YYYY-MM-DD" pattern="\d{4}-?\d{2}-?\d{2}" required>
             </div>
+            
+             <div class="form-group">
+            <label> Edit Start Time:</label>
+            <input class="form-control" type="text" name="editStartTime" id="editStartTime" placeholder="HH:mm" >
+            </div>
+             <div class="form-group">
+            <label>Edit End Time:</label>
+            <input class="form-control" type="text" name="editEndTime" id="editEndTime" placeholder="HH:mm"  >
+            
+            </div>
+            
           </form>
         </div>
         <div class="modal-footer">
@@ -189,6 +204,8 @@
   </div>
 <input form="editEvent" type="text" id="Otitle" name="Otitle" style="visibility: hidden"></input>
 <input form="editEvent" type="text" id="Ostart" name="Ostart" style="visibility: hidden"></input>
-<input form="editEvent" type="text" id="Oend" name="Oend" style="visibility: hidden"></input>
+<input form="editEvent" type="text" id="Oend" name="Oend" ></input>
+<input form="editEvent" type="text" id="OstartTime" name="OstartTime" style="visibility: hidden"></input>
+<input form="editEvent" type="text" id="OendTime" name="OendTime" ></input>
 </body>
 </html>

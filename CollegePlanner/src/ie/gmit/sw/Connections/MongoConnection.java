@@ -117,6 +117,8 @@ public class MongoConnection {
 		document.put("Title", cal.getTitle());
 		document.put("Start", cal.getStart());
 		document.put("Finish", cal.getEnd());
+		document.put("StartTime", cal.getStartTime());
+		document.put("EndTime", cal.getEndTime());
 		user.remove(document);
 		client.close();
 	}
