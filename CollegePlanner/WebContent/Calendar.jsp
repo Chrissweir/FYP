@@ -90,7 +90,17 @@
              <div class="form-group">
             <label>End Date:</label>
             <input class="form-control" type="text" name="endDate" placeholder="YYYY-MM-DD" pattern="\d{4}-?\d{2}-?\d{2}" required>
-            <input type="time">
+            
+            </div>
+            
+             <div class="form-group">
+            <label>Start Time:</label>
+            <input class="form-control" type="text" name="startTime" placeholder="HH:mm" required>
+            </div>
+             <div class="form-group">
+            <label>End Time:</label>
+            <input class="form-control" type="text" name="endTime" placeholder="HH:mm"  required>
+            
             </div>
             
             
@@ -121,14 +131,12 @@
 				},
 				theme : false,
 				editable : false,
-				//events : "CalendarServlet",
+				slotLabelFormat:"HH:mm",
+				events : "CalendarServlet",
+				
 					 eventClick: function(calEvent, jsEvent, view, date) {
 
 						 $("#editModal").modal();
-						 //date = new Date(date.getFullYear());
-					      //  alert('start: ' + moment(calEvent.start).format('YYYY/MM/DD'));
-					       // alert(moment(start).format())
-					        //alert(calEvent.end);
 					        document.getElementById("editTitle").value = calEvent.title;
 					        document.getElementById("editStart").value = moment(calEvent.start).format('YYYY-MM-DD');
 					        document.getElementById("editEnd").value = moment(calEvent.end).format('YYYY-MM-DD');
@@ -139,9 +147,7 @@
 					    }
 				
 			});
-			$('#timepicker1').timepicker({
-			    template: 'modal'
-			});
+			
 
 		});
 	</script>

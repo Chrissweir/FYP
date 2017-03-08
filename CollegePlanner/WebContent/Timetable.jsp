@@ -5,19 +5,17 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 	<link rel="stylesheet" href="css/Timetable.css">
 	<title>Student Timetable</title>
-	<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 
-<BODY>
+<BODY style="padding-top: 70px">
 <script>
 var button = document.getElementById('button'),
 	inputField = document.getElementById('moduleTitle');
@@ -26,24 +24,27 @@ var button = document.getElementById('button'),
 });
 </script>
 
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
-				<a class="navbar-brand"> <span class="glyphicon glyphicon-education" aria-hidden="true"></span></a> 
+				<a class="navbar-brand"> <span class="glyphicon glyphicon-education" aria-hidden="true"></span></a>
 				<a class="navbar-brand" href="About.jsp">College Planner</a>
 			</div>
-		
+	
 			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="Calendar.jsp">Calender</a></li>
 					<li><a href="Timetable">Timetable</a></li>
 					<li><a href="ToDoList">To do</a></li>
+					<li><a href="Grades">Grades Tracker</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">My Profile<span class="caret"></span></a>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">${username}<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="Profile">Account Details <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
 							<li role="separator" class="divider"></li>
@@ -55,9 +56,9 @@ var button = document.getElementById('button'),
 		</div>
 	</nav>
 	
-	<form id="submitForm" action="TimetableServlet" method="post">
-		Module Title: <INPUT type="text" name="title" size="35" maxlength="15"><BR>
-		Room Number: <INPUT type="text" name="room" size="35" maxlength="5"><BR>
+	<form id="submitForm" action="Timetable" method="post">
+		Module Title: <INPUT type="text" name="title" size="35" maxlength="15" required><BR>
+		Room Number: <INPUT type="text" name="room" size="35" maxlength="5" required><BR>
 		Module Time: 
 		Sun<INPUT type="checkbox" name="day" value="sun">
 		Mon<INPUT type="checkbox" name="day" value="mon"> 
