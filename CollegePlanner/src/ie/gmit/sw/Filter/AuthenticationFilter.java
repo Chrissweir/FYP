@@ -33,15 +33,19 @@ public class AuthenticationFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-		
+
 		String uri = req.getRequestURI();
 		this.context.log("Requested Resource::"+uri);
-		
+
 		HttpSession session = req.getSession();
-		
-		if(session.getAttribute("code") == null && uri.contains("LoginRegister.jsp")){
-			this.context.log("Unauthorized access request");
-			res.sendRedirect("LoginRegister.jsp");
+
+		if(session.getAttribute("code") == null && !uri.contains("LoginRegister.jsp")){
+			if(uri.endsWith("css") || uri.endsWith("js") || uri.contains("Login") || uri.contains("Register")){
+				chain.doFilter(request, response);
+			}else{
+				this.context.log("Unauthorized access request");
+				res.sendRedirect("LoginRegister.jsp");
+			}
 		}else{
 			// pass the request along the filter chain
 			chain.doFilter(request, response);
