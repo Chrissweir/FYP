@@ -14,6 +14,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/ToDoList.js"></script>
 <title>ToDo List</title>
 </head>
 <body style="padding-top: 70px">
@@ -73,13 +74,13 @@
 				
 					<h1>Todo List</h1>
 					<hr>
-					<table>
+					<table class="todo">
 						<c:forEach var="task" items="${todolist.tasks}">
-							<tr>
+							<tr role="row">
 								<td>${task.title}</td> 
 								<td>${task.description}</td>
 								
-								<td><input type="checkbox" ></td>
+								<td><input type="checkbox" value="${task.title}" id="check"></td>
 							</tr>
 						</c:forEach>
 					</table>
