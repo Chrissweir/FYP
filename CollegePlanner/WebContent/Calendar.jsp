@@ -27,14 +27,14 @@
 <title>Calendar</title>
 
 </head>
-<body>
-<nav class="navbar navbar-default">
+<body style="padding-top: 70px">
+<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			<a class="navbar-brand"> <span
-				class="glyphicon glyphicon-education" aria-hidden="true"></span></a> <a
-				class="navbar-brand" href="About.jsp">College Planner</a>
+				class="glyphicon glyphicon-education" aria-hidden="true"></span></a>
+				<a class="navbar-brand" href="About.jsp">College Planner</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -44,11 +44,12 @@
 				<li><a href="Calendar.jsp">Calender</a></li>
 				<li><a href="Timetable">Timetable</a></li>
 				<li><a href="ToDoList">To do</a></li>
+				<li><a href="Grades">Grades Tracker</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">My Profile<span class="caret"></span></a>
+					aria-expanded="false">${username}<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="Profile">Account Details <span
 								class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
@@ -58,7 +59,7 @@
 			</ul>
 		</div>
 	</div>
-  </nav>
+	</nav>
 	<div style="margin: 50px 50px 50px 50px;">
 		<div id="calendar"></div>
 	</div>
