@@ -102,7 +102,7 @@ public class Register extends HttpServlet {
 		}
 		//If something goes rong the redirect the user to the ErrorHandler page
 		catch (Exception e) {
-		 //response.sendRedirect("ErrorHandler");
+		 response.sendRedirect("ErrorHandler");
 		}
 	}
 }
