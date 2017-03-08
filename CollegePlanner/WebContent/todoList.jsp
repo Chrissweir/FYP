@@ -16,28 +16,29 @@
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <title>ToDo List</title>
 </head>
-<body>
-	<nav class="navbar navbar-default">
+<body style="padding-top: 70px">
+<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			<a class="navbar-brand"> <span
-				class="glyphicon glyphicon-education" aria-hidden="true"></span></a> <a
-				class="navbar-brand" href="About.jsp">College Planner</a>
+				class="glyphicon glyphicon-education" aria-hidden="true"></span></a>
+				<a class="navbar-brand" href="About.jsp">College Planner</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="Calendar.jsp">Calendar</a></li>
+				<li><a href="Calendar.jsp">Calender</a></li>
 				<li><a href="Timetable">Timetable</a></li>
 				<li><a href="ToDoList">To do</a></li>
+				<li><a href="Grades">Grades Tracker</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">My Profile<span class="caret"></span></a>
+					aria-expanded="false">${username}<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="Profile">Account Details <span
 								class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
@@ -51,17 +52,16 @@
 
 	<!--Create ToDo List -->
 
-	<form action="ToDoListServlet" method="post">
+<div class="addTask">
+	<form action="ToDoListServlet" method="post" >
 
-		<b>Add Title:</b> <input type="text" id="title" name="title" required />
-
-
-		<b>Description:</b> <input type="text" id="description"
-			name="description" required /> <input type="submit" value="Save" />
+		<b> Add Title:</b> <input type="text" id="title" name="title" required />
 
 
+		<b>Description:</b> <input type="text" id="description"name="description" required /> <input type="submit" value="Save" />
 
 	</form>
+	</div>
 	<br>
 	<!--Output tasks-->
 	<hr>
@@ -70,15 +70,16 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="todolist not-done">
+				
 					<h1>Todo List</h1>
 					<hr>
 					<table>
 						<c:forEach var="task" items="${todolist.tasks}">
 							<tr>
-								<td>${task.title}</td>
+								<td>${task.title}</td> 
 								<td>${task.description}</td>
 								
-								<td><input type="checkbox"></td>
+								<td><input type="checkbox" ></td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -90,7 +91,7 @@
 					<h1>Tasks Complete</h1>
 					<hr>
 					<ul id="done-items" class="list-unstyled">
-						<li>Some item
+						<li>
 							<button class="remove-item btn btn-default btn-xs pull-right">
 								<span class="glyphicon glyphicon-remove"></span>
 							</button>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import ie.gmit.sw.Connections.SQLConnection;
+import ie.gmit.sw.Security.Encryption;
 
 /**
  * @author Christopher Weir - G00309429
@@ -27,6 +28,7 @@ public class Login extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	private LoginValues login = new LoginValues();
 	private SQLConnection sqlConn = new SQLConnection();
+	private Encryption encrypt = new Encryption();
 
 	/* (non-Javadoc)
 	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
@@ -36,12 +38,12 @@ public class Login extends HttpServlet{
 	 * the username and password that was submitted and using them to query the database
 	 * and pass the data to the Profile.jsp page.
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		try {
 			//Retrieve the username and password that was submitted
 			login.setUsername(request.getParameter("username"));
-			login.setPassword(request.getParameter("password"));
+			login.setPassword(encrypt.encrypt((request.getParameter("password"))));
 			
 			//Pass the login values to SQLConnection which will query the database
 			sqlConn.userLogin(login);
@@ -49,6 +51,9 @@ public class Login extends HttpServlet{
 			//User validation, check if the password that was submitted is the same and the password
 			//retrieved from the database. If it is then pass the specified data to the request object
 			//and forward the request to the Profile.jsp page
+			
+			System.out.println(login.getPass());
+			System.out.println(login.getPassword());
 			if(login.getPass().equals(login.getPassword())){
 				HttpSession session = request.getSession();
 				session.setAttribute("firstname", login.getFirstname());
