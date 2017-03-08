@@ -56,9 +56,9 @@ var button = document.getElementById('button'),
 		</div>
 	</nav>
 	
-	<form id="submitForm" action="Timetable" method="post">
-		Module Title: <INPUT type="text" name="title" size="35" maxlength="15" required><BR>
-		Room Number: <INPUT type="text" name="room" size="35" maxlength="5" required><BR>
+	<form id="submitForm" name="submitForm" action="Timetable" method="post" onsubmit="return validateForm()">
+		Module Title: <INPUT type="text" id="title" name="title" size="35" maxlength="15" required><BR>
+		Room Number: <INPUT type="text" id="room" name="room" size="35" maxlength="5" required><BR>
 		Module Time: 
 		Sun<INPUT type="checkbox" name="day" value="sun">
 		Mon<INPUT type="checkbox" name="day" value="mon"> 
