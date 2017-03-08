@@ -96,11 +96,11 @@
             
              <div class="form-group">
             <label>Start Time:</label>
-            <input class="form-control" type="text" name="startTime" placeholder="HH:mm" required>
+            <input class="form-control" type="text" name="startTime" placeholder="HH:mm" >
             </div>
              <div class="form-group">
             <label>End Time:</label>
-            <input class="form-control" type="text" name="endTime" placeholder="HH:mm"  required>
+            <input class="form-control" type="text" name="endTime" placeholder="HH:mm"  >
             
             </div>
             

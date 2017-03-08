@@ -37,45 +37,49 @@ public class CalendarServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
-		
-		//Get a handle on the session
-				HttpSession session = req.getSession();
-				//Check if the user is logged in, if not then redirect them to the login page
-				/*if(session.getAttribute("code") == null){
-					RequestDispatcher rd = req.getRequestDispatcher("LoginRegister.jsp");
-					rd.forward(req, response);	
-				}*/
-		// TODO Auto-generated method stub
+
+		// Get a handle on the session
+		HttpSession session = req.getSession();
+		// Check if the user is logged in, if not then redirect them to the
+		// login page
+		/*
+		 * if(session.getAttribute("code") == null){ RequestDispatcher rd =
+		 * req.getRequestDispatcher("LoginRegister.jsp"); rd.forward(req,
+		 * response); }
+		 */
 		List l = new ArrayList();
-		ArrayList<String[]> list = new ArrayList<String[]>();
-		
 		String code = (String) session.getAttribute("code");
-		list = (ArrayList<String[]>) mongo.getCalender(code);
-		int i =0;
-		for(String[] r : list){
+		ArrayList<String[]> list = (ArrayList<String[]>) mongo.getCalender(code);
+		int i = 0;
+		for (String[] r : list) {
 			CalendarValues c = new CalendarValues();
 			c.setId(i);
 			c.setTitle(r[0]);
-			c.setStart(r[1]+"T"+r[3]);
-			c.setEnd(r[2]+"T"+r[4]);
-			//c.setStartTime(r[3]);
-			//c.setEndTime(r[4]);
+			if (r[3].equals("") || r[4].equals("")) {
+				c.setStart(r[1]);
+				c.setEnd(r[2]);
+			} else {
+				c.setStart(r[1] + "T" + r[3]);
+				c.setEnd(r[2] + "T" + r[4]);
+			}
+			// c.setStartTime(r[3]);
+			// c.setEndTime(r[4]);
 			l.add(c);
 		}
 
 		/*
-		 * google-gson. Gson is a Java library that can be used to convert Java Objects into their JSON representation
-		 * */
+		 * google-gson. Gson is a Java library that can be used to convert Java
+		 * Objects into their JSON representation
+		 */
 
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
-		
+
 		RequestDispatcher rg = req.getRequestDispatcher("Calendar.jsp");
 		out.write(new Gson().toJson(l));
-		//rg.include(req, response);
-		
-		
+		// rg.include(req, response);
+
 	}
 
 	/*
@@ -110,12 +114,12 @@ public class CalendarServlet extends HttpServlet {
 
 			cal.setEnd(request.getParameter("endDate"));
 			System.out.println("End " + cal.getEnd());
-			
+
 			cal.setStartTime(request.getParameter("startTime"));
-			System.out.println("Start Time: " + cal.getStartTime() );
-			
+			System.out.println("Start Time: " + cal.getStartTime());
+
 			cal.setEndTime(request.getParameter("endTime"));
-			System.out.println("End Time: " + cal.getEndTime() );
+			System.out.println("End Time: " + cal.getEndTime());
 			// mongo.setCalender(cal);
 			mongo.setCalendar(code, cal);
 
