@@ -19,9 +19,6 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 
 	private MongoConnection mongo = new MongoConnection();
 
-	/* (non-Javadoc)
-	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		//Get a handle on the session
@@ -62,6 +59,7 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 
 		//Get a handle on the session
 		HttpSession session = request.getSession();
+		
 		//Check if the user is logged in, if not then redirect them to the login page
 		if(session.getAttribute("code") == null){
 			RequestDispatcher rd = request.getRequestDispatcher("LoginRegister.jsp");
@@ -69,13 +67,16 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		}
 		try{
 			String code = (String)session.getAttribute("code");
-			Timetable timetable = new Timetable();
+			Timetable timetable = new Timetable();//create an instance of Timetable
 
-			ArrayList<String[]> list = new ArrayList<String[]>();
-			list = (ArrayList<String[]>) mongo.getTimetable(code);
+			//Create an ArrayList of type String[] called list and give it the return value of 
+			//mongo.getTimetable and cast it to an ArrayList of type String[]
+			ArrayList<String[]> list = (ArrayList<String[]>) mongo.getTimetable(code);
+			//for each String[] in the list
 			for(String[] s : list){
+				///create an instance of module with the given parameters
 				Module module = new Module(s[0], Integer.parseInt(s[1]), Integer.parseInt(s[2]), Integer.parseInt(s[3]), s[4]);
-				timetable.addClass(module);
+				timetable.addClass(module);//add a module to the timetable
 			}
 			request.getSession().setAttribute("timetable", timetable);
 			RequestDispatcher rd = request.getRequestDispatcher("Timetable.jsp");
