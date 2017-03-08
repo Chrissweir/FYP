@@ -1,6 +1,4 @@
-body{
-	background-color: grey;
-}
+
 .user-row {
     margin-bottom: 14px;
 }
@@ -38,15 +36,14 @@ body{
 }
 
 .background{
+	padding-top: 70px;
 	height: 100%;
 	width: 100%;
-	text-align: center;
-	background: url("https://images.unsplash.com/3/doctype-hi-res.jpg")
+	background-color: #f4f4f4;
 		no-repeat center;
 	background-size: cover;
 	
 	position: absolute;
 	left: 0;
 	top: 0;
-	background-size: cover;
 }

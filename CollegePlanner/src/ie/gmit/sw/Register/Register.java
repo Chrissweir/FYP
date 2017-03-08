@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import ie.gmit.sw.Connections.MongoConnection;
 import ie.gmit.sw.Connections.SQLConnection;
+import ie.gmit.sw.Security.Encryption;
 
 /**
  * @author Christopher Weir - G00309429
@@ -33,6 +34,7 @@ public class Register extends HttpServlet {
 	private SQLConnection sqlConn = new SQLConnection();
 	private RegisterUserDetails userDetails = new RegisterUserDetails();
 	private SecureRandom random = new SecureRandom();
+	private Encryption encrypt = new Encryption();
 
 	/**
 	 * nextSessionId() is responsible for creating a randomly generated String to be added to
@@ -63,7 +65,7 @@ public class Register extends HttpServlet {
 			userDetails.setEmail(request.getParameter("email"));
 			userDetails.setCollege(request.getParameter("college"));
 			userDetails.setUsername(request.getParameter("username"));
-			userDetails.setPassword(request.getParameter("password"));
+			userDetails.setPassword(encrypt.encrypt((request.getParameter("password"))));
 			userDetails.setCourse("");
 			userDetails.setBio("");
 			
@@ -100,7 +102,7 @@ public class Register extends HttpServlet {
 			//Forward the error messages to the LoginRegister.jsp for the user to see.
 	        request.getRequestDispatcher("/LoginRegister.jsp").forward(request, response);
 		}
-		//If something goes rong the redirect the user to the ErrorHandler page
+		//If something goes wrong the redirect the user to the ErrorHandler page
 		catch (Exception e) {
 		 //response.sendRedirect("ErrorHandler");
 		}
