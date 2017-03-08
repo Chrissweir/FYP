@@ -4,7 +4,7 @@ function validateForm() {
 	if(password == confpassword)
 	{
 		document.getElementById("passLabel").style.display="none";
-		document.getElementById("confpassLabel").style.display="block";
+		document.getElementById("confpassLabel").style.display="none";
 		return true;
 	}
 	else

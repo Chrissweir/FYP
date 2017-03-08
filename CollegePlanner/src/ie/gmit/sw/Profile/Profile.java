@@ -26,20 +26,14 @@ public class Profile extends HttpServlet {
 	private MongoConnection mongo = new MongoConnection();
 	private SQLConnection sqlConn =new SQLConnection();
 	private String image;	
-	
+
 	/* (non-Javadoc)
 	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Get a handle on the session
 		HttpSession session = request.getSession();
-		//Check if the user is logged in, if not then redirect them to the login page
-		if(session.getAttribute("code") == null){
-			RequestDispatcher rd = request.getRequestDispatcher("LoginRegister.jsp");
-			rd.forward(request, response);	
-		}
-		//Before loading the Profile page, try to get the users Profile picture
-		// from the database
+		//Before loading the Profile page, try to get the users Profile picture from the database
 		try{
 			userDetails.setCode((String)session.getAttribute("code"));
 			image = mongo.getUserImage(userDetails.getCode());
@@ -50,7 +44,7 @@ public class Profile extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("Profile.jsp");
 			rd.forward(request, response);	
 		}catch (Exception e) {
-			//response.sendRedirect("ErrorHandler");
+			response.sendRedirect("ErrorHandler");
 		}
 	}
 
@@ -60,7 +54,7 @@ public class Profile extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Detect which button was pressed
 		String buttonPressed = request.getParameter("btn");
-		
+
 		//If delete was pressed then proceed to remove the account
 		if (buttonPressed != null && buttonPressed.equals("delete")) {
 			removeAccount(request, response);
@@ -68,37 +62,39 @@ public class Profile extends HttpServlet {
 		//Else if the update button was pressed update the account
 		else if (buttonPressed.equals("update")) {
 			HttpSession session = request.getSession();
-			userDetails.setPath(request.getParameter("imgPath"));
-			userDetails.setFirstName(request.getParameter("firstname"));
-			userDetails.setLastName(request.getParameter("lastname"));
-			userDetails.setEmail(request.getParameter("email"));
-			userDetails.setCollege(request.getParameter("college"));
-			userDetails.setCourse(request.getParameter("course"));
-			userDetails.setBio(request.getParameter("bio"));
-			userDetails.setCode((String)session.getAttribute("code"));
-			
-			//Send the new details to the database
-			try{
+			try{	
+				userDetails.setPath(request.getParameter("imgPath"));
+				userDetails.setFirstName(request.getParameter("firstname"));
+				userDetails.setLastName(request.getParameter("lastname"));
+				userDetails.setEmail(request.getParameter("email"));
+				userDetails.setCollege(request.getParameter("college"));
+				userDetails.setCourse(request.getParameter("course"));
+				userDetails.setBio(request.getParameter("bio"));
+				userDetails.setCode((String)session.getAttribute("code"));
+
+				//Send the new details to the database
+
 				sqlConn.updateUserDetails(userDetails);
+
+				//Update the users Profile picture
+				mongo.setUserData(userDetails.getCode(), userDetails.getPath());
+
+				//Update the session attributes
+				session.setAttribute("firstname", userDetails.getFirstName());
+				session.setAttribute("lastname", userDetails.getLastName());
+				session.setAttribute("email", userDetails.getEmail());
+				session.setAttribute("college", userDetails.getCollege());
+				session.setAttribute("course", userDetails.getCourse());
+				session.setAttribute("bio", userDetails.getBio());
+				session.removeAttribute("image");
+				session.setAttribute("image", userDetails.getPath());
+
+				//Redirect the user back to the Profile page
+				response.sendRedirect("Profile");
 			}
 			catch (Exception e) {
 				response.sendRedirect("ErrorHandler");
 			}
-			//Update the users Profile picture
-			mongo.setUserData(userDetails.getCode(), userDetails.getPath());
-			
-			//Update the session attributes
-			session.setAttribute("firstname", userDetails.getFirstName());
-			session.setAttribute("lastname", userDetails.getLastName());
-			session.setAttribute("email", userDetails.getEmail());
-			session.setAttribute("college", userDetails.getCollege());
-			session.setAttribute("course", userDetails.getCourse());
-			session.setAttribute("bio", userDetails.getBio());
-			session.removeAttribute("image");
-			session.setAttribute("image", userDetails.getPath());
-			
-			//Redirect the user back to the Profile page
-			response.sendRedirect("Profile");
 		}
 	}
 
@@ -118,7 +114,7 @@ public class Profile extends HttpServlet {
 			String code = session.getAttribute("code").toString();
 			userDetails.setCode(code);
 			userDetails.setPassword(request.getParameter("confirmPassword"));
-			
+
 			//Check if the password entered matches the users password
 			//If true, then redirect the user
 			if(sqlConn.removeUser(userDetails) == true){
