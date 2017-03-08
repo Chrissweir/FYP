@@ -101,6 +101,8 @@ public class MongoConnection {
 		document.put("Title", cal.getTitle());
 		document.put("Start", cal.getStart());
 		document.put("Finish", cal.getEnd());
+		document.put("StartTime", cal.getStartTime());
+		document.put("EndTime", cal.getEndTime());
 		user.insert(document);
 		client.close();
 	}
@@ -134,10 +136,14 @@ public class MongoConnection {
 				String title = (String) dbObject.get("Title");
 				String start = (String) dbObject.get("Start");
 				String finish = (String) dbObject.get("Finish");
-				String[] s = new String[3];
+				String startTime = (String) dbObject.get("StartTime");
+				String endTime = (String) dbObject.get("EndTime");
+				String[] s = new String[5];
 				s[0] = title;
 				s[1] = start;
 				s[2] = finish;
+				s[3] = startTime;
+				s[4] = endTime;
 				l.add(s);
 			}
 		}
