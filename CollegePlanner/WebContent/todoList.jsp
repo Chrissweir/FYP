@@ -70,6 +70,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="todolist not-done">
+				
 					<h1>Todo List</h1>
 					<hr>
 					<table>
