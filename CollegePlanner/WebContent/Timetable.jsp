@@ -60,13 +60,13 @@ var button = document.getElementById('button'),
 		Module Title: <INPUT type="text" id="title" name="title" size="35" maxlength="15" required><BR>
 		Room Number: <INPUT type="text" id="room" name="room" size="35" maxlength="5" required><BR>
 		Module Time: 
-		Sun<INPUT type="checkbox" name="day" value="sun">
-		Mon<INPUT type="checkbox" name="day" value="mon"> 
-		Tue<INPUT type="checkbox" name="day" value="tue"> 
-		Wed<INPUT type="checkbox" name="day" value="wed"> 
-		Thu<INPUT type="checkbox" name="day" value="thu"> 
-		Fri<INPUT type="checkbox" name="day" value="fri"> 
-		Sat<INPUT type="checkbox" name="day" value="sat"> 
+		Sun<INPUT type="checkbox" name="day" id="day" value="sun">
+		Mon<INPUT type="checkbox" name="day" id="day" value="mon"> 
+		Tue<INPUT type="checkbox" name="day" id="day" value="tue"> 
+		Wed<INPUT type="checkbox" name="day" id="day" value="wed"> 
+		Thu<INPUT type="checkbox" name="day" id="day" value="thu"> 
+		Fri<INPUT type="checkbox" name="day" id="day" value="fri"> 
+		Sat<INPUT type="checkbox" name="day" id="day" value="sat"> 
 		<SELECT name="starttime">
 			<OPTION value="8">8:00am</OPTION>
 			<OPTION value="9">9:00am</OPTION>
@@ -100,7 +100,7 @@ var button = document.getElementById('button'),
 			<OPTION value="21">9:00pm</OPTION>
 			<OPTION value="22">10:00pm</OPTION>
 		</SELECT> <BR> <BR> 
-		<INPUT type="submit" name="Submit" value="Add Course">
+		<INPUT type="submit" name="Submit" value="Add Course" onclick="isChecked()">
 		<INPUT type="submit" name="Remove" value="Remove Course"><br>
 	</form>
 	
