@@ -96,11 +96,11 @@
             
              <div class="form-group">
             <label>Start Time:</label>
-            <input class="form-control" type="text" name="startTime" placeholder="HH:mm" >
+            <input class="form-control" type="text" name="startTime" placeholder="HH:mm or All Day" >
             </div>
              <div class="form-group">
             <label>End Time:</label>
-            <input class="form-control" type="text" name="endTime" placeholder="HH:mm"  >
+            <input class="form-control" type="text" name="endTime" placeholder="HH:mm or All Day"  >
             
             </div>
             
@@ -139,16 +139,33 @@
 
 						 $("#editModal").modal();
 					        document.getElementById("editTitle").value = calEvent.title;
-					        document.getElementById("editStart").value = moment(calEvent.start).format('YYYY-MM-DD');
-					        document.getElementById("editEnd").value = moment(calEvent.end).format('YYYY-MM-DD');
-					        document.getElementById("editStartTime").value = moment(calEvent.start).format('HH:mm');
-					        document.getElementById("editEndTime").value = moment(calEvent.end).format('HH:mm');
-					        
 					        document.getElementById("Otitle").value = calEvent.title;
+					        
+					        document.getElementById("editStart").value = moment(calEvent.start).format('YYYY-MM-DD');
 					        document.getElementById("Ostart").value = moment(calEvent.start).format('YYYY-MM-DD');
-					        document.getElementById("Oend").value = moment(calEvent.end);//.format('YYYY-MM-DD');
-					        document.getElementById("OstartTime").value = moment(calEvent.start).format('HH:mm');
-					        document.getElementById("OendTime").value = moment(calEvent.end);//.format('HH:mm');
+					        
+					        var test = moment(calEvent.end).format('YYYY-MM-DD');
+					       // alert(test);
+					        if(test.toString() == "Invalid date"){
+					        	document.getElementById("editEnd").value = moment(calEvent.start).format('YYYY-MM-DD');
+					        	document.getElementById("Oend").value = moment(calEvent.start).format('YYYY-MM-DD');
+					        }else{
+						        document.getElementById("editEnd").value = moment(calEvent.end).format('YYYY-MM-DD');
+						        document.getElementById("Oend").value = moment(calEvent.end).format('YYYY-MM-DD');
+					        }
+					        var test1 = moment(calEvent.end).format('HH:mm');
+					        var test2 = moment(calEvent.start).format('HH:mm');
+					        if(test1.toString() == "Invalid date" || test1.toString() == "00:00", test2.toString() == "00:00"){
+					        	document.getElementById("editStartTime").value = "All Day";
+						        document.getElementById("editEndTime").value = "All Day";
+						        document.getElementById("OstartTime").value = "All Day";
+						        document.getElementById("OendTime").value = "All Day";
+					        }else{
+					        	document.getElementById("editStartTime").value = moment(calEvent.start).format('HH:mm');
+						        document.getElementById("editEndTime").value = moment(calEvent.end).format('HH:mm');
+						        document.getElementById("OstartTime").value = moment(calEvent.start).format('HH:mm');
+						        document.getElementById("OendTime").value = moment(calEvent.end).format('HH:mm');
+					        }
 					    }
 				
 			});
