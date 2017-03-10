@@ -12,6 +12,7 @@ import org.eclipse.jdt.internal.compiler.ast.ContinueStatement;
 import ie.gmit.sw.Login.LoginValues;
 import ie.gmit.sw.Profile.UserDetails;
 import ie.gmit.sw.Register.RegisterUserDetails;
+import ie.gmit.sw.Security.AccountRecoveryDetails;
 
 public class SQLConnection {
 	public Connection getConnection() throws URISyntaxException, SQLException, ClassNotFoundException {
@@ -119,6 +120,8 @@ public class SQLConnection {
 		update.setString(6, userDetails.getBio());
 		update.setString(7, userDetails.getCode());
 		update.executeUpdate();
+		
+		connection.close();
 	}
 	
 	public boolean removeUser(UserDetails userDetails) throws SQLException, ClassNotFoundException, URISyntaxException{
@@ -149,5 +152,39 @@ public class SQLConnection {
 			return true;
 		}
 		return false;
+	}
+
+	public boolean checkUser(AccountRecoveryDetails ar) throws SQLException, ClassNotFoundException, URISyntaxException {
+		//Establish a connection with the database
+		Connection connection = getConnection();
+
+		//Create a new statement
+		Statement stmt = connection.createStatement();
+
+		//Execute a query on the statement and assign the results to the ResultSet rs
+		ResultSet rs = stmt.executeQuery( "SELECT * FROM Users WHERE username='"+ar.getUsername()+"' AND email ='"+ar.getEmail()+"';" );
+
+		//Using a while loop, for every entry in the ResultSet retrieve the specified data
+		while ( rs.next() ) {
+			return true;
+		}
+		//Close the connection
+		connection.close();
+		return false;
+	}
+
+	public void resetPassword(String password, AccountRecoveryDetails ar) throws SQLException, ClassNotFoundException, URISyntaxException {
+		//Establish a connection with the database
+		Connection connection = getConnection();
+
+		//Create three new statements
+		PreparedStatement update = connection.prepareStatement
+				("UPDATE Users SET password =? WHERE username =? AND email =?");
+		update.setString(1, password);
+		update.setString(2, ar.getUsername());
+		update.setString(3, ar.getEmail());
+		update.executeUpdate();
+		
+		connection.close();
 	}
 }

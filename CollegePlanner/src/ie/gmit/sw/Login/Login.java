@@ -33,8 +33,13 @@ public class Login extends HttpServlet{
 	/* (non-Javadoc)
 	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		RequestDispatcher rd = request.getRequestDispatcher("LoginRegister.jsp");
+		rd.forward(request, response);
+	}
+	
 	/**
-	 * doGet() handles the request from the LoginRegister.jsp page by retrieving 
+	 * doPost() handles the request from the LoginRegister.jsp page by retrieving 
 	 * the username and password that was submitted and using them to query the database
 	 * and pass the data to the Profile.jsp page.
 	 */
@@ -70,7 +75,7 @@ public class Login extends HttpServlet{
 			//If the passwords do not match then send an error back to the LoginRegister.jsp page
 			else{
 				request.setAttribute("error","Invalid Username or Password");
-				RequestDispatcher rd=request.getRequestDispatcher("LoginRegister.jsp");            
+				RequestDispatcher rd=request.getRequestDispatcher("Login");            
 				rd.include(request, response);
 			}
 		//If something goes wrong the redirect the user to the ErrorHandler page
