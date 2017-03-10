@@ -40,7 +40,7 @@ public class AuthenticationFilter implements Filter {
 		HttpSession session = req.getSession();
 
 		if(session.getAttribute("code") == null && !uri.contains("LoginRegister.jsp")){
-			if(uri.endsWith("css") || uri.endsWith("js") || uri.contains("Login") || uri.contains("Register") || uri.contains("ErrorHandler")){
+			if(uri.endsWith("css") || uri.endsWith("js") || uri.contains("Login") || uri.contains("Register") || uri.contains("AccountRecovery") || uri.contains("ErrorHandler")){
 				chain.doFilter(request, response);
 			}else{
 				this.context.log("Unauthorized access request");
