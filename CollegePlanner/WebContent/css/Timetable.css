@@ -3,3 +3,14 @@ td{
   overflow:hidden;
   text-overflow:ellipsis;
 }
+
+.timetable{
+	float:right;
+	width:60%;
+}
+
+.timetableForm{
+	float:left;
+	width:40%;
+	margin:0 40px 0 80px;
+}

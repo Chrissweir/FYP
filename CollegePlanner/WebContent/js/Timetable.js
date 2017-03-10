@@ -23,3 +23,33 @@ function validateForm(){
     	return false;
     }
 };
+
+function getModule(module){
+	var data = [];
+    data = module.value.split("|");
+    document.getElementById("editModuleTitle").value = data[0];
+    document.getElementById("editRoomNumber").value = data[1];
+    document.getElementById("editStartTime").value = data[2];
+    document.getElementById("editEndTime").value = data[3];
+    if(data[4] == 0){
+    	document.getElementById("sun").checked = true;
+    }
+    if(data[4] == 1){
+    	document.getElementById("mon").checked = true;
+    }
+    if(data[4] == 2){
+    	document.getElementById("tue").checked = true;
+    }
+    if(data[4] == 3){
+    	document.getElementById("wed").checked = true;
+    }
+    if(data[4] == 4){
+    	document.getElementById("thu").checked = true;
+    }
+    if(data[4] == 5){
+    	document.getElementById("fri").checked = true;
+    }
+    if(data[4] == 6){
+    	document.getElementById("sat").checked = true;
+    }
+};
