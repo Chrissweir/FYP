@@ -50,6 +50,7 @@ public class CalendarServlet extends HttpServlet {
 			CalendarValues c = new CalendarValues();
 			c.setId(i);
 			c.setTitle(r[0]);
+			
 			// This allows user to create all day event and timed events
 			if (r[3].equals("ALL DAY") && r[4].equals("ALL DAY")) {
 				c.setStart(r[1]);
@@ -62,15 +63,16 @@ public class CalendarServlet extends HttpServlet {
 			// c.setEndTime(r[4]);
 			l.add(c);
 		}
-		//CalendarValues c = new CalendarValues();
+		CalendarValues c = new CalendarValues();
 		//AllDay c = new AllDay();
-		//c.setId(200);
-		//c.setTitle("TestChris");
-		//c.setStart("2017-03-30");//+"T"+"17:00");
-		//c.setEnd("2017-03-30");//+"T"+"18:00");
-		//c.setStartTime("17:00");
-		//c.setEndTime("18:00");
-		//l.add(c);
+		c.setId(200);
+		c.setTitle("TestChris");
+		c.setStart("2017-03-30");//+"T"+"17:00");
+		c.setEnd("2017-03-30");//+"T"+"18:00");
+		c.setStartTime("17:00");
+		c.setEndTime("18:00");
+		c.setColor("#ff0000");
+		l.add(c);
 
 		/*
 		 * google-gson. Gson is a Java library that can be used to convert Java
@@ -114,6 +116,7 @@ public class CalendarServlet extends HttpServlet {
 			cal.setTitle(request.getParameter("Title"));
 			cal.setStart(request.getParameter("startDate"));
 			cal.setEnd(request.getParameter("endDate"));
+			//cal.setColor("#ff0000");
 			if(request.getParameter("startTime").equalsIgnoreCase("ALL DAY") 
 					&& request.getParameter("endTime").equalsIgnoreCase("ALL DAY"))
 			{
