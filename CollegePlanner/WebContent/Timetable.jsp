@@ -13,16 +13,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script type="text/javascript" src="js/Timetable.js"></script>
 </head>
 
 <BODY style="padding-top: 70px">
-<script>
-var button = document.getElementById('button'),
-	inputField = document.getElementById('moduleTitle');
-	button.addEventListener('click', function(e) {
-	inputField.value = this.id;
-});
-</script>
 
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
@@ -56,17 +50,19 @@ var button = document.getElementById('button'),
 		</div>
 	</nav>
 	
-	<form id="submitForm" name="submitForm" action="Timetable" method="post" onsubmit="return validateForm()">
-		Module Title: <INPUT type="text" id="title" name="title" size="35" maxlength="15" required><BR>
+	<form id="submitForm" name="submitForm" action="Timetable" method="post" onsubmit="return validateForm();">
+		Module Title: <INPUT type="text" id="title" name="title" size="35" maxlength="15"><BR>
 		Room Number: <INPUT type="text" id="room" name="room" size="35" maxlength="5" required><BR>
+		Module Day:
+		Sun<INPUT type="radio" name="day" id="day0" value="sun">
+		Mon<INPUT type="radio" name="day" id="day1" value="mon">
+		Tue<INPUT type="radio" name="day" id="day2" value="tue">
+		Wed<INPUT type="radio" name="day" id="day3" value="wed">
+		Thu<INPUT type="radio" name="day" id="day4" value="thu">
+		Fri<INPUT type="radio" name="day" id="day5" value="fri">
+		Sat<INPUT type="radio" name="day" id="day6" value="sat">
+		<label id="dayLabel" style="color: red; display: none">Day not selected!</label><BR>
 		Module Time: 
-		Sun<INPUT type="checkbox" name="day" id="day" value="sun">
-		Mon<INPUT type="checkbox" name="day" id="day" value="mon"> 
-		Tue<INPUT type="checkbox" name="day" id="day" value="tue"> 
-		Wed<INPUT type="checkbox" name="day" id="day" value="wed"> 
-		Thu<INPUT type="checkbox" name="day" id="day" value="thu"> 
-		Fri<INPUT type="checkbox" name="day" id="day" value="fri"> 
-		Sat<INPUT type="checkbox" name="day" id="day" value="sat"> 
 		<SELECT name="starttime">
 			<OPTION value="8">8:00am</OPTION>
 			<OPTION value="9">9:00am</OPTION>
