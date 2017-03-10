@@ -65,14 +65,14 @@ public class CalendarServlet extends HttpServlet {
 		}
 		CalendarValues c = new CalendarValues();
 		//AllDay c = new AllDay();
-		c.setId(200);
+		/*c.setId(200);
 		c.setTitle("TestChris");
 		c.setStart("2017-03-30");//+"T"+"17:00");
 		c.setEnd("2017-03-30");//+"T"+"18:00");
 		c.setStartTime("17:00");
 		c.setEndTime("18:00");
-		c.setColor("#ff0000");
-		l.add(c);
+		c.setColor("#ff8300");
+		l.add(c);*/
 
 		/*
 		 * google-gson. Gson is a Java library that can be used to convert Java

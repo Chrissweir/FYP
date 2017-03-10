@@ -18,11 +18,7 @@
 <link rel='stylesheet' href='https://fullcalendar.io/js/fullcalendar-3.2.0/fullcalendar.css' />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.js"></script>
 
-<!--<link rel='stylesheet' href='https://fullcalendar.io/js/fullcalendar-3.2.0/fullcalendar.css' />
-<script src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js'></script>
-<script src='//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src='https://fullcalendar.io/js/fullcalendar-3.2.0/fullcalendar.min.js'></script>-->
-
+<!--   -->
 
 <title>Calendar</title>
 
@@ -104,7 +100,18 @@
             
             </div>
             
-            
+            <div class="form-group">
+      <label for="color">Select Color (select one):</label>
+      <select class="form-control" name="color">
+        <option value="#00ff0c">Green</option>
+        <option value="#ff0000">Red</option>
+        <option value="#000000">Black</option>
+        <option value="#0021ff">Blue</option>
+        <option value="#ff00ee">Purple</option>
+        <option value="#ff8300">Orange</option>
+      </select>
+     
+    </div>
      
             
           </form>
@@ -172,6 +179,8 @@
 			
 
 		});
+		
+		
 	</script>
 
 <!-- Modal -->
