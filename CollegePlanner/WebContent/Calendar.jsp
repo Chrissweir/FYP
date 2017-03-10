@@ -102,7 +102,7 @@
             
             <div class="form-group">
       <label for="color">Select Color (select one):</label>
-      <select class="form-control" name="color">
+      <select class="form-control" name="color" id="color">
         <option value="#00ff0c">Green</option>
         <option value="#ff0000">Red</option>
         <option value="#000000">Black</option>
@@ -142,7 +142,7 @@
 				slotLabelFormat:"HH:mm",
 				events : "CalendarServlet",
 				
-					 eventClick: function(calEvent, jsEvent, view, date) {
+					 eventClick: function(calEvent, event, view, date) {
 
 						 $("#editModal").modal();
 					        document.getElementById("editTitle").value = calEvent.title;
@@ -150,6 +150,10 @@
 					        
 					        document.getElementById("editStart").value = moment(calEvent.start).format('YYYY-MM-DD');
 					        document.getElementById("Ostart").value = moment(calEvent.start).format('YYYY-MM-DD');
+					        
+					        document.getElementById("editColor").value = calEvent.color;//.format('YYYY-MM-DD');
+					       
+					        document.getElementById("Ocolor").value = calEvent.color; //$(this).css('background-color');//.format('YYYY-MM-DD');
 					        
 					        var test = moment(calEvent.end).format('YYYY-MM-DD');
 					       // alert(test);
@@ -218,6 +222,20 @@
             
             </div>
             
+             
+            <div class="form-group">
+      <label for="editColor">Select Color (select one):</label>
+      <select class="form-control" name="editColor" id="editColor">
+        <option value="#00ff0c">Green</option>
+        <option value="#ff0000">Red</option>
+        <option value="#000000">Black</option>
+        <option value="#0021ff">Blue</option>
+        <option value="#ff00ee">Purple</option>
+        <option value="#ff8300">Orange</option>
+      </select>
+     
+    </div>
+            
           </form>
         </div>
         <div class="modal-footer">
@@ -230,8 +248,9 @@
   </div>
 <input form="editEvent" type="text" id="Otitle" name="Otitle" style="visibility: hidden"></input>
 <input form="editEvent" type="text" id="Ostart" name="Ostart" style="visibility: hidden"></input>
-<input form="editEvent" type="text" id="Oend" name="Oend" ></input>
+<input form="editEvent" type="text" id="Oend" name="Oend" style="visibility: hidden" ></input>
 <input form="editEvent" type="text" id="OstartTime" name="OstartTime" style="visibility: hidden"></input>
-<input form="editEvent" type="text" id="OendTime" name="OendTime" ></input>
+<input form="editEvent" type="text" id="OendTime" name="OendTime" style="visibility: hidden"></input>
+<input form="editEvent" type="text" id="Ocolor" name="Ocolor" ></input>
 </body>
 </html>

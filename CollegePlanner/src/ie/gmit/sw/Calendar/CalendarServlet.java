@@ -61,18 +61,11 @@ public class CalendarServlet extends HttpServlet {
 			}
 			// c.setStartTime(r[3]);
 			// c.setEndTime(r[4]);
+			c.setColor(r[5]);
 			l.add(c);
 		}
-		CalendarValues c = new CalendarValues();
-		//AllDay c = new AllDay();
-		/*c.setId(200);
-		c.setTitle("TestChris");
-		c.setStart("2017-03-30");//+"T"+"17:00");
-		c.setEnd("2017-03-30");//+"T"+"18:00");
-		c.setStartTime("17:00");
-		c.setEndTime("18:00");
-		c.setColor("#ff8300");
-		l.add(c);*/
+		
+		
 
 		/*
 		 * google-gson. Gson is a Java library that can be used to convert Java
@@ -116,7 +109,7 @@ public class CalendarServlet extends HttpServlet {
 			cal.setTitle(request.getParameter("Title"));
 			cal.setStart(request.getParameter("startDate"));
 			cal.setEnd(request.getParameter("endDate"));
-			//cal.setColor("#ff0000");
+			cal.setColor(request.getParameter("color"));
 			if(request.getParameter("startTime").equalsIgnoreCase("ALL DAY") 
 					&& request.getParameter("endTime").equalsIgnoreCase("ALL DAY"))
 			{
@@ -170,6 +163,7 @@ public class CalendarServlet extends HttpServlet {
 		cal.setTitle(request.getParameter("Otitle"));
 		cal.setStart(request.getParameter("Ostart"));
 		cal.setEnd(request.getParameter("Oend"));
+		cal.setColor(request.getParameter("Ocolor"));
 		if(request.getParameter("OstartTime").equalsIgnoreCase("ALL DAY") 
 				&& request.getParameter("OendTime").equalsIgnoreCase("ALL DAY"))
 		{
@@ -185,6 +179,7 @@ public class CalendarServlet extends HttpServlet {
 		cal.setTitle(request.getParameter("editTitle"));
 		cal.setStart(request.getParameter("editStartDate"));
 		cal.setEnd(request.getParameter("editEndDate"));
+		cal.setColor(request.getParameter("editColor"));
 		if(request.getParameter("editStartTime").equalsIgnoreCase("ALL DAY") 
 				&& request.getParameter("editEndTime").equalsIgnoreCase("ALL DAY"))
 		{

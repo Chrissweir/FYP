@@ -104,6 +104,7 @@ public class MongoConnection {
 		document.put("Finish", cal.getEnd());
 		document.put("StartTime", cal.getStartTime());
 		document.put("EndTime", cal.getEndTime());
+		document.put("Color", cal.getColor());
 		user.insert(document);
 		client.close();
 	}
@@ -141,12 +142,14 @@ public class MongoConnection {
 				String finish = (String) dbObject.get("Finish");
 				String startTime = (String) dbObject.get("StartTime");
 				String endTime = (String) dbObject.get("EndTime");
-				String[] s = new String[5];
+				String color = (String) dbObject.get("Color");
+				String[] s = new String[6];
 				s[0] = title;
 				s[1] = start;
 				s[2] = finish;
 				s[3] = startTime;
 				s[4] = endTime;
+				s[5] = color;
 				l.add(s);
 			}
 		}
