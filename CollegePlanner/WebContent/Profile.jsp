@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" %>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -178,7 +178,9 @@
 				<footer class="w3-container w3-red">
 					<p></p>
 					<button type="button" class="btn btn-warning" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
-					<span class="pull-right"><button form="userDetails" type="submit" value="delete" name="btn" class="btn btn-danger">Delete</button></span>
+					<span class="pull-right">
+						<button form="userDetails" type="submit" value="delete" name="btn" class="btn btn-danger">Delete</button>
+					</span>
 					<p></p>
 				</footer>
 			</div>
