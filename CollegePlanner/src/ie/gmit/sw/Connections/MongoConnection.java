@@ -12,7 +12,6 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 
 import ie.gmit.sw.Calendar.CalendarValues;
-import ie.gmit.sw.Security.AccountRecoveryDetails;
 import ie.gmit.sw.Timetable.Module;
 import ie.gmit.sw.Timetable.TimetableModule;
 
