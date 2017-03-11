@@ -14,13 +14,14 @@ import com.mongodb.MongoClientURI;
 import ie.gmit.sw.Calendar.CalendarValues;
 import ie.gmit.sw.Security.AccountRecoveryDetails;
 import ie.gmit.sw.Timetable.Module;
+import ie.gmit.sw.Timetable.TimetableModule;
 
 public class MongoConnection {
 	private String defaultImage = "https://www.barfoot.co.nz/images/noprofile-big.png";
 	private String image;
 
-//Register
-//=================================================
+	//Register
+	//=================================================
 	public void setNewUser(String code) {
 		final BasicDBObject[] data = createUserData(code, defaultImage);
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
@@ -31,8 +32,8 @@ public class MongoConnection {
 		client.close();
 	}
 
-//Profile
-//=================================================
+	//Profile
+	//=================================================
 	public void setUserData(String code, String file) {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
@@ -52,16 +53,16 @@ public class MongoConnection {
 		DB db = client.getDB(uri.getDatabase());
 		BasicDBObject document = new BasicDBObject();
 		document.put("Confirmation Code", code);
-		
+
 		DBCollection user = db.getCollection("User");
 		user.remove(document);
-		
+
 		DBCollection user1 = db.getCollection("Calendar");
 		user1.remove(document);
-		
+
 		DBCollection user2 = db.getCollection("Timetable");
 		user2.remove(document);
-		
+
 		DBCollection user3 = db.getCollection("ToDo");
 		user3.remove(document);
 		client.close();
@@ -90,8 +91,8 @@ public class MongoConnection {
 		return data;
 	}
 
-//Calendar
-//=================================================
+	//Calendar
+	//=================================================
 	public void setCalendar(String code, CalendarValues cal) {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
@@ -104,6 +105,7 @@ public class MongoConnection {
 		document.put("Finish", cal.getEnd());
 		document.put("StartTime", cal.getStartTime());
 		document.put("EndTime", cal.getEndTime());
+		document.put("Color", cal.getColor());
 		user.insert(document);
 		client.close();
 	}
@@ -141,12 +143,14 @@ public class MongoConnection {
 				String finish = (String) dbObject.get("Finish");
 				String startTime = (String) dbObject.get("StartTime");
 				String endTime = (String) dbObject.get("EndTime");
-				String[] s = new String[5];
+				String color = (String) dbObject.get("Color");
+				String[] s = new String[6];
 				s[0] = title;
 				s[1] = start;
 				s[2] = finish;
 				s[3] = startTime;
 				s[4] = endTime;
+				s[5] = color;
 				l.add(s);
 			}
 		}
@@ -154,8 +158,8 @@ public class MongoConnection {
 		return l;
 	}
 
-//ToDo List
-//=================================================
+	//ToDo List
+	//=================================================
 	public void setTodoList(String code, String title, String description) {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
@@ -168,7 +172,7 @@ public class MongoConnection {
 		user.insert(document);
 		client.close();
 	}
-	
+
 	public void deleteToDo(String code, String title, String desc) {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
@@ -205,9 +209,9 @@ public class MongoConnection {
 		client.close();
 		return l;
 	}
-//Timetable
-//=================================================
-	public void setTimetable(String code, Module module) {
+	//Timetable
+	//=================================================
+	public void setTimetable(String code, TimetableModule module) {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
@@ -250,5 +254,57 @@ public class MongoConnection {
 		}
 		client.close();
 		return l;
+	}
+
+	public void setModule(String code, Module newClass) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Modules");
+		BasicDBObject document = new BasicDBObject();
+		document.put("Confirmation Code", code);
+		document.put("Title", newClass.getTitle());
+		document.put("Lecturer", newClass.getLecturer());
+		user.insert(document);
+		client.close();
+	}
+
+	public List getModules(String code) {
+		List moduleList = new ArrayList<>();
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Modules");
+		BasicDBObject query = new BasicDBObject();
+		query.put("Confirmation Code", code);
+		DBCursor cursor = user.find(query);
+
+		if(cursor.hasNext()) {
+			for (DBObject dbObject : cursor) {
+				String title = (String) dbObject.get("Title");
+				String lecturer = (String) dbObject.get("Lecturer");
+				String[] s = new String[3];
+				s[0] = title;
+				s[1] = lecturer;
+				moduleList.add(s);
+			}
+		}
+		return moduleList;
+	}
+
+	public void removeModule(String code, TimetableModule removeModule) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Timetable");
+		BasicDBObject document = new BasicDBObject();
+		document.put("Confirmation Code", code);
+		document.put("Title", removeModule.getTitle());
+		document.put("Start", removeModule.getTimeStart());
+		document.put("End", removeModule.getTimeEnd());
+		document.put("Day", removeModule.getDay());
+		document.put("Room", removeModule.getRoom());
+		user.remove(document);
+		client.close();
 	}
 }
