@@ -208,6 +208,7 @@ public class MongoConnection {
 		client.close();
 		return l;
 	}
+	
 	//Timetable
 	//=================================================
 	public void setTimetable(String code, TimetableModule module) {
@@ -255,6 +256,8 @@ public class MongoConnection {
 		return l;
 	}
 
+	//Modules
+	//=================================================
 	public void setModule(String code, Module newClass) {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
