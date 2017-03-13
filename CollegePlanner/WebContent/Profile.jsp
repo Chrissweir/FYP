@@ -113,7 +113,7 @@
 										</tr>
 										<tr>
 											<td>Bio:</td>
-											<td><textarea style="border: none; width: 100%;" maxlength="300" placeholder="300 Characters" type="text" id="biog" cols="20" rows="7" readonly>${bio}</textarea></td>
+											<td><textarea style="border: none; min-width: 370px; max-width: 370px;" maxlength="300" placeholder="300 Characters" type="text" id="biog" cols="20" rows="7" readonly>${bio}</textarea></td>
 										</tr>
 									</tbody>
 								</table>
