@@ -83,50 +83,48 @@
 		    		<div class="menu">
 		                <div class="accordion">
 		            		<div class="accordion-group">
-		            		    
-		            			<div class="accordion-heading country">
-		            				<a class="accordion-toggle" data-toggle="collapse" href="#country1">Country</a>
-		            			</div>
-		            			<div id="country1" class="accordion-body collapse">
-		            				<div class="accordion-inner">
-		            					<table class="table table-striped table-condensed">
-		            						<thead>
-		            							<tr>
-		            								<th>Site</th>
-		            								<th>Clients</th>
-		            								<th>Primary</th>
-		            								<th>Secondary</th>
-		            								<th>DP</th>
-		            								<th>BDP</th>
-		            								<th>Status</th>
-		            							</tr>
-		            						</thead>   
-		            						<tbody>
-		            							<tr>
-		            								<td>Site-1</td>
-		            								<td>123</td>
-		            								<td>-</td>
-		            								<td>-</td>
-		            								<td>-</td>
-		            								<td>-</td>
-		            								<td>OK</td>
-		            							</tr>
-		            							<tr>
-		            								<td>Site-2</td>
-		            								<td>321</td>
-		            								<td>-</td>
-		            								<td>-</td>
-		            								<td>-</td>
-		            								<td>-</td>
-		            								<td>OK</td>
-		            							</tr>
-		            						</tbody>
-		            					</table>
-		            				</div>
-		            			</div>
-		            			
-		            			
-		            			
+		            		    <c:forEach var="module" items="${moduleList}">
+			            			<div class="accordion-heading country">
+			            				<a class="accordion-toggle" data-toggle="collapse" href="#${module}">${module}</a>
+			            			</div>
+			            			<div id="${module}" class="accordion-body collapse">
+			            				<div class="accordion-inner">
+			            					<table class="table table-striped table-condensed">
+			            						<thead>
+			            							<tr>
+			            								<th>Site</th>
+			            								<th>Clients</th>
+			            								<th>Primary</th>
+			            								<th>Secondary</th>
+			            								<th>DP</th>
+			            								<th>BDP</th>
+			            								<th>Status</th>
+			            							</tr>
+			            						</thead>   
+			            						<tbody>
+			            							<tr>
+			            								<td>Site-1</td>
+			            								<td>123</td>
+			            								<td>-</td>
+			            								<td>-</td>
+			            								<td>-</td>
+			            								<td>-</td>
+			            								<td>OK</td>
+			            							</tr>
+			            							<tr>
+			            								<td>Site-2</td>
+			            								<td>321</td>
+			            								<td>-</td>
+			            								<td>-</td>
+			            								<td>-</td>
+			            								<td>-</td>
+			            								<td>OK</td>
+			            							</tr>
+			            						</tbody>
+			            					</table>
+			            				</div>
+			            			</div>
+		            			</c:forEach>
 		            		</div>
 		            	</div>
 		            </div>
