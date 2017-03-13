@@ -94,7 +94,6 @@
 				<c:forEach var="taskCompleted" items="${todolistCompleted.tasks}">
 					<li>${taskCompleted.title}
 						<button class="move-item btn btn-default btn-xs pull-right">
-						
 								<span class="glyphicon glyphicon-transfer"></span>
 						</button >
 						<button class="remove-item btn btn-default btn-xs pull-right" 
