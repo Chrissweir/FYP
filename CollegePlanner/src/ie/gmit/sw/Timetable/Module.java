@@ -1,79 +1,32 @@
 package ie.gmit.sw.Timetable;
 
 public class Module {
-	
-	//private variables
 	private String title;
-	private int timeStart;
-	private int timeEnd;
-	private int day;
-	private String room;
-	
+	private String lecturer;
 	
 	/**
-	 * Module is a constructor that takes in the four parameters and sets the class variables
-	 * 
-	 * @param title
-	 * @param timeStart
-	 * @param timeEnd
-	 * @param day
-	 * @param room
-	 * 
-	 */
-	//constructor to take in the parameters and sets the class variables
-	public Module(String title, int timeStart, int timeEnd, int day, String room){
-		this.title=title;
-		this.timeStart=timeStart;
-		this.timeEnd=timeEnd;
-		this.day=day;
-		this.room=room;
-	}
-	
-	/**
-	 * Getter for title in order to access the objects information
-	 * @return
+	 * @return the title
 	 */
 	public String getTitle() {
 		return title;
 	}
-
 	/**
-	 * Getter for timeStart in order to access the objects information
-	 * @return
+	 * @param title the title to set
 	 */
-	public int getTimeStart() {
-		return timeStart;
-	}
-
-	/**
-	 * Getter for timeEnd in order to access the objects information
-	 * @return
-	 */
-	public int getTimeEnd() {
-		return timeEnd;
-	}	
-
-	/**
-	 * Getter for day in order to access the objects information
-	 * @return
-	 */
-	public int getDay() {
-		return day;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
 	/**
-	 * Getter for room in order to access the objects information
-	 * @return
+	 * @return the lecturer
 	 */
-	public String getRoom(){
-		return room;
+	public String getLecturer() {
+		return lecturer;
 	}
-
 	/**
-	 * This returns a custom toString of the title, timeStart, timeEnd, day and room.
-	 * @return
+	 * @param lecturer the lecturer to set
 	 */
-	public String toString() {
-		return title+" "+timeStart+" "+timeEnd+" "+day+" "+room;
+	public void setLecturer(String lecturer) {
+		this.lecturer = lecturer;
 	}
 }

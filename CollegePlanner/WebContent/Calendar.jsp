@@ -18,23 +18,19 @@
 <link rel='stylesheet' href='https://fullcalendar.io/js/fullcalendar-3.2.0/fullcalendar.css' />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.js"></script>
 
-<!--<link rel='stylesheet' href='https://fullcalendar.io/js/fullcalendar-3.2.0/fullcalendar.css' />
-<script src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js'></script>
-<script src='//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src='https://fullcalendar.io/js/fullcalendar-3.2.0/fullcalendar.min.js'></script>-->
-
+<!--   -->
 
 <title>Calendar</title>
 
 </head>
-<body>
-<nav class="navbar navbar-default">
+<body style="padding-top: 70px">
+<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			<a class="navbar-brand"> <span
-				class="glyphicon glyphicon-education" aria-hidden="true"></span></a> <a
-				class="navbar-brand" href="About.jsp">College Planner</a>
+				class="glyphicon glyphicon-education" aria-hidden="true"></span></a>
+				<a class="navbar-brand" href="About.jsp">College Planner</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -44,11 +40,12 @@
 				<li><a href="Calendar.jsp">Calender</a></li>
 				<li><a href="Timetable">Timetable</a></li>
 				<li><a href="ToDoList">To do</a></li>
+				<li><a href="Grades">Grades Tracker</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">My Profile<span class="caret"></span></a>
+					aria-expanded="false">${username}<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="Profile">Account Details <span
 								class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
@@ -58,7 +55,7 @@
 			</ul>
 		</div>
 	</div>
-  </nav>
+	</nav>
 	<div style="margin: 50px 50px 50px 50px;">
 		<div id="calendar"></div>
 	</div>
@@ -95,15 +92,26 @@
             
              <div class="form-group">
             <label>Start Time:</label>
-            <input class="form-control" type="text" name="startTime" placeholder="HH:mm" required>
+            <input class="form-control" type="text" name="startTime" placeholder="HH:mm or All Day" >
             </div>
              <div class="form-group">
             <label>End Time:</label>
-            <input class="form-control" type="text" name="endTime" placeholder="HH:mm"  required>
+            <input class="form-control" type="text" name="endTime" placeholder="HH:mm or All Day"  >
             
             </div>
             
-            
+            <div class="form-group">
+      <label for="color">Select Color (select one):</label>
+      <select class="form-control" name="color" id="color">
+        <option value="#00ff0c">Green</option>
+        <option value="#ff0000">Red</option>
+        <option value="#000000">Black</option>
+        <option value="#0021ff">Blue</option>
+        <option value="#ff00ee">Purple</option>
+        <option value="#ff8300">Orange</option>
+      </select>
+     
+    </div>
      
             
           </form>
@@ -134,22 +142,49 @@
 				slotLabelFormat:"HH:mm",
 				events : "CalendarServlet",
 				
-					 eventClick: function(calEvent, jsEvent, view, date) {
+					 eventClick: function(calEvent, event, view, date) {
 
 						 $("#editModal").modal();
 					        document.getElementById("editTitle").value = calEvent.title;
-					        document.getElementById("editStart").value = moment(calEvent.start).format('YYYY-MM-DD');
-					        document.getElementById("editEnd").value = moment(calEvent.end).format('YYYY-MM-DD');
-					        
 					        document.getElementById("Otitle").value = calEvent.title;
+					        
+					        document.getElementById("editStart").value = moment(calEvent.start).format('YYYY-MM-DD');
 					        document.getElementById("Ostart").value = moment(calEvent.start).format('YYYY-MM-DD');
-					        document.getElementById("Oend").value = moment(calEvent.end).format('YYYY-MM-DD');
+					        
+					        document.getElementById("editColor").value = calEvent.color;//.format('YYYY-MM-DD');
+					       
+					        document.getElementById("Ocolor").value = calEvent.color; //$(this).css('background-color');//.format('YYYY-MM-DD');
+					        
+					        var test = moment(calEvent.end).format('YYYY-MM-DD');
+					       // alert(test);
+					        if(test.toString() == "Invalid date"){
+					        	document.getElementById("editEnd").value = moment(calEvent.start).format('YYYY-MM-DD');
+					        	document.getElementById("Oend").value = moment(calEvent.start).format('YYYY-MM-DD');
+					        }else{
+						        document.getElementById("editEnd").value = moment(calEvent.end).format('YYYY-MM-DD');
+						        document.getElementById("Oend").value = moment(calEvent.end).format('YYYY-MM-DD');
+					        }
+					        var test1 = moment(calEvent.end).format('HH:mm');
+					        var test2 = moment(calEvent.start).format('HH:mm');
+					        if(test1.toString() == "Invalid date" || test1.toString() == "00:00", test2.toString() == "00:00"){
+					        	document.getElementById("editStartTime").value = "All Day";
+						        document.getElementById("editEndTime").value = "All Day";
+						        document.getElementById("OstartTime").value = "All Day";
+						        document.getElementById("OendTime").value = "All Day";
+					        }else{
+					        	document.getElementById("editStartTime").value = moment(calEvent.start).format('HH:mm');
+						        document.getElementById("editEndTime").value = moment(calEvent.end).format('HH:mm');
+						        document.getElementById("OstartTime").value = moment(calEvent.start).format('HH:mm');
+						        document.getElementById("OendTime").value = moment(calEvent.end).format('HH:mm');
+					        }
 					    }
 				
 			});
 			
 
 		});
+		
+		
 	</script>
 
 <!-- Modal -->
@@ -176,6 +211,31 @@
             <label>End Date:</label>
             <input class="form-control" type="text" id="editEnd" name="editEndDate" placeholder="YYYY-MM-DD" pattern="\d{4}-?\d{2}-?\d{2}" required>
             </div>
+            
+             <div class="form-group">
+            <label> Edit Start Time:</label>
+            <input class="form-control" type="text" name="editStartTime" id="editStartTime" placeholder="HH:mm" >
+            </div>
+             <div class="form-group">
+            <label>Edit End Time:</label>
+            <input class="form-control" type="text" name="editEndTime" id="editEndTime" placeholder="HH:mm"  >
+            
+            </div>
+            
+             
+            <div class="form-group">
+      <label for="editColor">Select Color (select one):</label>
+      <select class="form-control" name="editColor" id="editColor">
+        <option value="#00ff0c">Green</option>
+        <option value="#ff0000">Red</option>
+        <option value="#000000">Black</option>
+        <option value="#0021ff">Blue</option>
+        <option value="#ff00ee">Purple</option>
+        <option value="#ff8300">Orange</option>
+      </select>
+     
+    </div>
+            
           </form>
         </div>
         <div class="modal-footer">
@@ -188,6 +248,9 @@
   </div>
 <input form="editEvent" type="text" id="Otitle" name="Otitle" style="visibility: hidden"></input>
 <input form="editEvent" type="text" id="Ostart" name="Ostart" style="visibility: hidden"></input>
-<input form="editEvent" type="text" id="Oend" name="Oend" style="visibility: hidden"></input>
+<input form="editEvent" type="text" id="Oend" name="Oend" style="visibility: hidden" ></input>
+<input form="editEvent" type="text" id="OstartTime" name="OstartTime" style="visibility: hidden"></input>
+<input form="editEvent" type="text" id="OendTime" name="OendTime" style="visibility: hidden"></input>
+<input form="editEvent" type="text" id="Ocolor" name="Ocolor" ></input>
 </body>
 </html>

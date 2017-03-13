@@ -36,46 +36,50 @@ public class CalendarServlet extends HttpServlet {
 	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
-		
-		//Get a handle on the session
-				HttpSession session = req.getSession();
-				//Check if the user is logged in, if not then redirect them to the login page
-				/*if(session.getAttribute("code") == null){
-					RequestDispatcher rd = req.getRequestDispatcher("LoginRegister.jsp");
-					rd.forward(req, response);	
-				}*/
-		// TODO Auto-generated method stub
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		// Get a handle on the session
+		HttpSession session = request.getSession();
+	
 		List l = new ArrayList();
-		ArrayList<String[]> list = new ArrayList<String[]>();
-		
 		String code = (String) session.getAttribute("code");
-		list = (ArrayList<String[]>) mongo.getCalender(code);
-		int i =0;
-		for(String[] r : list){
+		ArrayList<String[]> list = (ArrayList<String[]>) mongo.getCalender(code);
+		int i = 0;
+		
+		for (String[] r : list) {
 			CalendarValues c = new CalendarValues();
 			c.setId(i);
 			c.setTitle(r[0]);
-			c.setStart(r[1]+"T"+r[3]);
-			c.setEnd(r[2]+"T"+r[4]);
-			//c.setStartTime(r[3]);
-			//c.setEndTime(r[4]);
+			
+			// This allows user to create all day event and timed events
+			if (r[3].equals("ALL DAY") && r[4].equals("ALL DAY")) {
+				c.setStart(r[1]);
+				c.setEnd(r[2]);
+			} else {
+				c.setStart(r[1] + "T" + r[3]);
+				c.setEnd(r[2] + "T" + r[4]);
+			}
+			// c.setStartTime(r[3]);
+			// c.setEndTime(r[4]);
+			c.setColor(r[5]);
 			l.add(c);
 		}
+		
+		
 
 		/*
-		 * google-gson. Gson is a Java library that can be used to convert Java Objects into their JSON representation
-		 * */
+		 * google-gson. Gson is a Java library that can be used to convert Java
+		 * Objects into their JSON representation
+		 */
 
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
-		
-		RequestDispatcher rg = req.getRequestDispatcher("Calendar.jsp");
+
+		RequestDispatcher rg = request.getRequestDispatcher("Calendar.jsp");
 		out.write(new Gson().toJson(l));
-		//rg.include(req, response);
-		
-		
+		// rg.include(req, response);
+
 	}
 
 	/*
@@ -103,21 +107,25 @@ public class CalendarServlet extends HttpServlet {
 		// Else if the update button was pressed update the account
 		else if (buttonPressed.equals("save")) {
 			cal.setTitle(request.getParameter("Title"));
-			System.out.println("hello " + cal.getTitle());
-
 			cal.setStart(request.getParameter("startDate"));
-			System.out.println("Start " + cal.getStart());
-
 			cal.setEnd(request.getParameter("endDate"));
-			System.out.println("End " + cal.getEnd());
+			cal.setColor(request.getParameter("color"));
+			if(request.getParameter("startTime").equalsIgnoreCase("ALL DAY") 
+					&& request.getParameter("endTime").equalsIgnoreCase("ALL DAY"))
+			{
+				cal.setStartTime("ALL DAY");
+				cal.setEndTime("ALL DAY");
+			}else{
+				cal.setStartTime(request.getParameter("startTime"));
+				cal.setEndTime(request.getParameter("endTime"));
+			}
 			
-			cal.setStartTime(request.getParameter("startTime"));
-			System.out.println("Start Time: " + cal.getStartTime() );
 			
-			cal.setEndTime(request.getParameter("endTime"));
-			System.out.println("End Time: " + cal.getEndTime() );
+			
 			// mongo.setCalender(cal);
 			mongo.setCalendar(code, cal);
+
+			// If/boolean for allday event is true need to fix invalid bug
 
 			response.sendRedirect("Calendar.jsp");
 
@@ -132,6 +140,15 @@ public class CalendarServlet extends HttpServlet {
 		cal.setTitle(request.getParameter("Otitle"));
 		cal.setStart(request.getParameter("Ostart"));
 		cal.setEnd(request.getParameter("Oend"));
+		if(request.getParameter("OstartTime").equalsIgnoreCase("ALL DAY") 
+				&& request.getParameter("OendTime").equalsIgnoreCase("ALL DAY"))
+		{
+			cal.setStartTime("ALL DAY");
+			cal.setEndTime("ALL DAY");
+		}else{
+			cal.setStartTime(request.getParameter("OstartTime"));
+			cal.setEndTime(request.getParameter("OendTime"));
+		}
 
 		mongo.deleteCalendar(code, cal);
 
@@ -146,17 +163,32 @@ public class CalendarServlet extends HttpServlet {
 		cal.setTitle(request.getParameter("Otitle"));
 		cal.setStart(request.getParameter("Ostart"));
 		cal.setEnd(request.getParameter("Oend"));
+		cal.setColor(request.getParameter("Ocolor"));
+		if(request.getParameter("OstartTime").equalsIgnoreCase("ALL DAY") 
+				&& request.getParameter("OendTime").equalsIgnoreCase("ALL DAY"))
+		{
+			cal.setStartTime("ALL DAY");
+			cal.setEndTime("ALL DAY");
+		}else{
+			cal.setStartTime(request.getParameter("OstartTime"));
+			cal.setEndTime(request.getParameter("OendTime"));
+		}
 
 		mongo.deleteCalendar(code, cal);
 
 		cal.setTitle(request.getParameter("editTitle"));
-		System.out.println("hello " + cal.getTitle());
-
 		cal.setStart(request.getParameter("editStartDate"));
-		System.out.println("Start " + cal.getStart());
-
 		cal.setEnd(request.getParameter("editEndDate"));
-		System.out.println("End " + cal.getEnd());
+		cal.setColor(request.getParameter("editColor"));
+		if(request.getParameter("editStartTime").equalsIgnoreCase("ALL DAY") 
+				&& request.getParameter("editEndTime").equalsIgnoreCase("ALL DAY"))
+		{
+			cal.setStartTime("ALL DAY");
+			cal.setEndTime("ALL DAY");
+		}else{
+			cal.setStartTime(request.getParameter("editStartTime"));
+			cal.setEndTime(request.getParameter("editEndTime"));
+		}
 
 		// mongo.setCalender(cal);
 		mongo.setCalendar(code, cal);

@@ -178,7 +178,9 @@
 				<footer class="w3-container w3-red">
 					<p></p>
 					<button type="button" class="btn btn-warning" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
-					<span class="pull-right"><button form="userDetails" type="submit" value="delete" name="btn" class="btn btn-danger">Delete</button></span>
+					<span class="pull-right">
+						<button form="userDetails" type="submit" value="delete" name="btn" class="btn btn-danger">Delete</button>
+					</span>
 					<p></p>
 				</footer>
 			</div>

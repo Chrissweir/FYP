@@ -47,12 +47,6 @@
 		</div>
 	</div>
 	</nav>
-<!-- Image Header 
-<div class="w3-display-container w3-animate-opacity">
-  <img src="https://images.unsplash.com/3/doctype-hi-res.jpg" alt="boat" style="width:100%;min-height:350px;max-height:600px;">
-</div>
--->
-
 
 <!-- Team Container -->
 <div class="w3-container w3-padding-64 w3-center" id="team">
@@ -100,8 +94,8 @@
 <div class="w3-card-2 w3-white">
   <img src="https://www.w3schools.com/w3css/img_fjords.jpg" alt="Vernazza" style="width:100%">
   <div class="w3-container">
-  <h3>Customer 1</h3>
-  <h4>Trade</h4>
+  <h3>Christopher</h3>
+  <h4>Authentication</h4>
   <p>Blablabla</p>
   <p>Blablabla</p>
   <p>Blablabla</p>
@@ -114,7 +108,7 @@
 <div class="w3-card-2 w3-white">
   <img src="https://www.w3schools.com/w3css/img_fjords.jpg" alt="Cinque Terre" style="width:100%">
   <div class="w3-container">
-  <h3>Customer 2</h3>
+  <h3>Gareth</h3>
   <h4>Trade</h4>
   <p>Blablabla</p>
   <p>Blablabla</p>
@@ -128,7 +122,7 @@
 <div class="w3-card-2 w3-white">
   <img src="https://www.w3schools.com/w3css/img_fjords.jpg" alt="Monterosso" style="width:100%">
   <div class="w3-container">
-  <h3>Customer 3</h3>
+  <h3>Paul</h3>
   <h4>Trade</h4>
   <p>Blablabla</p>
   <p>Blablabla</p>
@@ -142,7 +136,7 @@
 <div class="w3-card-2 w3-white">
   <img src="https://www.w3schools.com/w3css/img_fjords.jpg" alt="Vernazza" style="width:100%">
   <div class="w3-container">
-  <h3>Customer 1</h3>
+  <h3>Patrick</h3>
   <h4>Trade</h4>
   <p>Blablabla</p>
   <p>Blablabla</p>
