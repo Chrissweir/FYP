@@ -18,6 +18,8 @@
 <link rel='stylesheet' href='https://fullcalendar.io/js/fullcalendar-3.2.0/fullcalendar.css' />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.js"></script>
 
+<script type="text/javascript" src="js/Calendar.js"></script>
+
 <!--   -->
 
 <title>Calendar</title>
@@ -56,13 +58,13 @@
 		</div>
 	</div>
 	</nav>
-	<div style="margin: 50px 50px 50px 50px;">
+	<div style="margin: 250px 150px 0px 150px;">
 		<div id="calendar"></div>
 	</div>
 	<div>
 	<div class="container">
   <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Create Event</button>
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
@@ -75,7 +77,7 @@
           <h4 class="modal-title">Add Event</h4>
         </div>
         <div class="modal-body">
-          <form id="addEvent" name="addEvent" action="CalendarServlet" method="post">
+          <form id="addEvent" name="addEvent" onsubmit="return error();" action="CalendarServlet" method="post">
            <div class="form-group">
            <label>Title:</label>
             <input class="form-control" type="text" name="Title" placeholder="Title max 17 characters"  maxlength="17" required>
@@ -92,12 +94,13 @@
             
              <div class="form-group">
             <label>Start Time:</label>
-            <input class="form-control" type="text" name="startTime" placeholder="HH:mm or All Day" >
+            <input class="form-control" type="text" name="startTime" id="startTime" placeholder="HH:mm or All Day" >
             </div>
              <div class="form-group">
             <label>End Time:</label>
-            <input class="form-control" type="text" name="endTime" placeholder="HH:mm or All Day"  >
-            
+            <input class="form-control" type="text" name="endTime" id="endTime" placeholder="HH:mm or All Day"  >
+            <label id="errorLabel" style="color: red; display: none">Entry must be HH:mm or All Day</label>
+
             </div>
             
             <div class="form-group">
@@ -218,8 +221,8 @@
             </div>
              <div class="form-group">
             <label>Edit End Time:</label>
-            <input class="form-control" type="text" name="editEndTime" id="editEndTime" placeholder="HH:mm"  >
-            
+            <input class="form-control" type="text" name="editEndTime" id="editEndTime" placeholder="HH:mm">
+            <label id="errorLabel" style="display: none"></label>
             </div>
             
              
