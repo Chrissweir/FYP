@@ -21,21 +21,21 @@ function getBase64(file) {
 function edit(){
 	document.getElementById("saveBtn").style.visibility = "visible";
 	document.getElementById("imageEdit").style.visibility = "visible";
-	document.getElementById("fname").contentEditable= true;
-	document.getElementById("lname").contentEditable= true;
-	document.getElementById("em").contentEditable= true;
-	document.getElementById("coll").contentEditable= true;
-	document.getElementById("cour").contentEditable= true;
-	document.getElementById("biog").contentEditable= true;
+	document.getElementById("fname").readOnly = false;
+	document.getElementById("lname").readOnly = false;
+	document.getElementById("em").readOnly = false;
+	document.getElementById("coll").readOnly = false;
+	document.getElementById("cour").readOnly = false;
+	document.getElementById("biog").readOnly = false;
 };
 
 function save(){
 	document.getElementById("saveBtn").style.visibility = "hidden";
-	document.getElementById("fname").contentEditable= false;
-	document.getElementById("lname").contentEditable= false;
-	document.getElementById("em").contentEditable=false;
-	document.getElementById("coll").contentEditable=false;
-	document.getElementById("cour").contentEditable=false;
-	document.getElementById("biog").contentEditable=false;
+	document.getElementById("fname").readOnly = true;
+	document.getElementById("lname").readOnly = true;
+	document.getElementById("em").readOnly = true;
+	document.getElementById("coll").readOnly = true;
+	document.getElementById("cour").readOnly = true;
+	document.getElementById("biog").readOnly = true;
 	document.getElementById("imageEdit").style.visibility = "hidden";
 };

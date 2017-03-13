@@ -17,16 +17,13 @@
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-			<a class="navbar-brand"> <span
-				class="glyphicon glyphicon-education" aria-hidden="true"></span></a>
-				<a class="navbar-brand" href="About.jsp">College Planner</a>
+			<a class="navbar-brand">
+				<span class="glyphicon glyphicon-education" aria-hidden="true"></span>
+			</a>
+			<a class="navbar-brand" href="About.jsp">College Planner</a>
 		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="Calendar.jsp">Calender</a></li>
 				<li><a href="Timetable">Timetable</a></li>
@@ -34,15 +31,16 @@
 				<li><a href="Grades">Grades Tracker</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">${username}<span class="caret"></span></a>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+								aria-haspopup="true" aria-expanded="false">${username}<span class="caret"></span>
+					</a>
 					<ul class="dropdown-menu">
-						<li><a href="Profile">Account Details <span
-								class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
+						<li><a href="Profile">Account Details <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="Logout">Logout</a></li>
-					</ul></li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -87,7 +85,10 @@
 
 <div class="col-lg-12">
 <h2 class="text-center">Our Work</h2>
-<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p class="text-center">For our Final Year Project we decided to make a College Planner web application using the J2EE framework.
+ This idea behind this project came from our own individual needs as we each found that we would benefit from creating an application 
+ that would help manage our college projects, timetable, deadlines, etc. Upon planning this application we settle on Java as our main
+  language as it has been the core language used throughout our four years at GMIT, and we all wished to master this language by the end of this project.</p>
 </div>
 
 <div class="w3-quarter">

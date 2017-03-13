@@ -12,7 +12,6 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 
 import ie.gmit.sw.Calendar.CalendarValues;
-import ie.gmit.sw.Security.AccountRecoveryDetails;
 import ie.gmit.sw.Timetable.Module;
 import ie.gmit.sw.Timetable.TimetableModule;
 
@@ -320,6 +319,8 @@ public class MongoConnection {
 		return l;
 	}
 
+	//Modules
+	//=================================================
 	public void setModule(String code, Module newClass) {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);

@@ -75,7 +75,6 @@ public class Profile extends HttpServlet {
 				userDetails.setCode((String)session.getAttribute("code"));
 
 				//Send the new details to the database
-
 				sqlConn.updateUserDetails(userDetails);
 
 				//Update the users Profile picture
