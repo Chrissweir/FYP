@@ -75,12 +75,11 @@
 					<h1>Todo List</h1>
 					<hr>
 					<table class="todo">
-						<c:forEach var="task" items="${todolist.tasks}">
+						<c:forEach var="task" items="${todolist.tasks}" >
 							<tr role="row">
 								<td>${task.title}</td> 
 								<td>${task.description}</td>
-								
-								<td><input type="checkbox" value="${task.title}" id="check"></td>
+								<td><input type="checkbox" value="${task.title}" onchange="myFunction(this);"></td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -92,12 +91,6 @@
 					<h1>Tasks Complete</h1>
 					<hr>
 					<ul id="done-items" class="list-unstyled">
-						<li>
-							<button class="remove-item btn btn-default btn-xs pull-right">
-								<span class="glyphicon glyphicon-remove"></span>
-							</button>
-						</li>
-
 					</ul>
 				</div>
 			</div>
