@@ -38,4 +38,14 @@
     <servlet-name>ToDoList</servlet-name>
     <url-pattern>/ToDoList</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Grades</display-name>
+    <servlet-name>Grades</servlet-name>
+    <servlet-class>ie.gmit.sw.Grades.GradeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Grades</servlet-name>
+    <url-pattern>/Grades</url-pattern>
+  </servlet-mapping>
 </web-app>
