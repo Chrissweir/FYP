@@ -1,20 +1,20 @@
-$("#sortable").sortable();
-$("#sortable").disableSelection();
-
-/*function move(value){
-	alert(value);
-};*/
-
-function myFunction(elem)
+function move(task)
 {
-    if (elem.checked)
-    {
-        alert(elem.value);
-    }
-    else
-    {
-        alert("Im not checked");
-    }
+	var data = [];
+	data = task.value.split("|");
+	
+	document.getElementById("taskTitle").value = data[0];
+	document.getElementById("taskDescription").value = data[1];
+	task.form.submit();
+};
+
+function remove(task){
+	var data = [];
+	data = task.value.split("|");
+	
+	document.getElementById("deleteTaskTitle").value = data[0];
+	document.getElementById("deleteTaskDescription").value = data[1];
+	
 }
  
 

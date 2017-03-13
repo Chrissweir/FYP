@@ -177,7 +177,7 @@ public class MongoConnection {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
-		DBCollection user = db.getCollection("ToDo");
+		DBCollection user = db.getCollection("ToDoCompleted");
 		BasicDBObject document = new BasicDBObject();
 		document.put("Confirmation Code", code);
 		document.put("Title", title);
@@ -209,6 +209,70 @@ public class MongoConnection {
 		client.close();
 		return l;
 	}
+	
+	public void taskCompleted(String code, String title, String desc) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("ToDo");
+		BasicDBObject document = new BasicDBObject();
+		document.put("Confirmation Code", code);
+		document.put("Title", title);
+		document.put("Desc", desc);
+		user.remove(document);
+		client.close();
+	}
+	
+	public void setTaskCompleted(String code, String title, String desc) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("ToDoCompleted");
+		BasicDBObject document = new BasicDBObject();
+		document.put("Confirmation Code", code);
+		document.put("Title", title);
+		document.put("Desc", desc);
+		user.insert(document);
+		client.close();
+	}
+	
+	public List getTaskCompleted(String code){
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("ToDoCompleted");
+		BasicDBObject query = new BasicDBObject();
+		query.put("Confirmation Code", code);
+		DBCursor cursor = user.find(query);
+
+		ArrayList<String[]> c = new ArrayList<String[]>();
+		if(cursor.hasNext()) {
+			for (DBObject dbObject : cursor) {
+				String title = (String) dbObject.get("Title");
+				String desc = (String) dbObject.get("Desc");
+				String[] s = new String[2];
+				s[0] = title;
+				s[1] = desc;
+				c.add(s);
+			}
+		}
+		client.close();
+		return c;
+	}
+	
+	public void deleteCompletedTask(String code, String title, String description) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("ToDoCompleted");
+		BasicDBObject document = new BasicDBObject();
+		document.put("Confirmation Code", code);
+		document.put("Title", title);
+		document.put("Desc", description);
+		user.remove(document);
+		client.close();
+	}
+	
 	//Timetable
 	//=================================================
 	public void setTimetable(String code, TimetableModule module) {
@@ -306,5 +370,5 @@ public class MongoConnection {
 		document.put("Room", removeModule.getRoom());
 		user.remove(document);
 		client.close();
-	}
+	}	
 }
