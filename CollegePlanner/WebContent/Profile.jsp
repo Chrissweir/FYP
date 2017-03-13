@@ -14,30 +14,20 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/Profile.js"></script>
 <script type="text/javascript">
-	$('document')
-			.ready(
-					function() {
-						document.getElementById("imgPath").value = document
-								.getElementById("image").src;
-						updateData();
-						function updateData() {
-							document.getElementById("firstname").value = document
-									.getElementById("fname").innerHTML;
-							document.getElementById("lastname").value = document
-									.getElementById("lname").innerHTML;
-							document.getElementById("email").value = document
-									.getElementById("em").innerHTML;
-							document.getElementById("college").value = document
-									.getElementById("coll").innerHTML;
-							document.getElementById("course").value = document
-									.getElementById("cour").innerHTML;
-							document.getElementById("bio").value = document
-									.getElementById("biog").innerHTML;
-						}
-						$(document).on("change, keyup",
-								"#fname, #lname, #em, #coll, #cour, #biog",
-								updateData);
-					});
+	$('document').ready(
+			function() {
+				document.getElementById("imgPath").value = document.getElementById("image").src;
+				updateData();
+				function updateData() {
+					document.getElementById("firstname").value = document.getElementById("fname").value;
+					document.getElementById("lastname").value = document.getElementById("lname").value;
+					document.getElementById("email").value = document.getElementById("em").value;
+					document.getElementById("college").value = document.getElementById("coll").value;
+					document.getElementById("course").value = document.getElementById("cour").value;
+					document.getElementById("bio").value = document.getElementById("biog").value;
+				}
+				$(document).on("change, keyup", "#fname, #lname, #em, #coll, #cour, #biog", updateData);
+			});
 </script>
 <title>My Profile</title>
 
@@ -48,9 +38,10 @@
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-			<a class="navbar-brand"> <span
-				class="glyphicon glyphicon-education" aria-hidden="true"></span></a>
-				<a class="navbar-brand" href="About.jsp">College Planner</a>
+			<a class="navbar-brand">
+				<span class="glyphicon glyphicon-education" aria-hidden="true"></span>
+			</a>
+			<a class="navbar-brand" href="About.jsp">College Planner</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -71,7 +62,8 @@
 								class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="Logout">Logout</a></li>
-					</ul></li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -101,27 +93,27 @@
 									<tbody>
 										<tr>
 											<td>First Name:</td>
-											<td><textfield type="text" id="fname">${firstname}</textfield></td>
+											<td><input style="border: none; width: 100%;" maxlength="100" placeholder="First Name" type="text" id="fname" width="60" value="${firstname}" readonly required></input></td>
 										</tr>
 										<tr>
 											<td>Last Name:</td>
-											<td><textfield type="text" id="lname">${lastname}</textfield></td>
+											<td><input style="border: none; width: 100%;" maxlength="100" placeholder="Last Name" type="text" id="lname" width="60" value="${lastname}" readonly required></input></td>
 										</tr>
 										<tr>
 											<td>Email:</td>
-											<td><textfield type="text" id="em">${email}</textfield></td>
+											<td><input style="border: none; width: 100%;" maxlength="100" placeholder="Email" type="text" id="em" value="${email}" readonly required></input></td>
 										</tr>
 										<tr>
 											<td>College:</td>
-											<td><textfield type="text" id="coll">${college}</textfield></td>
+											<td><input style="border: none; width: 100%;" maxlength="100" placeholder="College Name" type="text" id="coll" width="60" value="${college}" readonly required></input></td>
 										</tr>
 										<tr>
 											<td>Course:</td>
-											<td><textfield type="text" id="cour">${course}</textfield></td>
+											<td><input style="border: none; width: 100%;" maxlength="100" placeholder="Course Title" type="text" id="cour" width="60" value="${course}" readonly></input></td>
 										</tr>
 										<tr>
 											<td>Bio:</td>
-											<td><textfield type="text" id="biog">${bio}</textfield></td>
+											<td><textarea style="border: none; min-width: 370px; max-width: 370px;" maxlength="300" placeholder="300 Characters" type="text" id="biog" cols="20" rows="7" readonly>${bio}</textarea></td>
 										</tr>
 									</tbody>
 								</table>
@@ -144,15 +136,12 @@
 			</form>
 		</div>
 
-		<input form="userDetails" type="text" name="firstname" id="firstname"
-			style="visibility: hidden"> <input form="userDetails"
-			type="text" name="lastname" id="lastname" style="visibility: hidden">
-		<input form="userDetails" type="text" name="email" id="email"
-			style="visibility: hidden"> <input form="userDetails"
-			type="text" name="college" id="college" style="visibility: hidden">
-		<input form="userDetails" type="text" name="course" id="course"
-			style="visibility: hidden"> <input form="userDetails"
-			type="text" name="bio" id="bio" style="visibility: hidden">
+		<input form="userDetails" type="text" name="firstname" id="firstname" style="visibility: hidden"> 
+		<input form="userDetails" type="text" name="lastname" id="lastname" style="visibility: hidden">
+		<input form="userDetails" type="text" name="email" id="email" style="visibility: hidden">
+		<input form="userDetails" type="text" name="college" id="college" style="visibility: hidden">
+		<input form="userDetails" type="text" name="course" id="course" style="visibility: hidden">
+		<input form="userDetails" type="text" name="bio" id="bio" style="visibility: hidden">
 	</div>
 
 	<div id="modal-container">
