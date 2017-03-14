@@ -93,14 +93,16 @@
 				<ul id="done-items" class="list-unstyled">
 				<c:forEach var="taskCompleted" items="${todolistCompleted.tasks}">
 					<li>${taskCompleted.title}
-						<button class="move-item btn btn-default btn-xs pull-right">
-								
-								<span class="glyphicon glyphicon-transfer"></span>
-						</button >
 						<button class="remove-item btn btn-default btn-xs pull-right" 
 								value="${taskCompleted.title}|${taskCompleted.description}"
 								data-toggle="modal" data-target="#myModal" onClick="remove(this);">
 							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+						
+						<button class="move-item btn btn-default btn-xs pull-right"
+								value="${taskCompleted.title}|${taskCompleted.description}"
+								data-toggle="modal" data-target="#moveModal" onClick="transfer(this);">
+							<span class="glyphicon glyphicon-transfer"></span>
 						</button>
 					</li>
 				</c:forEach>
@@ -119,9 +121,9 @@
 	<input form="delete" type="text" name="deleteTaskDescription" id="deleteTaskDescription" style="visibility: hidden">
 </form>
 
-<form name = "moveBack" id = "move" action = "ToDoListServlet" method = "post">
-	<input form="moveBack" type="text" name="moveTitle" id="moveTitle"style="visibility: hidden">
-	<input form="moveBack" type="text" name="moveDescription" id="moveDescription" style="visibility: hidden">
+<form name = "moveBack" id = "moveBack" action = "ToDoListServlet" method = "post">
+	<input form="moveBack" type="text" name="moveTaskTitle" id="moveTaskTitle" style="visibility: hidden">
+	<input form="moveBack" type="text" name="moveTaskDescription" id="moveTaskDescription" style="visibility: hidden">
 </form>
 
 <!-- Modal -->
@@ -135,6 +137,22 @@
         <div class="modal-body">
         	<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
           <button form="delete" class="btn btn-danger pull-right"type="submit" name="btn" value="Delete">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="moveModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Are you sure?</h4>
+        </div>
+        <div class="modal-body">
+        	<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+          <button form="moveBack" class="btn btn-danger pull-right"type="submit" name="btn" value="Transfer">Undo</button>
         </div>
       </div>
     </div>
