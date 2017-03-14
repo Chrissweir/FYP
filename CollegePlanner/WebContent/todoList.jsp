@@ -56,7 +56,7 @@
 <div class="addTask">
 	<form action="ToDoListServlet" method="post" >
 
-		<b> Add Title:</b> <input type="text" id="title" name="title" required />
+		<b>Title:</b> <input type="text" id="title" name="title" required />
 
 
 		<b>Description:</b> <input type="text" id="description"name="description" required /> <input type="submit" name="btn" value="Save" />
@@ -94,6 +94,7 @@
 				<c:forEach var="taskCompleted" items="${todolistCompleted.tasks}">
 					<li>${taskCompleted.title}
 						<button class="move-item btn btn-default btn-xs pull-right">
+								
 								<span class="glyphicon glyphicon-transfer"></span>
 						</button >
 						<button class="remove-item btn btn-default btn-xs pull-right" 
@@ -116,6 +117,11 @@
 <form name = "delete" id = "delete" action = "ToDoListServlet" method = "post">
 	<input form="delete" type="text" name="deleteTaskTitle" id="deleteTaskTitle"style="visibility: hidden">
 	<input form="delete" type="text" name="deleteTaskDescription" id="deleteTaskDescription" style="visibility: hidden">
+</form>
+
+<form name = "moveBack" id = "move" action = "ToDoListServlet" method = "post">
+	<input form="moveBack" type="text" name="moveTitle" id="moveTitle"style="visibility: hidden">
+	<input form="moveBack" type="text" name="moveDescription" id="moveDescription" style="visibility: hidden">
 </form>
 
 <!-- Modal -->
