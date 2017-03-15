@@ -20,7 +20,7 @@ function error() {
 		if (document.getElementById("endTime").value.toUpperCase() != "ALL DAY") {
 			// throw error
 			document.getElementById("errorLabel").style.display = "block";
-			document.getElementById("errorEditLabel").style.display = "block";
+			//document.getElementById("errorEditLabel").style.display = "block";
 			return false;
 		}
 		return true;
@@ -32,7 +32,7 @@ function error() {
 				.getElementById("endTime").value)) {
 			// throw error
 			document.getElementById("errorLabel").style.display = "block";
-			document.getElementById("errorEditLabel").style.display = "block";
+			//document.getElementById("errorEditLabel").style.display = "block";
 			return false;
 		}
 		return true;
@@ -43,8 +43,9 @@ function error() {
 
 /*	*/
 function errorTime() {
-	var stime = document.getElementById("startTime").value;
-	var etime = document.getElementById("endTime").value;
+
+	var stime = parseInt(document.getElementById("startTime").value);
+	var etime = parseInt(document.getElementById("endTime").value);
 	
 	//Compare string not num
 	if (stime < etime) {
@@ -61,3 +62,78 @@ function errorTime() {
 	
 	}
 };
+
+function errorEdit() {
+	checkEdit();
+	errorTimeEdit();
+	//return false;
+	
+	if(checkEdit() && errorTimeEdit() == true){
+		//alert("TRUE");
+		return true;
+		
+	}else{
+		//alert("FALS");
+		return false;
+	}
+}
+	
+	function checkEdit(){
+
+	// File to throw error when wrong format is inputed
+	if (document.getElementById("editStartTime").value.toUpperCase() == "ALL DAY") {
+		if (document.getElementById("editEndTime").value.toUpperCase() != "ALL DAY") {
+			// throw error
+			document.getElementById("editErrorTime").style.display = "none";
+			document.getElementById("errorEditLabel").style.display = "block";
+			return false;
+		}
+		return true;
+	}
+
+	if (/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/.test(document
+			.getElementById("editStartTime").value)) {
+		if (!/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/.test(document
+				.getElementById("editEndTime").value)) {
+			// throw error
+			document.getElementById("editErrorTime").style.display = "none";
+			document.getElementById("errorEditLabel").style.display = "block";
+			return false;
+		}
+		document.getElementById("editErrorTime").style.display = "none";
+		document.getElementById("errorEditLabel").style.display = "none";
+		return true;
+	}
+	return false;
+
+};
+
+/*	*/
+function errorTimeEdit() {
+	var start = document.getElementById("editStartTime").value.toUpperCase();
+	var end = document.getElementById("editEndTime").value.toUpperCase();
+	
+	if(start == "ALL DAY" && end == "ALL DAY"){
+		return true;
+	}
+	
+	var stime = parseInt(document.getElementById("editStartTime").value);
+	var etime = parseInt(document.getElementById("editEndTime").value);
+	
+	//Compare string not num
+	
+	if (stime < etime) {
+		// error
+		document.getElementById("editErrorTime").style.display = "none";
+		document.getElementById("errorEditLabel").style.display = "none";
+
+		return true;
+	} else{
+		// error
+		document.getElementById("editErrorTime").style.display = "block";
+		document.getElementById("errorEditLabel").style.display = "none";
+		return false;
+	
+	}
+};
+

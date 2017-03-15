@@ -204,7 +204,7 @@
         </div>
         <div class="modal-body">
         
-          <form id="editEvent" name="editEvent" onsubmit="return error();" action="CalendarServlet" method="post">
+          <form id="editEvent" name="editEvent" onsubmit="return errorEdit();" action="CalendarServlet" method="post">
            <div class="form-group">
            <label>Edit Title:</label>
             <input class="form-control" type="text" id="editTitle" name="editTitle" placeholder="Title max 17 characters"  maxlength="17" required>
@@ -226,6 +226,7 @@
             <label>Edit End Time:</label>
             <input class="form-control" type="text" name="editEndTime" id="editEndTime" placeholder="HH:mm">
             <label id="errorEditLabel" style="color: red; display: none">Entry must be HH:mm or All Day</label>
+            <label id="editErrorTime" style="color: red; display: none">start time must start before end time</label>
             </div>
             
              
