@@ -42,7 +42,7 @@
     <description></description>
     <display-name>Grades</display-name>
     <servlet-name>Grades</servlet-name>
-    <servlet-class>ie.gmit.sw.Grades.GradeServlet</servlet-class>
+    <servlet-class>ie.gmit.sw.Modules.ModuleServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Grades</servlet-name>

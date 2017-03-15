@@ -1,9 +1,13 @@
-package ie.gmit.sw.Timetable;
+package ie.gmit.sw.Modules;
 
 public class Module {
 	private String title;
 	private String lecturer;
 	
+	public Module(String title, String lecturer) {
+		this.title = title;
+		this.lecturer = lecturer;
+	}
 	/**
 	 * @return the title
 	 */
@@ -16,7 +20,6 @@ public class Module {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
 	/**
 	 * @return the lecturer
 	 */
