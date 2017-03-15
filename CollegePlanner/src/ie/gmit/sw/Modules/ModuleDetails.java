@@ -6,6 +6,7 @@ public class ModuleDetails {
 	private String date;
 	private int value;
 	private int result;
+	private double grade;
 	/**
 	 * @return the title
 	 */
@@ -67,11 +68,25 @@ public class ModuleDetails {
 	public void setResult(int result) {
 		this.result = result;
 	}
-	public ModuleDetails(String title, String gradeTitle, String date, int value, int result) {
+	public ModuleDetails(String title, String gradeTitle, String date, int value, int result, double grade) {
 		this.title = title;
 		this.gradeTitle = gradeTitle;
 		this.date = date;
 		this.value = value;
 		this.result = result;
-	}	
+		this.grade = grade;
+	}
+	/**
+	 * @return the grade
+	 */
+	public double getGrade() {
+		return grade;
+	}
+	/**
+	 * @param grade the grade to set
+	 */
+	public void setGrade(double grade) {
+		this.grade = grade;
+	}
+	
 }

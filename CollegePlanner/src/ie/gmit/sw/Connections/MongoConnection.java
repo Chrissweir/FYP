@@ -13,6 +13,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 
 import ie.gmit.sw.Calendar.CalendarValues;
+import ie.gmit.sw.Modules.Module;
 import ie.gmit.sw.Modules.ModuleDetails;
 import ie.gmit.sw.Timetable.TimetableModule;
 
@@ -436,5 +437,18 @@ public class MongoConnection {
 		}
 		client.close();
 		return moduleGradesList;
+	}
+
+	public void deleteModule(String code, Module module) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Modules");
+		BasicDBObject document = new BasicDBObject();
+		document.put("Confirmation Code", code);
+		document.put("Title", module.getTitle());
+		document.put("Lecturer", module.getLecturer());
+		user.remove(document);
+		client.close();
 	}
 }

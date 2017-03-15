@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"  pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
@@ -77,6 +75,34 @@
 		</div>
 	</div>
 	
+	<!-- Delete Module Modal -->
+	<div class="modal fade" id="deleteModuleModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Delete Module</h4>
+				</div>
+				<div class="modal-body">
+					<form id="deleteModule" action="Grades" method="post">
+						<div class="form-group">
+							<h4>Are you sure you wish to delete:</h4>
+							<label>Module Title:</label> <input class="form-control" type="text" id="deleteModuleTitle" name="deleteModuleTitle"  maxlength="40" readonly>
+						</div>
+						<div class="form-group">
+							<label>Lecturer:</label> <input class="form-control" type="text" id="deleteModuleLecturer" name="deleteModuleLecturer" maxlength="40" readonly>
+						</div>
+						<h4>Doing so will remove all data belonging to this module!</h4>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button form="deleteModule" name="submitBtn" value="DeleteModule" type="submit" class="btn btn-default">Delete Module</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 		<!-- Collapsable Module Table -->
 		<div class="container">
 			<div class="row">
@@ -85,11 +111,25 @@
 		                <div class="accordion">
 		            		<div class="accordion-group">
 		            		<h3>Modules:</h3>
+		            		<div class="progress pull-right">
+									<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:${average}%">
+									${average}%
+							  		</div>
+								</div>
 		            		    <c:forEach var="module" items="${modules.moduleList}">
 			            			<div class="accordion-heading country">
 			            			<hr>
 			            				<a class="accordion-toggle" data-toggle="collapse" href="#${module.title}">${module.title}</a>
 			            				
+			            				<div class="progress">
+											<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:${module.average}%">
+											${module.average}%
+									  		</div>
+										</div>
+			            				<button id="deleteModule" name="deleteModule" data-original-title="Delete"
+												data-toggle="modal" type="button" class="remove-item btn btn-default btn-xs pull-right"
+												data-target="#deleteModuleModal" value="${module.title}|${module.lecturer}" onClick="deleteModule(this);"><span class="glyphicon glyphicon-remove"></span>
+										</button>
 			            			</div>
 			            			
 			            			<div id="${module.title}" class="accordion-body collapse">
@@ -105,8 +145,8 @@
 			            								<th>Percentage</th>
 			            								<th>
 				            								<button id="newGrade" name="newGrade" data-original-title="Add"
-																data-toggle="modal" type="button" class="btn btn-sm btn-info pull-right"
-																data-target="#gradeModal" value="${module.title}" onClick="getModuleTitle(this);"><span class="glyphicon glyphicon-plus"></span>
+																	data-toggle="modal" type="button" class="btn btn-sm btn-info pull-right"
+																	data-target="#gradeModal" value="${module.title}" onClick="getModuleTitle(this);"><span class="glyphicon glyphicon-plus"></span>
 															</button>
 														</th>
 			            							</tr>
@@ -122,8 +162,8 @@
 					            								<td>${moduleGrade.result}</td>
 					            								<td>
 						            								<div class="progress">
-	  																	<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:${moduleGrade.result}%">
-	    																	${moduleGrade.result}%
+	  																	<div class="progress-bar progress-bar-info active" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:${moduleGrade.grade}%">
+	    																	${moduleGrade.grade}%
 																	  	</div>
 																	</div>
 																</td>
@@ -158,7 +198,7 @@
 							<label>Title:</label> <input class="form-control" type="text" id="gradeTitle" name="gradeTitle" placeholder="Title max 30 characters" maxlength="30">
 						</div>
 						<div class="form-group">
-							<label>Date:</label> <input class="form-control" type="text" id="gradeDate" name="gradeDate" placeholder="Title max 15 characters" maxlength="15">
+							<label>Date:</label> <input class="form-control" type="date" id="gradeDate" name="gradeDate" placeholder="Title max 15 characters" maxlength="15">
 						</div>
 						<div class="form-group">
 							<label>Value:</label> <input class="form-control" type="text" id="gradeValue" name="gradeValue" placeholder="Title max 15 characters" maxlength="15">
