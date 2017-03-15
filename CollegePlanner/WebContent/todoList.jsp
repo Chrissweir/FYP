@@ -55,12 +55,12 @@
 
 <div class="addTask">
 	<form action="ToDoListServlet" method="post" >
-
+<tr>
 		<b>Title:</b> <input type="text" id="title" name="title" required />
 
 
 		<b>Description:</b> <input type="text" id="description"name="description" required /> <input type="submit" name="btn" value="Save" />
-
+</tr>
 	</form>
 	</div>
 	<br>
@@ -74,13 +74,20 @@
 				
 					<h1>Todo List</h1>
 					<hr>
-					<table class="todo">
+					<table class="todo" >
+					 <tr>
+					    <th align="left">Title</th>
+					    <th style="text-align:center;">Description</th>
+					    <th align="right">Mark as Done</th>
+					  </tr>
 						<c:forEach var="task" items="${todolist.tasks}" >
 							<tr role="row">
-								<td>${task.title}</td> 
-								<td>${task.description}</td>
-								<td><input form="markAsDone" name="btn" type="checkbox" value="${task.title}|${task.description}" onchange="move(this);"></td>
+								<td width="20%" align="left">${task.title}</td> 
+								<td width="60%" align="center">${task.description}</td>
+								<td width="20%" align="right"><input form="markAsDone" name="btn" type="checkbox" value="${task.title}|${task.description}" onchange="move(this);"></td>  
+							
 							</tr>
+							
 						</c:forEach>
 					</table>
 				</div>
@@ -152,7 +159,7 @@
         </div>
         <div class="modal-body">
         	<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
-          <button form="moveBack" class="btn btn-danger pull-right"type="submit" name="btn" value="Transfer">Undo</button>
+          <button form="moveBack" class="btn btn-danger pull-right"type="submit" name="btn" value="Transfer">Transfer</button>
         </div>
       </div>
     </div>
