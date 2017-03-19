@@ -100,7 +100,6 @@ public class ModuleServlet extends HttpServlet {
 			//Get a handle on the session
 			HttpSession session = request.getSession();
 			String code = (String)session.getAttribute("code");
-
 			//Check which button was pressed
 			String buttonPressed = request.getParameter("submitBtn");
 
@@ -115,12 +114,25 @@ public class ModuleServlet extends HttpServlet {
 			else if(buttonPressed.equals("DeleteModule")){
 				deleteModule(code, request, response);
 			}
+			else{
+				deleteGrade(code,request,response);
+			}
 			//Call the Grades class to reload the jsp page
 			response.sendRedirect("Grades");
 		}
 		catch (Exception e) {
 			response.sendRedirect("ErrorHandler");
 		}
+	}
+
+	private void deleteGrade(String code, HttpServletRequest request, HttpServletResponse response) {
+		String moduleTitle = request.getParameter("deleteGradeModule");
+		String gradeTitle = request.getParameter("deleteGradeTitle");
+		String gradeDate = request.getParameter("deleteGradeDate");
+		String gradeValue = request.getParameter("deleteGradeValue");
+		String gradeResult = request.getParameter("deleteGradeResult");
+		System.out.println(code +" "+ moduleTitle +" "+ gradeTitle +" "+ gradeDate +" "+ gradeValue +" "+ gradeResult);
+		mongo.deleteGrade(code, moduleTitle, gradeTitle, gradeDate, gradeValue, gradeResult);
 	}
 
 	private void deleteModule(String code, HttpServletRequest request, HttpServletResponse response) {

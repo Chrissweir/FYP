@@ -410,14 +410,12 @@ public class MongoConnection {
 		
 		BasicDBObject fields = new BasicDBObject("Grades",1).append("_id",false);
 		DBCursor cursor = user.find(query, fields);
-
 		if(cursor.hasNext()) {
 			for (DBObject dbObject : cursor) {
-				
 				 BasicDBList grades = (BasicDBList) dbObject.get("Grades");
 				  BasicDBObject[] gradeArr = grades.toArray(new BasicDBObject[0]);
+
 				  for(BasicDBObject dbObj : gradeArr) {
-					
 					String title = (String) dbObj.get("ModuleTitle");
 				    String gradeTitle = (String) dbObj.get("Title");
 				    String Date = (String) dbObj.get("Date");
@@ -431,7 +429,6 @@ public class MongoConnection {
 					s[3] = Value;
 					s[4] = Result;
 					moduleGradesList.add(s);
-					
 				  }
 			}
 		}
@@ -449,6 +446,26 @@ public class MongoConnection {
 		document.put("Title", module.getTitle());
 		document.put("Lecturer", module.getLecturer());
 		user.remove(document);
+		client.close();
+	}
+
+	public void deleteGrade(String code, String moduleTitle,String gradeTitle, String gradeDate, String gradeValue, String gradeResult) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Modules");
+		
+		BasicDBObject query = new BasicDBObject();
+		query.put("Confirmation Code", code);
+		
+		BasicDBObject grade = new BasicDBObject();
+		grade.put("ModuleTitle", moduleTitle);
+		grade.put("Title", gradeTitle);
+		grade.put("Date", gradeDate);
+		grade.put("Value", gradeValue);
+		grade.put("Result", gradeResult);
+		
+		user.update(query, new BasicDBObject("$pull", new BasicDBObject("Grades", grade)), true, true);
 		client.close();
 	}
 }
