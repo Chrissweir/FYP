@@ -25,6 +25,7 @@
 					<li><a href="Timetable">Timetable</a></li>
 					<li><a href="ToDoList">To do</a></li>
 					<li><a href="Grades">Grades Tracker</a></li>
+					<li><a href="Assignments">Assignments</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
@@ -45,20 +46,24 @@
 	</nav>
 	
 <!-- Table Header -->
-<div>
-	<button id="newModule" name="newModule" data-original-title="Edit"
-			data-toggle="modal" type="button" class="btn btn-primary btn-info"
-			data-target="#moduleModal">
-			<span class="glyphicon glyphicon-plus"></span>Create Module
-	</button>
-	<div class="container">
-		<div class="row">
-	        <div class="span12">
-				<div style="float:left;"><h3>Modules:</h3></div>
-				<div class="progress pull-right" style="width: 40%;">
+<div class="container">
+	<div class="row">
+        <div class="col-md-6">
+			<h2>Modules:</h2>
+			<button style="float:left;" id="newModule" name="newModule" data-original-title="Edit"
+					data-toggle="modal" type="button" class="btn btn-primary btn-info"
+					data-target="#moduleModal">
+					<span class="glyphicon glyphicon-plus"></span>
+			</button>
+		</div>
+
+        <div class="col-md-6">
+			<div style="float: right;">
+				<h3>GPA: </h3>
+				<div class="progress" style="width: 400px;">
 					<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:${average}%">
 					${average}%
-			  		</div>
+		  			</div>
 				</div>
 			</div>
 		</div>
@@ -74,22 +79,22 @@
 	                <div class="accordion">
 	            		<div class="accordion-group">
 	            		    <c:forEach var="module" items="${modules.moduleList}">
-		            			<div class="accordion-heading country">
+		            			<div class="accordion-header country">
 			            			<hr>
-			            			<table style="text-align:center;">
+			            			<table style="width: 100%;">
 			            				<thead>
 			            					<tr>
-			            						<th align="left">
+			            						<th>
 			            							<a class="accordion-toggle" data-toggle="collapse" href="#${module.title}">${module.title}</a>
 		            							</th>
-					            				<th style="text-align:center;">
-					            					<div class="progress" style="width: 40%;">
+					            				<th>
+					            					<div class="progress" style="width: 400px; float: right;">
 														<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:${module.average}%">
 														${module.average}%
 									  					</div>
 													</div>
 												</th>
-					            				<th align="right">
+					            				<th>
 					            					<button id="deleteModule" name="deleteModule" data-original-title="Delete"
 															data-toggle="modal" type="button" class="remove-item btn btn-default btn-xs pull-right"
 															data-target="#deleteModuleModal" value="${module.title}|${module.lecturer}" onClick="deleteModule(this);">
@@ -110,7 +115,7 @@
 		            								<th>Date</th>
 		            								<th>Value (%)</th>
 		            								<th>Result (%)</th>
-		            								<th>Percentage</th>
+		            								<th>Percentage Awarded</th>
 		            								<th>
 			            								<button id="newGrade" name="newGrade" data-original-title="Add"
 																data-toggle="modal" type="button" class="btn btn-sm btn-info pull-right"
@@ -236,11 +241,11 @@
 						<label>Lecturer:</label> <input class="form-control" type="text" id="deleteModuleLecturer" name="deleteModuleLecturer" maxlength="40" readonly>
 					</div>
 					<h4>Doing so will remove all data belonging to this module!</h4>
-				</form>
 			</div>
 			<div class="modal-footer">
-				<button form="deleteModule" name="submitBtn" value="DeleteModule" type="submit" class="btn btn-default">Delete Module</button>
+				<button name="submitBtn" value="DeleteModule" type="submit" class="btn btn-default">Delete Module</button>
 			</div>
+			</form>
 		</div>
 	</div>
 </div>

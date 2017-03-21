@@ -332,9 +332,13 @@ public class MongoConnection {
 		document.put("Confirmation Code", code);
 		document.put("Title", title);
 		document.put("Lecturer", lecturer);
-		
+
 		List<BasicDBObject> moduleGrades = new ArrayList<BasicDBObject>();
 		document.put("Grades", moduleGrades);
+
+		List<BasicDBObject> moduleAssignments = new ArrayList<BasicDBObject>();
+		document.put("Assignments", moduleAssignments);
+
 		user.insert(document);
 		client.close();
 	}
@@ -383,21 +387,21 @@ public class MongoConnection {
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("Modules");
-		
+
 		BasicDBObject query = new BasicDBObject();
 		query.put("Confirmation Code", code);
 		query.put("Title", title);
-		
+
 		BasicDBObject grade = new BasicDBObject();
 		grade.put("ModuleTitle", title);
 		grade.put("Title", gradeTitle);
 		grade.put("Date", date);
 		grade.put("Value", value);
 		grade.put("Result", result);
-		
+
 		user.update(query, new BasicDBObject("$push", new BasicDBObject("Grades", grade)), true, false);
 		client.close();
-		}
+	}
 
 	public List getModuleGrades(String code) {
 		List moduleGradesList = new ArrayList<>();
@@ -407,33 +411,68 @@ public class MongoConnection {
 		DBCollection user = db.getCollection("Modules");
 		BasicDBObject query = new BasicDBObject();
 		query.put("Confirmation Code", code);
-		
+
 		BasicDBObject fields = new BasicDBObject("Grades",1).append("_id",false);
 		DBCursor cursor = user.find(query, fields);
 		if(cursor.hasNext()) {
 			for (DBObject dbObject : cursor) {
-				 BasicDBList grades = (BasicDBList) dbObject.get("Grades");
-				  BasicDBObject[] gradeArr = grades.toArray(new BasicDBObject[0]);
+				BasicDBList grades = (BasicDBList) dbObject.get("Grades");
+				BasicDBObject[] gradeArr = grades.toArray(new BasicDBObject[0]);
 
-				  for(BasicDBObject dbObj : gradeArr) {
+				for(BasicDBObject dbObj : gradeArr) {
 					String title = (String) dbObj.get("ModuleTitle");
-				    String gradeTitle = (String) dbObj.get("Title");
-				    String Date = (String) dbObj.get("Date");
-				    String Value = (String) dbObj.get("Value");
-				    String Result = (String) dbObj.get("Result");
-				    String s[] = new String[6];
-				   
-				    s[0] = title;
+					String gradeTitle = (String) dbObj.get("Title");
+					String Date = (String) dbObj.get("Date");
+					String Value = (String) dbObj.get("Value");
+					String Result = (String) dbObj.get("Result");
+					String s[] = new String[6];
+
+					s[0] = title;
 					s[1] = gradeTitle;
 					s[2] = Date;
 					s[3] = Value;
 					s[4] = Result;
 					moduleGradesList.add(s);
-				  }
+				}
 			}
 		}
 		client.close();
 		return moduleGradesList;
+	}
+
+	public List getModuleAssignments(String code) {
+		List moduleAssignmentsList = new ArrayList<>();
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Modules");
+		BasicDBObject query = new BasicDBObject();
+		query.put("Confirmation Code", code);
+
+		BasicDBObject fields = new BasicDBObject("Assignments",1).append("_id",false);
+		DBCursor cursor = user.find(query, fields);
+		if(cursor.hasNext()) {
+			for (DBObject dbObject : cursor) {
+				BasicDBList assignments = (BasicDBList) dbObject.get("Assignments");
+				BasicDBObject[] assignmentsArr = assignments.toArray(new BasicDBObject[0]);
+
+				for(BasicDBObject dbObj : assignmentsArr) {
+					String title = (String) dbObj.get("ModuleTitle");
+					String assignmentsTitle = (String) dbObj.get("Title");
+					String Date = (String) dbObj.get("Date");
+					String Value = (String) dbObj.get("Value");
+					String s[] = new String[6];
+
+					s[0] = title;
+					s[1] = assignmentsTitle;
+					s[2] = Date;
+					s[3] = Value;
+					moduleAssignmentsList.add(s);
+				}
+			}
+		}
+		client.close();
+		return moduleAssignmentsList;
 	}
 
 	public void deleteModule(String code, Module module) {
@@ -454,18 +493,57 @@ public class MongoConnection {
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("Modules");
-		
+
 		BasicDBObject query = new BasicDBObject();
 		query.put("Confirmation Code", code);
-		
+
 		BasicDBObject grade = new BasicDBObject();
 		grade.put("ModuleTitle", moduleTitle);
 		grade.put("Title", gradeTitle);
 		grade.put("Date", gradeDate);
 		grade.put("Value", gradeValue);
 		grade.put("Result", gradeResult);
-		
+
 		user.update(query, new BasicDBObject("$pull", new BasicDBObject("Grades", grade)), true, true);
+		client.close();
+	}
+
+	public void setModuleAssignment(String code, String moduleTitle, String title, String date, String value) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Modules");
+
+		BasicDBObject query = new BasicDBObject();
+		query.put("Confirmation Code", code);
+		query.put("Title", moduleTitle);
+
+		BasicDBObject assignment = new BasicDBObject();
+		assignment.put("ModuleTitle", moduleTitle);
+		assignment.put("Title", title);
+		assignment.put("Date", date);
+		assignment.put("Value", value);
+
+		user.update(query, new BasicDBObject("$push", new BasicDBObject("Assignments", assignment)), true, false);
+		client.close();
+	}
+
+	public void deleteAssignment(String code, String moduleTitle, String title, String date, String value) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Modules");
+
+		BasicDBObject query = new BasicDBObject();
+		query.put("Confirmation Code", code);
+
+		BasicDBObject grade = new BasicDBObject();
+		grade.put("ModuleTitle", moduleTitle);
+		grade.put("Title", title);
+		grade.put("Date", date);
+		grade.put("Value", value);
+
+		user.update(query, new BasicDBObject("$pull", new BasicDBObject("Assignments", grade)), true, true);
 		client.close();
 	}
 }

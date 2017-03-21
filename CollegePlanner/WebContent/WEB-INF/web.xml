@@ -48,4 +48,14 @@
     <servlet-name>Grades</servlet-name>
     <url-pattern>/Grades</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Assignments</display-name>
+    <servlet-name>Assignments</servlet-name>
+    <servlet-class>ie.gmit.sw.Assignments.AssignmentsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Assignments</servlet-name>
+    <url-pattern>/Assignments</url-pattern>
+  </servlet-mapping>
 </web-app>
