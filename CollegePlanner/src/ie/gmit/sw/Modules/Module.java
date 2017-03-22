@@ -4,11 +4,13 @@ public class Module {
 	private String title;
 	private String lecturer;
 	private double average;
+	private int id;
 	
-	public Module(String title, String lecturer, double average) {
+	public Module(String title, String lecturer, double average, int i) {
 		this.title = title;
 		this.lecturer = lecturer;
 		this.average = average;
+		this.id=i;
 	}
 	/**
 	 * @return the title
@@ -45,5 +47,17 @@ public class Module {
 	 */
 	public void setAverage(double average) {
 		this.average = average;
+	}
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 }

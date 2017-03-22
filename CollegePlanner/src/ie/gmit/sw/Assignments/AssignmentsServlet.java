@@ -39,10 +39,12 @@ public class AssignmentsServlet extends HttpServlet {
 			ArrayList<String[]> moduleList = (ArrayList<String[]>) mongo.getModules(code);
 			ArrayList<String[]> moduleAssignmentsList = (ArrayList<String[]>) mongo.getModuleAssignments(code);
 
+			int i = 0;
 			for(String [] m : moduleList){
 				double average = 2.5;
-				Module module = new Module(m[0], m[1], average);
+				Module module = new Module(m[0], m[1], average, i);
 				modules.addModule(module);
+				i++;
 			}
 
 			for(String [] g : moduleAssignmentsList){

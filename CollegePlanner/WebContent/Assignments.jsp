@@ -62,7 +62,7 @@
 			            				<thead>
 			            					<tr>
 			            						<th>
-			            							<a class="accordion-toggle" data-toggle="collapse" href="#${module.title}">${module.title}</a>
+			            							<a class="accordion-toggle" data-toggle="collapse" href="#${module.id}">${module.title}</a>
 		            							</th>
 					            				<th></th>
 					            				<th></th>
@@ -70,7 +70,7 @@
 										</thead>
 									</table>
 		            			</div>
-		            			<div id="${module.title}" class="accordion-body collapse">
+		            			<div id="${module.id}" class="accordion-body collapse">
 		            				<div class="accordion-inner">
 		            					<table class="table table-hover">
 		            						<thead>
@@ -130,13 +130,13 @@
 			<div class="modal-body">
 				<form id="createAssignment" action="Assignments" method="post">
 					<div class="form-group">
-						<label>Title:</label> <input class="form-control" type="text" id="assignmentTitle" name="assignmentTitle" placeholder="Title max 30 characters" maxlength="30">
+						<label>Title:</label> <input class="form-control" type="text" id="assignmentTitle" name="assignmentTitle" placeholder="Title max 30 characters" maxlength="30" required>
 					</div>
 					<div class="form-group">
-						<label>Date:</label> <input class="form-control" type="date" id="assignmentDate" name="assignmentDate" placeholder="Title max 15 characters" maxlength="15">
+						<label>Date Due:</label> <input class="form-control" type="date" id="assignmentDate" name="assignmentDate" required>
 					</div>
 					<div class="form-group">
-						<label>Value:</label> <input class="form-control" type="text" id="assignmentValue" name="assignmentValue" placeholder="Title max 15 characters" maxlength="15">
+						<label>Worth (%):</label> <input class="form-control" type="number" id="assignmentValue" name="assignmentValue" placeholder="0 - 100%" min="1"max="100" required>
 					</div>
 				</form>
 			</div>
