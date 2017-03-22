@@ -1,6 +1,6 @@
 package ie.gmit.sw.Timetable;
 
-public class Module {
+public class TimetableModule {
 	
 	//private variables
 	private String title;
@@ -21,7 +21,7 @@ public class Module {
 	 * 
 	 */
 	//constructor to take in the parameters and sets the class variables
-	public Module(String title, int timeStart, int timeEnd, int day, String room){
+	public TimetableModule(String title, int timeStart, int timeEnd, int day, String room){
 		this.title=title;
 		this.timeStart=timeStart;
 		this.timeEnd=timeEnd;

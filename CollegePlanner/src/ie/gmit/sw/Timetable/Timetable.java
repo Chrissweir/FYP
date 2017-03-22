@@ -7,13 +7,13 @@ import java.util.List;
 public class Timetable {
 
 	//private list that takes in modules
-	private List<Module> classes = new ArrayList<Module>();
+	private List<TimetableModule> classes = new ArrayList<TimetableModule>();
 
 	/**
 	 * Getter for the list in order to access the lists object information
 	 * @return
 	 */
-	public List<Module> getClasses() {
+	public List<TimetableModule> getClasses() {
 		return classes;
 	}
 	
@@ -21,7 +21,7 @@ public class Timetable {
 	 * Method for adding new classes to the list
 	 * @param module
 	 */
-	public void addClass(Module module)
+	public void addClass(TimetableModule module)
 	{
 		classes.add(module);
 	}
@@ -30,7 +30,7 @@ public class Timetable {
 	 * Method for removing classes
 	 * @param module
 	 */
-	public void removeClass(Module module){
+	public void removeClass(TimetableModule module){
 		classes.remove(module);
 	}
 	

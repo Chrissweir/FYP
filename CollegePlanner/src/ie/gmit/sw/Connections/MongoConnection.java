@@ -3,6 +3,7 @@ package ie.gmit.sw.Connections;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -12,15 +13,16 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 
 import ie.gmit.sw.Calendar.CalendarValues;
-import ie.gmit.sw.Security.AccountRecoveryDetails;
-import ie.gmit.sw.Timetable.Module;
+import ie.gmit.sw.Modules.Module;
+import ie.gmit.sw.Modules.ModuleDetails;
+import ie.gmit.sw.Timetable.TimetableModule;
 
 public class MongoConnection {
 	private String defaultImage = "https://www.barfoot.co.nz/images/noprofile-big.png";
 	private String image;
 
-//Register
-//=================================================
+	//Register
+	//=================================================
 	public void setNewUser(String code) {
 		final BasicDBObject[] data = createUserData(code, defaultImage);
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
@@ -31,8 +33,8 @@ public class MongoConnection {
 		client.close();
 	}
 
-//Profile
-//=================================================
+	//Profile
+	//=================================================
 	public void setUserData(String code, String file) {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
@@ -52,16 +54,16 @@ public class MongoConnection {
 		DB db = client.getDB(uri.getDatabase());
 		BasicDBObject document = new BasicDBObject();
 		document.put("Confirmation Code", code);
-		
+
 		DBCollection user = db.getCollection("User");
 		user.remove(document);
-		
+
 		DBCollection user1 = db.getCollection("Calendar");
 		user1.remove(document);
-		
+
 		DBCollection user2 = db.getCollection("Timetable");
 		user2.remove(document);
-		
+
 		DBCollection user3 = db.getCollection("ToDo");
 		user3.remove(document);
 		client.close();
@@ -90,8 +92,8 @@ public class MongoConnection {
 		return data;
 	}
 
-//Calendar
-//=================================================
+	//Calendar
+	//=================================================
 	public void setCalendar(String code, CalendarValues cal) {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
@@ -157,8 +159,8 @@ public class MongoConnection {
 		return l;
 	}
 
-//ToDo List
-//=================================================
+	//ToDo List
+	//=================================================
 	public void setTodoList(String code, String title, String description) {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
@@ -171,12 +173,12 @@ public class MongoConnection {
 		user.insert(document);
 		client.close();
 	}
-	
+
 	public void deleteToDo(String code, String title, String desc) {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
-		DBCollection user = db.getCollection("ToDo");
+		DBCollection user = db.getCollection("ToDoCompleted");
 		BasicDBObject document = new BasicDBObject();
 		document.put("Confirmation Code", code);
 		document.put("Title", title);
@@ -208,9 +210,73 @@ public class MongoConnection {
 		client.close();
 		return l;
 	}
-//Timetable
-//=================================================
-	public void setTimetable(String code, Module module) {
+
+	public void taskCompleted(String code, String title, String desc) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("ToDo");
+		BasicDBObject document = new BasicDBObject();
+		document.put("Confirmation Code", code);
+		document.put("Title", title);
+		document.put("Desc", desc);
+		user.remove(document);
+		client.close();
+	}
+
+	public void setTaskCompleted(String code, String title, String desc) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("ToDoCompleted");
+		BasicDBObject document = new BasicDBObject();
+		document.put("Confirmation Code", code);
+		document.put("Title", title);
+		document.put("Desc", desc);
+		user.insert(document);
+		client.close();
+	}
+
+	public List getTaskCompleted(String code){
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("ToDoCompleted");
+		BasicDBObject query = new BasicDBObject();
+		query.put("Confirmation Code", code);
+		DBCursor cursor = user.find(query);
+
+		ArrayList<String[]> c = new ArrayList<String[]>();
+		if(cursor.hasNext()) {
+			for (DBObject dbObject : cursor) {
+				String title = (String) dbObject.get("Title");
+				String desc = (String) dbObject.get("Desc");
+				String[] s = new String[2];
+				s[0] = title;
+				s[1] = desc;
+				c.add(s);
+			}
+		}
+		client.close();
+		return c;
+	}
+
+	public void deleteCompletedTask(String code, String title, String description) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("ToDoCompleted");
+		BasicDBObject document = new BasicDBObject();
+		document.put("Confirmation Code", code);
+		document.put("Title", title);
+		document.put("Desc", description);
+		user.remove(document);
+		client.close();
+	}
+
+	//Timetable
+	//=================================================
+	public void setTimetable(String code, TimetableModule module) {
 		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
@@ -253,5 +319,231 @@ public class MongoConnection {
 		}
 		client.close();
 		return l;
+	}
+
+	//Modules
+	//=================================================
+	public void setModule(String code, String title, String lecturer) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Modules");
+		BasicDBObject document = new BasicDBObject();
+		document.put("Confirmation Code", code);
+		document.put("Title", title);
+		document.put("Lecturer", lecturer);
+
+		List<BasicDBObject> moduleGrades = new ArrayList<BasicDBObject>();
+		document.put("Grades", moduleGrades);
+
+		List<BasicDBObject> moduleAssignments = new ArrayList<BasicDBObject>();
+		document.put("Assignments", moduleAssignments);
+
+		user.insert(document);
+		client.close();
+	}
+
+	public List getModules(String code) {
+		List moduleList = new ArrayList<>();
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Modules");
+		BasicDBObject query = new BasicDBObject();
+		query.put("Confirmation Code", code);
+		DBCursor cursor = user.find(query);
+
+		if(cursor.hasNext()) {
+			for (DBObject dbObject : cursor) {
+				String title = (String) dbObject.get("Title");
+				String lecturer = (String) dbObject.get("Lecturer");
+				String[] s = new String[3];
+				s[0] = title;
+				s[1] = lecturer;
+				moduleList.add(s);
+			}
+		}
+		return moduleList;
+	}
+
+	public void removeModule(String code, TimetableModule removeModule) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Timetable");
+		BasicDBObject document = new BasicDBObject();
+		document.put("Confirmation Code", code);
+		document.put("Title", removeModule.getTitle());
+		document.put("Start", removeModule.getTimeStart());
+		document.put("End", removeModule.getTimeEnd());
+		document.put("Day", removeModule.getDay());
+		document.put("Room", removeModule.getRoom());
+		user.remove(document);
+		client.close();
+	}	
+
+	public void setModuleGrades(String code, String title, String gradeTitle, String date, String value, String result){
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Modules");
+
+		BasicDBObject query = new BasicDBObject();
+		query.put("Confirmation Code", code);
+		query.put("Title", title);
+
+		BasicDBObject grade = new BasicDBObject();
+		grade.put("ModuleTitle", title);
+		grade.put("Title", gradeTitle);
+		grade.put("Date", date);
+		grade.put("Value", value);
+		grade.put("Result", result);
+
+		user.update(query, new BasicDBObject("$push", new BasicDBObject("Grades", grade)), true, false);
+		client.close();
+	}
+
+	public List getModuleGrades(String code) {
+		List moduleGradesList = new ArrayList<>();
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Modules");
+		BasicDBObject query = new BasicDBObject();
+		query.put("Confirmation Code", code);
+
+		BasicDBObject fields = new BasicDBObject("Grades",1).append("_id",false);
+		DBCursor cursor = user.find(query, fields);
+		if(cursor.hasNext()) {
+			for (DBObject dbObject : cursor) {
+				BasicDBList grades = (BasicDBList) dbObject.get("Grades");
+				BasicDBObject[] gradeArr = grades.toArray(new BasicDBObject[0]);
+
+				for(BasicDBObject dbObj : gradeArr) {
+					String title = (String) dbObj.get("ModuleTitle");
+					String gradeTitle = (String) dbObj.get("Title");
+					String Date = (String) dbObj.get("Date");
+					String Value = (String) dbObj.get("Value");
+					String Result = (String) dbObj.get("Result");
+					String s[] = new String[6];
+
+					s[0] = title;
+					s[1] = gradeTitle;
+					s[2] = Date;
+					s[3] = Value;
+					s[4] = Result;
+					moduleGradesList.add(s);
+				}
+			}
+		}
+		client.close();
+		return moduleGradesList;
+	}
+
+	public List getModuleAssignments(String code) {
+		List moduleAssignmentsList = new ArrayList<>();
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Modules");
+		BasicDBObject query = new BasicDBObject();
+		query.put("Confirmation Code", code);
+
+		BasicDBObject fields = new BasicDBObject("Assignments",1).append("_id",false);
+		DBCursor cursor = user.find(query, fields);
+		if(cursor.hasNext()) {
+			for (DBObject dbObject : cursor) {
+				BasicDBList assignments = (BasicDBList) dbObject.get("Assignments");
+				BasicDBObject[] assignmentsArr = assignments.toArray(new BasicDBObject[0]);
+
+				for(BasicDBObject dbObj : assignmentsArr) {
+					String title = (String) dbObj.get("ModuleTitle");
+					String assignmentsTitle = (String) dbObj.get("Title");
+					String Date = (String) dbObj.get("Date");
+					String Value = (String) dbObj.get("Value");
+					String s[] = new String[6];
+
+					s[0] = title;
+					s[1] = assignmentsTitle;
+					s[2] = Date;
+					s[3] = Value;
+					moduleAssignmentsList.add(s);
+				}
+			}
+		}
+		client.close();
+		return moduleAssignmentsList;
+	}
+
+	public void deleteModule(String code, Module module) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Modules");
+		BasicDBObject document = new BasicDBObject();
+		document.put("Confirmation Code", code);
+		document.put("Title", module.getTitle());
+		document.put("Lecturer", module.getLecturer());
+		user.remove(document);
+		client.close();
+	}
+
+	public void deleteGrade(String code, String moduleTitle,String gradeTitle, String gradeDate, String gradeValue, String gradeResult) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Modules");
+
+		BasicDBObject query = new BasicDBObject();
+		query.put("Confirmation Code", code);
+
+		BasicDBObject grade = new BasicDBObject();
+		grade.put("ModuleTitle", moduleTitle);
+		grade.put("Title", gradeTitle);
+		grade.put("Date", gradeDate);
+		grade.put("Value", gradeValue);
+		grade.put("Result", gradeResult);
+
+		user.update(query, new BasicDBObject("$pull", new BasicDBObject("Grades", grade)), true, true);
+		client.close();
+	}
+
+	public void setModuleAssignment(String code, String moduleTitle, String title, String date, String value) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Modules");
+
+		BasicDBObject query = new BasicDBObject();
+		query.put("Confirmation Code", code);
+		query.put("Title", moduleTitle);
+
+		BasicDBObject assignment = new BasicDBObject();
+		assignment.put("ModuleTitle", moduleTitle);
+		assignment.put("Title", title);
+		assignment.put("Date", date);
+		assignment.put("Value", value);
+
+		user.update(query, new BasicDBObject("$push", new BasicDBObject("Assignments", assignment)), true, false);
+		client.close();
+	}
+
+	public void deleteAssignment(String code, String moduleTitle, String title, String date, String value) {
+		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClient client = new MongoClient(uri);
+		DB db = client.getDB(uri.getDatabase());
+		DBCollection user = db.getCollection("Modules");
+
+		BasicDBObject query = new BasicDBObject();
+		query.put("Confirmation Code", code);
+
+		BasicDBObject grade = new BasicDBObject();
+		grade.put("ModuleTitle", moduleTitle);
+		grade.put("Title", title);
+		grade.put("Date", date);
+		grade.put("Value", value);
+
+		user.update(query, new BasicDBObject("$pull", new BasicDBObject("Assignments", grade)), true, true);
+		client.close();
 	}
 }
