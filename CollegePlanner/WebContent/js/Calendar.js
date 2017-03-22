@@ -11,9 +11,9 @@ function error() {
 		//alert("FALS");
 		return false;
 	}
-}
+};
 	
-	function check(){
+function check(){
 
 	// File to throw error when wrong format is inputed
 	if (document.getElementById("startTime").value.toUpperCase() == "ALL DAY") {
@@ -43,7 +43,12 @@ function error() {
 
 /*	*/
 function errorTime() {
-
+	var start = document.getElementById("startTime").value.toUpperCase();
+	var end = document.getElementById("endTime").value.toUpperCase();
+	
+	if(start == "ALL DAY" && end == "ALL DAY"){
+		return true;
+	}
 	var stime = parseInt(document.getElementById("startTime").value);
 	var etime = parseInt(document.getElementById("endTime").value);
 	
@@ -78,7 +83,7 @@ function errorEdit() {
 	}
 }
 	
-	function checkEdit(){
+function checkEdit(){
 
 	// File to throw error when wrong format is inputed
 	if (document.getElementById("editStartTime").value.toUpperCase() == "ALL DAY") {
@@ -136,4 +141,3 @@ function errorTimeEdit() {
 	
 	}
 };
-
