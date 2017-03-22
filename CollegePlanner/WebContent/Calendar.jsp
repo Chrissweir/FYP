@@ -58,7 +58,7 @@
 		</div>
 	</div>
 	</nav>
-	<div style="margin: 250px 150px 0px 150px;">
+	<div style="margin: 50px 100px 50px 100px;">
 		<div id="calendar"></div>
 	</div>
 	<div>
@@ -77,6 +77,7 @@
           <h4 class="modal-title">Add Event</h4>
         </div>
         <div class="modal-body">
+        
           <form id="addEvent" name="addEvent" onsubmit="return error();" action="CalendarServlet" method="post">
            <div class="form-group">
            <label>Title:</label>
@@ -100,6 +101,7 @@
             <label>End Time:</label>
             <input class="form-control" type="text" name="endTime" id="endTime" placeholder="HH:mm or All Day"  >
             <label id="errorLabel" style="color: red; display: none">Entry must be HH:mm or All Day</label>
+            <label id="errorTime" style="color: red; display: none">start time must start before end time</label>
 
             </div>
             
@@ -201,7 +203,8 @@
           <h4 class="modal-title">Edit Event</h4>
         </div>
         <div class="modal-body">
-          <form id="editEvent" name="editEvent" action="CalendarServlet" method="post">
+        
+          <form id="editEvent" name="editEvent" onsubmit="return errorEdit();" action="CalendarServlet" method="post">
            <div class="form-group">
            <label>Edit Title:</label>
             <input class="form-control" type="text" id="editTitle" name="editTitle" placeholder="Title max 17 characters"  maxlength="17" required>
@@ -222,7 +225,8 @@
              <div class="form-group">
             <label>Edit End Time:</label>
             <input class="form-control" type="text" name="editEndTime" id="editEndTime" placeholder="HH:mm">
-            <label id="errorLabel" style="display: none"></label>
+            <label id="errorEditLabel" style="color: red; display: none">Entry must be HH:mm or All Day</label>
+            <label id="editErrorTime" style="color: red; display: none">start time must start before end time</label>
             </div>
             
              
@@ -254,6 +258,6 @@
 <input form="editEvent" type="text" id="Oend" name="Oend" style="visibility: hidden" ></input>
 <input form="editEvent" type="text" id="OstartTime" name="OstartTime" style="visibility: hidden"></input>
 <input form="editEvent" type="text" id="OendTime" name="OendTime" style="visibility: hidden"></input>
-<input form="editEvent" type="text" id="Ocolor" name="Ocolor" ></input>
+<input form="editEvent" type="text" id="Ocolor" name="Ocolor" style="visibility: hidden" ></input>
 </body>
 </html>
