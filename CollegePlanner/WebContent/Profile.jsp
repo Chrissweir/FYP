@@ -35,38 +35,38 @@
 <body class="background">
 	<div id="nav-container">
 		<nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<a class="navbar-brand">
-				<span class="glyphicon glyphicon-education" aria-hidden="true"></span>
-			</a>
-			<a class="navbar-brand" href="About.jsp">College Planner</a>
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand">
+					<span class="glyphicon glyphicon-education" aria-hidden="true"></span>
+				</a>
+				<a class="navbar-brand" href="About.jsp">College Planner</a>
+			</div>
+	
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="Calendar.jsp">Calendar</a></li>
+					<li><a href="Timetable">Timetable</a></li>
+					<li><a href="ToDoList">To do</a></li>
+					<li><a href="Modules">Modules</a></li>
+					<li><a href="Assignments">Assignments</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${username}<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="Profile">Account Details
+									<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+								</a>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li><a href="Logout">Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
 		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="Calendar.jsp">Calender</a></li>
-				<li><a href="Timetable">Timetable</a></li>
-				<li><a href="ToDoList">To do</a></li>
-				<li><a href="Grades">Grades Tracker</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">${username}<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="Profile">Account Details <span
-								class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="Logout">Logout</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-	</div>
 	</nav>
 	</div>
 
