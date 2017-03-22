@@ -46,7 +46,7 @@
 		</div>
 	</nav>
 
-<!-- Module Table -->
+<!-- Assignment Table -->
 <div>
 	<div class="container">
 		<div class="row">
@@ -72,16 +72,13 @@
 		            			</div>
 		            			<div id="${module.title}" class="accordion-body collapse">
 		            				<div class="accordion-inner">
-		            					<table class="table table-striped table-condensed">
+		            					<table class="table table-hover">
 		            						<thead>
 		            							<tr>
-		            								<th>Assignment Title</th>
-		            								<th> </th>
-		            								<th>Date Due</th>
-		            								<th> </th>
-		            								<th>Worth (%)</th>
-		            								<th> </th>
-		            								<th>
+		            								<th style="width: 40%">Assignment Title</th>
+		            								<th style="width: 30%">Date Due</th>
+		            								<th style="width: 20%">Worth (%)</th>
+		            								<th style="width: 10%">
 			            								<button id="newAssignment" name="newAssignment" data-original-title="Add"
 																data-toggle="modal" type="button" class="btn btn-sm btn-info pull-right"
 																data-target="#assignmentModal" value="${module.title}" onClick="getModuleTitle(this);">
@@ -94,13 +91,10 @@
 			            						<c:if test="${module.title == moduleAssignment.title}">
 				            						<tbody>
 				            							<tr>
-				            								<td>${moduleAssignment.assignmentTitle}</td>
-				            								<td> </td>
-				            								<td>${moduleAssignment.date}</td>
-				            								<td> </td>
-				            								<td>${moduleAssignment.value}%</td>
-				            								<td> </td>
-															<td>
+				            								<td style="width: 40%">${moduleAssignment.assignmentTitle}</td>
+				            								<td style="width: 30%">${moduleAssignment.date}</td>
+				            								<td style="width: 20%">${moduleAssignment.value}%</td>
+				            								<td style="width: 10%">
 																<button type="submit" form="deleteAssignment" id="submitBtn" name="submitBtn" data-original-title="DeleteAssignment"
 																		class="remove-item btn btn-default btn-xs pull-right"
 																		value="${module.title}|${moduleAssignment.assignmentTitle}|${moduleAssignment.date}|${moduleAssignment.value}" onClick="removeAssignment(this);">

@@ -27,36 +27,38 @@
 </head>
 <body style="padding-top: 70px">
 <nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<a class="navbar-brand"> <span
-				class="glyphicon glyphicon-education" aria-hidden="true"></span></a>
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand">
+					<span class="glyphicon glyphicon-education" aria-hidden="true"></span>
+				</a>
 				<a class="navbar-brand" href="About.jsp">College Planner</a>
+			</div>
+	
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="Calendar.jsp">Calendar</a></li>
+					<li><a href="Timetable">Timetable</a></li>
+					<li><a href="ToDoList">To do</a></li>
+					<li><a href="Grades">Grades Tracker</a></li>
+					<li><a href="Assignments">Assignments</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${username}<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="Profile">Account Details
+									<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+								</a>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li><a href="Logout">Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
 		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="Calendar.jsp">Calender</a></li>
-				<li><a href="Timetable">Timetable</a></li>
-				<li><a href="ToDoList">To do</a></li>
-				<li><a href="Grades">Grades Tracker</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">${username}<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="Profile">Account Details <span
-								class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="Logout">Logout</a></li>
-					</ul></li>
-			</ul>
-		</div>
-	</div>
 	</nav>
 	<div style="margin: 250px 150px 0px 150px;">
 		<div id="calendar"></div>
@@ -146,6 +148,13 @@
 				events : "CalendarServlet",
 				
 					 eventClick: function(calEvent, event, view, date) {
+						 
+						 if(calEvent.color =="#00ffff"){
+							 $("#assignmentModal").modal();
+								 document.getElementById("assignmentTitle").value = calEvent.title;
+								 document.getElementById("assignmentDate").value = moment(calEvent.start).format('YYYY-MM-DD');
+						 }
+						 else{
 
 						 $("#editModal").modal();
 					        document.getElementById("editTitle").value = calEvent.title;
@@ -180,7 +189,8 @@
 						        document.getElementById("OstartTime").value = moment(calEvent.start).format('HH:mm');
 						        document.getElementById("OendTime").value = moment(calEvent.end).format('HH:mm');
 					        }
-					    }
+						 }
+				    }
 				
 			});
 			
@@ -189,10 +199,30 @@
 		
 		
 	</script>
+<!-- Assignment Modal -->
+<div class="modal fade" id="assignmentModal" role="dialog">
+	<div class="modal-dialog modal-sm">
+
+		<!-- Modal content-->
+		<div class="modal-content ">
+			<div class="modal-header">
+				<h4 class="modal-title">Assignment Details</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label>Title:</label> <input class="form-control" type="text" id="assignmentTitle" name="assignmentTitle" readonly>
+				</div>
+				<div class="form-group">
+					<label>Date:</label> <input class="form-control" type="text" id="assignmentDate" pattern="\d{4}-?\d{2}-?\d{2}" name="assignmentDate" readonly>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 <!-- Modal -->
   <div class="modal fade" id="editModal" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-sm">
     
       <!-- Modal content-->
       <div class="modal-content">
