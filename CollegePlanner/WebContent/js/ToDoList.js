@@ -15,6 +15,14 @@ function remove(task){
 	document.getElementById("deleteTaskTitle").value = data[0];
 	document.getElementById("deleteTaskDescription").value = data[1];
 	
-}
+};
+
+function transfer(t)
+{
+	var data = [];
+	data = t.value.split("|");
+	document.getElementById("moveTaskTitle").value = data[0];
+	document.getElementById("moveTaskDescription").value = data[1];
+};
  
 

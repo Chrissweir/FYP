@@ -50,6 +50,14 @@ public class ToDoListServlet extends HttpServlet {
 			
 			mongo.deleteCompletedTask(code, title, description);
 			response.sendRedirect("ToDoList");
+			
+		}else if(buttonPressed.equals("Transfer")){
+			String title = request.getParameter("moveTaskTitle");
+			String description = request.getParameter("moveTaskDescription");
+			System.out.println(title);
+			mongo.deleteCompletedTask(code, title, description);
+			mongo.setTodoList(code, title, description);
+			response.sendRedirect("ToDoList");
 		}
 		else{
 			String title = request.getParameter("taskTitle");
