@@ -10,6 +10,7 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>/CollegePlanner/LoginRegister.jsp</welcome-file>
   </welcome-file-list>
+  
   <filter>
     <filter-name>AuthenticationFilter</filter-name>
     <filter-class>ie.gmit.sw.Security.AuthenticationFilter</filter-class>
@@ -18,6 +19,7 @@
     <filter-name>AuthenticationFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  
   <servlet>
     <description></description>
     <display-name>Timetable</display-name>
@@ -28,6 +30,7 @@
     <servlet-name>Timetable</servlet-name>
     <url-pattern>/Timetable</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>ToDoList</display-name>
@@ -38,16 +41,18 @@
     <servlet-name>ToDoList</servlet-name>
     <url-pattern>/ToDoList</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <description></description>
-    <display-name>Grades</display-name>
-    <servlet-name>Grades</servlet-name>
+    <display-name>Modules</display-name>
+    <servlet-name>Modules</servlet-name>
     <servlet-class>ie.gmit.sw.Modules.ModuleServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Grades</servlet-name>
-    <url-pattern>/Grades</url-pattern>
+    <servlet-name>Modules</servlet-name>
+    <url-pattern>/Modules</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>Assignments</display-name>

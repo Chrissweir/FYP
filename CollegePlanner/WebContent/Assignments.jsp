@@ -25,7 +25,7 @@
 					<li><a href="Calendar.jsp">Calendar</a></li>
 					<li><a href="Timetable">Timetable</a></li>
 					<li><a href="ToDoList">To do</a></li>
-					<li><a href="Grades">Grades Tracker</a></li>
+					<li><a href="Modules">Modules</a></li>
 					<li><a href="Assignments">Assignments</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

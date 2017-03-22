@@ -19,7 +19,6 @@ import ie.gmit.sw.Timetable.TimetableModule;
 /**
  * Servlet implementation class GradeServlet
  */
-@WebServlet("/GradeServlet")
 public class ModuleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MongoConnection mongo = new MongoConnection();
@@ -68,7 +67,7 @@ public class ModuleServlet extends HttpServlet {
 			request.getSession().setAttribute("average", totalAverage);
 			request.getSession().setAttribute("modules", modules);
 			request.getSession().setAttribute("moduleData", moduleData);
-			RequestDispatcher rd = request.getRequestDispatcher("Grades.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("Modules.jsp");
 			rd.forward(request, response);
 		}
 		catch (Exception e) {

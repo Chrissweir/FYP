@@ -24,7 +24,7 @@
 					<li><a href="Calendar.jsp">Calendar</a></li>
 					<li><a href="Timetable">Timetable</a></li>
 					<li><a href="ToDoList">To do</a></li>
-					<li><a href="Grades">Grades Tracker</a></li>
+					<li><a href="Modules">Modules</a></li>
 					<li><a href="Assignments">Assignments</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -84,17 +84,18 @@
 			            			<table style="width: 100%;">
 			            				<thead>
 			            					<tr>
-			            						<th>
+			            						<th style="width: 50%">
 			            							<a class="accordion-toggle" data-toggle="collapse" href="#${module.title}">${module.title}</a>
 		            							</th>
-					            				<th>
+					            				<th style="width: 40%">
+					            				Total:
 					            					<div class="progress" style="width: 400px; float: right;">
 														<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:${module.average}%">
 														${module.average}%
 									  					</div>
 													</div>
 												</th>
-					            				<th>
+					            				<th style="width: 10%">
 					            					<button id="deleteModule" name="deleteModule" data-original-title="Delete"
 															data-toggle="modal" type="button" class="remove-item btn btn-default btn-xs pull-right"
 															data-target="#deleteModuleModal" value="${module.title}|${module.lecturer}" onClick="deleteModule(this);">
@@ -110,13 +111,12 @@
 		            					<table class="table table-striped table-condensed">
 		            						<thead>
 		            							<tr>
-		            								<th>Title</th>
-		            								<th></th>
-		            								<th>Date</th>
-		            								<th>Value (%)</th>
-		            								<th>Result (%)</th>
-		            								<th>Percentage Awarded</th>
-		            								<th>
+		            								<th style="width: 20%">Title</th>
+		            								<th style="width: 20%">Date</th>
+		            								<th style="width: 10%">Value (%)</th>
+		            								<th style="width: 10%">Result (%)</th>
+		            								<th style="width: 30%">Percentage Awarded</th>
+		            								<th style="width: 10%">
 			            								<button id="newGrade" name="newGrade" data-original-title="Add"
 																data-toggle="modal" type="button" class="btn btn-sm btn-info pull-right"
 																data-target="#gradeModal" value="${module.title}" onClick="getModuleTitle(this);">
@@ -129,19 +129,18 @@
 			            						<c:if test="${module.title == moduleGrade.title}">
 				            						<tbody>
 				            							<tr>
-				            								<td>${moduleGrade.gradeTitle}</td>
-				            								<td> </td>
-				            								<td>${moduleGrade.date}</td>
-				            								<td>${moduleGrade.value}%</td>
-				            								<td>${moduleGrade.result}%</td>
-				            								<td>
+				            								<td style="width: 20%">${moduleGrade.gradeTitle}</td>
+				            								<td style="width: 20%">${moduleGrade.date}</td>
+				            								<td style="width: 10%">${moduleGrade.value}%</td>
+				            								<td style="width: 10%">${moduleGrade.result}%</td>
+				            								<td style="width: 30%">
 					            								<div class="progress">
   																	<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:${moduleGrade.grade}%">
     																	${moduleGrade.grade}%
 																  	</div>
 																</div>
 															</td>
-															<td>
+															<td style="width: 10%">
 																<button type="submit" form="deleteGrades" id="submitBtn" name="submitBtn" data-original-title="DeleteGrade"
 																		class="remove-item btn btn-default btn-xs pull-right"
 																		value="${module.title}|${moduleGrade.gradeTitle}|${moduleGrade.date}|${moduleGrade.value}|${moduleGrade.result}" onClick="removeGrade(this);">
