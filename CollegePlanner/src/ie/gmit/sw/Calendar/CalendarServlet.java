@@ -65,6 +65,17 @@ public class CalendarServlet extends HttpServlet {
 			l.add(c);
 		}
 		
+		ArrayList<String[]> assignments = (ArrayList<String[]>) mongo.getModuleAssignments(code);
+		for(String [] assignment : assignments){
+			CalendarValues c = new CalendarValues();
+			c.setId(1);
+			c.setTitle(assignment[1]);
+			c.setStart(assignment[2]);
+			c.setEnd(assignment[2]);
+			c.setColor("#00ffff");
+			l.add(c);
+		}
+		
 		
 
 		/*

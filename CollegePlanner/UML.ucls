@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.14" icons="true" automaticImage="PNG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="true" nesting-relationships="true" 
+  router="FAN">  
+  <class id="1" language="java" name="ie.gmit.sw.Login.Logout" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Login/Logout.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="331" x="386" y="362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="ie.gmit.sw.Todo.Task" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Todo/Task.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="177" x="2241" y="1158"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="ie.gmit.sw.Calendar.CalendarServlet" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Calendar/CalendarServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="363" x="2570" y="362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="ie.gmit.sw.Login.LoginValues" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Login/LoginValues.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="682" width="171" x="3358" y="1158"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="ie.gmit.sw.Timetable.Timetable" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Timetable/Timetable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="238" x="4270" y="598"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="ie.gmit.sw.Calendar.CalendarValues" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Calendar/CalendarValues.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="466" width="168" x="2570" y="1158"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="ie.gmit.sw.Modules.ModuleServlet" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Modules/ModuleServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="412" x="1741" y="362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="ie.gmit.sw.Timetable.TimetableModule" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Timetable/TimetableModule.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="286" width="258" x="4390" y="1158"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="ie.gmit.sw.Connections.SQLConnection" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Connections/SQLConnection.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="214" width="325" x="3398" y="598"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="ie.gmit.sw.Connections.MongoConnection" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Connections/MongoConnection.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="520" width="386" x="2610" y="598"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="ie.gmit.sw.Profile.Profile" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Profile/Profile.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="385" x="2973" y="362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="ie.gmit.sw.Todo.ToDoListServlet" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Todo/ToDoListServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="337" x="2193" y="362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="ie.gmit.sw.Profile.UserDetails" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Profile/UserDetails.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="628" width="172" x="3017" y="1158"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="ie.gmit.sw.Security.AuthenticationFilter" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Security/AuthenticationFilter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="357" x="757" y="362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="ie.gmit.sw.Security.Encryption" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Security/Encryption.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="329" x="3763" y="598"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="ie.gmit.sw.Modules.Module" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Modules/Module.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="159" x="1701" y="1158"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="ie.gmit.sw.Modules.ModuleGroup" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Modules/ModuleGroup.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="198" x="1482" y="598"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="ie.gmit.sw.Todo.ToDo" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Todo/ToDo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="154" x="2066" y="598"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="ie.gmit.sw.Error.ErrorHandler" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Error/ErrorHandler.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="370" x="1154" y="362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="ie.gmit.sw.Login.Login" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Login/Login.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="337" x="3398" y="362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="ie.gmit.sw.Register.RegisterUserDetails" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Register/RegisterUserDetails.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="682" width="207" x="3905" y="1158"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="ie.gmit.sw.Register.Register" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Register/Register.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="337" x="3775" y="362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="ie.gmit.sw.Timetable.TimetableServlet" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Timetable/TimetableServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="417" x="4529" y="362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="ie.gmit.sw.Security.AccountRecoveryDetails" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Security/AccountRecoveryDetails.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="198" x="4152" y="1158"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <component id="25" language="java" name="src" project="CollegePlanner" file="/CollegePlanner/src" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="43" width="137" x="1564" y="362"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </component>  
+  <class id="26" language="java" name="ie.gmit.sw.Modules.ModuleDetails" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Modules/ModuleDetails.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="358" width="262" x="1939" y="1158"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="ie.gmit.sw.Modules.ModuleData" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Modules/ModuleData.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="259" x="1741" y="598"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="ie.gmit.sw.Security.AccountRecovery" project="CollegePlanner" 
+    file="/CollegePlanner/src/ie/gmit/sw/Security/AccountRecovery.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="337" x="4152" y="362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="29">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="30" name="mongo"/>      
+      <multiplicity id="31" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="33" name="sqlConn"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="35">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="36" name="mongo"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="38">    
+    <bendpoint x="4122" y="598"/>    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="39" name="userDetails"/>      
+      <multiplicity id="40" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="41">    
+    <bendpoint x="4538" y="598"/>    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="42">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <association id="43">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="44" name="classes"/>      
+      <multiplicity id="45" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="46">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="47" name="encrypt"/>      
+      <multiplicity id="48" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="49">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="50">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="51" name="moduleGrades"/>      
+      <multiplicity id="52" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="53">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="54" name="sqlConn"/>      
+      <multiplicity id="55" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="56">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="57" name="mongo"/>      
+      <multiplicity id="58" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="59">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="60" name="encrypt"/>      
+      <multiplicity id="61" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="62">    
+    <bendpoint x="2250" y="598"/>    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="63">    
+    <bendpoint x="1710" y="598"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <association id="64">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="65" name="encrypt"/>      
+      <multiplicity id="66" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="67">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="68" name="moduleList"/>      
+      <multiplicity id="69" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="70">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="21"/>  
+  </dependency>  
+  <dependency id="71">    
+    <bendpoint x="2030" y="598"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="26"/>  
+  </dependency>  
+  <association id="72">    
+    <bendpoint x="3367" y="598"/>    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="73" name="login"/>      
+      <multiplicity id="74" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="75">    
+    <bendpoint x="2579" y="598"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="76" name="cal"/>      
+      <multiplicity id="77" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="78">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <dependency id="79">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="27"/>  
+  </dependency>  
+  <dependency id="80">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <association id="81">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="82" name="encrypt"/>      
+      <multiplicity id="83" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="84">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="24"/>  
+  </dependency>  
+  <association id="85">    
+    <bendpoint x="4161" y="598"/>    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="86" name="ar"/>      
+      <multiplicity id="87" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="88">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="89">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <association id="90">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="91" name="mongo"/>      
+      <multiplicity id="92" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="93">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="94" name="sqlConn"/>      
+      <multiplicity id="95" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="96">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="97" name="mongo"/>      
+      <multiplicity id="98" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="99">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <association id="100">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="101" name="tasks"/>      
+      <multiplicity id="102" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="103">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="104" name="sqlConn"/>      
+      <multiplicity id="105" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="106">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="107" name="mongo"/>      
+      <multiplicity id="108" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="109">    
+    <bendpoint x="3026" y="598"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="110" name="userDetails"/>      
+      <multiplicity id="111" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
