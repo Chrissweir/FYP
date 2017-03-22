@@ -1,16 +1,28 @@
-$("#sortable").sortable();
-$("#sortable").disableSelection();
+function move(task)
+{
+	var data = [];
+	data = task.value.split("|");
+	
+	document.getElementById("taskTitle").value = data[0];
+	document.getElementById("taskDescription").value = data[1];
+	task.form.submit();
+};
 
-// mark task as done
-$('.task').on('change','#sortable td input[type="checkbox"]',function(){
-    if($(this).prop('checked')){
-        var doneItem = $(this).parent().parent().find('label').text();
-        $(this).parent().parent().parent().addClass('remove');
-        done(doneItem);
-    }
-});
+function remove(task){
+	var data = [];
+	data = task.value.split("|");
+	
+	document.getElementById("deleteTaskTitle").value = data[0];
+	document.getElementById("deleteTaskDescription").value = data[1];
+	
+};
 
-//delete done task from Tasks Completed
-$('.task').on('click','.remove-item',function(){
-    removeItem(this);
-});
+function transfer(t)
+{
+	var data = [];
+	data = t.value.split("|");
+	document.getElementById("moveTaskTitle").value = data[0];
+	document.getElementById("moveTaskDescription").value = data[1];
+};
+ 
+

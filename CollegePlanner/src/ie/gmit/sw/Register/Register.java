@@ -81,6 +81,7 @@ public class Register extends HttpServlet {
 				mongo.setNewUser(userDetails.getCode());
 				
 				//Assign the userDetails to the session
+				session.setAttribute("username", userDetails.getUsername());
 				session.setAttribute("firstname", userDetails.getFirstname());
 				session.setAttribute("lastname",  userDetails.getLastname());
 				session.setAttribute("email",  userDetails.getEmail());
@@ -100,11 +101,11 @@ public class Register extends HttpServlet {
 				request.setAttribute("emailError","Email Already Registered!");
 			}
 			//Forward the error messages to the LoginRegister.jsp for the user to see.
-	        request.getRequestDispatcher("/LoginRegister.jsp").forward(request, response);
+	        request.getRequestDispatcher("/LoginRegister.jsp").include(request, response);
 		}
 		//If something goes wrong the redirect the user to the ErrorHandler page
 		catch (Exception e) {
-		 //response.sendRedirect("ErrorHandler");
+		 response.sendRedirect("ErrorHandler");
 		}
 	}
 }

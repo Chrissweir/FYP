@@ -14,45 +14,40 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body id="myPage">
-
 <nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<a class="navbar-brand"> <span
-				class="glyphicon glyphicon-education" aria-hidden="true"></span></a>
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand">
+					<span class="glyphicon glyphicon-education" aria-hidden="true"></span>
+				</a>
 				<a class="navbar-brand" href="About.jsp">College Planner</a>
+			</div>
+	
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="Calendar.jsp">Calendar</a></li>
+					<li><a href="Timetable">Timetable</a></li>
+					<li><a href="ToDoList">To do</a></li>
+					<li><a href="Grades">Grades Tracker</a></li>
+					<li><a href="Assignments">Assignments</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${username}<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="Profile">Account Details
+									<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+								</a>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li><a href="Logout">Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
 		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="Calendar.jsp">Calender</a></li>
-				<li><a href="Timetable">Timetable</a></li>
-				<li><a href="ToDoList">To do</a></li>
-				<li><a href="Grades">Grades Tracker</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">${username}<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="Profile">Account Details <span
-								class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="Logout">Logout</a></li>
-					</ul></li>
-			</ul>
-		</div>
-	</div>
 	</nav>
-<!-- Image Header 
-<div class="w3-display-container w3-animate-opacity">
-  <img src="https://images.unsplash.com/3/doctype-hi-res.jpg" alt="boat" style="width:100%;min-height:350px;max-height:600px;">
-</div>
--->
-
 
 <!-- Team Container -->
 <div class="w3-container w3-padding-64 w3-center" id="team">
@@ -93,15 +88,18 @@
 
 <div class="col-lg-12">
 <h2 class="text-center">Our Work</h2>
-<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p class="text-center">For our Final Year Project we decided to make a College Planner web application using the J2EE framework.
+ This idea behind this project came from our own individual needs as we each found that we would benefit from creating an application 
+ that would help manage our college projects, timetable, deadlines, etc. Upon planning this application we settle on Java as our main
+  language as it has been the core language used throughout our four years at GMIT, and we all wished to master this language by the end of this project.</p>
 </div>
 
 <div class="w3-quarter">
 <div class="w3-card-2 w3-white">
   <img src="https://www.w3schools.com/w3css/img_fjords.jpg" alt="Vernazza" style="width:100%">
   <div class="w3-container">
-  <h3>Customer 1</h3>
-  <h4>Trade</h4>
+  <h3>Christopher</h3>
+  <h4>Authentication</h4>
   <p>Blablabla</p>
   <p>Blablabla</p>
   <p>Blablabla</p>
@@ -114,7 +112,7 @@
 <div class="w3-card-2 w3-white">
   <img src="https://www.w3schools.com/w3css/img_fjords.jpg" alt="Cinque Terre" style="width:100%">
   <div class="w3-container">
-  <h3>Customer 2</h3>
+  <h3>Gareth</h3>
   <h4>Trade</h4>
   <p>Blablabla</p>
   <p>Blablabla</p>
@@ -128,7 +126,7 @@
 <div class="w3-card-2 w3-white">
   <img src="https://www.w3schools.com/w3css/img_fjords.jpg" alt="Monterosso" style="width:100%">
   <div class="w3-container">
-  <h3>Customer 3</h3>
+  <h3>Paul</h3>
   <h4>Trade</h4>
   <p>Blablabla</p>
   <p>Blablabla</p>
@@ -142,7 +140,7 @@
 <div class="w3-card-2 w3-white">
   <img src="https://www.w3schools.com/w3css/img_fjords.jpg" alt="Vernazza" style="width:100%">
   <div class="w3-container">
-  <h3>Customer 1</h3>
+  <h3>Patrick</h3>
   <h4>Trade</h4>
   <p>Blablabla</p>
   <p>Blablabla</p>

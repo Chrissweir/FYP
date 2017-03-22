@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import ie.gmit.sw.Connections.MongoConnection;
+import ie.gmit.sw.Modules.ModuleDetails;
 
 public class TimetableServlet extends HttpServlet implements Servlet {
 	private static final long serialVersionUID = 1L;
 	private MongoConnection mongo = new MongoConnection();
-	private Module newClass = new Module();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
@@ -168,11 +168,11 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 	private void createModule(String code, HttpServletRequest request, HttpServletResponse response) throws IOException{
 		try{
 			//Get the module title and lecturer
-			newClass.setTitle(request.getParameter("moduleTitle"));
-			newClass.setLecturer(request.getParameter("lecturer"));
+			String title = request.getParameter("moduleTitle");
+			String lecturer = request.getParameter("lecturer");
 
 			//Add the new module to the database
-			mongo.setModule(code, newClass);
+			mongo.setModule(code, title, lecturer);
 		}
 		catch (Exception e) {
 			response.sendRedirect("ErrorHandler");

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import ie.gmit.sw.Connections.MongoConnection;
 import ie.gmit.sw.Connections.SQLConnection;
+import ie.gmit.sw.Security.Encryption;
 
 /**
  * @author Christopher Weir - G00309429
@@ -25,6 +26,7 @@ public class Profile extends HttpServlet {
 	private UserDetails userDetails = new UserDetails();
 	private MongoConnection mongo = new MongoConnection();
 	private SQLConnection sqlConn =new SQLConnection();
+	private Encryption encrypt = new Encryption();
 	private String image;	
 
 	/* (non-Javadoc)
@@ -73,7 +75,6 @@ public class Profile extends HttpServlet {
 				userDetails.setCode((String)session.getAttribute("code"));
 
 				//Send the new details to the database
-
 				sqlConn.updateUserDetails(userDetails);
 
 				//Update the users Profile picture
@@ -113,7 +114,7 @@ public class Profile extends HttpServlet {
 			HttpSession session = request.getSession();
 			String code = session.getAttribute("code").toString();
 			userDetails.setCode(code);
-			userDetails.setPassword(request.getParameter("confirmPassword"));
+			userDetails.setPassword(encrypt.encrypt((request.getParameter("confirmPassword"))));
 
 			//Check if the password entered matches the users password
 			//If true, then redirect the user
