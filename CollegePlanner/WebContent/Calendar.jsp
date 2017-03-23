@@ -25,7 +25,7 @@
 <title>Calendar</title>
 
 </head>
-<body style="padding-top: 70px">
+<body style="padding-top: 70px; margin-right: 150px; margin-left: 150px; background-color: #eaeaea;">
 <nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -60,13 +60,12 @@
 			</div>
 		</div>
 	</nav>
-	<div style="margin: 50px 100px 50px 100px;">
+	<div style="background-color: white; min-height: 600px; box-shadow: 0 0 10px #888888;">
 		<div id="calendar"></div>
 	</div>
 	<div>
 	<div class="container">
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Create Event</button>
+
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
@@ -87,12 +86,12 @@
             </div>
              <div class="form-group">
             <label>Start Date:</label>
-            <input class="form-control" type="text" name="startDate" placeholder="YYYY-MM-DD" pattern="\d{4}-?\d{2}-?\d{2}"required>
+            <input class="form-control" type="date" id="startDate" name="startDate" required>
             </div>
              <div class="form-group">
             <label>End Date:</label>
-            <input class="form-control" type="text" name="endDate" placeholder="YYYY-MM-DD" pattern="\d{4}-?\d{2}-?\d{2}" required>
-            
+            <input class="form-control" type="date" id="endDate" name="endDate"  required>
+            <label id="errorDate" style="color: red; display: none">Start Date must be before End Date!</label>
             </div>
             
              <div class="form-group">
@@ -139,8 +138,17 @@
 		$(document).ready(function() {
 			$('#calendar').fullCalendar({
 				
+				customButtons: {
+			        myCustomButton: {
+			            text: 'Create Event',
+			            click: function() {
+			            	$("#myModal").modal();
+			            }
+			        }
+			    },
+				
 				header: {
-					left: 'prev,next today',
+					left: 'prev,next today myCustomButton',
 					center: 'title',
 					right: 'month,agendaWeek,agendaDay'
 				},
@@ -158,49 +166,49 @@
 						 }
 						 else{
 
-						 $("#editModal").modal();
-					        document.getElementById("editTitle").value = calEvent.title;
-					        document.getElementById("Otitle").value = calEvent.title;
-					        
-					        document.getElementById("editStart").value = moment(calEvent.start).format('YYYY-MM-DD');
-					        document.getElementById("Ostart").value = moment(calEvent.start).format('YYYY-MM-DD');
-					        
-					        document.getElementById("editColor").value = calEvent.color;//.format('YYYY-MM-DD');
-					       
-					        document.getElementById("Ocolor").value = calEvent.color; //$(this).css('background-color');//.format('YYYY-MM-DD');
-					        
-					        var test = moment(calEvent.end).format('YYYY-MM-DD');
-					       // alert(test);
-					        if(test.toString() == "Invalid date"){
-					        	document.getElementById("editEnd").value = moment(calEvent.start).format('YYYY-MM-DD');
-					        	document.getElementById("Oend").value = moment(calEvent.start).format('YYYY-MM-DD');
-					        }else{
-						        document.getElementById("editEnd").value = moment(calEvent.end).format('YYYY-MM-DD');
-						        document.getElementById("Oend").value = moment(calEvent.end).format('YYYY-MM-DD');
-					        }
-					        var test1 = moment(calEvent.end).format('HH:mm');
-					        var test2 = moment(calEvent.start).format('HH:mm');
-					        if(test1.toString() == "Invalid date" || test1.toString() == "00:00", test2.toString() == "00:00"){
-					        	document.getElementById("editStartTime").value = "All Day";
-						        document.getElementById("editEndTime").value = "All Day";
-						        document.getElementById("OstartTime").value = "All Day";
-						        document.getElementById("OendTime").value = "All Day";
-					        }else{
-					        	document.getElementById("editStartTime").value = moment(calEvent.start).format('HH:mm');
-						        document.getElementById("editEndTime").value = moment(calEvent.end).format('HH:mm');
-						        document.getElementById("OstartTime").value = moment(calEvent.start).format('HH:mm');
-						        document.getElementById("OendTime").value = moment(calEvent.end).format('HH:mm');
-					        }
-						 }
-				    }
+							 $("#editModal").modal();
+						        document.getElementById("editTitle").value = calEvent.title;
+						        document.getElementById("Otitle").value = calEvent.title;
+						        
+						        document.getElementById("editStart").value = moment(calEvent.start).format('YYYY-MM-DD');
+						        document.getElementById("Ostart").value = moment(calEvent.start).format('YYYY-MM-DD');
+						        
+						        document.getElementById("editColor").value = calEvent.color;//.format('YYYY-MM-DD');
+						       
+						        document.getElementById("Ocolor").value = calEvent.color; //$(this).css('background-color');//.format('YYYY-MM-DD');
+						        
+						        var test = moment(calEvent.end).format('YYYY-MM-DD');
+						       // alert(test);
+						        if(test.toString() == "Invalid date"){
+						        	document.getElementById("editEnd").value = moment(calEvent.start).format('YYYY-MM-DD');
+						        	document.getElementById("Oend").value = moment(calEvent.start).format('YYYY-MM-DD');
+						        }else{
+							        document.getElementById("editEnd").value = moment(calEvent.end).format('YYYY-MM-DD');
+							        document.getElementById("Oend").value = moment(calEvent.end).format('YYYY-MM-DD');
+						        }
+						        var test1 = moment(calEvent.end).format('HH:mm');
+						        var test2 = moment(calEvent.start).format('HH:mm');
+						        if(test1.toString() == "Invalid date" || test1.toString() == "00:00", test2.toString() == "00:00"){
+						        	document.getElementById("editStartTime").value = "All Day";
+							        document.getElementById("editEndTime").value = "All Day";
+							        document.getElementById("OstartTime").value = "All Day";
+							        document.getElementById("OendTime").value = "All Day";
+						        }else{
+						        	document.getElementById("editStartTime").value = moment(calEvent.start).format('HH:mm');
+							        document.getElementById("editEndTime").value = moment(calEvent.end).format('HH:mm');
+							        document.getElementById("OstartTime").value = moment(calEvent.start).format('HH:mm');
+							        document.getElementById("OendTime").value = moment(calEvent.end).format('HH:mm');
+						        }
+						    }
+					 }
+					
+				});
 				
+
 			});
 			
-
-		});
-		
-		
-	</script>
+			
+		</script>
 <!-- Assignment Modal -->
 <div class="modal fade" id="assignmentModal" role="dialog">
 	<div class="modal-dialog modal-sm">
@@ -246,6 +254,7 @@
              <div class="form-group">
             <label>End Date:</label>
             <input class="form-control" type="text" id="editEnd" name="editEndDate" placeholder="YYYY-MM-DD" pattern="\d{4}-?\d{2}-?\d{2}" required>
+            <label id="errorEditDate" style="color: red; display: none">Start Date must be before End Date!</label>
             </div>
             
              <div class="form-group">

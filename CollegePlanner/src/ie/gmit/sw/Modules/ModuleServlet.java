@@ -45,12 +45,13 @@ public class ModuleServlet extends HttpServlet {
 				avg += hm.get(s);
 			}
 			totalAverage = avg/hm.size();
-			
+
+			int i = 0;
 			for(String [] m : moduleList){
 				if(hm.containsKey(m[0])){
 					double average = hm.get(m[0]);
-
-					Module module = new Module(m[0], m[1], average);
+					i++;
+					Module module = new Module(m[0], m[1], average, i);
 					modules.addModule(module);
 				}
 			}
@@ -116,15 +117,13 @@ public class ModuleServlet extends HttpServlet {
 			else{
 				deleteGrade(code,request,response);
 			}
-			//Call the Grades class to reload the jsp page
-			response.sendRedirect("Grades");
 		}
 		catch (Exception e) {
 			response.sendRedirect("ErrorHandler");
 		}
 	}
 
-	private void deleteGrade(String code, HttpServletRequest request, HttpServletResponse response) {
+	private void deleteGrade(String code, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String moduleTitle = request.getParameter("deleteGradeModule");
 		String gradeTitle = request.getParameter("deleteGradeTitle");
 		String gradeDate = request.getParameter("deleteGradeDate");
@@ -132,11 +131,17 @@ public class ModuleServlet extends HttpServlet {
 		String gradeResult = request.getParameter("deleteGradeResult");
 		System.out.println(code +" "+ moduleTitle +" "+ gradeTitle +" "+ gradeDate +" "+ gradeValue +" "+ gradeResult);
 		mongo.deleteGrade(code, moduleTitle, gradeTitle, gradeDate, gradeValue, gradeResult);
+		
+		//Call the Grades class to reload the jsp page
+		response.sendRedirect("Modules");
 	}
 
-	private void deleteModule(String code, HttpServletRequest request, HttpServletResponse response) {
-		Module deleteModule = new Module(request.getParameter("deleteModuleTitle"), request.getParameter("deleteModuleLecturer"), 0);
+	private void deleteModule(String code, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		Module deleteModule = new Module(request.getParameter("deleteModuleTitle"), request.getParameter("deleteModuleLecturer"), 0, 0);
 		mongo.deleteModule(code, deleteModule);
+		
+		//Call the Grades class to reload the jsp page
+		response.sendRedirect("Modules");
 	}
 
 	private void createGrade(String code, HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -147,6 +152,9 @@ public class ModuleServlet extends HttpServlet {
 			String value = request.getParameter("gradeValue");
 			String result = request.getParameter("gradeResult");
 			mongo.setModuleGrades(code, moduleTitle, title, date, value, result);
+			
+			//Call the Grades class to reload the jsp page
+			response.sendRedirect("Modules");
 		}
 		catch (Exception e) {
 			response.sendRedirect("ErrorHandler");
@@ -155,12 +163,25 @@ public class ModuleServlet extends HttpServlet {
 
 	private void createModule(String code, HttpServletRequest request, HttpServletResponse response) throws IOException{
 		try{
+			ArrayList<String[]> moduleList = (ArrayList<String[]>) mongo.getModules(code);
+			ArrayList ifExists = new ArrayList<>();
+			for(String [] m : moduleList){
+				ifExists.add(m[0]);
+			}
+
 			//Get the module title and lecturer
 			String title = request.getParameter("moduleTitle");
 			String lecturer = request.getParameter("lecturer");
 
-			//Add the new module to the database
-			mongo.setModule(code, title, lecturer);
+			if(ifExists.contains(title)){
+				request.setAttribute("error","Module Already Exists!");
+				RequestDispatcher rd=request.getRequestDispatcher("Modules.jsp");            
+				rd.include(request, response);
+			}else{
+				//Add the new module to the database
+				mongo.setModule(code, title, lecturer);
+				response.sendRedirect("Modules");
+			}
 		}
 		catch (Exception e) {
 			response.sendRedirect("ErrorHandler");

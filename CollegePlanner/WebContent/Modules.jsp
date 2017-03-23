@@ -7,9 +7,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/Module.js"></script>
-<title>Grades</title>
+<title>Modules</title>
 </head>
-<body style="padding-top: 70px">
+<body style="padding-top: 70px; margin-right: 150px; margin-left: 150px; background-color: #eaeaea;">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -44,7 +44,7 @@
 			</div>
 		</div>
 	</nav>
-	
+	<div style="background-color: white; min-height: 600px; box-shadow: 0 0 10px #888888;">
 <!-- Table Header -->
 <div class="container">
 	<div class="row">
@@ -84,10 +84,13 @@
 			            			<table style="width: 100%;">
 			            				<thead>
 			            					<tr>
-			            						<th style="width: 50%">
-			            							<a class="accordion-toggle" data-toggle="collapse" href="#${module.title}">${module.title}</a>
+			            						<th style="width: 30%">
+			            							<a class="accordion-toggle" data-toggle="collapse" href="#${module.id}">${module.title}</a>
 		            							</th>
-					            				<th style="width: 40%">
+		            							<th style="width: 30%">
+		            								<a class="accordion-toggle" data-toggle="collapse" href="#${module.id}">${module.lecturer}</a>
+		            							</th>
+					            				<th style="width: 35%">
 					            				Total:
 					            					<div class="progress" style="width: 400px; float: right;">
 														<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:${module.average}%">
@@ -95,8 +98,8 @@
 									  					</div>
 													</div>
 												</th>
-					            				<th style="width: 10%">
-					            					<button id="deleteModule" name="deleteModule" data-original-title="Delete"
+					            				<th style="width: 5%">
+					            					<button id="deleteModuleBtn" name="deleteModuleBtn" data-original-title="Delete"
 															data-toggle="modal" type="button" class="remove-item btn btn-default btn-xs pull-right"
 															data-target="#deleteModuleModal" value="${module.title}|${module.lecturer}" onClick="deleteModule(this);">
 															<span class="glyphicon glyphicon-remove"></span>
@@ -106,14 +109,14 @@
 										</thead>
 									</table>
 		            			</div>
-		            			<div id="${module.title}" class="accordion-body collapse">
+		            			<div id="${module.id}" class="accordion-body collapse">
 		            				<div class="accordion-inner">
 		            					<table class="table table-striped table-condensed">
 		            						<thead>
 		            							<tr>
 		            								<th style="width: 20%">Title</th>
 		            								<th style="width: 20%">Date</th>
-		            								<th style="width: 10%">Value (%)</th>
+		            								<th style="width: 10%">Worth (%)</th>
 		            								<th style="width: 10%">Result (%)</th>
 		            								<th style="width: 30%">Percentage Awarded</th>
 		            								<th style="width: 10%">
@@ -163,6 +166,7 @@
 		</div>
 	</div>
 </div>
+</div>
 
 	
 <!-- Modals -->
@@ -171,15 +175,21 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h4 class="modal-title">Create Module</h4>
 			</div>
 			<div class="modal-body">
-				<form id="createModule" action="Grades" method="post">
+				<form id="createModule" action="Modules" method="post">
 					<div class="form-group">
-						<label>Module Title:</label> <input class="form-control" type="text" id="moduleTitle" name="moduleTitle" placeholder="Title max 15 characters" maxlength="15">
+						<label>Module Title:</label> <input class="form-control" type="text" id="moduleTitle" name="moduleTitle" placeholder="Module Title max 30 characters" maxlength="30" required>
+						 <%
+                                 String error_msg = (String) request.getAttribute("error");
+                                 if (error_msg != null)
+                                 	out.println("<font color=red size=4px>" + error_msg + "</font>");
+                                 %>
 					</div>
 					<div class="form-group">
-						<label>Lecturer:</label> <input class="form-control" type="text" id="lecturer" name="lecturer" placeholder="Lecturer" maxlength="20">
+						<label>Lecturer:</label> <input class="form-control" type="text" id="lecturer" name="lecturer" placeholder="Lecturer max 30 characters" maxlength="30" required>
 					</div>
 				</form>
 			</div>
@@ -197,21 +207,22 @@
 		<!-- Modal content-->
 		<div class="modal-content ">
 			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h4 class="modal-title">Add</h4>
 			</div>
 			<div class="modal-body">
-				<form id="createGrade" action="Grades" method="post">
+				<form id="createGrade" action="Modules" method="post">
 					<div class="form-group">
-						<label>Title:</label> <input class="form-control" type="text" id="gradeTitle" name="gradeTitle" placeholder="Title max 30 characters" maxlength="30">
+						<label>Title:</label> <input class="form-control" type="text" id="gradeTitle" name="gradeTitle" placeholder="Title max 30 characters" maxlength="30" required>
 					</div>
 					<div class="form-group">
-						<label>Date:</label> <input class="form-control" type="date" id="gradeDate" name="gradeDate" placeholder="Title max 15 characters" maxlength="15">
+						<label>Date:</label> <input class="form-control" type="date" id="gradeDate" name="gradeDate" required>
 					</div>
 					<div class="form-group">
-						<label>Value:</label> <input class="form-control" type="text" id="gradeValue" name="gradeValue" placeholder="Title max 15 characters" maxlength="15">
+						<label>Value:</label> <input class="form-control" type="number" id="gradeValue" name="gradeValue" placeholder="Worth - Out of 100%" max="100" required>
 					</div>
 					<div class="form-group">
-						<label>Result:</label> <input class="form-control" type="text" id="gradeResult" name="gradeResult" placeholder="Title max 15 characters" maxlength="15">
+						<label>Result:</label> <input class="form-control" type="number" id="gradeResult" name="gradeResult" placeholder="Result - Out of 100%" max="100" required>
 					</div>
 				</form>
 			</div>
@@ -228,10 +239,11 @@
 
 		<div class="modal-content">
 			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h4 class="modal-title">Delete Module</h4>
 			</div>
 			<div class="modal-body">
-				<form id="deleteModule" action="Grades" method="post">
+				<form id="deleteModule" action="Modules" method="post">
 					<div class="form-group">
 						<h4>Are you sure you wish to delete:</h4>
 						<label>Module Title:</label> <input class="form-control" type="text" id="deleteModuleTitle" name="deleteModuleTitle"  maxlength="40" readonly>
@@ -240,22 +252,22 @@
 						<label>Lecturer:</label> <input class="form-control" type="text" id="deleteModuleLecturer" name="deleteModuleLecturer" maxlength="40" readonly>
 					</div>
 					<h4>Doing so will remove all data belonging to this module!</h4>
+				</form>
 			</div>
 			<div class="modal-footer">
-				<button name="submitBtn" value="DeleteModule" type="submit" class="btn btn-default">Delete Module</button>
+				<button form="deleteModule" name="submitBtn" value="DeleteModule" type="submit" class="btn btn-default btn-danger">Delete Module</button>
 			</div>
-			</form>
 		</div>
 	</div>
 </div>
 
 <input form="createGrade"type="text" id="gradeModuleTitle" name="gradeModuleTitle" style="visibility: hidden;">
-<form id="deleteGrades" name="deleteGrades" action="Grades" method="post">
-<input type="text" id="deleteGradeModule" name="deleteGradeModule" style="visibility: hidden;">
-<input type="text" id="deleteGradeTitle" name="deleteGradeTitle" style="visibility: hidden;">
-<input type="text" id="deleteGradeDate" name="deleteGradeDate" style="visibility: hidden;">
-<input type="text" id="deleteGradeValue" name="deleteGradeValue" style="visibility: hidden;">
-<input type="text" id="deleteGradeResult" name="deleteGradeResult" style="visibility: hidden;">
+<form id="deleteGrades" name="deleteGrades" action="Modules" method="post">
+	<input type="text" id="deleteGradeModule" name="deleteGradeModule" style="visibility: hidden;">
+	<input type="text" id="deleteGradeTitle" name="deleteGradeTitle" style="visibility: hidden;">
+	<input type="text" id="deleteGradeDate" name="deleteGradeDate" style="visibility: hidden;">
+	<input type="text" id="deleteGradeValue" name="deleteGradeValue" style="visibility: hidden;">
+	<input type="text" id="deleteGradeResult" name="deleteGradeResult" style="visibility: hidden;">
 </form>
 </body>
 </html>
