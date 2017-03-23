@@ -34,7 +34,8 @@
 				<li><a href="Calendar.jsp">Calender</a></li>
 				<li><a href="Timetable">Timetable</a></li>
 				<li><a href="ToDoList">To do</a></li>
-				<li><a href="Grades">Grades Tracker</a></li>
+				<li><a href="Modules">Modules</a></li>
+				<li><a href="Assignments">Assignments</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -54,70 +55,64 @@
 	<!--Create ToDo List -->
 
 <div class="addTask">
-	<form action="ToDoListServlet" method="post" >
-<tr>
-		<b>Title:</b> <input type="text" id="title" name="title" required />
-
-
-		<b>Description:</b> <input type="text" id="description"name="description" required /> <input type="submit" name="btn" value="Save" />
-</tr>
+	<form action="ToDoListServlet" method="post">
+		<tr>
+			<b>Title:</b>
+			<input type="text" id="title" name="title" required />
+			<b>Description:</b>
+			<input type="text" id="description"name="description" required /> <input type="submit" name="btn" value="Save" />
+		</tr>
 	</form>
-	</div>
-	<br>
-	<!--Output tasks-->
-	<hr>
-
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6">
-				<div class="todolist not-done">
-				
-					<h1>Todo List</h1>
-					<hr>
-					<table class="todo" >
-					 <tr>
-					    <th align="left">Title</th>
-					    <th style="text-align:center;">Description</th>
-					    <th align="right">Mark as Done</th>
-					  </tr>
-						<c:forEach var="task" items="${todolist.tasks}" >
-							<tr role="row">
-								<td width="20%" align="left">${task.title}</td> 
-								<td width="60%" align="center">${task.description}</td>
-								<td width="20%" align="right"><input form="markAsDone" name="btn" type="checkbox" value="${task.title}|${task.description}" onchange="move(this);"></td>  
-							
-							</tr>
-							
-						</c:forEach>
-					</table>
-				</div>
+</div>
+	
+<!--Output tasks-->
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<div style="box-shadow: 0 0 10px #888888;" class="todolist not-done">
+				<h1>Todo List</h1>
+				<hr>
+				<table class="todo" >
+			 		<tr>
+			  	  		<th width="20%" align="left">Title</th>
+					    <th width="60%" style="text-align:center;">Description</th>
+					    <th width="20%" align="right">Mark as Done</th>
+				  	</tr>
+					<c:forEach var="task" items="${todolist.tasks}" >
+						<tr role="row">
+							<td width="20%" align="left">${task.title}</td> 
+							<td width="60%" align="center">${task.description}</td>
+							<td width="20%" align="right"><input form="markAsDone" name="btn" type="checkbox" value="${task.title}|${task.description}" onchange="move(this);"></td> 
+						</tr>	
+					</c:forEach>
+				</table>
 			</div>
-
-			<div class="col-md-6">
-				<div class="todolist">
+		</div>
+		<div class="col-md-6">
+			<div style="box-shadow: 0 0 10px #888888;" class="todolist">
 				<h1>Tasks Complete</h1>
 				<hr>
 				<ul id="done-items" class="list-unstyled">
-				<c:forEach var="taskCompleted" items="${todolistCompleted.tasks}">
-					<li>${taskCompleted.title}
-						<button class="remove-item btn btn-default btn-xs pull-right" 
-								value="${taskCompleted.title}|${taskCompleted.description}"
-								data-toggle="modal" data-target="#myModal" onClick="remove(this);">
-							<span class="glyphicon glyphicon-remove"></span>
-						</button>
-						
-						<button class="move-item btn btn-default btn-xs pull-right"
-								value="${taskCompleted.title}|${taskCompleted.description}"
-								data-toggle="modal" data-target="#moveModal" onClick="transfer(this);">
-							<span class="glyphicon glyphicon-transfer"></span>
-						</button>
-					</li>
-				</c:forEach>
+					<c:forEach var="taskCompleted" items="${todolistCompleted.tasks}">
+						<li>${taskCompleted.title}
+							<button class="remove-item btn btn-default btn-xs pull-right" 
+									value="${taskCompleted.title}|${taskCompleted.description}"
+									data-toggle="modal" data-target="#myModal" onClick="remove(this);">
+									<span class="glyphicon glyphicon-remove"></span>
+							</button>
+							<button class="move-item btn btn-default btn-xs pull-right"
+									value="${taskCompleted.title}|${taskCompleted.description}"
+									data-toggle="modal" data-target="#moveModal" onClick="transfer(this);">
+									<span class="glyphicon glyphicon-transfer"></span>
+							</button>
+						</li>
+					</c:forEach>
 				</ul>
-				</div>
 			</div>
 		</div>
 	</div>
+</div>
+
 <form name = "markAsDone" id = "markAsDone" action = "ToDoListServlet" method = "post">
 	<input form="markAsDone" type="text" name="taskTitle" id="taskTitle"style="visibility: hidden">
 	<input form="markAsDone" type="text" name="taskDescription" id="taskDescription" style="visibility: hidden">
