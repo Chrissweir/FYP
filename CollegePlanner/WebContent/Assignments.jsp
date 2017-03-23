@@ -10,7 +10,7 @@
 <script type="text/javascript" src="js/Assignment.js"></script>
 <title>Assignments</title>
 </head>
-<body style="padding-top: 70px">
+<body style="padding-top: 70px; margin-right: 150px; margin-left: 150px; background-color: #eaeaea;">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -47,7 +47,7 @@
 	</nav>
 
 <!-- Assignment Table -->
-<div>
+<div style="background-color: white; min-height: 600px; box-shadow: 0 0 10px #888888;">
 	<div class="container">
 		<div class="row">
 	        <div class="span12">

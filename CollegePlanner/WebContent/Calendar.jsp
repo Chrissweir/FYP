@@ -25,7 +25,7 @@
 <title>Calendar</title>
 
 </head>
-<body style="padding-top: 70px">
+<body style="padding-top: 70px; margin-right: 150px; margin-left: 150px; background-color: #eaeaea;">
 <nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -60,7 +60,7 @@
 			</div>
 		</div>
 	</nav>
-	<div style="margin: 50px 100px 50px 100px;">
+	<div style="background-color: white; min-height: 600px; box-shadow: 0 0 10px #888888;">
 		<div id="calendar"></div>
 	</div>
 	<div>
@@ -86,12 +86,12 @@
             </div>
              <div class="form-group">
             <label>Start Date:</label>
-            <input class="form-control" type="date" name="startDate" required>
+            <input class="form-control" type="date" id="startDate" name="startDate" required>
             </div>
              <div class="form-group">
             <label>End Date:</label>
-            <input class="form-control" type="date" name="endDate"  required>
-            
+            <input class="form-control" type="date" id="endDate" name="endDate"  required>
+            <label id="errorDate" style="color: red; display: none">Start Date must be before End Date!</label>
             </div>
             
              <div class="form-group">
@@ -254,6 +254,7 @@
              <div class="form-group">
             <label>End Date:</label>
             <input class="form-control" type="text" id="editEnd" name="editEndDate" placeholder="YYYY-MM-DD" pattern="\d{4}-?\d{2}-?\d{2}" required>
+            <label id="errorEditDate" style="color: red; display: none">Start Date must be before End Date!</label>
             </div>
             
              <div class="form-group">
