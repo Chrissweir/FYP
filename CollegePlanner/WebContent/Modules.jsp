@@ -9,7 +9,7 @@
 <script type="text/javascript" src="js/Module.js"></script>
 <title>Modules</title>
 </head>
-<body style="padding-top: 70px">
+<body style="padding-top: 70px; margin-right: 150px; margin-left: 150px; background-color: #eaeaea;">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -44,7 +44,7 @@
 			</div>
 		</div>
 	</nav>
-	
+	<div style="background-color: white; min-height: 600px; box-shadow: 0 0 10px #888888;">
 <!-- Table Header -->
 <div class="container">
 	<div class="row">
@@ -165,6 +165,7 @@
 	        </div>
 		</div>
 	</div>
+</div>
 </div>
 
 	
