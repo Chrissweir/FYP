@@ -6,14 +6,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/LoginRegister.css">
 <title>Account Recovery</title>
 </head>
 <body>
+<div class="background"></div>
 <div class="form-gap"></div>
 <div class="container">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-default">
+            <div class="panel panel-login" style="margin-top:40px">
               <div class="panel-body">
                 <div class="text-center">
                   <h3><i class="fa fa-lock fa-4x"></i></h3>
@@ -38,6 +40,16 @@
                     </form>
     
                   </div>
+                  <div class="form-group">
+                                 <div class="row">
+                                    <div class="col-lg-12">
+                                       <div class="text-center">
+                                          <a href="Login" tabindex="5"
+                                             class="forgot-password">Log In</a>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
                 </div>
               </div>
             </div>
