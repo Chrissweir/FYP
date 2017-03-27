@@ -37,7 +37,7 @@
 	
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="Calendar.jsp">Calendar</a></li>
+					<li><a href="Calendar">Calendar</a></li>
 					<li><a href="Timetable">Timetable</a></li>
 					<li><a href="ToDoList">To do</a></li>
 					<li><a href="Modules">Modules</a></li>
@@ -79,7 +79,7 @@
         </div>
         <div class="modal-body">
         
-          <form id="addEvent" name="addEvent" onsubmit="return error();" action="CalendarServlet" method="post">
+          <form id="addEvent" name="addEvent" onsubmit="return error();" action="CalendarEvents" method="post">
            <div class="form-group">
            <label>Title:</label>
             <input class="form-control" type="text" name="Title" placeholder="Title max 17 characters"  maxlength="17" required>
@@ -155,7 +155,7 @@
 				theme : false,
 				editable : false,
 				slotLabelFormat:"HH:mm",
-				events : "CalendarServlet",
+				events : "CalendarEvents",
 				
 					 eventClick: function(calEvent, event, view, date) {
 						 
@@ -242,7 +242,7 @@
         </div>
         <div class="modal-body">
         
-          <form id="editEvent" name="editEvent" onsubmit="return errorEdit();" action="CalendarServlet" method="post">
+          <form id="editEvent" name="editEvent" onsubmit="return errorEdit();" action="CalendarEvents" method="post">
            <div class="form-group">
            <label>Edit Title:</label>
             <input class="form-control" type="text" id="editTitle" name="editTitle" placeholder="Title max 17 characters"  maxlength="17" required>
