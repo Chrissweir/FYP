@@ -18,14 +18,16 @@ import ie.gmit.sw.Modules.ModuleDetails;
 import ie.gmit.sw.Timetable.TimetableModule;
 
 public class MongoConnection {
+	//The default image to be used when a user registers
 	private String defaultImage = "https://www.barfoot.co.nz/images/noprofile-big.png";
 	private String image;
+	private String mongoAddress = "mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh";
 
 	//Register
 	//=================================================
 	public void setNewUser(String code) {
 		final BasicDBObject[] data = createUserData(code, defaultImage);
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("User");
@@ -36,7 +38,7 @@ public class MongoConnection {
 	//Profile
 	//=================================================
 	public void setUserData(String code, String file) {
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("User");
@@ -49,7 +51,7 @@ public class MongoConnection {
 	}
 
 	public void removeUserData(String code) {
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		BasicDBObject document = new BasicDBObject();
@@ -66,11 +68,17 @@ public class MongoConnection {
 
 		DBCollection user3 = db.getCollection("ToDo");
 		user3.remove(document);
+		
+		DBCollection user4 = db.getCollection("Modules");
+		user4.remove(document);
+		
+		DBCollection user5 = db.getCollection("ToDoCompleted");
+		user5.remove(document);
 		client.close();
 	}
 
 	public String getUserImage(String code) {
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("User");
@@ -95,7 +103,7 @@ public class MongoConnection {
 	//Calendar
 	//=================================================
 	public void setCalendar(String code, CalendarValues cal) {
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("Calendar");
@@ -112,7 +120,7 @@ public class MongoConnection {
 	}
 
 	public void deleteCalendar(String code, CalendarValues cal) {
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("Calendar");
@@ -128,7 +136,7 @@ public class MongoConnection {
 	}
 
 	public List getCalender(String code) {
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("Calendar");
@@ -162,7 +170,7 @@ public class MongoConnection {
 	//ToDo List
 	//=================================================
 	public void setTodoList(String code, String title, String description) {
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("ToDo");
@@ -175,7 +183,7 @@ public class MongoConnection {
 	}
 
 	public void deleteToDo(String code, String title, String desc) {
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("ToDoCompleted");
@@ -188,7 +196,7 @@ public class MongoConnection {
 	}
 
 	public List getTodoList(String code) {
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("ToDo");
@@ -212,7 +220,7 @@ public class MongoConnection {
 	}
 
 	public void taskCompleted(String code, String title, String desc) {
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("ToDo");
@@ -225,7 +233,7 @@ public class MongoConnection {
 	}
 
 	public void setTaskCompleted(String code, String title, String desc) {
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("ToDoCompleted");
@@ -238,7 +246,7 @@ public class MongoConnection {
 	}
 
 	public List getTaskCompleted(String code){
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("ToDoCompleted");
@@ -262,7 +270,7 @@ public class MongoConnection {
 	}
 
 	public void deleteCompletedTask(String code, String title, String description) {
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("ToDoCompleted");
@@ -277,7 +285,7 @@ public class MongoConnection {
 	//Timetable
 	//=================================================
 	public void setTimetable(String code, TimetableModule module) {
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("Timetable");
@@ -292,7 +300,7 @@ public class MongoConnection {
 		client.close();
 	}
 	public List getTimetable(String code) {
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("Timetable");
@@ -324,7 +332,7 @@ public class MongoConnection {
 	//Modules
 	//=================================================
 	public void setModule(String code, String title, String lecturer) {
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("Modules");
@@ -345,7 +353,7 @@ public class MongoConnection {
 
 	public List getModules(String code) {
 		List moduleList = new ArrayList<>();
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("Modules");
@@ -363,11 +371,12 @@ public class MongoConnection {
 				moduleList.add(s);
 			}
 		}
+		client.close();
 		return moduleList;
 	}
 
 	public void removeModule(String code, TimetableModule removeModule) {
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("Timetable");
@@ -383,7 +392,7 @@ public class MongoConnection {
 	}	
 
 	public void setModuleGrades(String code, String title, String gradeTitle, String date, String value, String result){
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("Modules");
@@ -405,7 +414,7 @@ public class MongoConnection {
 
 	public List getModuleGrades(String code) {
 		List moduleGradesList = new ArrayList<>();
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("Modules");
@@ -442,7 +451,7 @@ public class MongoConnection {
 
 	public List getModuleAssignments(String code) {
 		List moduleAssignmentsList = new ArrayList<>();
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("Modules");
@@ -476,7 +485,7 @@ public class MongoConnection {
 	}
 
 	public void deleteModule(String code, Module module) {
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("Modules");
@@ -489,7 +498,7 @@ public class MongoConnection {
 	}
 
 	public void deleteGrade(String code, String moduleTitle,String gradeTitle, String gradeDate, String gradeValue, String gradeResult) {
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("Modules");
@@ -509,7 +518,7 @@ public class MongoConnection {
 	}
 
 	public void setModuleAssignment(String code, String moduleTitle, String title, String date, String value) {
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("Modules");
@@ -529,7 +538,7 @@ public class MongoConnection {
 	}
 
 	public void deleteAssignment(String code, String moduleTitle, String title, String date, String value) {
-		MongoClientURI uri = new MongoClientURI("mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh");
+		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB(uri.getDatabase());
 		DBCollection user = db.getCollection("Modules");

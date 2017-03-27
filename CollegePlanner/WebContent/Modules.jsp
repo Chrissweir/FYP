@@ -49,7 +49,7 @@
 <div class="container">
 	<div class="row">
         <div class="col-md-6">
-			<h2>Modules:</h2>
+			<h2>Modules</h2>
 			<button style="float:left;" id="newModule" name="newModule" data-original-title="Edit"
 					data-toggle="modal" type="button" class="btn btn-primary btn-info"
 					data-target="#moduleModal">
