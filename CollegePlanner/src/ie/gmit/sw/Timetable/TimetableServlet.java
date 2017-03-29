@@ -2,6 +2,7 @@ package ie.gmit.sw.Timetable;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.Servlet;
@@ -32,15 +33,8 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 			}
 			request.getSession().setAttribute("moduleList", mlist);
 
-			//Create an ArrayList of type String[] called list and give it the return value of 
-			//mongo.getTimetable and cast it to an ArrayList of type String[]
-			ArrayList<String[]> list = (ArrayList<String[]>) mongo.getTimetable(code);
-			//for each String[] in the list
-			for(String[] s : list){
-				///create an instance of module with the given parameters
-				TimetableModule module = new TimetableModule(s[0], Integer.parseInt(s[1]), Integer.parseInt(s[2]), Integer.parseInt(s[3]), s[4]);
-				timetable.addClass(module);//add a module to the timetable
-			}
+			getTimetable(timetable, code);
+			
 			request.getSession().setAttribute("timetable", timetable);
 			RequestDispatcher rd = request.getRequestDispatcher("Timetable.jsp");
 			rd.forward(request, response);
@@ -79,6 +73,8 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 				int timeEnding = Integer.parseInt(request.getParameter("endtime"));
 				String[] days = request.getParameterValues("day");
 				String roomNumber = request.getParameter("room");
+				
+				
 
 				//Check what day was selected
 				if(days != null)
@@ -95,6 +91,8 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 						else if(dayString.equalsIgnoreCase("FRI")) day = 5;
 						else day = 6;
 
+						checkSlot(timeStarting, timeEnding, day, code);
+						
 						//Add the module to the timetable
 						TimetableModule module = new TimetableModule(title, timeStarting, timeEnding, day, roomNumber);
 						mongo.setTimetable(code, module);
@@ -109,6 +107,38 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		}
 	}
 
+	private void checkSlot(int timeStarting, int timeEnding, int day, String code) {
+		Timetable timetable = new Timetable();
+		getTimetable(timetable, code);
+		List<TimetableModule> l = timetable.getClasses();
+		
+		for(TimetableModule t : l){
+			if(t.getDay() == day){
+				if(t.getTimeStart() == timeStarting){
+					System.out.println("Error");
+				}
+				for(int i=1; i < (t.getTimeEnd()-t.getTimeStart()); i++){
+					if(t.getTimeStart()+i == timeStarting){
+						System.out.println("Error1");
+					}
+				}
+				
+			}
+		}
+	}
+
+	private void getTimetable(Timetable timetable, String code){
+		//Create an ArrayList of type String[] called list and give it the return value of 
+		//mongo.getTimetable and cast it to an ArrayList of type String[]
+		ArrayList<String[]> list = (ArrayList<String[]>) mongo.getTimetable(code);
+		//for each String[] in the list
+		for(String[] s : list){
+			///create an instance of module with the given parameters
+			TimetableModule module = new TimetableModule(s[0], Integer.parseInt(s[1]), Integer.parseInt(s[2]), Integer.parseInt(s[3]), s[4]);
+			timetable.addClass(module);//add a module to the timetable
+		}
+	}
+	
 	//removeModule handle the deletion of the module from the timetable
 	private void removeModule(String code, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try{
