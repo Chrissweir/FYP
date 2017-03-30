@@ -18,6 +18,7 @@ import ie.gmit.sw.Modules.ModuleDetails;
 public class TimetableServlet extends HttpServlet implements Servlet {
 	private static final long serialVersionUID = 1L;
 	private MongoConnection mongo = new MongoConnection();
+	private boolean invalid = false;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
@@ -34,7 +35,7 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 			request.getSession().setAttribute("moduleList", mlist);
 
 			getTimetable(timetable, code);
-			
+
 			request.getSession().setAttribute("timetable", timetable);
 			RequestDispatcher rd = request.getRequestDispatcher("Timetable.jsp");
 			rd.forward(request, response);
@@ -73,8 +74,7 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 				int timeEnding = Integer.parseInt(request.getParameter("endtime"));
 				String[] days = request.getParameterValues("day");
 				String roomNumber = request.getParameter("room");
-				
-				
+
 
 				//Check what day was selected
 				if(days != null)
@@ -91,40 +91,45 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 						else if(dayString.equalsIgnoreCase("FRI")) day = 5;
 						else day = 6;
 
-						checkSlot(timeStarting, timeEnding, day, code);
+						if(checkSlot(timeStarting, timeEnding, day, code)){
 						
-						//Add the module to the timetable
-						TimetableModule module = new TimetableModule(title, timeStarting, timeEnding, day, roomNumber);
-						mongo.setTimetable(code, module);
+							//Add the module to the timetable
+							TimetableModule module = new TimetableModule(title, timeStarting, timeEnding, day, roomNumber);
+							mongo.setTimetable(code, module);
+						}
+						else{
+							request.setAttribute("error","Timeslot already taken!");
+							System.out.println(request.getAttribute("error"));
+						}
 					}
+
 				}
 			}
+			doGet(request, response);
 			//Call the Timetable class to reload the jsp page
-			response.sendRedirect("Timetable");
+			//response.sendRedirect("Timetable");
 		}
 		catch (Exception e) {
 			response.sendRedirect("ErrorHandler");
 		}
 	}
 
-	private void checkSlot(int timeStarting, int timeEnding, int day, String code) {
+	private boolean checkSlot(int timeStarting, int timeEnding, int day, String code) throws ServletException, IOException {
 		Timetable timetable = new Timetable();
 		getTimetable(timetable, code);
 		List<TimetableModule> l = timetable.getClasses();
-		
+
 		for(TimetableModule t : l){
 			if(t.getDay() == day){
-				if(t.getTimeStart() == timeStarting){
-					System.out.println("Error");
-				}
-				for(int i=1; i < (t.getTimeEnd()-t.getTimeStart()); i++){
+				for(int i=0; i < (t.getTimeEnd()-t.getTimeStart()); i++){
 					if(t.getTimeStart()+i == timeStarting){
-						System.out.println("Error1");
+						System.out.println("Error");
+						return false;
 					}
 				}
-				
 			}
 		}
+		return true;
 	}
 
 	private void getTimetable(Timetable timetable, String code){
@@ -138,7 +143,7 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 			timetable.addClass(module);//add a module to the timetable
 		}
 	}
-	
+
 	//removeModule handle the deletion of the module from the timetable
 	private void removeModule(String code, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try{
