@@ -129,21 +129,21 @@
 	</aside>
 	<section class="timetable">
 	<div>
-		<TABLE border="1" cellspacing="0">
+		<TABLE style="background-color: white; box-shadow: 0 0 10px #888888;" border="1" cellspacing="0">
 			<TBODY>
 				<TR>
 					<TH align="center" valign="middle" width="90">${username}</TH>
-					<TH style="background: lightgrey;" align="center" valign="middle" width="100">Sunday</TH>
-					<TH style="background: lightgrey;" align="center" valign="middle">Monday</TH>
-					<TH style="background: lightgrey;" align="center" valign="middle">Tuesday</TH>
-					<TH style="background: lightgrey;" align="center" valign="middle">Wednesday</TH>
-					<TH style="background: lightgrey;" align="center" valign="middle">Thursday</TH>
-					<TH style="background: lightgrey;" align="center" valign="middle">Friday</TH>
-					<TH style="background: lightgrey;" align="center" valign="middle">Saturday</TH>
+					<TH align="center" valign="middle" width="100">Sunday</TH>
+					<TH align="center" valign="middle">Monday</TH>
+					<TH align="center" valign="middle">Tuesday</TH>
+					<TH align="center" valign="middle">Wednesday</TH>
+					<TH align="center" valign="middle">Thursday</TH>
+					<TH align="center" valign="middle">Friday</TH>
+					<TH align="center" valign="middle">Saturday</TH>
 				</TR>
 				<c:forEach begin="8" end="21" step="1" var="time">
 					<TR>
-						<TD align="center" valign="middle" width="80" style="background: lightgrey;"><c:choose>
+						<TD align="center" valign="middle" width="80"><c:choose>
 							<c:when test="${time == 12}">
 								<c:out value="${time}" />:00pm
 							</c:when>
@@ -182,11 +182,16 @@
 			</TBODY>
 		</TABLE>
 	</div>
+	<%
+		String error_msg = (String) request.getAttribute("error");
+		if (error_msg != null)
+			out.println("<font color=red size=4px>" + error_msg + "</font>");
+	%>
 	</section>
 
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog">
+		<div class="modal-dialog ">
 
 			<!-- Modal content-->
 			<div class="modal-content">
