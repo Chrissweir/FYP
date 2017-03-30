@@ -19,37 +19,38 @@
 
 <BODY style="padding-top: 70px">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand">
-				<span class="glyphicon glyphicon-education" aria-hidden="true"></span>
-			</a>
-			<a class="navbar-brand" href="About.jsp">College Planner</a>
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand">
+					<span class="glyphicon glyphicon-education" aria-hidden="true"></span>
+				</a>
+				<a class="navbar-brand" href="About.jsp">College Planner</a>
+			</div>
+	
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="Calendar">Calendar</a></li>
+					<li><a href="Timetable">Timetable</a></li>
+					<li><a href="ToDoList">To do</a></li>
+					<li><a href="Modules">Modules</a></li>
+					<li><a href="Assignments">Assignments</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${username}<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="Profile">Account Details
+									<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+								</a>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li><a href="Logout">Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
 		</div>
-
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="Calendar.jsp">Calender</a></li>
-				<li><a href="Timetable">Timetable</a></li>
-				<li><a href="ToDoList">To do</a></li>
-				<li><a href="Grades">Grades Tracker</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${username}<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li>
-							<a href="Profile">Account Details
-								<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-							</a>
-						</li>
-						<li role="separator" class="divider"></li>
-						<li><a href="Logout">Logout</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-	</div>
 	</nav>
 <aside>
 	<div class="timetableForm-Box timetableForm">
@@ -128,21 +129,21 @@
 	</aside>
 	<section class="timetable">
 	<div>
-		<TABLE border="1" cellspacing="0">
+		<TABLE style="background-color: white; box-shadow: 0 0 10px #888888;" border="1" cellspacing="0">
 			<TBODY>
 				<TR>
 					<TH align="center" valign="middle" width="90">${username}</TH>
-					<TH style="background: lightgrey;" align="center" valign="middle" width="100">Sunday</TH>
-					<TH style="background: lightgrey;" align="center" valign="middle">Monday</TH>
-					<TH style="background: lightgrey;" align="center" valign="middle">Tuesday</TH>
-					<TH style="background: lightgrey;" align="center" valign="middle">Wednesday</TH>
-					<TH style="background: lightgrey;" align="center" valign="middle">Thursday</TH>
-					<TH style="background: lightgrey;" align="center" valign="middle">Friday</TH>
-					<TH style="background: lightgrey;" align="center" valign="middle">Saturday</TH>
+					<TH align="center" valign="middle" width="100">Sunday</TH>
+					<TH align="center" valign="middle">Monday</TH>
+					<TH align="center" valign="middle">Tuesday</TH>
+					<TH align="center" valign="middle">Wednesday</TH>
+					<TH align="center" valign="middle">Thursday</TH>
+					<TH align="center" valign="middle">Friday</TH>
+					<TH align="center" valign="middle">Saturday</TH>
 				</TR>
 				<c:forEach begin="8" end="21" step="1" var="time">
 					<TR>
-						<TD align="center" valign="middle" width="80" style="background: lightgrey;"><c:choose>
+						<TD align="center" valign="middle" width="80"><c:choose>
 							<c:when test="${time == 12}">
 								<c:out value="${time}" />:00pm
 							</c:when>
@@ -181,11 +182,16 @@
 			</TBODY>
 		</TABLE>
 	</div>
+	<%
+		String error_msg = (String) request.getAttribute("error");
+		if (error_msg != null)
+			out.println("<font color=red size=4px>" + error_msg + "</font>");
+	%>
 	</section>
 
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog">
+		<div class="modal-dialog ">
 
 			<!-- Modal content-->
 			<div class="modal-content">
