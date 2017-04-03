@@ -58,7 +58,6 @@
     <servlet-name>Assignments</servlet-name>
     <url-pattern>/Assignments</url-pattern>
   </servlet-mapping>
-<<<<<<< HEAD
   
   <servlet>
     <description></description>
@@ -69,8 +68,9 @@
   <servlet-mapping>
     <servlet-name>ErrorHandler</servlet-name>
     <url-pattern>/ErrorHandler</url-pattern>
-=======
-   <servlet>
+  </servlet-mapping>	
+  
+  <servlet>
     <description></description>
     <display-name>Calendar</display-name>
     <servlet-name>Calendar</servlet-name>
@@ -79,6 +79,5 @@
   <servlet-mapping>
     <servlet-name>Calendar</servlet-name>
     <url-pattern>/Calendar</url-pattern>
->>>>>>> origin/Back-End
   </servlet-mapping>
 </web-app>
