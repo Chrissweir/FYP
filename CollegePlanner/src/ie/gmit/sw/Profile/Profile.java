@@ -20,7 +20,6 @@ import ie.gmit.sw.Security.Encryption;
  * the users profile from the databases, handling profile updates and the removal of profiles. 
  *
  */
-@WebServlet("/Profile")
 public class Profile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserDetails userDetails = new UserDetails();
@@ -36,18 +35,15 @@ public class Profile extends HttpServlet {
 		//Get a handle on the session
 		HttpSession session = request.getSession();
 		//Before loading the Profile page, try to get the users Profile picture from the database
-		try{
-			userDetails.setCode((String)session.getAttribute("code"));
-			image = mongo.getUserImage(userDetails.getCode());
-			//Remove the previous image if there happens to be one 
-			//(This line can be removed once the logout bug has been fixed)
-			session.removeAttribute("image");
-			session.setAttribute("image", image);
-			RequestDispatcher rd = request.getRequestDispatcher("Profile.jsp");
-			rd.forward(request, response);	
-		}catch (Exception e) {
-			response.sendRedirect("ErrorHandler");
-		}
+	
+		userDetails.setCode((String)session.getAttribute("code"));
+		image = mongo.getUserImage(userDetails.getCode());
+		//Remove the previous image if there happens to be one 
+		//(This line can be removed once the logout bug has been fixed)
+		session.removeAttribute("image");
+		session.setAttribute("image", image);
+		RequestDispatcher rd = request.getRequestDispatcher("Profile.jsp");
+		rd.forward(request, response);
 	}
 
 	/* (non-Javadoc)
