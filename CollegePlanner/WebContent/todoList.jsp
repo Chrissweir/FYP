@@ -54,7 +54,7 @@
 
 	<!--Create ToDo List -->
 
-<div class="addTask">
+<div class="addTask" >
 
 	<form action="ToDoListServlet" method="post">
 		<tr>
@@ -62,13 +62,13 @@
 			<input type="text" id="title" name="title" required maxlength="10" placeholder="Max 10 Characters" />
 			<b>Description:</b>
 			
-			<span class="tooltiptext"><input type="text" id="description"name="description" required maxlength="25" placeholder="Max 25 Characters" /></span> 
+			<input type="text" id="description"name="description" required maxlength="25" placeholder="Max 25 Characters" />
 			
 			<input type="submit" name="btn" value="Save" />
 		</tr>
 	</form>
 </div>
-	
+</div>
 <!--Output tasks-->
 <div class="container">
 	<div class="row">
@@ -85,7 +85,7 @@
 					<c:forEach var="task" items="${todolist.tasks}" >
 						<tr role="row">
 							<td width="20%" align="left">${task.title}</td> 
-							<td width="60%" align="center">${task.description}</td>
+							<td width="20%" align="middle">${task.description}</td> 
 							<td width="20%" align="right"><input form="markAsDone" name="btn" type="checkbox" value="${task.title}|${task.description}" onchange="move(this);"></td> 
 						</tr>	
 					</c:forEach>
