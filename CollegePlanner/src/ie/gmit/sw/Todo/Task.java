@@ -1,7 +1,6 @@
 package ie.gmit.sw.Todo;
 
 /**
- * @author Paul Dolan - G00297086
  * Getters and setters 
  *
  */
