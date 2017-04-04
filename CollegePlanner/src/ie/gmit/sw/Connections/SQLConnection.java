@@ -21,7 +21,7 @@ import ie.gmit.sw.Security.AccountRecoveryDetails;
  */
 public class SQLConnection {
 	/**
-	 * getConnectio() gets the connection to the database.
+	 * getConnection() gets the connection to the database.
 	 * 
 	 * @return the connection
 	 * @throws URISyntaxException
