@@ -1,4 +1,5 @@
 package ie.gmit.sw.Connections;
+
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,14 +8,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.eclipse.jdt.internal.compiler.ast.ContinueStatement;
-
 import ie.gmit.sw.Login.LoginValues;
 import ie.gmit.sw.Profile.UserDetails;
 import ie.gmit.sw.Register.RegisterUserDetails;
 import ie.gmit.sw.Security.AccountRecoveryDetails;
 
+/**
+ * @author Christopher Weir - G00309429
+ * 
+ * SQLConnection handles the connection to the postgres database hosted on Heroku. 
+ *
+ */
 public class SQLConnection {
+	/**
+	 * getConnectio() gets the connection to the database.
+	 * 
+	 * @return the connection
+	 * @throws URISyntaxException
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 */
 	public Connection getConnection() throws URISyntaxException, SQLException, ClassNotFoundException {
 		//Establish a connection with the database
 		Class.forName("org.postgresql.Driver");
@@ -22,6 +35,14 @@ public class SQLConnection {
 		return DriverManager.getConnection(ConnectionString);
 	}
 
+	/**
+	 * userLogin() retrieves the user details if the exist.
+	 * 
+	 * @param login
+	 * @throws ClassNotFoundException
+	 * @throws URISyntaxException
+	 * @throws SQLException
+	 */
 	public void userLogin(LoginValues login) throws ClassNotFoundException, URISyntaxException, SQLException{
 		//Establish a connection with the database
 		Connection connection = getConnection();
@@ -48,6 +69,15 @@ public class SQLConnection {
 		connection.close();
 	}
 
+	/**
+	 * userRegistration() add user details to the database.
+	 * 
+	 * @param userDetails
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws URISyntaxException
+	 * @throws SQLException
+	 */
 	public String userRegistration(RegisterUserDetails userDetails) throws ClassNotFoundException, URISyntaxException, SQLException {
 		//Establish a connection with the database
 		Connection connection = getConnection();
@@ -105,6 +135,14 @@ public class SQLConnection {
 		return null;
 	}
 
+	/**
+	 * updateUserDetails() edits user details on the database.
+	 * 
+	 * @param userDetails
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @throws URISyntaxException
+	 */
 	public void updateUserDetails(UserDetails userDetails) throws SQLException, ClassNotFoundException, URISyntaxException{
 		//Establish a connection with the database
 		Connection connection = getConnection();
@@ -124,6 +162,15 @@ public class SQLConnection {
 		connection.close();
 	}
 	
+	/**
+	 * removeUser() removes user details from the database.
+	 * 
+	 * @param userDetails
+	 * @return
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @throws URISyntaxException
+	 */
 	public boolean removeUser(UserDetails userDetails) throws SQLException, ClassNotFoundException, URISyntaxException{
 		//Establish a connection with the database
 		Connection connection = getConnection();
@@ -154,6 +201,15 @@ public class SQLConnection {
 		return false;
 	}
 
+	/**
+	 * checkUser() checks if a user exits on the database.
+	 * 
+	 * @param ar
+	 * @return
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @throws URISyntaxException
+	 */
 	public boolean checkUser(AccountRecoveryDetails ar) throws SQLException, ClassNotFoundException, URISyntaxException {
 		//Establish a connection with the database
 		Connection connection = getConnection();
@@ -173,6 +229,15 @@ public class SQLConnection {
 		return false;
 	}
 
+	/**
+	 * resetPassword() changes a users password on the database.
+	 * 
+	 * @param password
+	 * @param ar
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @throws URISyntaxException
+	 */
 	public void resetPassword(String password, AccountRecoveryDetails ar) throws SQLException, ClassNotFoundException, URISyntaxException {
 		//Establish a connection with the database
 		Connection connection = getConnection();
@@ -185,6 +250,7 @@ public class SQLConnection {
 		update.setString(3, ar.getEmail());
 		update.executeUpdate();
 		
+		//Close the connection
 		connection.close();
 	}
 }
