@@ -55,12 +55,16 @@
 	<!--Create ToDo List -->
 
 <div class="addTask">
+
 	<form action="ToDoListServlet" method="post">
 		<tr>
 			<b>Title:</b>
-			<input type="text" id="title" name="title" required />
+			<input type="text" id="title" name="title" required maxlength="10" placeholder="Max 10 Characters" />
 			<b>Description:</b>
-			<input type="text" id="description"name="description" required /> <input type="submit" name="btn" value="Save" />
+			
+			<span class="tooltiptext"><input type="text" id="description"name="description" required maxlength="25" placeholder="Max 25 Characters" /></span> 
+			
+			<input type="submit" name="btn" value="Save" />
 		</tr>
 	</form>
 </div>
