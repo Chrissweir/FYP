@@ -40,7 +40,7 @@ public class AssignmentsServlet extends HttpServlet {
 			AssignmentData moduleAssignment = new AssignmentData();
 			ModuleGroup modules = new ModuleGroup();
 
-			//Get the Users Modules and add each to the session attributes
+			//Get the Users Modules from the database
 			ArrayList<String[]> moduleList = (ArrayList<String[]>) mongo.getModules(code);
 			ArrayList<String[]> moduleAssignmentsList = (ArrayList<String[]>) mongo.getModuleAssignments(code);
 

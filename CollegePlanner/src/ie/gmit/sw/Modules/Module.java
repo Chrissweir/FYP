@@ -1,11 +1,23 @@
 package ie.gmit.sw.Modules;
 
+/**
+ * @author Christopher Weir - G00309429, Gareth Lynskey - G00312651, Patrick Griffin - G00314635
+ *
+ */
 public class Module {
 	private String title;
 	private String lecturer;
 	private double average;
 	private int id;
 	
+	/**
+	 * Constructor
+	 * 
+	 * @param title
+	 * @param lecturer
+	 * @param average
+	 * @param i
+	 */
 	public Module(String title, String lecturer, double average, int i) {
 		this.title = title;
 		this.lecturer = lecturer;

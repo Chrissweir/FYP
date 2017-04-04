@@ -3,8 +3,21 @@ package ie.gmit.sw.Security;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * @author Christopher Weir - G00309429
+ * 
+ * Encryption is responsible for the encryption of user passwords.
+ *
+ */
 public class Encryption {
 
+	/**
+	 * encrypt() handles the encryption of a string.
+	 * 
+	 * @param args
+	 * @return securePassword
+	 * @throws NoSuchAlgorithmException
+	 */
 	public String encrypt(String args) throws NoSuchAlgorithmException{
 		String passwordToHash = args;
 		String salt = "kg45236khkb";
@@ -13,9 +26,15 @@ public class Encryption {
 		return securePassword;
 	}
 
+	/**
+	 * get_SHA_512_SecurePassword() encrypts a string using SHA 512 encryption with salt.
+	 * 
+	 * @param passwordToHash
+	 * @param salt
+	 * @return generatedPasssword
+	 */
 	private static String get_SHA_512_SecurePassword(String passwordToHash, String salt)
 	{
-		//Use MessageDigest md = MessageDigest.getInstance("SHA-512");
 		String generatedPassword = null;
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-512");

@@ -33,6 +33,17 @@
   
   <servlet>
     <description></description>
+    <display-name>AccountRecovery</display-name>
+    <servlet-name>AccountRecovery</servlet-name>
+    <servlet-class>ie.gmit.sw.Security.AccountRecovery</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AccountRecovery</servlet-name>
+    <url-pattern>/AccountRecovery</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
     <display-name>ToDoList</display-name>
     <servlet-name>ToDoList</servlet-name>
     <servlet-class>ie.gmit.sw.Todo.ToDoListServlet</servlet-class>

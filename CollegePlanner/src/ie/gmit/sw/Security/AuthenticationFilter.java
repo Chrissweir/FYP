@@ -14,7 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet Filter implementation class AuthenticationFilter
+ * @author Christopher Weir - G00309429
+ * 
+ * Filter for Client Authentication.
+ *
  */
 @WebFilter("/AuthenticationFilter")
 public class AuthenticationFilter implements Filter {
@@ -24,7 +27,6 @@ public class AuthenticationFilter implements Filter {
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -39,7 +41,9 @@ public class AuthenticationFilter implements Filter {
 
 		HttpSession session = req.getSession();
 
+		//If no authentication code is detected and the client is not on the Login page
 		if(session.getAttribute("code") == null && !uri.contains("Login")){
+			//If the uri contains the following
 			if(uri.endsWith("css") || uri.endsWith("js") || uri.contains("Login") || uri.contains("Register") || uri.contains("AccountRecovery") || uri.contains("ErrorHandler")){
 				chain.doFilter(request, response);
 			}else{

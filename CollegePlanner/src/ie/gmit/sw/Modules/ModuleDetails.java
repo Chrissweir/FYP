@@ -1,5 +1,11 @@
 package ie.gmit.sw.Modules;
 
+/**
+ * @author Christopher Weir - G00309429, Gareth Lynskey - G00312651, Patrick Griffin - G00314635
+ * 
+ * Getters and setters for module details.
+ *
+ */
 public class ModuleDetails {
 	private String title;
 	private String gradeTitle;
@@ -7,6 +13,26 @@ public class ModuleDetails {
 	private int value;
 	private int result;
 	private double grade;
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param title
+	 * @param gradeTitle
+	 * @param date
+	 * @param value
+	 * @param result
+	 * @param grade
+	 */
+	public ModuleDetails(String title, String gradeTitle, String date, int value, int result, double grade) {
+		this.title = title;
+		this.gradeTitle = gradeTitle;
+		this.date = date;
+		this.value = value;
+		this.result = result;
+		this.grade = grade;
+	}	
+	
 	/**
 	 * @return the title
 	 */
@@ -68,14 +94,6 @@ public class ModuleDetails {
 	public void setResult(int result) {
 		this.result = result;
 	}
-	public ModuleDetails(String title, String gradeTitle, String date, int value, int result, double grade) {
-		this.title = title;
-		this.gradeTitle = gradeTitle;
-		this.date = date;
-		this.value = value;
-		this.result = result;
-		this.grade = grade;
-	}
 	/**
 	 * @return the grade
 	 */
@@ -88,5 +106,4 @@ public class ModuleDetails {
 	public void setGrade(double grade) {
 		this.grade = grade;
 	}
-	
 }
