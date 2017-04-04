@@ -28,13 +28,4 @@ public class AssignmentData {
 	{
 		moduleAssignments.add(assignment);
 	}
-
-	/**
-	 * Method for removing classes
-	 * @param module
-	 */
-	public void removeAssignment(AssignmentDetails assignment){
-		moduleAssignments.remove(assignment);
-	}
-
 }
