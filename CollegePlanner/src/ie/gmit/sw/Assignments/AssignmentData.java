@@ -3,13 +3,18 @@ package ie.gmit.sw.Assignments;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Paul Dolan - G00297086
+ *
+ */
 public class AssignmentData {
 
+	//List to hold the module assignments
 	private List<AssignmentDetails> moduleAssignments = new ArrayList<AssignmentDetails>();
 
 	/**
 	 * Getter for the list in order to access the lists object information
-	 * @return
+	 * @return moduleAssignments
 	 */
 	public List<AssignmentDetails> getModuleAssignments() {
 		return moduleAssignments;

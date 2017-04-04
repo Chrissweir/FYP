@@ -1,5 +1,9 @@
 package ie.gmit.sw.Assignments;
 
+/**
+ * @author Paul Dolan - G00297086
+ *
+ */
 public class AssignmentDetails {
 	
 	private String title;
@@ -7,6 +11,14 @@ public class AssignmentDetails {
 	private String date;
 	private int value;
 	
+	/**
+	 * Constructor
+	 * 
+	 * @param title
+	 * @param assignmentTitle
+	 * @param date
+	 * @param value
+	 */
 	public AssignmentDetails(String title, String assignmentTitle, String date, int value) {
 		this.title = title;
 		this.assignmentTitle = assignmentTitle;
