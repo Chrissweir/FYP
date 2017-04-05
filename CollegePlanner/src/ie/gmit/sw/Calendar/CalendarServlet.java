@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CalendarServlet
+ * Servlet is responsible for directing the user to the calendar page
  */
 
 public class CalendarServlet extends HttpServlet {
