@@ -37,7 +37,7 @@ public class Login extends HttpServlet{
 		RequestDispatcher rd = request.getRequestDispatcher("LoginRegister.jsp");
 		rd.forward(request, response);
 	}
-	
+
 	/**
 	 * doPost() handles the request from the LoginRegister.jsp page by retrieving 
 	 * the username and password that was submitted and using them to query the database
@@ -49,36 +49,42 @@ public class Login extends HttpServlet{
 			//Retrieve the username and password that was submitted
 			login.setUsername(request.getParameter("username"));
 			login.setPassword(encrypt.encrypt((request.getParameter("password"))));
-			
+
 			//Pass the login values to SQLConnection which will query the database
 			sqlConn.userLogin(login);
 
 			//User validation, check if the password that was submitted is the same and the password
 			//retrieved from the database. If it is then pass the specified data to the request object
 			//and forward the request to the Profile.jsp page
-			
+
 			System.out.println(login.getPass());
 			System.out.println(login.getPassword());
-			if(login.getPass().equals(login.getPassword())){
-				HttpSession session = request.getSession();
-				session.setAttribute("firstname", login.getFirstname());
-				session.setAttribute("lastname", login.getLastname());
-				session.setAttribute("email", login.getEmail());
-				session.setAttribute("college", login.getCollege());
-				session.setAttribute("username", login.getUser());
-				session.setAttribute("course", login.getCourse());
-				session.setAttribute("bio", login.getBio());
-				session.setAttribute("code", login.getCode());
-				response.sendRedirect("Profile");
-			}
+			if(login.getPass() != null){
 
-			//If the passwords do not match then send an error back to the LoginRegister.jsp page
+				if(login.getPass().equals(login.getPassword())){
+					HttpSession session = request.getSession();
+					session.setAttribute("firstname", login.getFirstname());
+					session.setAttribute("lastname", login.getLastname());
+					session.setAttribute("email", login.getEmail());
+					session.setAttribute("college", login.getCollege());
+					session.setAttribute("username", login.getUser());
+					session.setAttribute("course", login.getCourse());
+					session.setAttribute("bio", login.getBio());
+					session.setAttribute("code", login.getCode());
+					response.sendRedirect("Profile");
+				}
+
+				//If the passwords do not match then send an error back to the LoginRegister.jsp page
+				else{
+					request.setAttribute("error","Invalid Username or Password");
+					doGet(request, response);
+				}
+			}
 			else{
 				request.setAttribute("error","Invalid Username or Password");
-				RequestDispatcher rd=request.getRequestDispatcher("Login");            
-				rd.include(request, response);
+				doGet(request, response);
 			}
-		//If something goes wrong the redirect the user to the ErrorHandler page
+			//If something goes wrong the redirect the user to the ErrorHandler page
 		}catch (Exception e) {
 			response.sendRedirect("ErrorHandler");
 		}

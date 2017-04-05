@@ -21,7 +21,7 @@
 	
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="Calendar.jsp">Calendar</a></li>
+					<li><a href="Calendar">Calendar</a></li>
 					<li><a href="Timetable">Timetable</a></li>
 					<li><a href="ToDoList">To do</a></li>
 					<li><a href="Modules">Modules</a></li>

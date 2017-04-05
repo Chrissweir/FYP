@@ -36,11 +36,11 @@
                            <form id="login-form" action="Login" method="post" style="display: block;">
                               <div class="form-group">
                                  <input type="text" name="username" id="username" tabindex="1"
-                                    	class="form-control" placeholder="Username">
+                                    	class="form-control" placeholder="Username" required>
                               </div>
                               <div class="form-group">
                                  <input type="password" name="password" id="password"
-                                    	tabindex="2" class="form-control" placeholder="Password">
+                                    	tabindex="2" class="form-control" placeholder="Password" required>
                               </div>
                               <!-- Java code to apply the Login Error message when necessary -->
                               <%
