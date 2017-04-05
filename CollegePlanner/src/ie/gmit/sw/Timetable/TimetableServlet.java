@@ -20,31 +20,58 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 	private MongoConnection mongo = new MongoConnection();
 	private boolean invalid = false;
 
+	/**
+	 * This doGet method handles the retrieving of information from the database regarding modules and the timetable
+	 * and adds this data as attributes in the session
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
+			//Get a handle on the session
 			HttpSession session = request.getSession();
 			String code = (String)session.getAttribute("code");
-			Timetable timetable = new Timetable();//create an instance of Timetable
+			//create a new instance Timetable object
+			Timetable timetable = new Timetable();
 
-			//Get the Users Modules and add each to the session attributes
+			//Get the Users Modules from the database
 			ArrayList<String[]> moduleList = (ArrayList<String[]>) mongo.getModules(code);
 			ArrayList<String> mlist = new ArrayList<String>();
-			for(String [] m : moduleList){
-				mlist.add(m[0]);
+			
+			//for every String[] modules in the moduleList
+			for(String [] modules : moduleList){
+				mlist.add(modules[0]);
 			}
+			//add the module list to the session attributes
 			request.getSession().setAttribute("moduleList", mlist);
-
-			getTimetable(timetable, code);
-
+			
+			getTimetable(timetable, code, response);
+			
+			//add the module list to the session attributes
 			request.getSession().setAttribute("timetable", timetable);
+			//forwards request/response to Timetable.jsp
 			RequestDispatcher rd = request.getRequestDispatcher("Timetable.jsp");
 			rd.forward(request, response);
 		}
 		catch (Exception e) {
 			response.sendRedirect("ErrorHandler");
 		}
+		
 	}
 
+	/**
+	 * This doPost method checks what button is pressed on the Timetable.jsp page, calls the corresponding method
+	 * and posts it to the database
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
 			//Get a handle on the session
@@ -91,7 +118,7 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 						else if(dayString.equalsIgnoreCase("FRI")) day = 5;
 						else day = 6;
 
-						if(checkSlot(timeStarting, timeEnding, day, code)){
+						if(checkSlot(timeStarting, timeEnding, day, code, response)){
 						
 							//Add the module to the timetable
 							TimetableModule module = new TimetableModule(title, timeStarting, timeEnding, day, roomNumber);
@@ -102,49 +129,88 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 							System.out.println(request.getAttribute("error"));
 						}
 					}
-
 				}
 			}
 			doGet(request, response);
-			//Call the Timetable class to reload the jsp page
-			//response.sendRedirect("Timetable");
 		}
 		catch (Exception e) {
 			response.sendRedirect("ErrorHandler");
 		}
 	}
 
-	private boolean checkSlot(int timeStarting, int timeEnding, int day, String code) throws ServletException, IOException {
-		Timetable timetable = new Timetable();
-		getTimetable(timetable, code);
-		List<TimetableModule> l = timetable.getClasses();
-
-		for(TimetableModule t : l){
-			if(t.getDay() == day){
-				for(int i=0; i < (t.getTimeEnd()-t.getTimeStart()); i++){
-					if(t.getTimeStart()+i == timeStarting){
-						System.out.println("Error");
-						return false;
+	
+	/**
+	 * This boolean method checks if a timetable slot is already occupied
+	 * 
+	 * @param timeStarting
+	 * @param timeEnding
+	 * @param day
+	 * @param code
+	 * @param response
+	 * @return false if occupied or true if it's not occupied
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private boolean checkSlot(int timeStarting, int timeEnding, int day, String code, HttpServletResponse response) throws ServletException, IOException {
+		
+		try{
+			//creates a new instance of timetable object
+			Timetable timetable = new Timetable();
+			getTimetable(timetable, code, response);
+			//Create a list of type TimetableModule and give it the value timetable with all the modules
+			List<TimetableModule> listModules = timetable.getClasses();
+			for(TimetableModule t : listModules){
+				if(t.getDay() == day){
+					for(int i=0; i < (t.getTimeEnd()-t.getTimeStart()); i++){
+						if(t.getTimeStart()+i == timeStarting){
+							//System.out.println("Error");
+							return false;
+						}
 					}
 				}
 			}
+			return true;
+		}
+		catch (Exception e) {
+			response.sendRedirect("ErrorHandler");
 		}
 		return true;
 	}
 
-	private void getTimetable(Timetable timetable, String code){
-		//Create an ArrayList of type String[] called list and give it the return value of 
-		//mongo.getTimetable and cast it to an ArrayList of type String[]
-		ArrayList<String[]> list = (ArrayList<String[]>) mongo.getTimetable(code);
-		//for each String[] in the list
-		for(String[] s : list){
-			///create an instance of module with the given parameters
-			TimetableModule module = new TimetableModule(s[0], Integer.parseInt(s[1]), Integer.parseInt(s[2]), Integer.parseInt(s[3]), s[4]);
-			timetable.addClass(module);//add a module to the timetable
+	
+	/**
+	 * This method gets a list of timetables from the database, and for every entry in the timetable list
+	 * it adds them to a new instance of timetableModule, and adds that to the timetable
+	 * @param timetable
+	 * @param code
+	 * @param response
+	 * @throws IOException
+	 */
+	private void getTimetable(Timetable timetable, String code, HttpServletResponse response) throws IOException{
+		
+		try{
+			//Create an ArrayList of type String[] called list and give it the return value of 
+			//mongo.getTimetable and cast it to an ArrayList of type String[]
+			ArrayList<String[]> list = (ArrayList<String[]>) mongo.getTimetable(code);
+			//for each String[] in the list
+			for(String[] s : list){
+				//create a new instance of TimetableModule with the given parameters
+				TimetableModule module = new TimetableModule(s[0], Integer.parseInt(s[1]), Integer.parseInt(s[2]), Integer.parseInt(s[3]), s[4]);
+				timetable.addClass(module);//add a module to the timetable
+			}
+		}
+		catch (Exception e) {
+			response.sendRedirect("ErrorHandler");
 		}
 	}
 
-	//removeModule handle the deletion of the module from the timetable
+	/**
+	 * Handles the deletion of the module from the timetable on the database.
+	 * @param code
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
 	private void removeModule(String code, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try{
 			//Get the modules original details
@@ -163,7 +229,14 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		}
 	}
 
-	//editModule handle the editing of modules currently on the timetable
+	/**
+	 * Handles the editing of modules on the timetable. 
+	 * Deletes the module and replaces it with a new one on the database.
+	 * @param code
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
 	private void editModule(String code, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try{
 			//Remove the previous details from the timetable by calling removeModule()
@@ -199,7 +272,13 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		}
 	}
 
-	//createModule handle the creation of a new Module
+	/**
+	 * Handles the creation of a new Module and posts it to the database
+	 * @param code
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
 	private void createModule(String code, HttpServletRequest request, HttpServletResponse response) throws IOException{
 		try{
 			//Get the module title and lecturer
