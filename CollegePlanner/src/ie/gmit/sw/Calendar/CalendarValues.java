@@ -1,112 +1,128 @@
-/**
- * 
- */
+
 package ie.gmit.sw.Calendar;
 
 /**
- * @author paddy
+ * @author Patrick Griffin - G00314635
+ * This class handles the getters and setters for the users events data.
+ * The setters are used in the CalendarEvents to set the user data.
+ * The getters are using in the MongoConnection to retrieve data.
  *
  */
+
 public class CalendarValues {
-	//Values for events that ill think i need
+	// Values for events
 	public int id;
 	public String title;
 	public String start;
 	public String end;
 	public String color;
-	
+
 	public String startTime;
 	public String endTime;
-	
-	
-	
+
 	/**
-	 * @return the startTime
+	 * @return get the startTime
 	 */
 	public String getStartTime() {
 		return startTime;
 	}
+
+	
 	/**
-	 * @param startTime the startTime to set
+	 * @param set startTime
 	 */
 	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
+
 	/**
-	 * @return the endTime
+	 * @return get the endTime
 	 */
 	public String getEndTime() {
 		return endTime;
 	}
+
+
 	/**
-	 * @param endTime the endTime to set
+	 * @param set the endTime
 	 */
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
-	
-	
+
 	/**
-	 * @return the id
+	 * @return get the id
 	 */
 	public int getId() {
 		return id;
 	}
+
+	
 	/**
-	 * @param id the id to set
+	 * @param set id
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	/**
-	 * @return the title
+	 * @return get the title
 	 */
 	public String getTitle() {
 		return title;
 	}
+
+	
 	/**
-	 * @param title the title to set
+	 * @param set the title
 	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	/**
-	 * @return the start
+	 * @return get the start
 	 */
 	public String getStart() {
 		return start;
 	}
+
 	/**
-	 * @param start the start to set
+	 * @param set the start
 	 */
 	public void setStart(String start) {
 		this.start = start;
 	}
+
 	/**
-	 * @return the end
+	 * @return get the end
 	 */
 	public String getEnd() {
 		return end;
 	}
+
+	
 	/**
-	 * @param end the end to set
+	 * @param set the end
 	 */
 	public void setEnd(String end) {
 		this.end = end;
 	}
+
+	
 	/**
-	 * @return the color
+	 * @return get color
 	 */
 	public String getColor() {
 		return color;
 	}
+
+	
 	/**
-	 * @param color the color to set
+	 * @param set color
 	 */
 	public void setColor(String color) {
 		this.color = color;
 	}
-	
-	
 
 }

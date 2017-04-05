@@ -4,18 +4,18 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ie.gmit.sw.Connections.MongoConnection;
 import ie.gmit.sw.Connections.SQLConnection;
 
 /**
- * Servlet implementation class PasswordRecovery
+ * @author Christopher Weir - G00309429
+ *
+ * Handles the recovery of user accounts.
+ *
  */
-@WebServlet("/AccountRecovery")
 public class AccountRecovery extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AccountRecoveryDetails ar = new AccountRecoveryDetails();
@@ -26,12 +26,8 @@ public class AccountRecovery extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try{
-			RequestDispatcher rd = request.getRequestDispatcher("AccountRecovery.jsp");
-			rd.forward(request, response);	
-		}catch (Exception e) {
-			response.sendRedirect("ErrorHandler");
-		}
+		RequestDispatcher rd = request.getRequestDispatcher("AccountRecovery.jsp");
+		rd.forward(request, response);	
 	}
 
 	/**
