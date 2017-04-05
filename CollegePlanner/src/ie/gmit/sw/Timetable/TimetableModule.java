@@ -20,7 +20,6 @@ public class TimetableModule {
 	 * @param room
 	 * 
 	 */
-	//constructor to take in the parameters and sets the class variables
 	public TimetableModule(String title, int timeStart, int timeEnd, int day, String room){
 		this.title=title;
 		this.timeStart=timeStart;
@@ -69,11 +68,4 @@ public class TimetableModule {
 		return room;
 	}
 
-	/**
-	 * This returns a custom toString of the title, timeStart, timeEnd, day and room.
-	 * @return
-	 */
-	public String toString() {
-		return title+" "+timeStart+" "+timeEnd+" "+day+" "+room;
-	}
 }

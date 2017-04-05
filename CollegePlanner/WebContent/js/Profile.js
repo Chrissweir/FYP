@@ -1,5 +1,6 @@
 function path(){
 	var x = document.getElementById("imgFile").value;
+	alert(x);
 	document.getElementById("image").src= URL.createObjectURL(event.target.files[0]);
 	var files = document.getElementById('imgFile').files;
 	if (files.length > 0) {
