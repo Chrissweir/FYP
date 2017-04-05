@@ -10,6 +10,7 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>/CollegePlanner/LoginRegister.jsp</welcome-file>
   </welcome-file-list>
+  
   <filter>
     <filter-name>AuthenticationFilter</filter-name>
     <filter-class>ie.gmit.sw.Security.AuthenticationFilter</filter-class>
@@ -18,6 +19,7 @@
     <filter-name>AuthenticationFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  
   <servlet>
     <description></description>
     <display-name>Timetable</display-name>
@@ -28,6 +30,18 @@
     <servlet-name>Timetable</servlet-name>
     <url-pattern>/Timetable</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>AccountRecovery</display-name>
+    <servlet-name>AccountRecovery</servlet-name>
+    <servlet-class>ie.gmit.sw.Security.AccountRecovery</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AccountRecovery</servlet-name>
+    <url-pattern>/AccountRecovery</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>ToDoList</display-name>
@@ -38,6 +52,7 @@
     <servlet-name>ToDoList</servlet-name>
     <url-pattern>/ToDoList</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>Modules</display-name>
@@ -48,6 +63,7 @@
     <servlet-name>Modules</servlet-name>
     <url-pattern>/Modules</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>Assignments</display-name>
@@ -58,7 +74,30 @@
     <servlet-name>Assignments</servlet-name>
     <url-pattern>/Assignments</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>ErrorHandler</display-name>
+    <servlet-name>ErrorHandler</servlet-name>
+    <servlet-class>ie.gmit.sw.Error.ErrorHandler</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ErrorHandler</servlet-name>
+    <url-pattern>/ErrorHandler</url-pattern>
+  </servlet-mapping>	
+  
    <servlet>
+    <description></description>
+    <display-name>Profile</display-name>
+    <servlet-name>Profile</servlet-name>
+    <servlet-class>ie.gmit.sw.Profile.Profile</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Profile</servlet-name>
+    <url-pattern>/Profile</url-pattern>
+  </servlet-mapping>	
+  
+  <servlet>
     <description></description>
     <display-name>Calendar</display-name>
     <servlet-name>Calendar</servlet-name>
@@ -68,4 +107,10 @@
     <servlet-name>Calendar</servlet-name>
     <url-pattern>/Calendar</url-pattern>
   </servlet-mapping>
+  
+  <error-page>
+	<exception-type>java.lang.Throwable</exception-type>
+	<location>/ErrorHandler.jsp</location>
+	</error-page>
+
 </web-app>

@@ -6,7 +6,7 @@ import java.util.List;
 //The timetable class will act as a container for all of the classes
 public class Timetable {
 
-	//private list that takes in modules
+	//private list of type TimetableModules that takes in modules
 	private List<TimetableModule> classes = new ArrayList<TimetableModule>();
 
 	/**
@@ -24,14 +24,6 @@ public class Timetable {
 	public void addClass(TimetableModule module)
 	{
 		classes.add(module);
-	}
-	
-	/**
-	 * Method for removing classes
-	 * @param module
-	 */
-	public void removeClass(TimetableModule module){
-		classes.remove(module);
 	}
 	
 }

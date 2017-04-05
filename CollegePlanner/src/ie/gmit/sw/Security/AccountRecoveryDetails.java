@@ -1,6 +1,11 @@
 package ie.gmit.sw.Security;
 
+/**
+ * @author Christopher Weir - G00309429
+ *
+ */
 public class AccountRecoveryDetails {
+	
 	private String username;
 	private String email;
 	/**
@@ -27,5 +32,4 @@ public class AccountRecoveryDetails {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
 }

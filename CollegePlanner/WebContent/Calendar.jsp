@@ -20,7 +20,6 @@
 
 <script type="text/javascript" src="js/Calendar.js"></script>
 
-<!--   -->
 
 <title>Calendar</title>
 
@@ -67,7 +66,7 @@
 	<div class="container">
 
 
-  <!-- Modal -->
+  <!-- Modal for adding an event -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
@@ -173,9 +172,9 @@
 						        document.getElementById("editStart").value = moment(calEvent.start).format('YYYY-MM-DD');
 						        document.getElementById("Ostart").value = moment(calEvent.start).format('YYYY-MM-DD');
 						        
-						        document.getElementById("editColor").value = calEvent.color;//.format('YYYY-MM-DD');
+						        document.getElementById("editColor").value = calEvent.color;
 						       
-						        document.getElementById("Ocolor").value = calEvent.color; //$(this).css('background-color');//.format('YYYY-MM-DD');
+						        document.getElementById("Ocolor").value = calEvent.color; 
 						        
 						        var test = moment(calEvent.end).format('YYYY-MM-DD');
 						       // alert(test);

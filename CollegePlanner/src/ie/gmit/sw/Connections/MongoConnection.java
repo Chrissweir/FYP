@@ -14,18 +14,31 @@ import com.mongodb.MongoClientURI;
 
 import ie.gmit.sw.Calendar.CalendarValues;
 import ie.gmit.sw.Modules.Module;
-import ie.gmit.sw.Modules.ModuleDetails;
 import ie.gmit.sw.Timetable.TimetableModule;
 
+/**
+ * @author Christopher Weir - G00309429, Gareth Lynskey - G00312651, Paul Dolan - G00297086, Patrick Griffin - G00314635
+ * 
+ * MongoConnection handles all the requests to and from the MongoDB database on heroku.
+ *
+ */
 public class MongoConnection {
 	//The default image to be used when a user registers
 	private String defaultImage = "https://www.barfoot.co.nz/images/noprofile-big.png";
+	//THe image string to hold the new image
 	private String image;
+	//The address of the server on heroku
 	private String mongoAddress = "mongodb://Chris:G00309429@ds055945.mlab.com:55945/heroku_nhl6qjlh";
 
 	//Register
 	//=================================================
+	/**
+	 * setNewUser() creates a new entry in the database for a new user and assigns the default user image.
+	 * 
+	 * @param code
+	 */
 	public void setNewUser(String code) {
+		//Create a new BasicDBOject by calling createUserData() with the session code and the default image
 		final BasicDBObject[] data = createUserData(code, defaultImage);
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -37,6 +50,12 @@ public class MongoConnection {
 
 	//Profile
 	//=================================================
+	/**
+	 * setUserData() removes a users image and replaces it with the a new image.
+	 * 
+	 * @param code
+	 * @param file
+	 */
 	public void setUserData(String code, String file) {
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -50,6 +69,11 @@ public class MongoConnection {
 		client.close();
 	}
 
+	/**
+	 * removeUserData() deletes all data belonging to a user from the database.
+	 * 
+	 * @param code
+	 */
 	public void removeUserData(String code) {
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -74,9 +98,16 @@ public class MongoConnection {
 		
 		DBCollection user5 = db.getCollection("ToDoCompleted");
 		user5.remove(document);
+		
 		client.close();
 	}
 
+	/**
+	 * getUserImage() retrieves the users image from the database.
+	 * 
+	 * @param code
+	 * @return
+	 */
 	public String getUserImage(String code) {
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -92,6 +123,13 @@ public class MongoConnection {
 		return image;
 	}
 
+	/**
+	 * createUserData() creates a new BasicDBObject with the session code and image file.
+	 * 
+	 * @param code
+	 * @param file
+	 * @return
+	 */
 	private BasicDBObject[] createUserData(String code, String file) {
 		BasicDBObject ImageDetails = new BasicDBObject();
 		ImageDetails.put("Confirmation Code", code);
@@ -102,6 +140,12 @@ public class MongoConnection {
 
 	//Calendar
 	//=================================================
+	/**
+	 * setCalendar() adds a new Calendar event in the Calendar collection on the database.
+	 * 
+	 * @param code
+	 * @param cal
+	 */
 	public void setCalendar(String code, CalendarValues cal) {
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -119,6 +163,12 @@ public class MongoConnection {
 		client.close();
 	}
 
+	/**
+	 * deleteCalendar() removes a Calendar event from the Calendar collection on the database.
+	 * 
+	 * @param code
+	 * @param cal
+	 */
 	public void deleteCalendar(String code, CalendarValues cal) {
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -135,6 +185,12 @@ public class MongoConnection {
 		client.close();
 	}
 
+	/**
+	 * getCalendar() retrieves the Calendar events from the database.
+	 * 
+	 * @param code
+	 * @return calendar events
+	 */
 	public List getCalender(String code) {
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -144,7 +200,7 @@ public class MongoConnection {
 		query.put("Confirmation Code", code);
 		DBCursor cursor = user.find(query);
 
-		ArrayList<String[]> l = new ArrayList<String[]>();
+		ArrayList<String[]> list = new ArrayList<String[]>();
 		if(cursor.hasNext()) {
 			for (DBObject dbObject : cursor) {
 				String title = (String) dbObject.get("Title");
@@ -160,15 +216,22 @@ public class MongoConnection {
 				s[3] = startTime;
 				s[4] = endTime;
 				s[5] = color;
-				l.add(s);
+				list.add(s);
 			}
 		}
 		client.close();
-		return l;
+		return list;
 	}
 
 	//ToDo List
 	//=================================================
+	/**
+	 * 
+	 * setTodoList() adds a Todo entry to the ToDo collection on the database.
+	 * @param code
+	 * @param title
+	 * @param description
+	 */
 	public void setTodoList(String code, String title, String description) {
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -182,6 +245,13 @@ public class MongoConnection {
 		client.close();
 	}
 
+	/**
+	 * deleteToDo() removes a Todo entry from the ToDo collection on the database.
+	 * 
+	 * @param code
+	 * @param title
+	 * @param desc
+	 */
 	public void deleteToDo(String code, String title, String desc) {
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -195,6 +265,12 @@ public class MongoConnection {
 		client.close();
 	}
 
+	/**
+	 * getTodoList() gets the list of Todo entries from the database.
+	 * 
+	 * @param code
+	 * @return todo list
+	 */
 	public List getTodoList(String code) {
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -204,7 +280,7 @@ public class MongoConnection {
 		query.put("Confirmation Code", code);
 		DBCursor cursor = user.find(query);
 
-		ArrayList<String[]> l = new ArrayList<String[]>();
+		ArrayList<String[]> list = new ArrayList<String[]>();
 		if(cursor.hasNext()) {
 			for (DBObject dbObject : cursor) {
 				String title = (String) dbObject.get("Title");
@@ -212,13 +288,20 @@ public class MongoConnection {
 				String[] s = new String[2];
 				s[0] = title;
 				s[1] = desc;
-				l.add(s);
+				list.add(s);
 			}
 		}
 		client.close();
-		return l;
+		return list;
 	}
 
+	/**
+	 * taskCompleted() removes a Todo entry that has been completed, from the database.
+	 * 
+	 * @param code
+	 * @param title
+	 * @param desc
+	 */
 	public void taskCompleted(String code, String title, String desc) {
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -232,6 +315,13 @@ public class MongoConnection {
 		client.close();
 	}
 
+	/**
+	 * setTaskCompleted() adds a completed Todo entry to the ToDoCompleted collection on the database.
+	 * 
+	 * @param code
+	 * @param title
+	 * @param desc
+	 */
 	public void setTaskCompleted(String code, String title, String desc) {
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -245,6 +335,12 @@ public class MongoConnection {
 		client.close();
 	}
 
+	/**
+	 * getTaskCompleted() gets a list of all the completed Todo entries from the database.
+	 * 
+	 * @param code
+	 * @return completed Todo list
+	 */
 	public List getTaskCompleted(String code){
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -254,7 +350,7 @@ public class MongoConnection {
 		query.put("Confirmation Code", code);
 		DBCursor cursor = user.find(query);
 
-		ArrayList<String[]> c = new ArrayList<String[]>();
+		ArrayList<String[]> list = new ArrayList<String[]>();
 		if(cursor.hasNext()) {
 			for (DBObject dbObject : cursor) {
 				String title = (String) dbObject.get("Title");
@@ -262,13 +358,20 @@ public class MongoConnection {
 				String[] s = new String[2];
 				s[0] = title;
 				s[1] = desc;
-				c.add(s);
+				list.add(s);
 			}
 		}
 		client.close();
-		return c;
+		return list;
 	}
 
+	/**
+	 * deleteCompletedTask() removes the completed Todo entry from the database.
+	 * 
+	 * @param code
+	 * @param title
+	 * @param description
+	 */
 	public void deleteCompletedTask(String code, String title, String description) {
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -284,6 +387,12 @@ public class MongoConnection {
 
 	//Timetable
 	//=================================================
+	/**
+	 * setTimetable() adds a new timetable entry to the Timetable collection on the database.
+	 * 
+	 * @param code
+	 * @param module
+	 */
 	public void setTimetable(String code, TimetableModule module) {
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -299,6 +408,13 @@ public class MongoConnection {
 		user.insert(document);
 		client.close();
 	}
+	
+	/**
+	 * getTimetable() returns a list of Timetable entries from the database.
+	 * 
+	 * @param code
+	 * @return Timetable list
+	 */
 	public List getTimetable(String code) {
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -308,7 +424,7 @@ public class MongoConnection {
 		query.put("Confirmation Code", code);
 		DBCursor cursor = user.find(query);
 
-		ArrayList<String[]> l = new ArrayList<String[]>();
+		ArrayList<String[]> list = new ArrayList<String[]>();
 		if(cursor.hasNext()) {
 			for (DBObject dbObject : cursor) {
 				String title = (String) dbObject.get("Title");
@@ -322,15 +438,22 @@ public class MongoConnection {
 				s[2] = end;
 				s[3] = day;
 				s[4] = room;
-				l.add(s);
+				list.add(s);
 			}
 		}
 		client.close();
-		return l;
+		return list;
 	}
 
 	//Modules
 	//=================================================
+	/**
+	 * setModule() adds a new module to the Modules collection on the database.
+	 * 
+	 * @param code
+	 * @param title
+	 * @param lecturer
+	 */
 	public void setModule(String code, String title, String lecturer) {
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -351,6 +474,12 @@ public class MongoConnection {
 		client.close();
 	}
 
+	/**
+	 * getModules() returns a list of Modules from the database.
+	 * 
+	 * @param code
+	 * @return Module list
+	 */
 	public List getModules(String code) {
 		List moduleList = new ArrayList<>();
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
@@ -375,6 +504,12 @@ public class MongoConnection {
 		return moduleList;
 	}
 
+	/**
+	 * removeModule() removes a module from the Modules collection on the database.
+	 * 
+	 * @param code
+	 * @param removeModule
+	 */
 	public void removeModule(String code, TimetableModule removeModule) {
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -391,6 +526,16 @@ public class MongoConnection {
 		client.close();
 	}	
 
+	/**
+	 * setModuleGrades() adds a new Grade entry subdocument to a Module on the database.
+	 * 
+	 * @param code
+	 * @param title
+	 * @param gradeTitle
+	 * @param date
+	 * @param value
+	 * @param result
+	 */
 	public void setModuleGrades(String code, String title, String gradeTitle, String date, String value, String result){
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -412,6 +557,12 @@ public class MongoConnection {
 		client.close();
 	}
 
+	/**
+	 * getModuleGrades() returns a list of Grades from each Module in the database.
+	 * 
+	 * @param code
+	 * @return list of Grades
+	 */
 	public List getModuleGrades(String code) {
 		List moduleGradesList = new ArrayList<>();
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
@@ -449,6 +600,12 @@ public class MongoConnection {
 		return moduleGradesList;
 	}
 
+	/**
+	 * getModuleAssignments() returns a list of Assignments from each Module in the database.
+	 * 
+	 * @param code
+	 * @return list of assignments
+	 */
 	public List getModuleAssignments(String code) {
 		List moduleAssignmentsList = new ArrayList<>();
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
@@ -484,6 +641,12 @@ public class MongoConnection {
 		return moduleAssignmentsList;
 	}
 
+	/**
+	 * deleteModule() removes a Module from the database.
+	 * 
+	 * @param code
+	 * @param module
+	 */
 	public void deleteModule(String code, Module module) {
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -497,6 +660,16 @@ public class MongoConnection {
 		client.close();
 	}
 
+	/**
+	 * deleteGrade() removes a Grade entry from a Module on the database.
+	 * 
+	 * @param code
+	 * @param moduleTitle
+	 * @param gradeTitle
+	 * @param gradeDate
+	 * @param gradeValue
+	 * @param gradeResult
+	 */
 	public void deleteGrade(String code, String moduleTitle,String gradeTitle, String gradeDate, String gradeValue, String gradeResult) {
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -517,6 +690,15 @@ public class MongoConnection {
 		client.close();
 	}
 
+	/**
+	 * setModuleAssignment() adds an Assignment entry subdocument to a Module on the database.
+	 * 
+	 * @param code
+	 * @param moduleTitle
+	 * @param title
+	 * @param date
+	 * @param value
+	 */
 	public void setModuleAssignment(String code, String moduleTitle, String title, String date, String value) {
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
@@ -537,6 +719,15 @@ public class MongoConnection {
 		client.close();
 	}
 
+	/**
+	 * deleteAssignment() removes and Assignment entry from a Module on the database.
+	 * 
+	 * @param code
+	 * @param moduleTitle
+	 * @param title
+	 * @param date
+	 * @param value
+	 */
 	public void deleteAssignment(String code, String moduleTitle, String title, String date, String value) {
 		MongoClientURI uri = new MongoClientURI(mongoAddress);
 		MongoClient client = new MongoClient(uri);
