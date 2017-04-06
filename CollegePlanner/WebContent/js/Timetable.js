@@ -63,3 +63,31 @@ function getModule(module){
     	document.getElementById("sat").checked = true;
     }
 };
+
+function checkTime(){
+	var s = document.getElementById("starttime");
+	var start = parseInt(s.options[s.selectedIndex].value);
+	var e = document.getElementById("endtime");
+	var end = parseInt(e.options[e.selectedIndex].value); 
+	if(start >= end){
+		document.getElementById("errorTime").style.display = "block";
+	}
+	else{
+		document.getElementById("errorTime").style.display = "none";
+	}
+};
+
+function editCheckTime(){
+	var startTime = parseInt(document.getElementById("editStartTime").value);
+	var endTime = parseInt(document.getElementById("editEndTime").value);
+	
+	if(startTime >= endTime){
+		document.getElementById("errorEditTime").style.display = "block";
+		return false;
+	}
+	else{
+		document.getElementById("errorEditTime").style.display = "none";
+		return true;
+	}
+	return false;
+};

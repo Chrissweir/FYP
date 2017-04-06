@@ -22,7 +22,7 @@ import ie.gmit.sw.Security.Encryption;
  * the users profile from the databases, handling profile updates and the removal of profiles. 
  *
  */
-public class Profile extends HttpServlet {
+public class Profile extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	private UserDetails userDetails = new UserDetails();
 	private MongoConnection mongo = new MongoConnection();

@@ -3,33 +3,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="http://localhost:8080/CollegePlanner/Login" />
-<title>LoginRequiredFields</title>
+<link rel="selenium.base" href="http://localhost:8080/College_Planner/Login" />
+<title>CreateAssignment</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">LoginRequiredFields</td></tr>
+<tr><td rowspan="1" colspan="3">CreateAssignment</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>/CollegePlanner/Login</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>id=login-submit</td>
+	<td>/College_Planner/Login</td>
 	<td></td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>id=username</td>
 	<td>TestUser</td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>id=login-submit</td>
-	<td></td>
 </tr>
 <tr>
 	<td>type</td>
@@ -39,6 +29,46 @@
 <tr>
 	<td>clickAndWait</td>
 	<td>id=login-submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Assignments</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=TestModule</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=newAssignment</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=assignmentTitle</td>
+	<td>Test title</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=assignmentValue</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=assignmentDate</td>
+	<td>19/04/2017</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=submitBtn</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=TestModule</td>
 	<td></td>
 </tr>
 <tr>

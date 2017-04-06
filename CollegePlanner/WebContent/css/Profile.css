@@ -22,11 +22,13 @@
 }
 
 .table-user-information > tbody > tr:first-child {
+	width:100%;
     border-top: 0;
 }
 
 
 .table-user-information > tbody > tr > td > input {
+	width:100%;
     border-top: 0;
 }
 

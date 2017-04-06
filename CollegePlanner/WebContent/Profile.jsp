@@ -101,7 +101,7 @@
 										</tr>
 										<tr>
 											<td>Email:</td>
-											<td><input style="border: none; width: 100%;" maxlength="100" placeholder="Email" type="text" id="em" value="${email}" readonly required></input></td>
+											<td><input style="border: none; width: 100%;" maxlength="100" placeholder="Email" type="email" id="em" value="${email}" readonly required></input></td>
 										</tr>
 										<tr>
 											<td>College:</td>
@@ -136,10 +136,10 @@
 			</form>
 		</div>
 
-		<input form="userDetails" type="text" name="firstname" id="firstname" style="visibility: hidden"> 
-		<input form="userDetails" type="text" name="lastname" id="lastname" style="visibility: hidden">
-		<input form="userDetails" type="text" name="email" id="email" style="visibility: hidden">
-		<input form="userDetails" type="text" name="college" id="college" style="visibility: hidden">
+		<input form="userDetails" type="text" name="firstname" id="firstname" style="visibility: hidden" required> 
+		<input form="userDetails" type="text" name="lastname" id="lastname" style="visibility: hidden" required>
+		<input form="userDetails" type="email" name="email" id="email" style="visibility: hidden" required>
+		<input form="userDetails" type="text" name="college" id="college" style="visibility: hidden" required>
 		<input form="userDetails" type="text" name="course" id="course" style="visibility: hidden">
 		<input form="userDetails" type="text" name="bio" id="bio" style="visibility: hidden">
 	</div>
