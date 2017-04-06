@@ -87,7 +87,7 @@
 			</div>
 			<div class="form-group">
 				<label style="color: #FFF;">Module Time:</label><br>
-				<SELECT name="starttime">
+				<SELECT id="starttime" name="starttime"  onchange="checkTime()">
 					<OPTION value="8">8:00am</OPTION>
 					<OPTION value="9">9:00am</OPTION>
 					<OPTION value="10">10:00am</OPTION>
@@ -104,7 +104,7 @@
 					<OPTION value="21">9:00pm</OPTION>
 				</SELECT>
 				 <label style="color: #FFF;">to</label>
-				 <SELECT name="endtime">
+				 <SELECT id="endtime" name="endtime" onchange="checkTime()">
 					<OPTION value="9">9:00am</OPTION>
 					<OPTION value="10">10:00am</OPTION>
 					<OPTION value="11">11:00am</OPTION>
@@ -120,6 +120,7 @@
 					<OPTION value="21">9:00pm</OPTION>
 					<OPTION value="22">10:00pm</OPTION>
 				</SELECT>
+	            <label id="errorTime" style="color: red; display: none">Start Time must be before End Time!</label>
 			</div>
 			<div class="form-group">
 				<INPUT type="submit" name="submitBtn" class="btn btn-lg btn-info" value="AddModule" onclick="isChecked()">
@@ -199,23 +200,24 @@
 					<h4 class="modal-title">Edit Module</h4>
 				</div>
 				<div class="modal-body">
-					<form id="editModule" name="editModule" action="Timetable" method="post">
+					<form id="editModule" name="editModule" action="Timetable" method="post" onsubmit="return editCheckTime();">
 						<div class="form-group">
 							<label>Module Title:</label>
-							<input class="form-control" type="text" id="editModuleTitle" name="editModuleTitle" placeholder="Title max 15 characters" maxlength="15">
+							<input class="form-control" type="text" id="editModuleTitle" name="editModuleTitle" placeholder="Title max 15 characters" maxlength="15" required>
 						</div>
 						<div class="form-group">
 							<label>Room Number:</label>
-							<input class="form-control" type="text" id="editRoomNumber" name="editRoomNumber" placeholder="Room max 5 characters" maxlength="5">
+							<input class="form-control" type="text" id="editRoomNumber" name="editRoomNumber" placeholder="Room max 5 characters" maxlength="5" required>
 						</div>
 						<div class="form-group">
 							<label>Start Time:</label>
-							<input class="form-control" type="text" id="editStartTime" name="editStartTime" placeholder="Room max 5 characters" maxlength="5">
+							<input class="form-control" type="number" id="editStartTime" name="editStartTime" placeholder="24 Hour Clock - eg. 13 = 1:00pm" min="8" max="21" required>
 						</div>
 						<div class="form-group">
 							<label>End Time:</label>
-							<input class="form-control" type="text" id="editEndTime" name="editEndTime" placeholder="Room max 5 characters" maxlength="5">
+							<input class="form-control" type="number" id="editEndTime" name="editEndTime" placeholder="24 Hour Clock - eg. 13 = 1:00pm" min="9" max="22" required,m  ,>
 						</div>
+						<label id="errorEditTime" style="color: red; display: none">Start Time must be before End Time!</label>
 						<div class="form-group">
 							<label>Day:</label><br>
 							<INPUT type="radio" name="editDay" id="sun" value="sun">Sun
@@ -229,7 +231,7 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button form="editModule" type="submit" name="submitBtn" value="SaveModule" class="btn btn-default">Save</button>
+					<button form="editModule" type="submit" name="submitBtn" value="SaveModule" class="btn btn-default" >Save</button>
 					<button form="editModule" type="submit" name="submitBtn" value="RemoveModule" class="btn btn-default">Remove</button>
 				</div>
 			</div>
