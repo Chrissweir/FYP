@@ -40,16 +40,16 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 			//Get the Users Modules from the database
 			ArrayList<String[]> moduleList = (ArrayList<String[]>) mongo.getModules(code);
 			ArrayList<String> mlist = new ArrayList<String>();
-			
+
 			//for every String[] modules in the moduleList
 			for(String [] modules : moduleList){
 				mlist.add(modules[0]);
 			}
 			//add the module list to the session attributes
 			request.getSession().setAttribute("moduleList", mlist);
-			
+
 			getTimetable(timetable, code, response);
-			
+
 			//add the module list to the session attributes
 			request.getSession().setAttribute("timetable", timetable);
 			//forwards request/response to Timetable.jsp
@@ -59,7 +59,7 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		catch (Exception e) {
 			response.sendRedirect("ErrorHandler");
 		}
-		
+
 	}
 
 	/**
@@ -99,34 +99,40 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 				String title = request.getParameter("selectedModule");
 				int timeStarting = Integer.parseInt(request.getParameter("starttime"));
 				int timeEnding = Integer.parseInt(request.getParameter("endtime"));
-				String[] days = request.getParameterValues("day");
-				String roomNumber = request.getParameter("room");
+
+				if(timeStarting >= timeEnding){
+					request.setAttribute("error","Time slot invallid!");
+				}else{
+
+					String[] days = request.getParameterValues("day");
+					String roomNumber = request.getParameter("room");
 
 
-				//Check what day was selected
-				if(days != null)
-				{
-					for(int i = 0; i < days.length; i++)
+					//Check what day was selected
+					if(days != null)
 					{
-						String dayString = days[i];
-						int day;
-						if(dayString.equalsIgnoreCase("SUN")) day = 0;
-						else if(dayString.equalsIgnoreCase("MON")) day = 1;
-						else if(dayString.equalsIgnoreCase("TUE")) day = 2;
-						else if(dayString.equalsIgnoreCase("WED")) day = 3;
-						else if(dayString.equalsIgnoreCase("THU")) day = 4;
-						else if(dayString.equalsIgnoreCase("FRI")) day = 5;
-						else day = 6;
+						for(int i = 0; i < days.length; i++)
+						{
+							String dayString = days[i];
+							int day;
+							if(dayString.equalsIgnoreCase("SUN")) day = 0;
+							else if(dayString.equalsIgnoreCase("MON")) day = 1;
+							else if(dayString.equalsIgnoreCase("TUE")) day = 2;
+							else if(dayString.equalsIgnoreCase("WED")) day = 3;
+							else if(dayString.equalsIgnoreCase("THU")) day = 4;
+							else if(dayString.equalsIgnoreCase("FRI")) day = 5;
+							else day = 6;
 
-						if(checkSlot(timeStarting, timeEnding, day, code, response)){
-						
-							//Add the module to the timetable
-							TimetableModule module = new TimetableModule(title, timeStarting, timeEnding, day, roomNumber);
-							mongo.setTimetable(code, module);
-						}
-						else{
-							request.setAttribute("error","Timeslot already taken!");
-							System.out.println(request.getAttribute("error"));
+							if(checkSlot(timeStarting, timeEnding, day, code, response)){
+
+								//Add the module to the timetable
+								TimetableModule module = new TimetableModule(title, timeStarting, timeEnding, day, roomNumber);
+								mongo.setTimetable(code, module);
+							}
+							else{
+								request.setAttribute("error","Timeslot already taken!");
+
+							}
 						}
 					}
 				}
@@ -138,7 +144,7 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		}
 	}
 
-	
+
 	/**
 	 * This boolean method checks if a timetable slot is already occupied
 	 * 
@@ -152,7 +158,7 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 	 * @throws IOException
 	 */
 	private boolean checkSlot(int timeStarting, int timeEnding, int day, String code, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		try{
 			//creates a new instance of timetable object
 			Timetable timetable = new Timetable();
@@ -177,7 +183,7 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 		return true;
 	}
 
-	
+
 	/**
 	 * This method gets a list of timetables from the database, and for every entry in the timetable list
 	 * it adds them to a new instance of timetableModule, and adds that to the timetable
@@ -187,7 +193,7 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 	 * @throws IOException
 	 */
 	private void getTimetable(Timetable timetable, String code, HttpServletResponse response) throws IOException{
-		
+
 		try{
 			//Create an ArrayList of type String[] called list and give it the return value of 
 			//mongo.getTimetable and cast it to an ArrayList of type String[]
