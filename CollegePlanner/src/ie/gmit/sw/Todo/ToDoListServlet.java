@@ -63,11 +63,11 @@ public class ToDoListServlet extends HttpServlet {
 			response.sendRedirect("ToDoList");
 		}
 		else{
-			String title = request.getParameter("taskTitle");
-			String desc = request.getParameter("taskDescription");
+			String title = request.getParameter("taskTitle");//Return title 
+			String desc = request.getParameter("taskDescription");//Return description
 
-			deleteTask(code, title, desc);
-			mongo.setTaskCompleted(code, title, desc);
+			deleteTask(code, title, desc);//Deletes from task completed
+			mongo.setTaskCompleted(code, title, desc); //Deletes from task completed database 
 			response.sendRedirect("ToDoList");
 		}
 	}
@@ -104,7 +104,8 @@ public class ToDoListServlet extends HttpServlet {
 		//Passes data from mongo to listCompleted
 		listCompleted = (ArrayList<String[]>) mongo.getTaskCompleted(code);
 
-		ToDo todoCompleted = new ToDo();
+		ToDo todoCompleted = new ToDo();//Creating a new instance of todoCompleted
+		
 		for(String[] s : listCompleted){
 			Task taskCompleted = new Task(s[0], s[1]);
 			todoCompleted.addTask(taskCompleted);
