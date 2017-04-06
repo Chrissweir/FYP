@@ -33,7 +33,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="Calendar.jsp">Calender</a></li>
 				<li><a href="Timetable">Timetable</a></li>
-				<li><a href="ToDoList">To do</a></li>
+				<li><a href="ToDoList">To Do</a></li>
 				<li><a href="Modules">Modules</a></li>
 				<li><a href="Assignments">Assignments</a></li>
 			</ul>
@@ -138,7 +138,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Are you sure?</h4>
+          <h4 class="modal-title">Are you sure you want to delete?</h4>
         </div>
         <div class="modal-body">
         	<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
