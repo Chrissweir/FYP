@@ -17,7 +17,7 @@
 <title>Student Timetable</title>
 </head>
 
-<BODY style="padding-top: 70px">
+<BODY style="padding-top: 70px; margin-right: 150px; margin-left: 150px; background-color: #eaeaea;">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -52,89 +52,16 @@
 			</div>
 		</div>
 	</nav>
-<aside>
-	<div class="timetableForm-Box timetableForm">
-		<form id="submitForm" name="submitForm" action="Timetable" method="post" onsubmit="return validateForm();">
-			<div class="form-group">
-				<button id="newModule" name="newModule" data-original-title="Edit"
-						data-toggle="modal" type="button" class="btn btn-lg btn-info"
-						data-target="#moduleModal">Create Module
-				</button>
-			</div>
-			<div class="form-group">
-				<label style="color: #FFF;">Module:</label>
-				<select name="selectedModule">
-					<c:forEach var="module" items="${moduleList}">
-						<option value="${module}">${module}</option>
-					</c:forEach>
-				</select>
-			</div>
-			<div class="form-group">
-				<label style="color: #FFF;">Room:</label><br>
-				<INPUT type="text" id="room" name="room" maxlength="5" required>
-			</div>
-			<div class="form-group">
-				<label style="color: #FFF;">Module Day:</label><br>
-				<label style="color: #FFF;">Sun</label><INPUT type="radio" name="day" id="day0" value="sun">
-				<label style="color: #FFF;">Mon</label><INPUT type="radio" name="day" id="day1" value="mon"> 
-				<label style="color: #FFF;">Tue</label><INPUT type="radio" name="day" id="day2" value="tue"> 
-				<label style="color: #FFF;">Wed</label><INPUT type="radio" name="day" id="day3" value="wed"><br>
-				<label style="color: #FFF;">Thu</label><INPUT type="radio" name="day" id="day4" value="thu"> 
-				<label style="color: #FFF;">Fri</label><INPUT type="radio" name="day" id="day5" value="fri"> 
-				<label style="color: #FFF;">Sat</label><INPUT type="radio" name="day" id="day6" value="sat">
-				
-				<label id="dayLabel" style="color: red; display: none">Day not selected!</label>
-			</div>
-			<div class="form-group">
-				<label style="color: #FFF;">Module Time:</label><br>
-				<SELECT id="starttime" name="starttime"  onchange="checkTime()">
-					<OPTION value="8">8:00am</OPTION>
-					<OPTION value="9">9:00am</OPTION>
-					<OPTION value="10">10:00am</OPTION>
-					<OPTION value="11">11:00am</OPTION>
-					<OPTION value="12">12:00pm</OPTION>
-					<OPTION value="13">1:00pm</OPTION>
-					<OPTION value="14">2:00pm</OPTION>
-					<OPTION value="15">3:00pm</OPTION>
-					<OPTION value="16">4:00pm</OPTION>
-					<OPTION value="17">5:00pm</OPTION>
-					<OPTION value="18">6:00pm</OPTION>
-					<OPTION value="19">7:00pm</OPTION>
-					<OPTION value="20">8:00pm</OPTION>
-					<OPTION value="21">9:00pm</OPTION>
-				</SELECT>
-				 <label style="color: #FFF;">to</label>
-				 <SELECT id="endtime" name="endtime" onchange="checkTime()">
-					<OPTION value="9">9:00am</OPTION>
-					<OPTION value="10">10:00am</OPTION>
-					<OPTION value="11">11:00am</OPTION>
-					<OPTION value="12">12:00pm</OPTION>
-					<OPTION value="13">1:00pm</OPTION>
-					<OPTION value="14">2:00pm</OPTION>
-					<OPTION value="15">3:00pm</OPTION>
-					<OPTION value="16">4:00pm</OPTION>
-					<OPTION value="17">5:00pm</OPTION>
-					<OPTION value="18">6:00pm</OPTION>
-					<OPTION value="19">7:00pm</OPTION>
-					<OPTION value="20">8:00pm</OPTION>
-					<OPTION value="21">9:00pm</OPTION>
-					<OPTION value="22">10:00pm</OPTION>
-				</SELECT>
-	            <label id="errorTime" style="color: red; display: none">Start Time must be before End Time!</label>
-			</div>
-			<div class="form-group">
-				<INPUT type="submit" name="submitBtn" class="btn btn-lg btn-info" value="AddModule" onclick="isChecked()">
-			</div>
-		</form>
-	</div>
-	</aside>
-	<section class="timetable">
 	<div>
-		<TABLE style="background-color: white; box-shadow: 0 0 10px #888888;" border="1" cellspacing="0">
+		<button class="btn-block btn-info" id="addModule" name="addModule" data-original-title="Add"
+						data-toggle="modal" type="button" class="btn btn-lg btn-info"
+						data-target="#timetableModal">Add Module to timetable
+				</button>
+		<TABLE style="background-color: white; box-shadow: 0 0 10px #888888; table-layout:fixed; word-wrap: break-word; width:100%; height:100%" border="1" cellspacing="0">
 			<TBODY>
 				<TR>
-					<TH align="center" valign="middle" width="90">${username}</TH>
-					<TH align="center" valign="middle" width="100">Sunday</TH>
+					<TH align="center" valign="middle">${username}</TH>
+					<TH align="center" valign="middle">Sunday</TH>
 					<TH align="center" valign="middle">Monday</TH>
 					<TH align="center" valign="middle">Tuesday</TH>
 					<TH align="center" valign="middle">Wednesday</TH>
@@ -144,7 +71,7 @@
 				</TR>
 				<c:forEach begin="8" end="21" step="1" var="time">
 					<TR>
-						<TD align="center" valign="middle" width="80"><c:choose>
+						<TD align="center" valign="middle" height="40"><c:choose>
 							<c:when test="${time == 12}">
 								<c:out value="${time}" />:00pm
 							</c:when>
@@ -157,7 +84,7 @@
 							</c:choose>
 						</TD>
 						<c:forEach begin="0" end="6" step="1" var="day">
-							<TD align="center" valign="middle" width="100">
+							<TD align="center" valign="middle" style="width:1000px">
 								<c:forEach items="${timetable.classes}" var="modules">
 									<c:if test="${modules.timeStart <= time 
 												&& modules.timeEnd > time 
@@ -182,13 +109,12 @@
 				</c:forEach>
 			</TBODY>
 		</TABLE>
-	</div>
 	<%
 		String error_msg = (String) request.getAttribute("error");
 		if (error_msg != null)
 			out.println("<font color=red size=4px>" + error_msg + "</font>");
 	%>
-	</section>
+	</div>
 
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" role="dialog">
@@ -203,7 +129,11 @@
 					<form id="editModule" name="editModule" action="Timetable" method="post" onsubmit="return editCheckTime();">
 						<div class="form-group">
 							<label>Module Title:</label>
-							<input class="form-control" type="text" id="editModuleTitle" name="editModuleTitle" placeholder="Title max 15 characters" maxlength="15" required>
+							<select class="form-control" id="editModuleTitle" name="editModuleTitle">
+								<c:forEach var="module" items="${moduleList}">
+									<option value="${module}">${module}</option>
+								</c:forEach>
+							</select>
 						</div>
 						<div class="form-group">
 							<label>Room Number:</label>
@@ -215,7 +145,7 @@
 						</div>
 						<div class="form-group">
 							<label>End Time:</label>
-							<input class="form-control" type="number" id="editEndTime" name="editEndTime" placeholder="24 Hour Clock - eg. 13 = 1:00pm" min="9" max="22" required,m  ,>
+							<input class="form-control" type="number" id="editEndTime" name="editEndTime" placeholder="24 Hour Clock - eg. 13 = 1:00pm" min="9" max="22" required>
 						</div>
 						<label id="errorEditTime" style="color: red; display: none">Start Time must be before End Time!</label>
 						<div class="form-group">
@@ -237,6 +167,94 @@
 			</div>
 		</div>
 	</div>
+	
+	<!--  TimeTable Module -->
+	<div class="modal fade" id="timetableModal" role="dialog">
+		<div class="modal-dialog modal-sm">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Add to timetable</h4>
+				</div>
+				<div class="modal-body">
+					<form id="submitForm" name="submitForm" action="Timetable" method="post" onsubmit="return validateForm();">
+			<div class="form-group">
+				<button class="form-control btn btn-info" id="newModule" name="newModule" data-original-title="Edit"
+						data-toggle="modal" type="button" class="btn btn-lg btn-info"
+						data-target="#moduleModal">Create Module
+				</button>
+			</div>
+			<div class="form-group">
+				<label>Module:</label>
+				<select class="form-control" name="selectedModule">
+					<c:forEach var="module" items="${moduleList}">
+						<option value="${module}">${module}</option>
+					</c:forEach>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>Room:</label><br>
+				<INPUT class="form-control" type="text" id="room" name="room" maxlength="5" required>
+			</div>
+			<div class="form-group">
+				<label>Module Day:</label><br>
+				<label>Sun</label><INPUT type="radio" name="day" id="day0" value="sun">
+				<label>Mon</label><INPUT type="radio" name="day" id="day1" value="mon"> 
+				<label>Tue</label><INPUT type="radio" name="day" id="day2" value="tue"> 
+				<label>Wed</label><INPUT type="radio" name="day" id="day3" value="wed">
+				<label>Thu</label><INPUT type="radio" name="day" id="day4" value="thu"> 
+				<label>Fri</label><INPUT type="radio" name="day" id="day5" value="fri"> 
+				<label>Sat</label><INPUT type="radio" name="day" id="day6" value="sat">
+				
+				<label id="dayLabel" style="color: red; display: none">Day not selected!</label>
+			</div>
+			<div class="form-group">
+				<label>Module Time:</label><br>
+				<SELECT class="form-control" id="starttime" name="starttime"  onchange="checkTime()">
+					<OPTION value="8">8:00am</OPTION>
+					<OPTION value="9">9:00am</OPTION>
+					<OPTION value="10">10:00am</OPTION>
+					<OPTION value="11">11:00am</OPTION>
+					<OPTION value="12">12:00pm</OPTION>
+					<OPTION value="13">1:00pm</OPTION>
+					<OPTION value="14">2:00pm</OPTION>
+					<OPTION value="15">3:00pm</OPTION>
+					<OPTION value="16">4:00pm</OPTION>
+					<OPTION value="17">5:00pm</OPTION>
+					<OPTION value="18">6:00pm</OPTION>
+					<OPTION value="19">7:00pm</OPTION>
+					<OPTION value="20">8:00pm</OPTION>
+					<OPTION value="21">9:00pm</OPTION>
+				</SELECT>
+				 <label>to</label>
+				 <SELECT class="form-control" id="endtime" name="endtime" onchange="checkTime()">
+					<OPTION value="9">9:00am</OPTION>
+					<OPTION value="10">10:00am</OPTION>
+					<OPTION value="11">11:00am</OPTION>
+					<OPTION value="12">12:00pm</OPTION>
+					<OPTION value="13">1:00pm</OPTION>
+					<OPTION value="14">2:00pm</OPTION>
+					<OPTION value="15">3:00pm</OPTION>
+					<OPTION value="16">4:00pm</OPTION>
+					<OPTION value="17">5:00pm</OPTION>
+					<OPTION value="18">6:00pm</OPTION>
+					<OPTION value="19">7:00pm</OPTION>
+					<OPTION value="20">8:00pm</OPTION>
+					<OPTION value="21">9:00pm</OPTION>
+					<OPTION value="22">10:00pm</OPTION>
+				</SELECT>
+	            <label id="errorTime" style="color: red; display: none">Start Time must be before End Time!</label>
+			</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" name="submitBtn" class="btn btn-lg btn-info" value="AddModule" onclick="isChecked()">Add</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<!-- Module Modal -->
 	<div class="modal fade" id="moduleModal" role="dialog">
 		<div class="modal-dialog">
@@ -249,10 +267,10 @@
 				<div class="modal-body">
 					<form id="createModule" action="Timetable" method="post">
 						<div class="form-group">
-							<label>Module Title:</label> <input class="form-control" type="text" id="moduleTitle" name="moduleTitle" placeholder="Title max 15 characters" maxlength="15">
+							<label>Module Title:</label> <input class="form-control" type="text" id="moduleTitle" name="moduleTitle" placeholder="Title max 15 characters" maxlength="15" required>
 						</div>
 						<div class="form-group">
-							<label>Lecturer:</label> <input class="form-control" type="text" id="lecturer" name="lecturer" placeholder="Lecturer" maxlength="20">
+							<label>Lecturer:</label> <input class="form-control" type="text" id="lecturer" name="lecturer" placeholder="Lecturer" maxlength="20" required>
 						</div>
 					</form>
 				</div>
