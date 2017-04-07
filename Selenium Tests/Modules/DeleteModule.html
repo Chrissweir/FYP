@@ -4,27 +4,17 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://collegeplannerfyp.herokuapp.com/" />
-<title>ModulesNavigation</title>
+<title>DeleteModule</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">ModulesNavigation</td></tr>
+<tr><td rowspan="1" colspan="3">DeleteModule</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
 	<td>/Login</td>
 	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=password</td>
-	<td>password</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=username</td>
-	<td>TestUser</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -38,6 +28,26 @@
 </tr>
 <tr>
 	<td>click</td>
+	<td>xpath=(//button[@id='deleteModuleBtn'])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#deleteModuleModal &gt; div.modal-dialog &gt; div.modal-content &gt; div.modal-footer &gt; button[name=&quot;submitBtn&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//button[@id='deleteModuleBtn'])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#deleteModuleModal &gt; div.modal-dialog &gt; div.modal-content &gt; div.modal-footer &gt; button[name=&quot;submitBtn&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
 	<td>link=TestUser</td>
 	<td></td>
 </tr>
@@ -45,6 +55,16 @@
 	<td>clickAndWait</td>
 	<td>link=Logout</td>
 	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=username</td>
+	<td>TestUser</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>password</td>
 </tr>
 <tr>
 	<td>type</td>
