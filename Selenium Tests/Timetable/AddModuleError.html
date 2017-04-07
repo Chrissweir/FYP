@@ -3,28 +3,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="http://localhost:8080/College_Planner/Login" />
-<title>ErrorAddModule</title>
+<link rel="selenium.base" href="http://collegeplannerfyp.herokuapp.com/" />
+<title>AddModuleError</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">ErrorAddModule</td></tr>
+<tr><td rowspan="1" colspan="3">AddModuleError</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>http://collegeplannerfyp.herokuapp.com/Login</td>
+	<td>/Login</td>
 	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=password</td>
-	<td>password</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=username</td>
-	<td>TestUser</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -37,18 +27,58 @@
 	<td></td>
 </tr>
 <tr>
+	<td>select</td>
+	<td>name=selectedModule</td>
+	<td>label=Software Engine</td>
+</tr>
+<tr>
 	<td>type</td>
 	<td>id=room</td>
-	<td>101</td>
+	<td>1031</td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>id=day1</td>
+	<td>id=day4</td>
 	<td></td>
 </tr>
 <tr>
 	<td>select</td>
 	<td>id=starttime</td>
+	<td>label=11:00am</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=endtime</td>
+	<td>label=10:00am</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=submitBtn</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=selectedModule</td>
+	<td>label=Software Engine</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=room</td>
+	<td>1031</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=day4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=starttime</td>
+	<td>label=10:00am</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=endtime</td>
 	<td>label=12:00pm</td>
 </tr>
 <tr>
@@ -66,6 +96,27 @@
 	<td>link=Logout</td>
 	<td></td>
 </tr>
+<tr>
+	<td>type</td>
+	<td>id=username</td>
+	<td>TestUser</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>password</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=signupEmail</td>
+	<td>TestUser</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=signupPassword</td>
+	<td>password</td>
+</tr>
+
 </tbody></table>
 </body>
 </html>

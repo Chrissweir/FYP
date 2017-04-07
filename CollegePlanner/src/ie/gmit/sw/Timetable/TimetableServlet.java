@@ -99,7 +99,6 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 				String title = request.getParameter("selectedModule");
 				int timeStarting = Integer.parseInt(request.getParameter("starttime"));
 				int timeEnding = Integer.parseInt(request.getParameter("endtime"));
-
 				if(timeStarting >= timeEnding){
 					request.setAttribute("error","Time slot invallid!");
 				}else{
@@ -124,14 +123,12 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 							else day = 6;
 
 							if(checkSlot(timeStarting, timeEnding, day, code, response)){
-
 								//Add the module to the timetable
 								TimetableModule module = new TimetableModule(title, timeStarting, timeEnding, day, roomNumber);
 								mongo.setTimetable(code, module);
 							}
 							else{
 								request.setAttribute("error","Timeslot already taken!");
-
 							}
 						}
 					}
@@ -284,18 +281,26 @@ public class TimetableServlet extends HttpServlet implements Servlet {
 	 * @param request
 	 * @param response
 	 * @throws IOException
+	 * @throws ServletException 
 	 */
-	private void createModule(String code, HttpServletRequest request, HttpServletResponse response) throws IOException{
-		try{
-			//Get the module title and lecturer
-			String title = request.getParameter("moduleTitle");
-			String lecturer = request.getParameter("lecturer");
+	private void createModule(String code, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 
+		ArrayList<String[]> moduleList = (ArrayList<String[]>) mongo.getModules(code);
+		ArrayList ifExists = new ArrayList<>();
+		for(String [] m : moduleList){
+			ifExists.add(m[0]);
+		}
+
+		//Get the module title and lecturer
+		String title = request.getParameter("moduleTitle");
+		String lecturer = request.getParameter("lecturer");
+
+		if(ifExists.contains(title)){
+			request.setAttribute("error","Module Already Exists!");
+		}else{
 			//Add the new module to the database
 			mongo.setModule(code, title, lecturer);
 		}
-		catch (Exception e) {
-			response.sendRedirect("ErrorHandler");
-		}
+
 	}
 }
