@@ -27,11 +27,11 @@
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user color-blue"></i></span>
-							<input id="username" name="username" placeholder="username" class="form-control" type="text">
+							<input id="username" name="username" placeholder="username" class="form-control" type="text" required>
 						</div>
                       	<div class="input-group">
                       		<span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
-                       		<input id="email" name="email" placeholder="email address" class="form-control"  type="email">
+                       		<input id="email" name="email" placeholder="email address" class="form-control"  type="email" required>
                         </div>
                     </div>
                       <div class="form-group">

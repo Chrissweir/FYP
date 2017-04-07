@@ -8,6 +8,8 @@
 <body>
 <table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
 <tr><td><b>Test Suite</b></td></tr>
+<tr><td><a href="ToDoNavigation.html">ToDoNavigation</a></td></tr>
+<tr><td><a href="ToDoErrorHandling.html">ToDoErrorHandling</a></td></tr>
 <tr><td><a href="ToDoCreatingTask.html">ToDoCreatingTask</a></td></tr>
 <tr><td><a href="ToDoTaskDone.html">ToDoTaskDone</a></td></tr>
 <tr><td><a href="ToDoTransferBack.html">ToDoTransferBack</a></td></tr>
