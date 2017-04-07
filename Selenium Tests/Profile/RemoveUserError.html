@@ -4,27 +4,22 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://localhost:8080/CollegePlanner/Login" />
-<title>AssignmentNavigation</title>
+<title>RemoveUser</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">AssignmentNavigation</td></tr>
+<tr><td rowspan="1" colspan="3">RemoveUser</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>/CollegePlanner/Login</td>
+	<td>http://collegeplannerfyp.herokuapp.com/Login</td>
 	<td></td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>id=username</td>
 	<td>TestUser</td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>id=password</td>
-	<td></td>
 </tr>
 <tr>
 	<td>type</td>
@@ -37,21 +32,25 @@
 	<td></td>
 </tr>
 <tr>
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=confirmPassword</td>
+	<td>pass</td>
+</tr>
+<tr>
 	<td>clickAndWait</td>
-	<td>link=Assignments</td>
+	<td>css=span.pull-right &gt; button[name=&quot;btn&quot;]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>link=TestUser</td>
+	<td>xpath=(//button[@type='button'])[2]</td>
 	<td></td>
 </tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Logout</td>
-	<td></td>
-</tr>
-
 </tbody></table>
 </body>
 </html>

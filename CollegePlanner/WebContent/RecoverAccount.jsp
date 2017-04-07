@@ -28,11 +28,11 @@
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-lock color-blue"></i></span>
-							<input id="password" name="password" placeholder="New Password" class="form-control" type="password">
+							<input id="password" name="password" placeholder="New Password" class="form-control" type="password" required>
 						</div>
                       	<div class="input-group">
                       		<span class="input-group-addon"><i class="glyphicon glyphicon-lock color-blue"></i></span>
-                       		<input id="confpassword" name="confpassword" placeholder="Confirm Password" class="form-control" type="password">
+                       		<input id="confpassword" name="confpassword" placeholder="Confirm Password" class="form-control" type="password" required>
                         </div>
                         <label id="passLabel" style="color: red; display: none">Passwords must Match!</label>
                     </div>
