@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -128,7 +127,7 @@
 							<i class="glyphicon glyphicon-floppy-disk"></i>
 						</button>
 						<span class="pull-right">
-							<button data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger" onclick="document.getElementById('id01').style.display='block'">
+							<button data-original-title="Remove this user" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal">
 								<i class="glyphicon glyphicon-remove"></i>
 							</button>
 						</span>
@@ -143,37 +142,37 @@
 		<input form="userDetails" type="text" name="course" id="course" style="visibility: hidden">
 		<input form="userDetails" type="text" name="bio" id="bio" style="visibility: hidden">
 	</div>
-
-	<div id="modal-container">
-		<div id="id01" class="w3-modal">
-			<div class="w3-modal-content w3-animate-top w3-card-8">
-				<header class="w3-container w3-red">
-					<span onclick="document.getElementById('id01').style.display='none'" class="w3-closebtn">&times;</span>
-					<h2>Remove your Account?</h2>
-				</header>
-				<div class="w3-container">
-					<p>
-						<b>Doing so will permanently delete your account and all of your data!</b>
-					</p>
-					<p>Please enter your password to confirm:</p>
-					<input form="userDetails" name="confirmPassword" id="confirmPassword" type="password" autocomplete="new-password">
-					<%
-						String pass = (String) request.getAttribute("error");
-						if (pass != null)
-							out.println("<font color=red size=4px>" + pass + "</font>");
-					%>
-				</div>
-				<br>
-				<footer class="w3-container w3-red">
-					<p></p>
-					<button type="button" class="btn btn-warning" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
-					<span class="pull-right">
-						<button form="userDetails" type="submit" value="delete" name="btn" class="btn btn-danger">Delete</button>
-					</span>
-					<p></p>
-				</footer>
-			</div>
-		</div>
-	</div>
+<!-- Modal -->
+  <div class="modal fade" id="deleteModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Remove your Account?</h4>
+        </div>
+        <div class="modal-body">
+          <p><b>Doing so will permanently delete your account and all of your data!</b></p>
+          <p>Please enter your password to confirm:</p>
+          <input form="userDetails" name="confirmPassword" id="confirmPassword" type="password" autocomplete="new-password">
+          	<%
+             String pass = (String) request.getAttribute("error");
+             if (pass != null)
+             out.println("<font color=red size=4px>" + pass + "</font>");
+             %>
+        </div>
+        <div class="modal-footer">
+        <span class="pull-left">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+        </span>
+          <span class="pull-right">
+            <button form="userDetails" type="submit" value="delete" name="btn" class="btn btn-danger">Delete</button>
+          </span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 </body>
 </html>

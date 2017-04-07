@@ -21,7 +21,7 @@ import ie.gmit.sw.Connections.MongoConnection;
 public class ModuleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MongoConnection mongo = new MongoConnection();
-	private double totalAverage;
+	private double totalAverage = 0;
 	private double avg = 0;
 
 
@@ -45,17 +45,19 @@ public class ModuleServlet extends HttpServlet {
 			//Get the Users Modules from the database
 			ArrayList<String[]> moduleList = (ArrayList<String[]>) mongo.getModules(code);
 			ArrayList<String[]> moduleGradesList = (ArrayList<String[]>) mongo.getModuleGrades(code);
-
+			
 			//Create a new HashMap to store the module title and module average
 			HashMap<String, Double> hm = getAverage(moduleList, moduleGradesList);
-
+			
+			//Reset average variable
+			avg = 0;
+			
 			//For every String s in the HashMap
 			for(String s: hm.keySet()){
 				avg += hm.get(s);
 			}
 			//totalaverage is the average divided by the number of modules in the HashMap
 			totalAverage = avg/hm.size();
-
 			//Variable for loop
 			int i = 0;
 
@@ -109,7 +111,7 @@ public class ModuleServlet extends HttpServlet {
 	 * @return HashMap
 	 */
 	private HashMap<String, Double> getAverage(ArrayList<String[]> moduleList, ArrayList<String[]> moduleGradesList) {
-		HashMap<String, Double> hm=new HashMap<String, Double>();
+		HashMap<String, Double> hm= new HashMap<String, Double>();
 		for(String [] m : moduleList){
 			hm.put(m[0],0.0);
 		}
