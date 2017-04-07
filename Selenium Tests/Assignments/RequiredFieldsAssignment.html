@@ -4,13 +4,18 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://localhost:8080/College_Planner/Login" />
-<title>CreateAssignment</title>
+<title>RequiredFieldsAssignment</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">CreateAssignment</td></tr>
+<tr><td rowspan="1" colspan="3">RequiredFieldsAssignment</td></tr>
 </thead><tbody>
+<tr>
+	<td>open</td>
+	<td>http://collegeplannerfyp.herokuapp.com/Login</td>
+	<td></td>
+</tr>
 <tr>
 	<td>type</td>
 	<td>id=username</td>
@@ -42,23 +47,43 @@
 	<td></td>
 </tr>
 <tr>
-	<td>type</td>
-	<td>id=assignmentTitle</td>
-	<td>Test title</td>
+	<td>click</td>
+	<td>css=div.modal-footer &gt; button[name=&quot;submitBtn&quot;]</td>
+	<td></td>
 </tr>
 <tr>
 	<td>type</td>
-	<td>id=assignmentValue</td>
-	<td>50</td>
+	<td>id=assignmentTitle</td>
+	<td>Title 2</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.modal-footer &gt; button[name=&quot;submitBtn&quot;]</td>
+	<td></td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>id=assignmentDate</td>
-	<td>19/04/2017</td>
+	<td>12/10/17</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.modal-footer &gt; button[name=&quot;submitBtn&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=assignmentValue</td>
+	<td>25</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>name=submitBtn</td>
+	<td>css=div.modal-footer &gt; button[name=&quot;submitBtn&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=TestUser</td>
 	<td></td>
 </tr>
 <tr>
