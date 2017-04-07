@@ -45,127 +45,119 @@
 		</div>
 	</nav>
 	<div style="background-color: white; min-height: 600px; box-shadow: 0 0 10px #888888;">
-<!-- Table Header -->
-<div class="container">
-	<div class="row">
-        <div class="col-md-6">
+	<!-- Table Header -->
+		<div class="col-md-6">
 			<h2>Modules</h2>
-			<button style="float:left;" id="newModule" name="newModule" data-original-title="Edit"
-					data-toggle="modal" type="button" class="btn btn-primary btn-info"
-					data-target="#moduleModal">
-					<span class="glyphicon glyphicon-plus"></span>
+			<button style="float: left;" id="newModule" name="newModule"
+				data-original-title="Edit" data-toggle="modal" type="button"
+				class="btn btn-primary btn-info" data-target="#moduleModal">
+				<span class="glyphicon glyphicon-plus"></span>
 			</button>
 		</div>
 
-        <div class="col-md-6">
-			<div style="float: right;">
-				<h3>GPA: </h3>
-				<div class="progress" style="width: 400px;">
-					<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:${average}%">
-					${average}%
-		  			</div>
+		<div class="col-md-6">
+			<div style="float: right; width: 80%;">
+				<h3>GPA:</h3>
+				<div class="progress">
+					<div class="progress-bar progress-bar-warning" role="progressbar"
+						aria-valuemin="0" aria-valuemax="100" style="width:${average}%">
+						${average}%</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
-	
-<!-- Module Table -->
+
+		<!-- Module Table -->
 <div>
-	<div class="container">
-		<div class="row">
-	        <div class="span12">
-	    		<div class="menu">
-	                <div class="accordion">
-	            		<div class="accordion-group">
-	            		    <c:forEach var="module" items="${modules.moduleList}">
-		            			<div class="accordion-header country">
-			            			<hr>
-			            			<table style="width: 100%;">
-			            				<thead>
-			            					<tr>
-			            						<th style="width: 30%">
-			            							<a class="accordion-toggle" data-toggle="collapse" href="#${module.id}">${module.title}</a>
-		            							</th>
-		            							<th style="width: 30%">
-		            								<a class="accordion-toggle" data-toggle="collapse" href="#${module.id}">${module.lecturer}</a>
-		            							</th>
-					            				<th style="width: 35%">
-					            				Total:
-					            					<div class="progress" style="width: 400px; float: right;">
-														<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:${module.average}%">
-														${module.average}%
-									  					</div>
-													</div>
-												</th>
-					            				<th style="width: 5%">
-					            					<button id="deleteModuleBtn" name="deleteModuleBtn" data-original-title="Delete"
-															data-toggle="modal" type="button" class="remove-item btn btn-default btn-xs pull-right"
-															data-target="#deleteModuleModal" value="${module.title}|${module.lecturer}" onClick="deleteModule(this);">
-															<span class="glyphicon glyphicon-remove"></span>
-													</button>
-												</th>
-											</tr>
-										</thead>
-									</table>
-		            			</div>
-		            			<div id="${module.id}" class="accordion-body collapse">
-		            				<div class="accordion-inner">
-		            					<table class="table table-striped table-condensed">
-		            						<thead>
-		            							<tr>
-		            								<th style="width: 20%">Title</th>
-		            								<th style="width: 20%">Date</th>
-		            								<th style="width: 10%">Worth (%)</th>
-		            								<th style="width: 10%">Result (%)</th>
-		            								<th style="width: 30%">Percentage Awarded</th>
-		            								<th style="width: 10%">
-			            								<button id="newGrade" name="newGrade" data-original-title="Add"
-																data-toggle="modal" type="button" class="btn btn-sm btn-info pull-right"
-																data-target="#gradeModal" value="${module.title}" onClick="getModuleTitle(this);">
-																<span class="glyphicon glyphicon-plus"></span>
-														</button>
-													</th>
-		            							</tr>
-		            						</thead>
-		            						<c:forEach var="moduleGrade" items="${moduleData.moduleGrades}">
-			            						<c:if test="${module.title == moduleGrade.title}">
-				            						<tbody>
-				            							<tr>
-				            								<td style="width: 20%">${moduleGrade.gradeTitle}</td>
-				            								<td style="width: 20%">${moduleGrade.date}</td>
-				            								<td style="width: 10%">${moduleGrade.value}%</td>
-				            								<td style="width: 10%">${moduleGrade.result}%</td>
-				            								<td style="width: 30%">
-					            								<div class="progress">
-  																	<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:${moduleGrade.grade}%">
-    																	${moduleGrade.grade}%
-																  	</div>
-																</div>
-															</td>
-															<td style="width: 10%">
-																<button type="submit" form="deleteGrades" id="submitBtn" name="submitBtn" data-original-title="DeleteGrade"
-																		class="remove-item btn btn-default btn-xs pull-right"
-																		value="${module.title}|${moduleGrade.gradeTitle}|${moduleGrade.date}|${moduleGrade.value}|${moduleGrade.result}" onClick="removeGrade(this);">
-																<span class="glyphicon glyphicon-remove"></span>
-																</button>
-															</td>
-				            							</tr>
-				            						</tbody>
-			            						</c:if>
-		            						</c:forEach>
-		            					</table>
-		            				</div>
-		            			</div>
-	            			</c:forEach>
+       <div class="span12" style="padding-left:2%; padding-right:2%;">
+   		<div class="menu">
+               <div class="accordion">
+           		<div class="accordion-group">
+           		    <c:forEach var="module" items="${modules.moduleList}">
+            			<div class="accordion-header country">
 	            			<hr>
-	            		</div>
-	            	</div>
-	            </div>
-	        </div>
-		</div>
+	            			<table style="width: 100%;">
+	            				<thead>
+	            					<tr>
+	            						<th style="width: 30%">
+	            							<a class="accordion-toggle" data-toggle="collapse" href="#${module.id}">${module.title}</a>
+            							</th>
+            							<th style="width: 30%">
+            								<a class="accordion-toggle" data-toggle="collapse" href="#${module.id}">${module.lecturer}</a>
+            							</th>
+			            				<th style="width: 35%">
+			            				Total:
+			            					<div class="progress" style="width: 80%; float: right;">
+												<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:${module.average}%">
+												${module.average}%
+							  					</div>
+											</div>
+										</th>
+			            				<th style="width: 5%">
+			            					<button id="deleteModuleBtn" name="deleteModuleBtn" data-original-title="Delete"
+													data-toggle="modal" type="button" class="remove-item btn btn-default btn-xs pull-right"
+													data-target="#deleteModuleModal" value="${module.title}|${module.lecturer}" onClick="deleteModule(this);">
+													<span class="glyphicon glyphicon-remove"></span>
+											</button>
+										</th>
+									</tr>
+								</thead>
+							</table>
+            			</div>
+            			<div id="${module.id}" class="accordion-body collapse">
+            				<div class="accordion-inner">
+            					<table class="table table-striped table-condensed">
+            						<thead>
+            							<tr>
+            								<th style="width: 20%">Title</th>
+            								<th style="width: 20%">Date</th>
+            								<th style="width: 10%">Worth (%)</th>
+            								<th style="width: 10%">Result (%)</th>
+            								<th style="width: 30%">Percentage Awarded</th>
+            								<th style="width: 10%">
+	            								<button id="newGrade" name="newGrade" data-original-title="Add"
+														data-toggle="modal" type="button" class="btn btn-sm btn-info pull-right"
+														data-target="#gradeModal" value="${module.title}" onClick="getModuleTitle(this);">
+														<span class="glyphicon glyphicon-plus"></span>
+												</button>
+											</th>
+            							</tr>
+            						</thead>
+            						<c:forEach var="moduleGrade" items="${moduleData.moduleGrades}">
+	            						<c:if test="${module.title == moduleGrade.title}">
+		            						<tbody>
+		            							<tr>
+		            								<td style="width: 20%">${moduleGrade.gradeTitle}</td>
+		            								<td style="width: 20%">${moduleGrade.date}</td>
+		            								<td style="width: 10%">${moduleGrade.value}%</td>
+		            								<td style="width: 10%">${moduleGrade.result}%</td>
+		            								<td style="width: 30%">
+			            								<div class="progress">
+																	<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:${moduleGrade.grade}%">
+  																	${moduleGrade.grade}%
+														  	</div>
+														</div>
+													</td>
+													<td style="width: 10%">
+														<button type="submit" form="deleteGrades" id="submitBtn" name="submitBtn" data-original-title="DeleteGrade"
+																class="remove-item btn btn-default btn-xs pull-right"
+																value="${module.title}|${moduleGrade.gradeTitle}|${moduleGrade.date}|${moduleGrade.value}|${moduleGrade.result}" onClick="removeGrade(this);">
+														<span class="glyphicon glyphicon-remove"></span>
+														</button>
+													</td>
+		            							</tr>
+		            						</tbody>
+	            						</c:if>
+            						</c:forEach>
+            					</table>
+            				</div>
+            			</div>
+           			</c:forEach>
+            			<hr>
+            		</div>
+            	</div>
+            </div>
+        </div>
 	</div>
-</div>
 </div>
 
 	
