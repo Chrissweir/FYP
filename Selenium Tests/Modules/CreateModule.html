@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="http://localhost:8080/CollegePlanner/Login" />
+<link rel="selenium.base" href="http://collegeplannerfyp.herokuapp.com/" />
 <title>CreateModule</title>
 </head>
 <body>
@@ -13,18 +13,8 @@
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>/CollegePlanner/Login</td>
+	<td>/Login</td>
 	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=username</td>
-	<td>TestUser</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=password</td>
-	<td>password</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -44,16 +34,16 @@
 <tr>
 	<td>type</td>
 	<td>id=moduleTitle</td>
-	<td>TestModule</td>
+	<td>Software Test</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>id=lecturer</td>
-	<td>TestLecturer</td>
+	<td>Garrett Jordan</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>name=submitBtn</td>
+	<td>css=div.modal-footer &gt; button[name=&quot;submitBtn&quot;]</td>
 	<td></td>
 </tr>
 <tr>
@@ -65,6 +55,26 @@
 	<td>clickAndWait</td>
 	<td>link=Logout</td>
 	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=username</td>
+	<td>TestUser</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>password</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=signupEmail</td>
+	<td>TestUser</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=signupPassword</td>
+	<td>password</td>
 </tr>
 
 </tbody></table>

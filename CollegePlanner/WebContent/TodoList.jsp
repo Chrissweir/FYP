@@ -18,6 +18,9 @@
 <title>ToDo List</title>
 </head>
 <body style="padding-top: 70px">
+<script type="text/javascript">$(function () {
+    $('[data-toggle="popover"]').popover()
+})</script>
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -31,7 +34,7 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="Calendar.jsp">Calender</a></li>
+				<li><a href="Calendar">Calender</a></li>
 				<li><a href="Timetable">Timetable</a></li>
 				<li><a href="ToDoList">To Do</a></li>
 				<li><a href="Modules">Modules</a></li>
@@ -56,16 +59,15 @@
 
 <div class="addTask" >
 
-	<form action="ToDoListServlet" method="post">
-		<tr>
+	<form action="ToDoList" method="post">
 			<b>Title:</b>
 			<input type="text" id="title" name="title" required maxlength="10" placeholder="Max 10 Characters" />
 			<b>Description:</b>
 			
-			<input type="text" id="description"name="description" required maxlength="25" placeholder="Max 25 Characters" />
+			<input type="text" id="description"name="description" required  placeholder="Max 25 Characters" />
 			
 			<input type="submit" name="btn" value="Save" />
-		</tr>
+		
 	</form>
 </div>
 </div>
@@ -85,7 +87,7 @@
 					<c:forEach var="task" items="${todolist.tasks}" >
 						<tr role="row">
 							<td width="20%" align="left">${task.title}</td> 
-							<td width="20%" align="middle">${task.description}</td> 
+							<td width="60%" align="middle"><a href="#" data-toggle="popover" data-trigger="focus" title="Description" data-content="${task.description}">Click to view Description</a></td>
 							<td width="20%" align="right"><input form="markAsDone" name="btn" type="checkbox" value="${task.title}|${task.description}" onchange="move(this);"></td> 
 						</tr>	
 					</c:forEach>
@@ -117,17 +119,17 @@
 	</div>
 </div>
 
-<form name = "markAsDone" id = "markAsDone" action = "ToDoListServlet" method = "post">
+<form name = "markAsDone" id = "markAsDone" action = "ToDoList" method = "post">
 	<input form="markAsDone" type="text" name="taskTitle" id="taskTitle"style="visibility: hidden">
 	<input form="markAsDone" type="text" name="taskDescription" id="taskDescription" style="visibility: hidden">
 </form>
 
-<form name = "delete" id = "delete" action = "ToDoListServlet" method = "post">
+<form name = "delete" id = "delete" action = "ToDoList" method = "post">
 	<input form="delete" type="text" name="deleteTaskTitle" id="deleteTaskTitle"style="visibility: hidden">
 	<input form="delete" type="text" name="deleteTaskDescription" id="deleteTaskDescription" style="visibility: hidden">
 </form>
 
-<form name = "moveBack" id = "moveBack" action = "ToDoListServlet" method = "post">
+<form name = "moveBack" id = "moveBack" action = "ToDoList" method = "post">
 	<input form="moveBack" type="text" name="moveTaskTitle" id="moveTaskTitle" style="visibility: hidden">
 	<input form="moveBack" type="text" name="moveTaskDescription" id="moveTaskDescription" style="visibility: hidden">
 </form>

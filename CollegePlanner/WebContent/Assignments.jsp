@@ -48,9 +48,7 @@
 
 <!-- Assignment Table -->
 <div style="background-color: white; min-height: 600px; box-shadow: 0 0 10px #888888;">
-	<div class="container">
-		<div class="row">
-	        <div class="span12">
+	        <div class="span12" style="padding-left:2%; padding-right:2%;">
 	        <h2 style="text-align:center;">Assignments</h2>
 	    		<div class="menu">
 	                <div class="accordion">
