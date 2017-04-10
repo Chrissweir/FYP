@@ -34,7 +34,7 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="Calendar.jsp">Calender</a></li>
+				<li><a href="Calendar">Calender</a></li>
 				<li><a href="Timetable">Timetable</a></li>
 				<li><a href="ToDoList">To Do</a></li>
 				<li><a href="Modules">Modules</a></li>
@@ -59,7 +59,7 @@
 
 <div class="addTask" >
 
-	<form action="ToDoListServlet" method="post">
+	<form action="ToDoList" method="post">
 			<b>Title:</b>
 			<input type="text" id="title" name="title" required maxlength="10" placeholder="Max 10 Characters" />
 			<b>Description:</b>
@@ -119,17 +119,17 @@
 	</div>
 </div>
 
-<form name = "markAsDone" id = "markAsDone" action = "ToDoListServlet" method = "post">
+<form name = "markAsDone" id = "markAsDone" action = "ToDoList" method = "post">
 	<input form="markAsDone" type="text" name="taskTitle" id="taskTitle"style="visibility: hidden">
 	<input form="markAsDone" type="text" name="taskDescription" id="taskDescription" style="visibility: hidden">
 </form>
 
-<form name = "delete" id = "delete" action = "ToDoListServlet" method = "post">
+<form name = "delete" id = "delete" action = "ToDoList" method = "post">
 	<input form="delete" type="text" name="deleteTaskTitle" id="deleteTaskTitle"style="visibility: hidden">
 	<input form="delete" type="text" name="deleteTaskDescription" id="deleteTaskDescription" style="visibility: hidden">
 </form>
 
-<form name = "moveBack" id = "moveBack" action = "ToDoListServlet" method = "post">
+<form name = "moveBack" id = "moveBack" action = "ToDoList" method = "post">
 	<input form="moveBack" type="text" name="moveTaskTitle" id="moveTaskTitle" style="visibility: hidden">
 	<input form="moveBack" type="text" name="moveTaskDescription" id="moveTaskDescription" style="visibility: hidden">
 </form>
