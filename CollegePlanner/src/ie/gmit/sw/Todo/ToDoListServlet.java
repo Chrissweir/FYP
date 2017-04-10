@@ -20,7 +20,6 @@ import ie.gmit.sw.Connections.MongoConnection;
  * Servlet implementation class ToDoListServlet
  * 
  */
-@WebServlet("/ToDoListServlet")
 public class ToDoListServlet extends HttpServlet {
 	private MongoConnection mongo = new MongoConnection();//Creating the mongo connection
 	private static final long serialVersionUID = 1L;
@@ -112,6 +111,7 @@ public class ToDoListServlet extends HttpServlet {
 		}
 		request.getSession().setAttribute("todolist", todo);
 		request.getSession().setAttribute("todolistCompleted", todoCompleted);
-		response.sendRedirect("todoList.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("todoList.jsp");
+		rd.forward(request, response);
 	}
 }
