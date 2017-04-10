@@ -63,8 +63,7 @@
 			<b>Title:</b>
 			<input type="text" id="title" name="title" required maxlength="10" placeholder="Max 10 Characters" />
 			<b>Description:</b>
-			
-			<input type="text" id="description"name="description" required  placeholder="Max 25 Characters" />
+			<input type="text" id="description"name="description" required maxlength="50" placeholder="Max 50 Characters" />
 			
 			<input type="submit" name="btn" value="Save" />
 		
