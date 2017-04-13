@@ -1,19 +1,15 @@
 package ie.gmit.sw.Todo;
 
-import java.awt.List;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import ie.gmit.sw.Calendar.CalendarValues;
 import ie.gmit.sw.Connections.MongoConnection;
 
 /**
@@ -44,14 +40,14 @@ public class ToDoListServlet extends HttpServlet {
 
 			request.getSession().setAttribute("title", title);
 			request.getSession().setAttribute("desc", description);
-			response.sendRedirect("ToDoList");
+			doGet(request, response);
 			
 		}else if(buttonPressed.equals("Delete")){//If delete button is pressed
 			String title = request.getParameter("deleteTaskTitle");//Delete title
 			String description = request.getParameter("deleteTaskDescription");//Delete description
 			
 			mongo.deleteCompletedTask(code, title, description);//Telling mongo to delete from database
-			response.sendRedirect("ToDoList");
+			doGet(request, response);
 			
 		}else if(buttonPressed.equals("Transfer")){//If transfer button is pressed
 			String title = request.getParameter("moveTaskTitle");//Move title
@@ -59,7 +55,7 @@ public class ToDoListServlet extends HttpServlet {
 			System.out.println(title);//Output title
 			mongo.deleteCompletedTask(code, title, description);//Deletes completed task completed tasks in mongo
 			mongo.setTodoList(code, title, description);//Moves back to to do list
-			response.sendRedirect("ToDoList");
+			doGet(request, response);
 		}
 		else{
 			String title = request.getParameter("taskTitle");//Return title 
@@ -67,7 +63,7 @@ public class ToDoListServlet extends HttpServlet {
 
 			deleteTask(code, title, desc);//Deletes from task completed
 			mongo.setTaskCompleted(code, title, desc); //Deletes from task completed database 
-			response.sendRedirect("ToDoList");
+			doGet(request, response);
 		}
 	}
 
@@ -111,7 +107,7 @@ public class ToDoListServlet extends HttpServlet {
 		}
 		request.getSession().setAttribute("todolist", todo);
 		request.getSession().setAttribute("todolistCompleted", todoCompleted);
-		RequestDispatcher rd = request.getRequestDispatcher("todoList.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("TodoList.jsp");
 		rd.forward(request, response);
 	}
 }
