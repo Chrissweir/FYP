@@ -63,8 +63,7 @@
 			<b>Title:</b>
 			<input type="text" id="title" name="title" required maxlength="10" placeholder="Max 10 Characters" />
 			<b>Description:</b>
-			
-			<input type="text" id="description"name="description" required  placeholder="Max 25 Characters" />
+			<input type="text" id="description"name="description" required maxlength="300" placeholder="Max 300 Characters" />
 			
 			<input type="submit" name="btn" value="Save" />
 		
@@ -144,7 +143,7 @@
         </div>
         <div class="modal-body">
         	<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
-          <button form="delete" class="btn btn-danger pull-right"type="submit" name="btn" value="Delete">Remove</button>
+          <button form="delete" class="btn btn-danger pull-right"type="submit" name="btn" value="Delete">Delete</button>
         </div>
       </div>
     </div>
