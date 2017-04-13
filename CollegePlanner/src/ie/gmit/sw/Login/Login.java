@@ -56,9 +56,6 @@ public class Login extends HttpServlet{
 			//User validation, check if the password that was submitted is the same and the password
 			//retrieved from the database. If it is then pass the specified data to the request object
 			//and forward the request to the Profile.jsp page
-
-			System.out.println(login.getPass());
-			System.out.println(login.getPassword());
 			if(login.getPass() != null){
 
 				if(login.getPass().equals(login.getPassword())){
