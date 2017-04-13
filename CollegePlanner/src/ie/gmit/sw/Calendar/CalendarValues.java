@@ -16,7 +16,6 @@ public class CalendarValues {
 	public String start;
 	public String end;
 	public String color;
-
 	public String startTime;
 	public String endTime;
 
