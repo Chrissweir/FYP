@@ -87,7 +87,9 @@ public class CalendarEvents extends HttpServlet {
 			 * Java Objects into their JSON representation
 			 */
 			response.setContentType("application/json");
+			//encoding all possible characters
 			response.setCharacterEncoding("UTF-8");
+			// Get the printwriter object from response to write the required json object to the output stream 
 			PrintWriter out = response.getWriter();
 
 			RequestDispatcher rg = request.getRequestDispatcher("Calendar");
