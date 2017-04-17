@@ -47,5 +47,7 @@ Navigate to http://collegeplannerfyp.herokuapp.com
 - Run the Server.
 - Run any JSP page and it will navigate you to the web application.
 
-
+## Example User
+**User:** TestUser <br>
+**Password:** password
 
