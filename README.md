@@ -37,7 +37,7 @@ The general context of this project is a system that provides several different 
 
 ## Deployment
 **Deployment in web browser:** <br>
-Navigate to http://collegeplannerfyp.herokuapp.com
+Navigate to https://collegeplannerfyp.herokuapp.com
 
 **Deployment in Eclipse:**
 - Make sure you have [Eclipse Jee](http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/keplersr2) downloaded.
