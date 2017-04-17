@@ -1,3 +1,13 @@
+.background{
+    background-image: url(https://images.unsplash.com/3/doctype-hi-res.jpg);
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
 .timeline {
     position: relative;
     padding:4px 0 0 0;

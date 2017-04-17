@@ -109,9 +109,8 @@
                                     %>
                               </div>
                               <div class="form-group">
-                                 <input id="signupPassword" name="password" type="password"
-	                                    maxlength="25" class="form-control" placeholder="Password"
-	                                    length="40" required>
+                                 <input id="signupPassword" name="password" type="password" minlength="8"
+	                                    maxlength="25" class="form-control" placeholder="Password" required>
 	                                    <label id="passLabel" style="color: red; display: none">Passwords must Match!</label>
                               </div>
                               <div class="form-group">
